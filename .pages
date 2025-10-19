@@ -1,0 +1,21 @@
+nav:
+    - Seguridad en switches: 
+        - Puertos: SecSwitches.md
+        - Confidencialitat amb Veracrypt: intconfdis2.md
+        - Disponibilitat de serveis amb Nmap: intconfdis3.md
+    - Seguretat física:
+        - SAI: SAI.md
+
+    - Spoofing: 
+        - ARP Spoofing: ARP_Spoofing.md
+    - IDS/IPS:
+        - Monitorización mediante sistemas detectores de intrusos (IDS) y sistemas de prevención de intrusos (IPS): idps.md
+    - Firewall:
+        - Administració senzilla de regles d'iptables fent servir Docker: iptables.md 
+        - Administració de regles d'iptables en un entorn industrial: fw-ics.md
+    - VPN:
+        - Servidor de VPN amb wireguard en un escenari muntat amb Docker: vpn.md
+    - Proxy:
+        - Servidor proxy Squid amb autenticació Radius amb Docker: proxy.md
+        - Proxy inverso para Docker con Traefik: proxy-traefik.md
+        - Proxy inverso con Caddy para contenedores Docker: proxy-caddy.md

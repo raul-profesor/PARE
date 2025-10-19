@@ -1,0 +1,74 @@
+site_name: Seguridad y alta disponibilidad
+site_url: https://raul-profesor.github.io/PARE
+
+theme:
+  name: material
+  palette: 
+    - media: "(prefers-color-scheme: light)"    
+    # Palette toggle for light mode
+      scheme: default
+      primary: green
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Cambiar a modo oscuro
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Cambiar a modo claro
+  language: es
+  features:
+    #- navigation.sections
+    - navigation.top
+    #- navigation.expand
+    - toc.integrate
+    - search.highlight
+    - content.code.annotate
+    - content.code.copy
+  icon:
+    annotation: material/arrow-right-circle
+markdown_extensions:
+  - meta
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      use_pygments: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - attr_list
+  - md_in_html
+  - footnotes
+  
+plugins: 
+  - search:
+      lang: es
+  - awesome-pages:
+      collapse_single_pages: true
+
+extra_css:
+  - stylesheets/extra.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
+extra_javascript:
+  #- javascripts/mathjax.js
+  #- https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+extra:
+  analytics: 
+      provider: google 
