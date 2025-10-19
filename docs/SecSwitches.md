@@ -1475,3 +1475,108 @@ SW-ACCESO-01# show spanning-tree interface fastethernet 0/1 detail
 5. BPDU Guard
 6. IP Source Guard
 7. Verificación y ajuste
+
+
+## Portfast
+
+PortFast es una funcionalidad de los switches Cisco que se configura en puertos de acceso que conectan estaciones de trabajo finales (como PCs, impresoras, servidores) y nunca otros switches o dispositivos de red.
+¿Qué hace PortFast?
+
+    Objetivo principal: Acelerar el inicio de un puerto cuando se enciende un dispositivo conectado a él.
+
+    Funcionamiento normal (sin PortFast): Cuando un puerto de switch se activa, el protocolo Spanning Tree (STP) pasa por una serie de estados antes de permitir el tráfico de datos:
+    Bloqueando → Escuchando → Aprendiendo → Reenvío
+    Este proceso puede tomar unos 30 segundos.
+
+    Funcionamiento con PortFast: El puerto se salta los estados de "Escuchando" y "Aprendiendo" y pasa inmediatamente al estado de "Reenvío", permitiendo el tráfico casi al instante.
+
+Analogía Rápida
+
+    Sin PortFast: Es como arrancar un coche en un día frío: dejar que el motor se caliente antes de poder circular.
+
+    Con PortFast: Es como tener el coche ya caliente y listo para circular en cuanto giras la llave.
+
+Puntos Clave y Advertencias
+
+    ¿Dónde se usa? Solo en puertos de acceso que conectan dispositivos finales.
+
+    ¿Qué evita? La espera de 30 segundos para que un usuario obtenga una dirección IP (DHCP) o pueda empezar a navegar.
+
+    ¡ADVERTENCIA CRUCIAL! NUNCA actives PortFast en un puerto que conecte a otro switch, hub o router. Esto podría crear bucles de capa 2 en la red, ya que STP no tendría tiempo de detectarlos y bloquearlos.
+
+Relación con BPDU Guard
+
+PortFast suele ir de la mano con BPDU Guard. Si un usuario conecta por error un switch a un puerto con PortFast, BPDU Guard detectará el paquete BPDU (propio de STP) y desactivará el puerto inmediatamente, evitando así un posible bucle. Es el "seguro de seguridad" de PortFast.
+
+En resumen: PortFast es una optimización para puertos de usuarios finales que acelera el acceso a la red, saltándose los lentos estados de STP.
+
+
+---
+
+### Configuración de PortFast
+
+#### **1. Por interfaz (recomendado)**
+```bash
+Switch# configure terminal
+Switch(config)# interface [tipo-número]  # Ej: gigabitethernet 0/1
+Switch(config-if)# spanning-tree portfast
+```
+
+**Para habilitar BPDU Guard en la misma interfaz:**
+```bash
+Switch(config-if)# spanning-tree bpduguard enable
+```
+
+#### **2. De forma global (más rápido)**
+Habilita PortFast en **todas** las interfaces que no son trunk y están en estado *connected*:
+```bash
+Switch# configure terminal
+Switch(config)# spanning-tree portfast default
+```
+
+**Para habilitar BPDU Guard de forma global:**
+```bash
+Switch(config)# spanning-tree portfast bpduguard default
+```
+
+---
+
+### Verificación
+```bash
+Switch# show spanning-tree interface [tipo-número] detail
+```
+Busca en la salida:
+- `Portfast enabled`
+- `Bpdu guard enabled`
+
+---
+
+### Comandos importantes para aclarar dudas
+
+**¿La interfaz es de acceso o trunk?**
+```bash
+Switch# show interfaces [tipo-número] switchport
+```
+
+**¿Se han recibido BPDUs en el puerto?**
+```bash
+Switch# show spanning-tree interface [tipo-número] detail
+```
+
+**Si BPDU Guard desactiva un puerto:**
+```bash
+Switch# show interfaces status err-disabled
+Switch# enable
+Switch# configure terminal
+Switch(config)# interface [tipo-número]
+Switch(config-if)# shutdown
+Switch(config-if)# no shutdown
+```
+
+---
+
+### ⚠️ Recordatorio importante
+
+**SOLO uses PortFast en puertos que conecten dispositivos finales** (PCs, impresoras, servidores). **NUNCA** en puertos que conecten a otros switches, routers o puntos de acceso inalámbricos, ya que podrías causar bucles en la red.
+
+La combinación **PortFast + BPDU Guard** es la práctica más segura y común.
