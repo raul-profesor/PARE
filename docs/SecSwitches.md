@@ -1124,6 +1124,7 @@ Switch# show ip arp inspection interface fastethernet 0/10
 BPDU (Bridge Protocol Data Units) son mensajes que intercambian los switches para **construir y mantener el spanning-tree**.
 
 **Problemas que resuelven:**
+
 - **Switches no autorizados**: Usuario conecta un switch casero
 - **Bucles de red**: Configuraciones incorrectas crean loops
 - **Interrupciones de servicio**: Topología STP cambia inesperadamente
@@ -1163,6 +1164,7 @@ Switch(config)# errdisable recovery interval 300
 **Propósito**: **Silenciar** BPDUs en puertos específicos
 
 **Comportamiento**:
+
 - **Bloquea envío y recepción** de BPDUs
 - **Peligroso**: Puede crear bucles si no se usa correctamente
 - **Caso de uso**: Conectar dispositivos que envían BPDUs pero no deben participar en STP
@@ -1230,11 +1232,13 @@ Switch# show errdisable recovery
 Es un mecanismo que **filtra tráfico IP** basándose en la tabla de bindings de DHCP Snooping.
 
 **Problemas que resuelve:**
+
 - **IP spoofing**: Usuario usa IP que no le pertenece
 - **Ataques DoS**: Dispositivos maliciosos suplantando IPs
 - **Robo de servicios**: Usar IPs de otros departamentos
 
 **Cómo funciona:**
+
 1. **Aprende** bindings IP-MAC de DHCP Snooping
 2. **Instala** filtros en hardware del switch
 3. **Permite** solo tráfico de IPs autorizadas
