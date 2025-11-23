@@ -2,12 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://raul-profesor.github.io/PARE/SecSwitches/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-11-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://raul-profesor.github.io/PARE/cheatsheet_routers/</loc>
+         <lastmod>2025-11-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://raul-profesor.github.io/PARE/dtp/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-11-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
