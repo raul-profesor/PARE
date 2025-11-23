@@ -635,26 +635,30 @@
 </span></code></pre></div>
 <hr />
 <h3 id="ejemplo-de-configuracion-completa-basica"><strong>🌐 Ejemplo de Configuración Completa Básica</strong></h3>
-<p>```bash
-enable
-configure terminal</p>
-<p>! Configuración básica
-hostname R1-Oficina
-no ip domain-lookup
-service password-encryption</p>
-<p>! Passwords
-enable secret MiSecurePass123
-line console 0
- password console123
- login
- exit</p>
-<p>line vty 0 4
- password vty123
- login
- transport input ssh
- exit</p>
-<p>! Interfaces
-interface fastethernet 0</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">enable</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>configure<span class="w"> </span>terminal
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>!<span class="w"> </span>Configuración<span class="w"> </span>básica
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>hostname<span class="w"> </span>R1-Oficina
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>no<span class="w"> </span>ip<span class="w"> </span>domain-lookup
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>service<span class="w"> </span>password-encryption
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>!<span class="w"> </span>Passwords
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="nb">enable</span><span class="w"> </span>secret<span class="w"> </span>MiSecurePass123
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>line<span class="w"> </span>console<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w"> </span>password<span class="w"> </span>console123
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w"> </span>login
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w"> </span><span class="nb">exit</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>line<span class="w"> </span>vty<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">4</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w"> </span>password<span class="w"> </span>vty123
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w"> </span>login
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w"> </span>transport<span class="w"> </span>input<span class="w"> </span>ssh
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w"> </span><span class="nb">exit</span>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>!<span class="w"> </span>Interfaces
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>interface<span class="w"> </span>fastethernet<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div>
 
 
   
