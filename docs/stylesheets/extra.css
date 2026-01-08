@@ -20,3 +20,14 @@ img {
   --md-primary-fg-color--light: rgb(123, 136, 204);
   --md-primary-fg-color--dark: #34091a;
 }
+
+.md-content p {
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .md-content p {
+    text-align: justify;
+    hyphens: auto;
+  }
+}

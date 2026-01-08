@@ -16,8 +16,11 @@ DTP elimina la necesidad de configurar manualmente los enlaces trunk, permitiend
 ```
 Switch(config-if)# switchport mode dynamic auto
 ```
+
 - Espera a que el otro dispositivo solicite formar trunk
+
 - **No envía** frames DTP, pero **responde** a ellos
+ 
 - Resultado: Forma trunk solo si el otro lado es "desirable"
 
 **Escenarios típicos:**

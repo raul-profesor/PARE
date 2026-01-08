@@ -14,7 +14,7 @@
         <link rel="prev" href="../cheatsheet_routers/">
       
       
-        <link rel="next" href="../routers_y_rutas_est%C3%A1ticas/">
+        <link rel="next" href="../routers_y_rutas_estaticas/">
       
       
         
@@ -665,14 +665,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../routers_y_rutas_est%C3%A1ticas/" class="md-nav__link">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Routers y rutas estáticas
+    Routers y rutas estaticas
   
 
     
@@ -709,11 +709,19 @@
 - <strong>Trunk</strong> (puerto troncal)</p>
 <h2 id="modos-de-operacion-dtp">Modos de Operación DTP</h2>
 <h3 id="1-dynamic-auto">1. <strong>Dynamic Auto</strong></h3>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Switch(config-if)# switchport mode dynamic auto
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Switch(config-if)# switchport mode dynamic auto
 </span></code></pre></div>
-- Espera a que el otro dispositivo solicite formar trunk
-- <strong>No envía</strong> frames DTP, pero <strong>responde</strong> a ellos
-- Resultado: Forma trunk solo si el otro lado es "desirable"</p>
+<ul>
+<li>
+<p>Espera a que el otro dispositivo solicite formar trunk</p>
+</li>
+<li>
+<p><strong>No envía</strong> frames DTP, pero <strong>responde</strong> a ellos</p>
+</li>
+<li>
+<p>Resultado: Forma trunk solo si el otro lado es "desirable"</p>
+</li>
+</ul>
 <p><strong>Escenarios típicos:</strong></p>
 <ul>
 <li>

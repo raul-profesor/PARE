@@ -3,4 +3,4 @@ nav:
         - Puertos: SecSwitches.md
         - DTP (Dynamic Trunking Protocol): dtp.md
         - Cheatsheet routers Cisco: cheatsheet_routers.md
-    - Routers y rutas estáticas: routers_rutas_estaticas.md
+    - Routers y rutas estáticas: rrouters_y_rutas_estaticas.md

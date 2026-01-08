@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://raul-profesor.github.io/PARE/routers_y_rutas_est%C3%A1ticas/">
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/routers_y_rutas_estaticas/">
       
       
         <link rel="prev" href="../dtp/">
@@ -23,7 +23,7 @@
     
     
       
-        <title>Routers y rutas estáticas - PARE - Prácticas de Administración de Redes y Equipos</title>
+        <title>Routers y rutas estaticas - PARE - Prácticas de Administración de Redes y Equipos</title>
       
     
     
@@ -164,7 +164,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Routers y rutas estáticas
+              Routers y rutas estaticas
             
           </span>
         </div>
@@ -385,7 +385,7 @@
   <span class="md-ellipsis">
     
   
-    Routers y rutas estáticas
+    Routers y rutas estaticas
   
 
     
@@ -403,7 +403,7 @@
   <span class="md-ellipsis">
     
   
-    Routers y rutas estáticas
+    Routers y rutas estaticas
   
 
     
@@ -605,41 +605,49 @@
                 
                   
 
-  <h1>Routers y rutas estáticas</h1>
+  <h1>Routers y rutas estaticas</h1>
 
-<p>En este tema veremos:</p>
+<p>En esta unidad vamos a tratar los siguientes puntos:</p>
 <ul>
 <li>Cómo los hosts finales envían paquetes IP a destinos locales y remotos</li>
 <li>El proceso de enrutamiento</li>
 <li>Lectura e interpretación de la tabla de enrutamiento de un router</li>
 <li>Configuración de rutas estáticas en un router</li>
-<li>Uso de rutas predeterminadas para proporcionar conectividad a internet</li>
+<li>Uso de rutas predeterminadas para proporcionar conectividad a Internet</li>
 </ul>
-<p>En este capítulo, abordaremos el enrutamiento: el proceso mediante el cual los routers reenvían paquetes IP entre redes. Veremos aspectos que se corresponden con los siguientes puntos del CCNA:</p>
+<p>Estos aspectos aspectos tienen cierta correspondencia con los siguientes puntos del CCNA:</p>
 <ol>
 <li>Interpretar los componentes de una tabla de enrutamiento</li>
-<li>Determinar cómo un router toma una decisión de reenvío por defecto</li>
+<li>Determinar cómo un router toma una decisión de reenvío (<em>forwarding</em>) por defecto</li>
 <li>Configurar y verificar el enrutamiento estático IPv4 e IPv6</li>
 </ol>
-<p>El término <em>enrutamiento</em> puede referirse a dos procesos diferentes: el proceso mediante el cual los routers crean su <strong>tabla de enrutamiento</strong> (una base de datos de destinos conocidos y cómo reenviar paquetes hacia ellos) y el proceso de reenvío de paquetes. En este capítulo, abordaremos ambos aspectos del enrutamiento y nos basaremos en esta base en capítulos posteriores de este volumen y del volumen 2.</p>
+<p>El término <em>enrutamiento</em> puede referirse a dos procesos diferentes: el proceso mediante el cual los routers crean su <strong>tabla de enrutamiento</strong> (una base de datos de destinos conocidos y cómo reenviar paquetes hacia ellos) y el proceso de reenvío de paquetes.</p>
+<p>Abordaremos pues ambos aspectos del enrutamiento.</p>
 <h2 id="como-envian-paquetes-los-hosts-finales">Cómo envían paquetes los hosts finales</h2>
-<p>Antes de examinar los detalles de cómo los routers reenvían paquetes IP, veamos los hosts finales que se envían dichos paquetes entre sí. Después de que un host prepara un paquete para enviarlo a otro, debe encapsularlo en una trama. Si bien nos centramos en el enrutamiento, un proceso de Capa 3, ¡no olvidemos la Capa 2! Los paquetes nunca se envían por cable (u ondas de radio) sin estar encapsulados en una trama.</p>
-<p>La dirección MAC de destino de la trama depende de la dirección IP de destino del paquete. Si el paquete está destinado a un host en la misma red que el remitente, la dirección MAC de destino será la del host de destino; en este caso, no se necesita un router. La imagen de abajo muestra este proceso cuando el PC1 envía un paquete a el PC2. Las direcciones IP y MAC de destino son ambas de el PC2; No es necesario que R1 enrute el paquete porque el origen y el destino están en la misma red (la red 192.168.1.0/24).</p>
+<p>Antes de examinar los detalles de cómo los routers reenvían paquetes IP, echemos un ojo a los hosts finales que se envían dichos paquetes entre sí. Después de que un host prepare un paquete para enviarlo a otro, debe encapsularlo en una trama. Si bien nos centramos en el enrutamiento, es decir un proceso de Capa 3, ¡no nos olvidemos de la Capa 2! Los paquetes nunca se envían por cable (u ondas de radio) sin estar encapsulados en una trama.</p>
+<p>La dirección MAC de destino de la trama depende de la dirección IP de destino del paquete. Si el paquete está destinado a un host en la misma red que el emisor, la dirección MAC de destino será la del host de destino; en este caso, no se necesita un router porque <strong>ya sabemos que el router sirve para conectar redes diferentes</strong>.</p>
+<p>La imagen de abajo muestra este proceso cuando el PC1 envía un paquete a el PC2. Las direcciones IP y MAC de destino son ambas de el PC2; No es necesario que R1 enrute el paquete porque el origen y el destino están en la misma red (la red 192.168.1.0/24).</p>
 <p><img alt="" src="../img/image.png" /></p>
-<p>El PC1 (192.168.1.11) envía un paquete a el PC2 (192.168.1.12). Dado que ambas se encuentran en la misma red (192.168.1.0/24), el PC1 encapsula el paquete en una trama dirigida a la dirección MAC de el PC2. El PC1 no necesita enviar el paquete a R1 para su enrutamiento. Este diagrama presupone que el PC1 ya conoce la dirección MAC de el PC2; de lo contrario, primero enviará una solicitud ARP para obtenerla.</p>
+<p>El PC1 (192.168.1.11) envía un paquete al PC2 (192.168.1.12). Dado que ambos se encuentran en la misma red (192.168.1.0/24), el PC1 encapsula el paquete en una trama dirigida a la dirección MAC de el PC2. El PC1 no necesita enviar el paquete a R1 para su enrutamiento.</p>
+<p>Este diagrama presupone que el PC1 ya conoce la dirección MAC de el PC2; de lo contrario, primero enviará una solicitud ARP para obtenerla, tal y como ya hemos visto anteriormente en el curso.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Un icono de nube, como se muestra en la figura anterior, se utiliza a menudo para representar internet. Sin embargo, no siempre es su propósito. Un icono de nube puede utilizarse para obviar elementos que no son relevantes para el diagrama. La nube en la figura indica que R1 se conecta a otra red, cuyos detalles no son relevantes para el diagrama. Esa otra red podría ser internet o otra parte de la red de la misma empresa.</p>
+<p>Un icono de nube, como el que se muestra en la figura anterior, se utiliza a menudo para representar Internet, aunque no siempre. Un icono de nube puede utilizarse para obviar elementos que no son relevantes para el diagrama. La nube en la figura indica que R1 se conecta a otra red, cuyos detalles no son relevantes para el diagrama. Esa otra red podría ser internet o otra parte de la red de la misma empresa.</p>
 </div>
-<p>Por otro lado, si un host final, como una PC, desea enviar un paquete a un destino fuera de su red local, debe enviarlo a su puerta de enlace predeterminada (el router que proporciona conectividad a otras redes). En la figura 9.2, R1 es la puerta de enlace predeterminada de la red 192.168.1.0/24. Para que PC1 y PC2 envíen paquetes a destinos fuera de 192.168.1.0/24, deben encapsular el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 de R1. La figura 9.2 muestra cómo PC1 envía un paquete a PC3: encapsula el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 de R1. A continuación, R1 reenvía el paquete fuera de su interfaz G0/1, encapsulado en una nueva trama dirigida a la dirección MAC de PC3.</p>
+<p>Por otro lado, si un host final, como un PC, desea enviar un paquete a un destino fuera de su red local, debe enviarlo a su puerta de enlace predeterminada (el router que proporciona conectividad a otras redes,  también conocido como <strong><em>gateway</em></strong>). En la imagen de abajo, R1 es la puerta de enlace predeterminada de la red 192.168.1.0/24.</p>
+<p>Para que PC1 y PC2 envíen paquetes a destinos fuera de 192.168.1.0/24, deben encapsular el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 de R1.</p>
+<p>En la imagen se muestra cómo PC1 envía un paquete a PC3: encapsula el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 de R1. A continuación, R1 reenvía el paquete fuera de su interfaz G0/1, encapsulado en una nueva trama dirigida a la dirección MAC de PC3.</p>
 <p><img alt="" src="../img/image2.png" /></p>
-<p>PC1 (192.168.1.11) envía un paquete a PC3 (192.168.2.11). Dado que PC1 y PC3 se encuentran en redes separadas, PC1 envía el paquete en una trama dirigida a la dirección MAC de su puerta de enlace predeterminada: la de la interfaz G0/0 de R1. R1 reenvía el paquete desde su interfaz G0/1, encapsulado en una nueva trama dirigida a la dirección MAC de PC3. Este diagrama supone que PC1 ya conoce la dirección MAC G0/0 de R1; de lo contrario, PC1 enviará una solicitud ARP para obtenerla. Asimismo, R1 también debe obtener la dirección MAC de PC3.</p>
+<p>PC1 (192.168.1.11) envía un paquete a PC3 (192.168.2.11). Dado que PC1 y PC3 se encuentran en redes separadas, PC1 envía el paquete en una trama dirigida a la dirección MAC de su puerta de enlace predeterminada: la de la interfaz G0/0 de R1. R1 reenvía el paquete desde su interfaz G0/1, encapsulado en una nueva trama dirigida a la dirección MAC de PC3.</p>
+<p>Este diagrama supone que PC1 ya conoce la dirección MAC G0/0 de R1; de lo contrario, PC1 enviará una solicitud ARP para obtenerla. Asimismo, R1 también debe obtener la dirección MAC de PC3.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>La dirección IP de la puerta de enlace predeterminada suele ser la primera dirección utilizable de la red. Por ejemplo, en la red 192.168.1.0/24, es 192.168.1.1, y en la red 192.168.2.0/24, es 192.168.2.1. Esto no tiene por qué ser así, pero es una práctica común, y la seguiré en este libro. Las direcciones IP de los ordenadores, por otro lado, son arbitrarias. En los ejemplos de este capítulo, las direcciones IP de los ordenadores terminan en .11 y .12, pero no tienen un significado específico.</p>
+<p>La dirección IP de la puerta de enlace predeterminada suele ser la primera dirección utilizable de la red. Por ejemplo, en la red 192.168.1.0/24, es 192.168.1.1, y en la red 192.168.2.0/24, es 192.168.2.1. Esto no tiene por qué ser así, pero es una práctica muy común. Las direcciones IP de los ordenadores, por otro lado, son arbitrarias. En los ejemplos las direcciones IP de los ordenadores terminan en .11 y .12, pero por ningún motivo concreto.</p>
 </div>
-<p>¿Cómo sabe el PC1 cuál es su puerta de enlace predeterminada? Un host final puede conocer la dirección IP de su puerta de enlace predeterminada de dos maneras. Una es mediante la configuración manual, en la que un administrador especifica manualmente la puerta de enlace predeterminada en cada dispositivo. Sin embargo, esto es muy poco común en dispositivos de usuario como las PC; suelen utilizar el segundo método (el Protocolo de Configuración Dinámica de Host [DHCP]) para conocer automáticamente información como la dirección IP de su puerta de enlace predeterminada, así como su propia dirección IP (el DHCP se trata en el capítulo 4 del volumen 2 de este libro). En un dispositivo Windows, puede usar el comando ipconfig en la aplicación Símbolo del sistema para ver información como la dirección IP del dispositivo, la máscara de red (denominada máscara de subred en la salida del comando) y la puerta de enlace predeterminada. El siguiente ejemplo muestra la salida de este comando en el PC1:</p>
-<div class="language-rd highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>C:<span class="k">\Users\jmcdo</span>&gt; ipconfig
+<p>¿Cómo sabe el PC1 cuál es su puerta de enlace predeterminada?</p>
+<p>Un host final puede conocer la dirección IP de su puerta de enlace predeterminada de dos maneras. La primera es mediante la configuración manual, en la que un administrador especifica manualmente la puerta de enlace predeterminada en cada dispositivo. Sin embargo, esto es muy poco común en dispositivos de usuario como los PC; suelen utilizar el segundo método (el Protocolo de Configuración Dinámica de Host o <strong>DHCP</strong>) para conocer automáticamente información como la dirección IP de su puerta de enlace predeterminada, así como su propia dirección IP.</p>
+<p>En un dispositivo Windows, podemos usar el comando <code>ipconfig</code> en la aplicación <em>Símbolo del sistema</em> para ver información como la dirección IP del dispositivo, la máscara de red (<em>Subnet Mask</em> en la salida del comando) y la puerta de enlace predeterminada. El siguiente ejemplo muestra la salida de este comando en el PC1:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>C:<span class="k">\Users\alumno</span>&gt; ipconfig
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>. . .
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Ethernet adapter Local Area Connection:
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   Connection-specific DNS Suffix  . : 
@@ -654,22 +662,26 @@
 </div>
 <p>Hay un par de puntos principales que se deben tener en cuenta en esta sección: primero, para enviar un paquete a un destino en la misma red, un host encapsulará el paquete (dirigido a la dirección IP del host de destino) en una trama dirigida a la dirección MAC del host de destino. El segundo punto es que, para enviar un paquete a un destino en una red diferente, el host emisor encapsulará el paquete (dirigido a la dirección IP del host de destino) en una trama dirigida a la dirección MAC de la puerta de enlace predeterminada. En cualquier caso, se debe usar ARP para obtener la dirección MAC adecuada (la del host de destino o la de la puerta de enlace predeterminada).</p>
 <h2 id="fundamentos-de-routing">Fundamentos de routing</h2>
-<p>En el apartado anterior, vimos cómo un host envía paquetes a destinos fuera de su red local; envía cada paquete en una trama dirigida a la dirección MAC de la puerta de enlace predeterminada. Ahora examinaremos cómo la puerta de enlace predeterminada (un router) realiza su función de reenvío de paquetes entre redes, lo que se denomina enrutamiento. La Figura 9.3 ofrece una descripción general de cómo R1 reenvía un paquete de PC1 a PC3.
-Nota</p>
-<p>La tabla de enrutamiento de R1 en la Figura 9.3 está simplificada; examinaremos la tabla de enrutamiento completa de R1 en la Sección 9.2.1.</p>
+<p>En el apartado anterior hemos visto cómo un host envía paquetes a destinos fuera de su red local; envía cada paquete en una trama dirigida a la dirección MAC de la puerta de enlace predeterminada. Ahora examinaremos cómo la puerta de enlace predeterminada (un router) realiza su función de reenvío de paquetes entre redes, lo que se denomina enrutamiento. La imagen de más abajo ofrece una descripción general de cómo R1 reenvía un paquete de PC1 a PC3.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La tabla de enrutamiento de R1 en la imagen está simplificada; examinaremos la tabla de enrutamiento completa de R1 más adelante.</p>
+</div>
 <p>Cuando un router recibe una trama destinada a su propia dirección MAC, la desencapsula para examinar el paquete que contiene (si el destino no es su propia dirección MAC, la descarta). Si la dirección IP de destino del paquete es su propia dirección IP, continúa desencapsulando el mensaje; es un mensaje para el router.</p>
 <p>Sin embargo, si la dirección IP de destino del paquete no es su propia dirección IP, el router intentará enrutarlo hacia su destino. Para ello, busca la dirección IP de destino del paquete en su tabla de enrutamiento para encontrar una ruta adecuada. Si encuentra una ruta adecuada, reenvía el paquete según esa ruta. De lo contrario, lo descarta.</p>
 <p><img alt="" src="../img/image3.png" /></p>
-<p>En la figura de arriba, R1 recibe un paquete de PC1 y lo reenvía a PC3.
-1. R1 recibe una trama en su interfaz G0/0. La trama está dirigida a la dirección MAC de R1, por lo que examina el paquete que contiene.
-2. R1 busca la dirección IP de destino del paquete en su tabla de enrutamiento. 192.168.2.11 pertenece a la red 192.168.2.0/24, por lo que selecciona esa ruta para reenviarlo. 
-3. R1 encapsula el paquete en una nueva trama destinada a la dirección MAC de PC3 y lo reenvía fuera de la interfaz especificada por la ruta (G0/1).</p>
+<p>En la figura de arriba, R1 recibe un paquete de PC1 y lo reenvía a PC3:</p>
+<ol>
+<li>R1 recibe una trama en su interfaz G0/0. La trama está dirigida a la dirección MAC de R1, por lo que examina el paquete que contiene.</li>
+<li>R1 busca la dirección IP de destino del paquete en su tabla de enrutamiento. 192.168.2.11 pertenece a la red 192.168.2.0/24, por lo que selecciona esa ruta para reenviarlo. </li>
+<li>R1 encapsula el paquete en una nueva trama destinada a la dirección MAC de PC3 y lo reenvía fuera de la interfaz especificada por la ruta (G0/1).</li>
+</ol>
 <h2 id="la-tabla-de-enrutamiento">La tabla de enrutamiento</h2>
 <p>La tabla de enrutamiento de un router es una base de datos de destinos conocidos por el router. Puede considerarse como un conjunto de instrucciones:</p>
 <ul>
-<li>Para enviar un paquete al destino X, reenvíelo al siguiente salto Y.</li>
-<li>O bien, si el destino está en una red conectada directamente, reenvíelo directamente al destino.</li>
-<li>O bien, si el destino es la dirección IP del router, continúe desencapsulando el mensaje (no reenvíe el paquete).</li>
+<li>Para enviar un paquete al destino X, reenvíalo al siguiente salto Y.</li>
+<li>O bien, si el destino está en una red conectada directamente, reenvíalo directamente al destino.</li>
+<li>O bien, si el destino es la dirección IP del router, continúa desencapsulando el mensaje (no reenvíes el paquete).</li>
 </ul>
 <p>El ejemplo que veíamos en la figura anterior es un ejemplo del segundo tipo de instrucción: el destino del paquete (PC3, 192.168.2.11) se encuentra en una red conectada directamente a R1 (192.168.2.0/24), por lo que R1 reenvía el paquete directamente al destino (encapsulándolo en una trama dirigida a PC3).</p>
 <p>A diferencia de los switches, que pueden generar su tabla de direcciones MAC automáticamente sin necesidad de configuración, la tabla de enrutamiento de un router estará vacía por defecto; no podrá reenviar paquetes. El siguiente ejemplo muestra la tabla de enrutamiento de R1 antes de cualquier configuración. El comando para ver la tabla de enrutamiento es <code>show ip route</code>:`</p>
@@ -816,7 +828,7 @@ Nota</p>
 <p>Dado el objetivo de habilitar la comunicación bidireccional entre PC1 y PC3, ¿qué rutas debemos configurar? Al observar la tabla 9.2, se podría suponer que debemos configurar seis rutas para que cada enrutador conozca todas las redes dentro de la red principal.</p>
 <p>Sin embargo, para reenviar paquetes entre dos hosts, cada enrutador solo necesita rutas a las redes de los hosts que se comunican (PC1 y PC3). R1, por ejemplo, no necesita conocer la red entre R2 y R3 (192.168.23.0/24); R1 solo necesita saber que para reenviar un paquete a un destino en 192.168.3.0/24, debe reenviarlo a R2. La Figura 9.8 demuestra este concepto: si configuramos una ruta a 192.168.3.0/24 en R1, con la dirección IP de R2 especificada como el siguiente salto, R1 podrá reenviar el paquete a R2. No necesita saber los detalles de la ruta que tomará el paquete después de R2; solo necesita saber que R2 es el siguiente salto.</p>
 <p>R1 reenvía un paquete destinado a 192.168.3.11 (PC3). R1 ​​tiene una ruta estática a 192.168.3.0/24 a través de 192.168.12.2 (R2). R1 ​​sabe que para reenviar un paquete hacia la red 192.168.3.0/24, debe reenviarlo a R2. R1 desconoce los detalles de la ruta que tomará el paquete después de R2, y no está obligado a conocerlos.</p>
-<p>En resumen, cada router necesita una ruta a 192.168.3.0/24 para poder reenviar paquetes de PC1 a PC3 y una ruta a 192.168.1.0/24 para poder reenviar paquetes de PC3 a PC1. El R1 ya tiene una ruta conectada a 192.168.1.0/24, y el R3 ya tiene una ruta conectada a 192.168.3.0/24. La Tabla 9.3 enumera las rutas estáticas que debemos configurar para habilitar la comunicación bidireccional entre la PC1 y la PC3.</p>
+<p>En resumen, cada router necesita una ruta a 192.168.3.0/24 para poder reenviar paquetes de PC1 a PC3 y una ruta a 192.168.1.0/24 para poder reenviar paquetes de PC3 a PC1. El R1 ya tiene una ruta conectada a 192.168.1.0/24, y el R3 ya tiene una ruta conectada a 192.168.3.0/24. La Tabla 9.3 enumera las rutas estáticas que debemos configurar para habilitar la comunicación bidireccional entre el PC1 y el PC3.</p>
 <table>
 <thead>
 <tr>
@@ -850,7 +862,7 @@ Nota</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>En este ejemplo, nos referimos a las rutas necesarias para habilitar la comunicación bidireccional entre la PC1 y la PC3. Si bien no es necesario para tal fin, no hay problema en configurar una ruta a 192.168.23.0/24 en el R1 y una ruta a 192.168.12.0/24 en el R3.</p>
+<p>En este ejemplo, nos referimos a las rutas necesarias para habilitar la comunicación bidireccional entre el PC1 y el PC3. Si bien no es necesario para tal fin, no hay problema en configurar una ruta a 192.168.23.0/24 en el R1 y una ruta a 192.168.12.0/24 en el R3.</p>
 </div>
 <h3 id="configurando-rutas-estaticas">Configurando rutas estáticas</h3>
 <p>El comando para configurar una ruta estática es, desde el modo de configuración global, <code>ip route</code>. Sin embargo, existen diferentes opciones en cuanto a los argumentos que se proporcionan con el comando:</p>
@@ -956,7 +968,7 @@ Una búsqueda para encontrar la interfaz a la que está conectado el siguiente s
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Puerta de enlace de último recurso (<em>gateway of last resort</em>) es otro término para la puerta de enlace predeterminada (<em>default gateway</em>). La ruta predeterminada en un router es como la puerta de enlace predeterminada de una PC; se utiliza para reenviar tráfico a destinos fuera de las redes conocidas del router.</p>
+<p>Puerta de enlace de último recurso (<em>gateway of last resort</em>) es otro término para la puerta de enlace predeterminada (<em>default gateway</em>). La ruta predeterminada en un router es como la puerta de enlace predeterminada de un PC; se utiliza para reenviar tráfico a destinos fuera de las redes conocidas del router.</p>
 </div>
 <p>Tras configurar las rutas estáticas que se muestran en la figura 9.11, el resultado cambia. En el siguiente ejemplo, utilizo el comando show ip route static para ver solo las rutas estáticas de R1. Observe que la dirección IP del ISP (203.0.113.2) ahora aparece como la puerta de enlace de último recurso:</p>
 <div class="language-rd highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>R1# show ip route static
