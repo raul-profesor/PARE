@@ -11,32 +11,83 @@
         <link rel="canonical" href="https://raul-profesor.github.io/PARE/SecSwitches/">
       
       
+        <link rel="prev" href="..">
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
-    
-    
       
-        <title>🚀 Guía Completa de Seguridad en Switches Cisco - Seguridad y alta disponibilidad</title>
+        <link rel="next" href="../cheatsheet_routers/">
       
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>🚀 Guía Completa de Seguridad en Switches Cisco - PARE - Prácticas de Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
 
     
+    
+      
     
     
       
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
     
@@ -44,7 +95,7 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
   
@@ -53,12 +104,11 @@
   
   
 
-
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
   
     <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
   
 
-    
     
     
   </head>
@@ -73,9 +123,6 @@
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="blue">
   
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -99,20 +146,21 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
-    <a href=".." title="Seguridad y alta disponibilidad" class="md-header__button md-logo" aria-label="Seguridad y alta disponibilidad" data-md-component="logo">
+    <a href=".." title="PARE - Prácticas de Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Prácticas de Administración de Redes y Equipos" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Seguridad y alta disponibilidad
+            PARE - Prácticas de Administración de Redes y Equipos
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -127,66 +175,51 @@
     
       
         <form class="md-header__option" data-md-component="palette">
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_1">
-            
-              <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_2" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              </label>
-            
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_2">
-            
-              <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_1" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              </label>
-            
-          
-        </form>
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
       
     
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Buscar">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
+    
+    
       
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Inicializando búsqueda
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
 </div>
+      
     
-    
+    <div class="md-header__source">
+      
+    </div>
   </nav>
   
 </header>
@@ -209,28 +242,55 @@
                     
 
 
+
   
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Seguridad y alta disponibilidad" class="md-nav__button md-logo" aria-label="Seguridad y alta disponibilidad" data-md-component="logo">
+    <a href=".." title="PARE - Prácticas de Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Prácticas de Administración de Redes y Equipos" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
 
     </a>
-    Seguridad y alta disponibilidad
+    PARE - Prácticas de Administración de Redes y Equipos
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
 
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -242,15 +302,42 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          🚀 Guía Completa de Seguridad en Switches Cisco
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        🚀 Guía Completa de Seguridad en Switches Cisco
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
       </a>
       
         
+
 
 <nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
   
@@ -267,7 +354,11 @@
       
         <li class="md-nav__item">
   <a href="#1-vlans-virtual-local-area-networks" class="md-nav__link">
-    📚 1. VLANs (Virtual Local Area Networks)
+    <span class="md-ellipsis">
+      
+        📚 1. VLANs (Virtual Local Area Networks)
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="📚 1. VLANs (Virtual Local Area Networks)">
@@ -275,28 +366,44 @@
         
           <li class="md-nav__item">
   <a href="#concepto-teorico-detallado" class="md-nav__link">
-    Concepto Teórico Detallado
+    <span class="md-ellipsis">
+      
+        Concepto Teórico Detallado
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#que-es-un-trunk" class="md-nav__link">
-    ¿Qué es un trunk?
+    <span class="md-ellipsis">
+      
+        ¿Qué es un trunk?
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#analogia-para-entenderlo" class="md-nav__link">
-    Analogía para Entenderlo
+    <span class="md-ellipsis">
+      
+        Analogía para Entenderlo
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#problema-que-resuelve" class="md-nav__link">
-    Problema que Resuelve
+    <span class="md-ellipsis">
+      
+        Problema que Resuelve
+      
+    </span>
   </a>
   
 </li>
@@ -308,7 +415,11 @@
       
         <li class="md-nav__item">
   <a href="#como-funciona-el-trunking-tecnicamente" class="md-nav__link">
-    🏗️ Cómo Funciona el Trunking Técnicamente
+    <span class="md-ellipsis">
+      
+        🏗️ Cómo Funciona el Trunking Técnicamente
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🏗️ Cómo Funciona el Trunking Técnicamente">
@@ -316,14 +427,22 @@
         
           <li class="md-nav__item">
   <a href="#protocolo-8021q-dot1q" class="md-nav__link">
-    Protocolo 802.1Q (Dot1Q)
+    <span class="md-ellipsis">
+      
+        Protocolo 802.1Q (Dot1Q)
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-de-etiquetado" class="md-nav__link">
-    Ejemplo de Etiquetado
+    <span class="md-ellipsis">
+      
+        Ejemplo de Etiquetado
+      
+    </span>
   </a>
   
 </li>
@@ -335,7 +454,11 @@
       
         <li class="md-nav__item">
   <a href="#configuracion-de-trunks-en-cisco" class="md-nav__link">
-    ⚙️ Configuración de Trunks en Cisco
+    <span class="md-ellipsis">
+      
+        ⚙️ Configuración de Trunks en Cisco
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="⚙️ Configuración de Trunks en Cisco">
@@ -343,14 +466,22 @@
         
           <li class="md-nav__item">
   <a href="#comandos-basicos" class="md-nav__link">
-    Comandos Básicos
+    <span class="md-ellipsis">
+      
+        Comandos Básicos
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#modos-de-operacion-de-puertos" class="md-nav__link">
-    Modos de Operación de Puertos
+    <span class="md-ellipsis">
+      
+        Modos de Operación de Puertos
+      
+    </span>
   </a>
   
 </li>
@@ -362,7 +493,11 @@
       
         <li class="md-nav__item">
   <a href="#que-es-la-vlan-nativa" class="md-nav__link">
-    🏷️ ¿Qué es la VLAN NATIVA?
+    <span class="md-ellipsis">
+      
+        🏷️ ¿Qué es la VLAN NATIVA?
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🏷️ ¿Qué es la VLAN NATIVA?">
@@ -370,21 +505,33 @@
         
           <li class="md-nav__item">
   <a href="#concepto-fundamental" class="md-nav__link">
-    Concepto Fundamental
+    <span class="md-ellipsis">
+      
+        Concepto Fundamental
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#proposito-de-la-vlan-nativa" class="md-nav__link">
-    Propósito de la VLAN Nativa
+    <span class="md-ellipsis">
+      
+        Propósito de la VLAN Nativa
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comportamiento" class="md-nav__link">
-    Comportamiento
+    <span class="md-ellipsis">
+      
+        Comportamiento
+      
+    </span>
   </a>
   
 </li>
@@ -396,7 +543,11 @@
       
         <li class="md-nav__item">
   <a href="#importante-consideraciones-de-seguridad" class="md-nav__link">
-    ⚠️ IMPORTANTE: Consideraciones de Seguridad
+    <span class="md-ellipsis">
+      
+        ⚠️ IMPORTANTE: Consideraciones de Seguridad
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="⚠️ IMPORTANTE: Consideraciones de Seguridad">
@@ -404,14 +555,22 @@
         
           <li class="md-nav__item">
   <a href="#problema-de-seguridad-con-vlan-nativa" class="md-nav__link">
-    Problema de Seguridad con VLAN Nativa
+    <span class="md-ellipsis">
+      
+        Problema de Seguridad con VLAN Nativa
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#configuracion-segura" class="md-nav__link">
-    Configuración Segura
+    <span class="md-ellipsis">
+      
+        Configuración Segura
+      
+    </span>
   </a>
   
 </li>
@@ -423,7 +582,11 @@
       
         <li class="md-nav__item">
   <a href="#configuracion-completa-y-segura" class="md-nav__link">
-    🔧 Configuración Completa y Segura
+    <span class="md-ellipsis">
+      
+        🔧 Configuración Completa y Segura
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🔧 Configuración Completa y Segura">
@@ -431,14 +594,22 @@
         
           <li class="md-nav__item">
   <a href="#ejemplo-practico-corporativo" class="md-nav__link">
-    Ejemplo Práctico Corporativo
+    <span class="md-ellipsis">
+      
+        Ejemplo Práctico Corporativo
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#configuracion-de-puertos-de-acceso" class="md-nav__link">
-    Configuración de Puertos de Acceso
+    <span class="md-ellipsis">
+      
+        Configuración de Puertos de Acceso
+      
+    </span>
   </a>
   
 </li>
@@ -450,7 +621,11 @@
       
         <li class="md-nav__item">
   <a href="#verificacion-y-troubleshooting" class="md-nav__link">
-    📊 Verificación y Troubleshooting
+    <span class="md-ellipsis">
+      
+        📊 Verificación y Troubleshooting
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="📊 Verificación y Troubleshooting">
@@ -458,14 +633,22 @@
         
           <li class="md-nav__item">
   <a href="#comandos-de-verificacion" class="md-nav__link">
-    Comandos de Verificación
+    <span class="md-ellipsis">
+      
+        Comandos de Verificación
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#troubleshooting-comun" class="md-nav__link">
-    Troubleshooting Común
+    <span class="md-ellipsis">
+      
+        Troubleshooting Común
+      
+    </span>
   </a>
   
 </li>
@@ -477,7 +660,11 @@
       
         <li class="md-nav__item">
   <a href="#resumen-de-conceptos-clave" class="md-nav__link">
-    🎯 Resumen de Conceptos Clave
+    <span class="md-ellipsis">
+      
+        🎯 Resumen de Conceptos Clave
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🎯 Resumen de Conceptos Clave">
@@ -485,35 +672,55 @@
         
           <li class="md-nav__item">
   <a href="#trunk" class="md-nav__link">
-    TRUNK:
+    <span class="md-ellipsis">
+      
+        TRUNK:
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#vlan-nativa" class="md-nav__link">
-    VLAN NATIVA:
+    <span class="md-ellipsis">
+      
+        VLAN NATIVA:
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#mejores-practicas" class="md-nav__link">
-    MEJORES PRÁCTICAS:
+    <span class="md-ellipsis">
+      
+        MEJORES PRÁCTICAS:
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comandos-explicados-paso-a-paso" class="md-nav__link">
-    Comandos Explicados Paso a Paso
+    <span class="md-ellipsis">
+      
+        Comandos Explicados Paso a Paso
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-practico-completo" class="md-nav__link">
-    Ejemplo Práctico Completo
+    <span class="md-ellipsis">
+      
+        Ejemplo Práctico Completo
+      
+    </span>
   </a>
   
 </li>
@@ -525,7 +732,11 @@
       
         <li class="md-nav__item">
   <a href="#2-port-security" class="md-nav__link">
-    🔒 2. Port Security
+    <span class="md-ellipsis">
+      
+        🔒 2. Port Security
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🔒 2. Port Security">
@@ -533,21 +744,33 @@
         
           <li class="md-nav__item">
   <a href="#concepto-teorico-detallado_1" class="md-nav__link">
-    Concepto Teórico Detallado
+    <span class="md-ellipsis">
+      
+        Concepto Teórico Detallado
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comandos-explicados-paso-a-paso_1" class="md-nav__link">
-    Comandos Explicados Paso a Paso
+    <span class="md-ellipsis">
+      
+        Comandos Explicados Paso a Paso
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-practico-completo_1" class="md-nav__link">
-    Ejemplo Práctico Completo
+    <span class="md-ellipsis">
+      
+        Ejemplo Práctico Completo
+      
+    </span>
   </a>
   
 </li>
@@ -559,14 +782,22 @@
       
         <li class="md-nav__item">
   <a href="#3-dhcp-snooping" class="md-nav__link">
-    🌐 3. DHCP Snooping
+    <span class="md-ellipsis">
+      
+        🌐 3. DHCP Snooping
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#pero-que-es-dhcp" class="md-nav__link">
-    ¿Pero qué es DHCP?
+    <span class="md-ellipsis">
+      
+        ¿Pero qué es DHCP?
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="¿Pero qué es DHCP?">
@@ -574,7 +805,11 @@
         
           <li class="md-nav__item">
   <a href="#que-es-dhcp" class="md-nav__link">
-    🔄 ¿Qué es DHCP?
+    <span class="md-ellipsis">
+      
+        🔄 ¿Qué es DHCP?
+      
+    </span>
   </a>
   
 </li>
@@ -586,7 +821,11 @@
       
         <li class="md-nav__item">
   <a href="#el-proceso-de-4-pasos-dora" class="md-nav__link">
-    📦 El Proceso de 4 Pasos (DORA)
+    <span class="md-ellipsis">
+      
+        📦 El Proceso de 4 Pasos (DORA)
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="📦 El Proceso de 4 Pasos (DORA)">
@@ -594,28 +833,44 @@
         
           <li class="md-nav__item">
   <a href="#1-discover-hay-algun-servidor-dhcp" class="md-nav__link">
-    1. 🎯 DISCOVER - "¿Hay algún servidor DHCP?"
+    <span class="md-ellipsis">
+      
+        1. 🎯 DISCOVER - "¿Hay algún servidor DHCP?"
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#2-offer-si-te-ofrezco-esta-ip" class="md-nav__link">
-    2. 📨 OFFER - "Sí, te ofrezco esta IP"
+    <span class="md-ellipsis">
+      
+        2. 📨 OFFER - "Sí, te ofrezco esta IP"
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#3-request-acepto-tu-oferta" class="md-nav__link">
-    3. 📝 REQUEST - "Acepto tu oferta"
+    <span class="md-ellipsis">
+      
+        3. 📝 REQUEST - "Acepto tu oferta"
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#4-ack-confirmado-usa-esta-ip" class="md-nav__link">
-    4. ✅ ACK - "Confirmado, usa esta IP"
+    <span class="md-ellipsis">
+      
+        4. ✅ ACK - "Confirmado, usa esta IP"
+      
+    </span>
   </a>
   
 </li>
@@ -627,14 +882,22 @@
       
         <li class="md-nav__item">
   <a href="#renovacion-de-ip" class="md-nav__link">
-    ⏰ Renovación de IP
+    <span class="md-ellipsis">
+      
+        ⏰ Renovación de IP
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#en-resumen" class="md-nav__link">
-    🎯 En Resumen
+    <span class="md-ellipsis">
+      
+        🎯 En Resumen
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🎯 En Resumen">
@@ -642,14 +905,22 @@
         
           <li class="md-nav__item">
   <a href="#que-es-dhcp-snooping" class="md-nav__link">
-    ¿Qué es DHCP Snooping?
+    <span class="md-ellipsis">
+      
+        ¿Qué es DHCP Snooping?
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#analogia-para-entenderlo_1" class="md-nav__link">
-    Analogía para Entenderlo
+    <span class="md-ellipsis">
+      
+        Analogía para Entenderlo
+      
+    </span>
   </a>
   
 </li>
@@ -661,7 +932,11 @@
       
         <li class="md-nav__item">
   <a href="#problemas-que-resuelve-dhcp-snooping" class="md-nav__link">
-    🔍 Problemas que Resuelve DHCP Snooping
+    <span class="md-ellipsis">
+      
+        🔍 Problemas que Resuelve DHCP Snooping
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🔍 Problemas que Resuelve DHCP Snooping">
@@ -669,21 +944,33 @@
         
           <li class="md-nav__item">
   <a href="#1-ataque-dhcp-starvation-inanicion" class="md-nav__link">
-    1. Ataque DHCP Starvation (Inanición)
+    <span class="md-ellipsis">
+      
+        1. Ataque DHCP Starvation (Inanición)
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#2-ataque-dhcp-rogue-servidor-falso" class="md-nav__link">
-    2. Ataque DHCP Rogue (Servidor Falso)
+    <span class="md-ellipsis">
+      
+        2. Ataque DHCP Rogue (Servidor Falso)
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#3-ip-spoofing-suplantacion-de-ip" class="md-nav__link">
-    3. IP Spoofing (Suplantación de IP)
+    <span class="md-ellipsis">
+      
+        3. IP Spoofing (Suplantación de IP)
+      
+    </span>
   </a>
   
 </li>
@@ -695,7 +982,11 @@
       
         <li class="md-nav__item">
   <a href="#arquitectura-de-dhcp-snooping" class="md-nav__link">
-    🏗️ Arquitectura de DHCP Snooping
+    <span class="md-ellipsis">
+      
+        🏗️ Arquitectura de DHCP Snooping
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🏗️ Arquitectura de DHCP Snooping">
@@ -703,7 +994,11 @@
         
           <li class="md-nav__item">
   <a href="#componentes-clave" class="md-nav__link">
-    Componentes Clave
+    <span class="md-ellipsis">
+      
+        Componentes Clave
+      
+    </span>
   </a>
   
 </li>
@@ -715,7 +1010,11 @@
       
         <li class="md-nav__item">
   <a href="#configuracion-detallada-paso-a-paso" class="md-nav__link">
-    ⚙️ Configuración Detallada Paso a Paso
+    <span class="md-ellipsis">
+      
+        ⚙️ Configuración Detallada Paso a Paso
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="⚙️ Configuración Detallada Paso a Paso">
@@ -723,14 +1022,22 @@
         
           <li class="md-nav__item">
   <a href="#configuracion-basica" class="md-nav__link">
-    Configuración Básica
+    <span class="md-ellipsis">
+      
+        Configuración Básica
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#configuracion-avanzada" class="md-nav__link">
-    Configuración Avanzada
+    <span class="md-ellipsis">
+      
+        Configuración Avanzada
+      
+    </span>
   </a>
   
 </li>
@@ -742,7 +1049,11 @@
       
         <li class="md-nav__item">
   <a href="#ejemplos-practicos-de-configuracion" class="md-nav__link">
-    🔧 Ejemplos Prácticos de Configuración
+    <span class="md-ellipsis">
+      
+        🔧 Ejemplos Prácticos de Configuración
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🔧 Ejemplos Prácticos de Configuración">
@@ -750,21 +1061,33 @@
         
           <li class="md-nav__item">
   <a href="#ejemplo-1-pequena-oficina" class="md-nav__link">
-    Ejemplo 1: Pequeña Oficina
+    <span class="md-ellipsis">
+      
+        Ejemplo 1: Pequeña Oficina
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-2-empresa-mediana-con-multiples-vlans" class="md-nav__link">
-    Ejemplo 2: Empresa Mediana con Múltiples VLANs
+    <span class="md-ellipsis">
+      
+        Ejemplo 2: Empresa Mediana con Múltiples VLANs
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-3-entorno-de-alta-seguridad" class="md-nav__link">
-    Ejemplo 3: Entorno de Alta Seguridad
+    <span class="md-ellipsis">
+      
+        Ejemplo 3: Entorno de Alta Seguridad
+      
+    </span>
   </a>
   
 </li>
@@ -776,7 +1099,11 @@
       
         <li class="md-nav__item">
   <a href="#integracion-con-otras-tecnologias-de-seguridad" class="md-nav__link">
-    🛠️ Integración con Otras Tecnologías de Seguridad
+    <span class="md-ellipsis">
+      
+        🛠️ Integración con Otras Tecnologías de Seguridad
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🛠️ Integración con Otras Tecnologías de Seguridad">
@@ -784,14 +1111,22 @@
         
           <li class="md-nav__item">
   <a href="#con-dynamic-arp-inspection-dai" class="md-nav__link">
-    Con Dynamic ARP Inspection (DAI)
+    <span class="md-ellipsis">
+      
+        Con Dynamic ARP Inspection (DAI)
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#con-ip-source-guard" class="md-nav__link">
-    Con IP Source Guard
+    <span class="md-ellipsis">
+      
+        Con IP Source Guard
+      
+    </span>
   </a>
   
 </li>
@@ -803,7 +1138,11 @@
       
         <li class="md-nav__item">
   <a href="#comandos-de-verificacion-y-monitoreo" class="md-nav__link">
-    📊 Comandos de Verificación y Monitoreo
+    <span class="md-ellipsis">
+      
+        📊 Comandos de Verificación y Monitoreo
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="📊 Comandos de Verificación y Monitoreo">
@@ -811,21 +1150,33 @@
         
           <li class="md-nav__item">
   <a href="#verificacion-basica" class="md-nav__link">
-    Verificación Básica
+    <span class="md-ellipsis">
+      
+        Verificación Básica
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#estadisticas-y-troubleshooting" class="md-nav__link">
-    Estadísticas y Troubleshooting
+    <span class="md-ellipsis">
+      
+        Estadísticas y Troubleshooting
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comandos-de-depuracion-debug" class="md-nav__link">
-    Comandos de Depuración (Debug)
+    <span class="md-ellipsis">
+      
+        Comandos de Depuración (Debug)
+      
+    </span>
   </a>
   
 </li>
@@ -837,7 +1188,11 @@
       
         <li class="md-nav__item">
   <a href="#flujo-de-trabajo-completo-de-dhcp-snooping" class="md-nav__link">
-    🔄 Flujo de Trabajo Completo de DHCP Snooping
+    <span class="md-ellipsis">
+      
+        🔄 Flujo de Trabajo Completo de DHCP Snooping
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🔄 Flujo de Trabajo Completo de DHCP Snooping">
@@ -845,7 +1200,11 @@
         
           <li class="md-nav__item">
   <a href="#proceso-paso-a-paso" class="md-nav__link">
-    Proceso Paso a Paso
+    <span class="md-ellipsis">
+      
+        Proceso Paso a Paso
+      
+    </span>
   </a>
   
 </li>
@@ -857,7 +1216,11 @@
       
         <li class="md-nav__item">
   <a href="#mejores-practicas-y-recomendaciones" class="md-nav__link">
-    💡 Mejores Prácticas y Recomendaciones
+    <span class="md-ellipsis">
+      
+        💡 Mejores Prácticas y Recomendaciones
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="💡 Mejores Prácticas y Recomendaciones">
@@ -865,14 +1228,22 @@
         
           <li class="md-nav__item">
   <a href="#configuracion-recomendada" class="md-nav__link">
-    Configuración Recomendada
+    <span class="md-ellipsis">
+      
+        Configuración Recomendada
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#consideraciones-importantes" class="md-nav__link">
-    Consideraciones Importantes
+    <span class="md-ellipsis">
+      
+        Consideraciones Importantes
+      
+    </span>
   </a>
   
 </li>
@@ -884,14 +1255,22 @@
       
         <li class="md-nav__item">
   <a href="#resumen-final" class="md-nav__link">
-    🎯 Resumen Final
+    <span class="md-ellipsis">
+      
+        🎯 Resumen Final
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#3-dynamic-arp-inspection-dai" class="md-nav__link">
-    🛡️ 3. Dynamic ARP Inspection (DAI)
+    <span class="md-ellipsis">
+      
+        🛡️ 3. Dynamic ARP Inspection (DAI)
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🛡️ 3. Dynamic ARP Inspection (DAI)">
@@ -899,28 +1278,44 @@
         
           <li class="md-nav__item">
   <a href="#concepto-teorico-detallado_2" class="md-nav__link">
-    Concepto Teórico Detallado
+    <span class="md-ellipsis">
+      
+        Concepto Teórico Detallado
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comandos-explicados-paso-a-paso_2" class="md-nav__link">
-    Comandos Explicados Paso a Paso
+    <span class="md-ellipsis">
+      
+        Comandos Explicados Paso a Paso
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#configuracion-integrada-con-dhcp-snooping" class="md-nav__link">
-    Configuración Integrada con DHCP Snooping
+    <span class="md-ellipsis">
+      
+        Configuración Integrada con DHCP Snooping
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-practico-completo_2" class="md-nav__link">
-    Ejemplo Práctico Completo
+    <span class="md-ellipsis">
+      
+        Ejemplo Práctico Completo
+      
+    </span>
   </a>
   
 </li>
@@ -932,7 +1327,11 @@
       
         <li class="md-nav__item">
   <a href="#4-bpdu-guard-bpdu-filter" class="md-nav__link">
-    🌉 4. BPDU Guard &amp; BPDU Filter
+    <span class="md-ellipsis">
+      
+        🌉 4. BPDU Guard &amp; BPDU Filter
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🌉 4. BPDU Guard &amp; BPDU Filter">
@@ -940,42 +1339,66 @@
         
           <li class="md-nav__item">
   <a href="#concepto-teorico-detallado_3" class="md-nav__link">
-    Concepto Teórico Detallado
+    <span class="md-ellipsis">
+      
+        Concepto Teórico Detallado
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#bpdu-guard-explicacion-detallada" class="md-nav__link">
-    BPDU Guard - Explicación Detallada
+    <span class="md-ellipsis">
+      
+        BPDU Guard - Explicación Detallada
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comandos-bpdu-guard" class="md-nav__link">
-    Comandos BPDU Guard
+    <span class="md-ellipsis">
+      
+        Comandos BPDU Guard
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#bpdu-filter-explicacion-detallada" class="md-nav__link">
-    BPDU Filter - Explicación Detallada
+    <span class="md-ellipsis">
+      
+        BPDU Filter - Explicación Detallada
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comandos-bpdu-filter" class="md-nav__link">
-    Comandos BPDU Filter
+    <span class="md-ellipsis">
+      
+        Comandos BPDU Filter
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-practico-cuando-usar-cada-uno" class="md-nav__link">
-    Ejemplo Práctico: Cuándo Usar Cada Uno
+    <span class="md-ellipsis">
+      
+        Ejemplo Práctico: Cuándo Usar Cada Uno
+      
+    </span>
   </a>
   
 </li>
@@ -987,7 +1410,11 @@
       
         <li class="md-nav__item">
   <a href="#5-ip-source-guard" class="md-nav__link">
-    🔍 5. IP Source Guard
+    <span class="md-ellipsis">
+      
+        🔍 5. IP Source Guard
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🔍 5. IP Source Guard">
@@ -995,21 +1422,33 @@
         
           <li class="md-nav__item">
   <a href="#concepto-teorico-detallado_4" class="md-nav__link">
-    Concepto Teórico Detallado
+    <span class="md-ellipsis">
+      
+        Concepto Teórico Detallado
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comandos-explicados-paso-a-paso_3" class="md-nav__link">
-    Comandos Explicados Paso a Paso
+    <span class="md-ellipsis">
+      
+        Comandos Explicados Paso a Paso
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-practico-completo_3" class="md-nav__link">
-    Ejemplo Práctico Completo
+    <span class="md-ellipsis">
+      
+        Ejemplo Práctico Completo
+      
+    </span>
   </a>
   
 </li>
@@ -1021,7 +1460,11 @@
       
         <li class="md-nav__item">
   <a href="#configuracion-integrada-completa" class="md-nav__link">
-    🏗️ CONFIGURACIÓN INTEGRADA COMPLETA
+    <span class="md-ellipsis">
+      
+        🏗️ CONFIGURACIÓN INTEGRADA COMPLETA
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🏗️ CONFIGURACIÓN INTEGRADA COMPLETA">
@@ -1029,14 +1472,22 @@
         
           <li class="md-nav__item">
   <a href="#switch-de-acceso-corporativo-seguro" class="md-nav__link">
-    Switch de Acceso Corporativo Seguro
+    <span class="md-ellipsis">
+      
+        Switch de Acceso Corporativo Seguro
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#comandos-de-verificacion-y-monitoreo_1" class="md-nav__link">
-    Comandos de Verificación y Monitoreo
+    <span class="md-ellipsis">
+      
+        Comandos de Verificación y Monitoreo
+      
+    </span>
   </a>
   
 </li>
@@ -1048,7 +1499,11 @@
       
         <li class="md-nav__item">
   <a href="#resumen-final-de-mejores-practicas" class="md-nav__link">
-    🎯 RESUMEN FINAL DE MEJORES PRÁCTICAS
+    <span class="md-ellipsis">
+      
+        🎯 RESUMEN FINAL DE MEJORES PRÁCTICAS
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="🎯 RESUMEN FINAL DE MEJORES PRÁCTICAS">
@@ -1056,14 +1511,111 @@
         
           <li class="md-nav__item">
   <a href="#recomendaciones-por-tecnologia" class="md-nav__link">
-    Recomendaciones por Tecnología:
+    <span class="md-ellipsis">
+      
+        Recomendaciones por Tecnología:
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#flujo-de-implementacion-recomendado" class="md-nav__link">
-    Flujo de Implementación Recomendado:
+    <span class="md-ellipsis">
+      
+        Flujo de Implementación Recomendado:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#portfast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfast
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Portfast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-portfast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de PortFast
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de PortFast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-por-interfaz-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Por interfaz (recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-de-forma-global-mas-rapido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. De forma global (más rápido)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-importantes-para-aclarar-dudas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos importantes para aclarar dudas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recordatorio-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Recordatorio importante
+      
+    </span>
   </a>
   
 </li>
@@ -1081,6 +1633,87 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_est%C3%A1ticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routers y rutas estáticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1091,10 +1724,10 @@
           
           
             <div class="md-content" data-md-component="content">
+              
               <article class="md-content__inner md-typeset">
                 
                   
-
 
 <h1 id="guia-completa-de-seguridad-en-switches-cisco">🚀 Guía Completa de Seguridad en Switches Cisco</h1>
 <h2 id="1-vlans-virtual-local-area-networks">📚 <strong>1. VLANs (Virtual Local Area Networks)</strong></h2>
@@ -2057,10 +2690,12 @@ Es un mecanismo de seguridad que <strong>previene ataques ARP spoofing</strong> 
 <h3 id="concepto-teorico-detallado_3"><strong>Concepto Teórico Detallado</strong></h3>
 <p><strong>¿Qué son las BPDUs?</strong>
 BPDU (Bridge Protocol Data Units) son mensajes que intercambian los switches para <strong>construir y mantener el spanning-tree</strong>.</p>
-<p><strong>Problemas que resuelven:</strong>
-- <strong>Switches no autorizados</strong>: Usuario conecta un switch casero
-- <strong>Bucles de red</strong>: Configuraciones incorrectas crean loops
-- <strong>Interrupciones de servicio</strong>: Topología STP cambia inesperadamente</p>
+<p><strong>Problemas que resuelven:</strong></p>
+<ul>
+<li><strong>Switches no autorizados</strong>: Usuario conecta un switch casero</li>
+<li><strong>Bucles de red</strong>: Configuraciones incorrectas crean loops</li>
+<li><strong>Interrupciones de servicio</strong>: Topología STP cambia inesperadamente</li>
+</ul>
 <h3 id="bpdu-guard-explicacion-detallada"><strong>BPDU Guard - Explicación Detallada</strong></h3>
 <p><strong>Propósito</strong>: Proteger puertos de acceso contra recepción de BPDUs</p>
 <p><strong>Comportamiento</strong>:
@@ -2087,10 +2722,12 @@ BPDU (Bridge Protocol Data Units) son mensajes que intercambian los switches par
 </span></code></pre></div>
 <h3 id="bpdu-filter-explicacion-detallada"><strong>BPDU Filter - Explicación Detallada</strong></h3>
 <p><strong>Propósito</strong>: <strong>Silenciar</strong> BPDUs en puertos específicos</p>
-<p><strong>Comportamiento</strong>:
-- <strong>Bloquea envío y recepción</strong> de BPDUs
-- <strong>Peligroso</strong>: Puede crear bucles si no se usa correctamente
-- <strong>Caso de uso</strong>: Conectar dispositivos que envían BPDUs pero no deben participar en STP</p>
+<p><strong>Comportamiento</strong>:</p>
+<ul>
+<li><strong>Bloquea envío y recepción</strong> de BPDUs</li>
+<li><strong>Peligroso</strong>: Puede crear bucles si no se usa correctamente</li>
+<li><strong>Caso de uso</strong>: Conectar dispositivos que envían BPDUs pero no deben participar en STP</li>
+</ul>
 <h3 id="comandos-bpdu-filter"><strong>Comandos BPDU Filter</strong></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>!<span class="w"> </span>MÉTODO<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Global
 </span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># spanning-tree portfast bpdufilter default</span>
@@ -2143,15 +2780,19 @@ BPDU (Bridge Protocol Data Units) son mensajes que intercambian los switches par
 <h3 id="concepto-teorico-detallado_4"><strong>Concepto Teórico Detallado</strong></h3>
 <p><strong>¿Qué es IP Source Guard?</strong>
 Es un mecanismo que <strong>filtra tráfico IP</strong> basándose en la tabla de bindings de DHCP Snooping.</p>
-<p><strong>Problemas que resuelve:</strong>
-- <strong>IP spoofing</strong>: Usuario usa IP que no le pertenece
-- <strong>Ataques DoS</strong>: Dispositivos maliciosos suplantando IPs
-- <strong>Robo de servicios</strong>: Usar IPs de otros departamentos</p>
-<p><strong>Cómo funciona:</strong>
-1. <strong>Aprende</strong> bindings IP-MAC de DHCP Snooping
-2. <strong>Instala</strong> filtros en hardware del switch
-3. <strong>Permite</strong> solo tráfico de IPs autorizadas
-4. <strong>Actualiza</strong> dinámicamente cuando expiran leases DHCP</p>
+<p><strong>Problemas que resuelve:</strong></p>
+<ul>
+<li><strong>IP spoofing</strong>: Usuario usa IP que no le pertenece</li>
+<li><strong>Ataques DoS</strong>: Dispositivos maliciosos suplantando IPs</li>
+<li><strong>Robo de servicios</strong>: Usar IPs de otros departamentos</li>
+</ul>
+<p><strong>Cómo funciona:</strong></p>
+<ol>
+<li><strong>Aprende</strong> bindings IP-MAC de DHCP Snooping</li>
+<li><strong>Instala</strong> filtros en hardware del switch</li>
+<li><strong>Permite</strong> solo tráfico de IPs autorizadas</li>
+<li><strong>Actualiza</strong> dinámicamente cuando expiran leases DHCP</li>
+</ol>
 <h3 id="comandos-explicados-paso-a-paso_3"><strong>Comandos Explicados Paso a Paso</strong></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>!<span class="w"> </span>PRERREQUISITO:<span class="w"> </span>DHCP<span class="w"> </span>Snooping<span class="w"> </span>debe<span class="w"> </span>estar<span class="w"> </span>configurado
 </span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># ip dhcp snooping</span>
@@ -2389,6 +3030,86 @@ Es un mecanismo que <strong>filtra tráfico IP</strong> basándose en la tabla d
 <li>IP Source Guard</li>
 <li>Verificación y ajuste</li>
 </ol>
+<h2 id="portfast">Portfast</h2>
+<p>PortFast es una funcionalidad de los switches Cisco que se configura en puertos de acceso que conectan estaciones de trabajo finales (como PCs, impresoras, servidores) y nunca otros switches o dispositivos de red.
+¿Qué hace PortFast?</p>
+<div class="language-text highlight"><pre><span></span><code>Objetivo principal: Acelerar el inicio de un puerto cuando se enciende un dispositivo conectado a él.
+
+Funcionamiento normal (sin PortFast): Cuando un puerto de switch se activa, el protocolo Spanning Tree (STP) pasa por una serie de estados antes de permitir el tráfico de datos:
+Bloqueando → Escuchando → Aprendiendo → Reenvío
+Este proceso puede tomar unos 30 segundos.
+
+Funcionamiento con PortFast: El puerto se salta los estados de &quot;Escuchando&quot; y &quot;Aprendiendo&quot; y pasa inmediatamente al estado de &quot;Reenvío&quot;, permitiendo el tráfico casi al instante.
+</code></pre></div>
+<p>Analogía Rápida</p>
+<div class="language-text highlight"><pre><span></span><code>Sin PortFast: Es como arrancar un coche en un día frío: dejar que el motor se caliente antes de poder circular.
+
+Con PortFast: Es como tener el coche ya caliente y listo para circular en cuanto giras la llave.
+</code></pre></div>
+<p>Puntos Clave y Advertencias</p>
+<div class="language-text highlight"><pre><span></span><code>¿Dónde se usa? Solo en puertos de acceso que conectan dispositivos finales.
+
+¿Qué evita? La espera de 30 segundos para que un usuario obtenga una dirección IP (DHCP) o pueda empezar a navegar.
+
+¡ADVERTENCIA CRUCIAL! NUNCA actives PortFast en un puerto que conecte a otro switch, hub o router. Esto podría crear bucles de capa 2 en la red, ya que STP no tendría tiempo de detectarlos y bloquearlos.
+</code></pre></div>
+<p>Relación con BPDU Guard</p>
+<p>PortFast suele ir de la mano con BPDU Guard. Si un usuario conecta por error un switch a un puerto con PortFast, BPDU Guard detectará el paquete BPDU (propio de STP) y desactivará el puerto inmediatamente, evitando así un posible bucle. Es el "seguro de seguridad" de PortFast.</p>
+<p>En resumen: PortFast es una optimización para puertos de usuarios finales que acelera el acceso a la red, saltándose los lentos estados de STP.</p>
+<hr />
+<h3 id="configuracion-de-portfast">Configuración de PortFast</h3>
+<h4 id="1-por-interfaz-recomendado"><strong>1. Por interfaz (recomendado)</strong></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>Switch#<span class="w"> </span>configure<span class="w"> </span>terminal
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># interface [tipo-número]  # Ej: gigabitethernet 0/1</span>
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># spanning-tree portfast</span>
+</span></code></pre></div>
+<p><strong>Para habilitar BPDU Guard en la misma interfaz:</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># spanning-tree bpduguard enable</span>
+</span></code></pre></div></p>
+<h4 id="2-de-forma-global-mas-rapido"><strong>2. De forma global (más rápido)</strong></h4>
+<p>Habilita PortFast en <strong>todas</strong> las interfaces que no son trunk y están en estado <em>connected</em>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>Switch#<span class="w"> </span>configure<span class="w"> </span>terminal
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># spanning-tree portfast default</span>
+</span></code></pre></div></p>
+<p><strong>Para habilitar BPDU Guard de forma global:</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># spanning-tree portfast bpduguard default</span>
+</span></code></pre></div></p>
+<hr />
+<h3 id="verificacion">Verificación</h3>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>Switch#<span class="w"> </span>show<span class="w"> </span>spanning-tree<span class="w"> </span>interface<span class="w"> </span><span class="o">[</span>tipo-número<span class="o">]</span><span class="w"> </span>detail
+</span></code></pre></div>
+Busca en la salida:
+- <code>Portfast enabled</code>
+- <code>Bpdu guard enabled</code></p>
+<hr />
+<h3 id="comandos-importantes-para-aclarar-dudas">Comandos importantes para aclarar dudas</h3>
+<p><strong>¿La interfaz es de acceso o trunk?</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>Switch#<span class="w"> </span>show<span class="w"> </span>interfaces<span class="w"> </span><span class="o">[</span>tipo-número<span class="o">]</span><span class="w"> </span>switchport
+</span></code></pre></div></p>
+<p><strong>¿Se han recibido BPDUs en el puerto?</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>Switch#<span class="w"> </span>show<span class="w"> </span>spanning-tree<span class="w"> </span>interface<span class="w"> </span><span class="o">[</span>tipo-número<span class="o">]</span><span class="w"> </span>detail
+</span></code></pre></div></p>
+<p><strong>Si BPDU Guard desactiva un puerto:</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>Switch#<span class="w"> </span>show<span class="w"> </span>interfaces<span class="w"> </span>status<span class="w"> </span>err-disabled
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>Switch#<span class="w"> </span><span class="nb">enable</span>
+</span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>Switch#<span class="w"> </span>configure<span class="w"> </span>terminal
+</span><span id="__span-59-4"><a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a>Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># interface [tipo-número]</span>
+</span><span id="__span-59-5"><a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># shutdown</span>
+</span><span id="__span-59-6"><a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># no shutdown</span>
+</span></code></pre></div></p>
+<hr />
+<h3 id="recordatorio-importante">⚠️ Recordatorio importante</h3>
+<p><strong>SOLO uses PortFast en puertos que conecten dispositivos finales</strong> (PCs, impresoras, servidores). <strong>NUNCA</strong> en puertos que conecten a otros switches, routers o puntos de acceso inalámbricos, ya que podrías causar bucles en la red.</p>
+<p>La combinación <strong>PortFast + BPDU Guard</strong> es la práctica más segura y común.</p>
+
+
+
+
+
+
+
+
+
 
 
   
@@ -2401,12 +3122,14 @@ Es un mecanismo que <strong>filtra tráfico IP</strong> basándose en la tabla d
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Volver al principio
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
         
       </main>
       
@@ -2418,8 +3141,8 @@ Es un mecanismo que <strong>filtra tráfico IP</strong> basándose en la tabla d
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
     </a>
   
 </div>
@@ -2433,10 +3156,15 @@ Es un mecanismo que <strong>filtra tráfico IP</strong> basándose en la tabla d
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "toc.integrate", "search.highlight", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.top","toc.integrate","search.highlight","content.code.annotate","content.code.copy"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
       
         <script src="../javascripts/katex.js"></script>
       

@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-         <loc>https://raul-profesor.github.io/PARE/SecSwitches/</loc>
-         <lastmod>2025-10-15</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/SecSwitches/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/cheatsheet_routers/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/dtp/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/routers_y_rutas_est%C3%A1ticas/</loc>
+      </url>
 </urlset>

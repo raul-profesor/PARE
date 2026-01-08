@@ -1,0 +1,1040 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/dtp/">
+      
+      
+        <link rel="prev" href="../cheatsheet_routers/">
+      
+      
+        <link rel="next" href="../routers_y_rutas_est%C3%A1ticas/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>DTP (Dynamic Trunking Protocol) - PARE - Prácticas de Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dtp-dynamic-trunking-protocol" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Prácticas de Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Prácticas de Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Prácticas de Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DTP (Dynamic Trunking Protocol)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Prácticas de Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Prácticas de Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Prácticas de Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-dtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es DTP?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposito-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propósito Principal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modos-de-operacion-dtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modos de Operación DTP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modos de Operación DTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dynamic-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Dynamic Auto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dynamic-desirable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dynamic Desirable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-nonegotiate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Nonegotiate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-de-compatibilidad-de-modos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de Compatibilidad de Modos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de Configuración
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comandos de Configuración">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración Básica:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-vlan-nativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de VLAN Nativa:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ventajas-de-dtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas de DTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desventajas-y-consideraciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Consideraciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mejores-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mejores Prácticas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mejores Prácticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para Seguridad:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-practico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo Práctico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo Práctico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escenario-dos-switches-interconectados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escenario: Dos switches interconectados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad-con-dtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad con DTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_est%C3%A1ticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routers y rutas estáticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="dtp-dynamic-trunking-protocol">DTP (Dynamic Trunking Protocol)</h1>
+<h2 id="que-es-dtp">¿Qué es DTP?</h2>
+<p><strong>DTP (Dynamic Trunking Protocol)</strong> es un protocolo propietario de Cisco que <strong>negocia automáticamente</strong> la formación de enlaces trunk entre switches Cisco. Opera en la capa 2 del modelo OSI.</p>
+<h2 id="proposito-principal">Propósito Principal</h2>
+<p>DTP elimina la necesidad de configurar manualmente los enlaces trunk, permitiendo que los switches negocien automáticamente si un puerto debe operar como:
+- <strong>Access</strong> (puerto de acceso)
+- <strong>Trunk</strong> (puerto troncal)</p>
+<h2 id="modos-de-operacion-dtp">Modos de Operación DTP</h2>
+<h3 id="1-dynamic-auto">1. <strong>Dynamic Auto</strong></h3>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Switch(config-if)# switchport mode dynamic auto
+</span></code></pre></div>
+- Espera a que el otro dispositivo solicite formar trunk
+- <strong>No envía</strong> frames DTP, pero <strong>responde</strong> a ellos
+- Resultado: Forma trunk solo si el otro lado es "desirable"</p>
+<p><strong>Escenarios típicos:</strong></p>
+<ul>
+<li>
+<p>Enlaces entre switches donde NO quieres ser el iniciador</p>
+</li>
+<li>
+<p>Entornos con política "esperar a ser invitado"</p>
+</li>
+<li>
+<p>Conexiones a dispositivos que pueden cambiar configuración</p>
+</li>
+<li>
+<p>Cuando el otro lado debe decidir si forma trunk</p>
+</li>
+</ul>
+<p><strong>Por qué usarlo:</strong></p>
+<div class="language-text highlight"><pre><span></span><code>✅ Menos agresivo - No inicia trunks no deseados
+
+✅ Seguridad moderada - Solo forma trunk si el otro lado lo pide
+
+✅ Flexibilidad - Se adapta a la configuración del peer
+
+✅ Bajo overhead - No envía DTP activamente
+</code></pre></div>
+<h3 id="2-dynamic-desirable">2. <strong>Dynamic Desirable</strong></h3>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Switch(config-if)# switchport mode dynamic desirable
+</span></code></pre></div>
+- <strong>Envía activamente</strong> frames DTP para negociar trunk
+- Forma trunk si el otro lado es "auto", "desirable" o "trunk"
+- <strong>Modo más agresivo</strong></p>
+<p><strong>Escenarios típicos:</strong></p>
+<ul>
+<li>
+<p>Enlaces troncales entre switches en mismo dominio administrativo</p>
+</li>
+<li>
+<p>Entornos dinámicos donde se añaden/eliminan VLANs frecuentemente</p>
+</li>
+<li>
+<p>Conexiones entre switches de mismo nivel</p>
+</li>
+<li>
+<p>Cuando quieres auto-configuración pero con iniciativa</p>
+</li>
+</ul>
+<p><strong>Por qué usarlo:</strong></p>
+<div class="language-text highlight"><pre><span></span><code>✅ Auto-configuración - Forma trunks automáticamente
+
+✅ Flexibilidad - Se adapta a cambios de configuración
+
+✅ Conveniencia - Reduce configuración manual
+
+✅ Compatibilidad - Funciona con &quot;auto&quot; y &quot;trunk&quot;
+</code></pre></div>
+<h3 id="3-trunk">3. <strong>Trunk</strong></h3>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Switch(config-if)# switchport mode trunk
+</span></code></pre></div>
+- Fuerza el puerto como trunk permanentemente
+- <strong>Envía</strong> frames DTP
+- Espera que el otro lado sea "auto", "desirable" o "trunk"</p>
+<p><strong>Escenarios típicos:</strong></p>
+<ul>
+<li>
+<p>Enlaces a routers o firewalls</p>
+</li>
+<li>
+<p>Conexiones a servidores con múltiples VLANs</p>
+</li>
+<li>
+<p>Enlaces troncales críticos que NO deben cambiar</p>
+</li>
+<li>
+<p>Entornos de alta seguridad</p>
+</li>
+</ul>
+<p><strong>Por qué usarlo:</strong></p>
+<div class="language-text highlight"><pre><span></span><code>✅ Máxima estabilidad - No cambia de estado
+
+✅ Seguridad - No negocia con dispositivos no autorizados
+
+✅ Control total - Configuración explícita
+
+✅ Rendimiento - Sin overhead de negociación constante
+</code></pre></div>
+<h3 id="4-access">4. <strong>Access</strong></h3>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Switch(config-if)# switchport mode access
+</span></code></pre></div>
+- Fuerza el puerto como acceso
+- <strong>No envía</strong> frames DTP
+- <strong>Rechaza</strong> negociación de trunk</p>
+<p><strong>Escenarios típicos:</strong></p>
+<ul>
+<li>
+<p>Puertos para usuarios finales (PCs, teléfonos, impresoras)</p>
+</li>
+<li>
+<p>Puertos de guest/wifi</p>
+</li>
+<li>
+<p>Conexiones a dispositivos que no soportan trunking</p>
+</li>
+<li>
+<p>Entornos de máxima seguridad</p>
+</li>
+</ul>
+<p><strong>Por qué usarlo:</strong></p>
+<div class="language-text highlight"><pre><span></span><code>✅ Máxima seguridad - Sin negociación de trunk
+
+✅ Estabilidad - Comportamiento predecible
+
+✅ Prevención de VLAN hopping - Elimina riesgo de ataques
+
+✅ Simplicidad - Fácil troubleshooting
+</code></pre></div>
+<h3 id="5-nonegotiate">5. <strong>Nonegotiate</strong></h3>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Switch(config-if)# switchport nonegotiate
+</span></code></pre></div>
+- Configura trunk pero <strong>deshabilita</strong> DTP
+- No envía frames de negociación</p>
+<p><strong>Escenarios típicos:</strong></p>
+<ul>
+<li>
+<p>Enlaces a equipos no-Cisco (que no entienden DTP)</p>
+</li>
+<li>
+<p>Conexiones a firewalls, load balancers</p>
+</li>
+<li>
+<p>Enlaces donde DTP causa problemas</p>
+</li>
+<li>
+<p>Entornos multi-vendor</p>
+</li>
+</ul>
+<p><strong>Por qué usarlo:</strong></p>
+<div class="language-text highlight"><pre><span></span><code>✅ Compatibilidad multi-vendor - Sin protocolos propietarios
+
+✅ Seguridad - Sin anuncios DTP
+
+✅ Estabilidad - Trunk estático sin negociación
+
+✅ Control - Configuración manual explícita
+</code></pre></div>
+<h2 id="tabla-de-compatibilidad-de-modos">Tabla de Compatibilidad de Modos</h2>
+<table>
+<thead>
+<tr>
+<th>Lado A</th>
+<th>Lado B</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dynamic Auto</td>
+<td>Dynamic Auto</td>
+<td><strong>Access</strong></td>
+</tr>
+<tr>
+<td>Dynamic Auto</td>
+<td>Dynamic Desirable</td>
+<td><strong>Trunk</strong></td>
+</tr>
+<tr>
+<td>Dynamic Desirable</td>
+<td>Dynamic Desirable</td>
+<td><strong>Trunk</strong></td>
+</tr>
+<tr>
+<td>Trunk</td>
+<td>Dynamic Auto</td>
+<td><strong>Trunk</strong></td>
+</tr>
+<tr>
+<td>Trunk</td>
+<td>Dynamic Desirable</td>
+<td><strong>Trunk</strong></td>
+</tr>
+<tr>
+<td>Access</td>
+<td>Cualquier modo</td>
+<td><strong>Access</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="comandos-de-configuracion">Comandos de Configuración</h2>
+<h3 id="configuracion-basica">Configuración Básica:</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Ver estado DTP</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Switch#<span class="w"> </span>show<span class="w"> </span>dtp<span class="w"> </span>interface<span class="w"> </span><span class="o">[</span>interface<span class="o">]</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Configurar modo DTP</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Switch<span class="o">(</span>config<span class="o">)</span><span class="c1"># interface gigabitethernet 0/1</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport mode dynamic auto</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport mode dynamic desirable</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport mode trunk</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport mode access</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># Deshabilitar DTP</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport nonegotiate</span>
+</span></code></pre></div>
+<h3 id="configuracion-de-vlan-nativa">Configuración de VLAN Nativa:</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport trunk native vlan [vlan-id]</span>
+</span></code></pre></div>
+<h2 id="ventajas-de-dtp">Ventajas de DTP</h2>
+<p>✅ <strong>Configuración automática</strong><br />
+✅ <strong>Reduce errores manuales</strong><br />
+✅ <strong>Facilita la administración</strong><br />
+✅ <strong>Compatibilidad entre dispositivos Cisco</strong>  </p>
+<h2 id="desventajas-y-consideraciones">Desventajas y Consideraciones</h2>
+<p>❌ <strong>Solo funciona entre equipos Cisco</strong><br />
+❌ <strong>Puede crear problemas de seguridad</strong><br />
+❌ <strong>Overhead en la red</strong><br />
+❌ <strong>En entornos seguros, se recomienda deshabilitar</strong></p>
+<h2 id="mejores-practicas">Mejores Prácticas</h2>
+<h3 id="para-seguridad">Para Seguridad:</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># En puertos de acceso</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport mode access</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport nonegotiate</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># En puertos trunk (configuración manual)</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport mode trunk</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport nonegotiate</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport trunk allowed vlan [vlan-list]</span>
+</span></code></pre></div>
+<h3 id="verificacion">Verificación:</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Ver estado DTP</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Switch#<span class="w"> </span>show<span class="w"> </span>dtp<span class="w"> </span>interface<span class="w"> </span>gigabitethernet<span class="w"> </span><span class="m">0</span>/1
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Ver resumen de interfaces</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Switch#<span class="w"> </span>show<span class="w"> </span>interfaces<span class="w"> </span>trunk
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Ver configuración de puerto</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Switch#<span class="w"> </span>show<span class="w"> </span>interfaces<span class="w"> </span><span class="o">[</span>interface<span class="o">]</span><span class="w"> </span>switchport
+</span></code></pre></div>
+<h2 id="ejemplo-practico">Ejemplo Práctico</h2>
+<h3 id="escenario-dos-switches-interconectados">Escenario: Dos switches interconectados</h3>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Switch 1</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Switch1<span class="o">(</span>config<span class="o">)</span><span class="c1"># interface gigabitethernet 0/1</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Switch1<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport mode dynamic desirable</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Switch 2  </span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Switch2<span class="o">(</span>config<span class="o">)</span><span class="c1"># interface gigabitethernet 0/1</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Switch2<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># switchport mode dynamic auto</span>
+</span></code></pre></div>
+<strong>Resultado:</strong> Se formará un enlace trunk automáticamente.</p>
+<h2 id="seguridad-con-dtp">Seguridad con DTP</h2>
+<p>En entornos de producción, se recomienda:
+- <strong>Deshabilitar DTP</strong> en puertos de acceso
+- <strong>Configurar trunks manualmente</strong>
+- <strong>Usar <code>switchport nonegotiate</code></strong> en trunks configurados manualmente</p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.top","toc.integrate","search.highlight","content.code.annotate","content.code.copy"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1075 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/routers_y_rutas_est%C3%A1ticas/">
+      
+      
+        <link rel="prev" href="../dtp/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>Routers y rutas estáticas - PARE - Prácticas de Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#como-envian-paquetes-los-hosts-finales" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Prácticas de Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Prácticas de Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Prácticas de Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Routers y rutas estáticas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Prácticas de Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Prácticas de Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Prácticas de Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routers y rutas estáticas
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routers y rutas estáticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-envian-paquetes-los-hosts-finales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo envían paquetes los hosts finales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fundamentos-de-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentos de routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-tabla-de-enrutamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La tabla de enrutamiento
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La tabla de enrutamiento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rutas-conectadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rutas conectadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rutas-locales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rutas locales
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eleccion-de-rutas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elección de rutas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rutas-estaticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rutas estáticas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rutas estáticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurando-rutas-estaticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurando rutas estáticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rutas-estaticas-especificando-el-proximo-salto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rutas estáticas especificando el próximo salto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rutas-estaticas-especificando-la-interfaz-de-salida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rutas estáticas especificando la interfaz de salida
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rutas-estaticas-especificando-tanto-el-interfaz-de-salida-como-el-proximo-salto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rutas estáticas especificando tanto el interfaz de salida como el próximo salto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurando-una-ruta-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurando una ruta por defecto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <h1>Routers y rutas estáticas</h1>
+
+<p>En este tema veremos:</p>
+<ul>
+<li>Cómo los hosts finales envían paquetes IP a destinos locales y remotos</li>
+<li>El proceso de enrutamiento</li>
+<li>Lectura e interpretación de la tabla de enrutamiento de un router</li>
+<li>Configuración de rutas estáticas en un router</li>
+<li>Uso de rutas predeterminadas para proporcionar conectividad a internet</li>
+</ul>
+<p>En este capítulo, abordaremos el enrutamiento: el proceso mediante el cual los routers reenvían paquetes IP entre redes. Veremos aspectos que se corresponden con los siguientes puntos del CCNA:</p>
+<ol>
+<li>Interpretar los componentes de una tabla de enrutamiento</li>
+<li>Determinar cómo un router toma una decisión de reenvío por defecto</li>
+<li>Configurar y verificar el enrutamiento estático IPv4 e IPv6</li>
+</ol>
+<p>El término <em>enrutamiento</em> puede referirse a dos procesos diferentes: el proceso mediante el cual los routers crean su <strong>tabla de enrutamiento</strong> (una base de datos de destinos conocidos y cómo reenviar paquetes hacia ellos) y el proceso de reenvío de paquetes. En este capítulo, abordaremos ambos aspectos del enrutamiento y nos basaremos en esta base en capítulos posteriores de este volumen y del volumen 2.</p>
+<h2 id="como-envian-paquetes-los-hosts-finales">Cómo envían paquetes los hosts finales</h2>
+<p>Antes de examinar los detalles de cómo los routers reenvían paquetes IP, veamos los hosts finales que se envían dichos paquetes entre sí. Después de que un host prepara un paquete para enviarlo a otro, debe encapsularlo en una trama. Si bien nos centramos en el enrutamiento, un proceso de Capa 3, ¡no olvidemos la Capa 2! Los paquetes nunca se envían por cable (u ondas de radio) sin estar encapsulados en una trama.</p>
+<p>La dirección MAC de destino de la trama depende de la dirección IP de destino del paquete. Si el paquete está destinado a un host en la misma red que el remitente, la dirección MAC de destino será la del host de destino; en este caso, no se necesita un router. La imagen de abajo muestra este proceso cuando el PC1 envía un paquete a el PC2. Las direcciones IP y MAC de destino son ambas de el PC2; No es necesario que R1 enrute el paquete porque el origen y el destino están en la misma red (la red 192.168.1.0/24).</p>
+<p><img alt="" src="../img/image.png" /></p>
+<p>El PC1 (192.168.1.11) envía un paquete a el PC2 (192.168.1.12). Dado que ambas se encuentran en la misma red (192.168.1.0/24), el PC1 encapsula el paquete en una trama dirigida a la dirección MAC de el PC2. El PC1 no necesita enviar el paquete a R1 para su enrutamiento. Este diagrama presupone que el PC1 ya conoce la dirección MAC de el PC2; de lo contrario, primero enviará una solicitud ARP para obtenerla.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un icono de nube, como se muestra en la figura anterior, se utiliza a menudo para representar internet. Sin embargo, no siempre es su propósito. Un icono de nube puede utilizarse para obviar elementos que no son relevantes para el diagrama. La nube en la figura indica que R1 se conecta a otra red, cuyos detalles no son relevantes para el diagrama. Esa otra red podría ser internet o otra parte de la red de la misma empresa.</p>
+</div>
+<p>Por otro lado, si un host final, como una PC, desea enviar un paquete a un destino fuera de su red local, debe enviarlo a su puerta de enlace predeterminada (el router que proporciona conectividad a otras redes). En la figura 9.2, R1 es la puerta de enlace predeterminada de la red 192.168.1.0/24. Para que PC1 y PC2 envíen paquetes a destinos fuera de 192.168.1.0/24, deben encapsular el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 de R1. La figura 9.2 muestra cómo PC1 envía un paquete a PC3: encapsula el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 de R1. A continuación, R1 reenvía el paquete fuera de su interfaz G0/1, encapsulado en una nueva trama dirigida a la dirección MAC de PC3.</p>
+<p><img alt="" src="../img/image2.png" /></p>
+<p>PC1 (192.168.1.11) envía un paquete a PC3 (192.168.2.11). Dado que PC1 y PC3 se encuentran en redes separadas, PC1 envía el paquete en una trama dirigida a la dirección MAC de su puerta de enlace predeterminada: la de la interfaz G0/0 de R1. R1 reenvía el paquete desde su interfaz G0/1, encapsulado en una nueva trama dirigida a la dirección MAC de PC3. Este diagrama supone que PC1 ya conoce la dirección MAC G0/0 de R1; de lo contrario, PC1 enviará una solicitud ARP para obtenerla. Asimismo, R1 también debe obtener la dirección MAC de PC3.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La dirección IP de la puerta de enlace predeterminada suele ser la primera dirección utilizable de la red. Por ejemplo, en la red 192.168.1.0/24, es 192.168.1.1, y en la red 192.168.2.0/24, es 192.168.2.1. Esto no tiene por qué ser así, pero es una práctica común, y la seguiré en este libro. Las direcciones IP de los ordenadores, por otro lado, son arbitrarias. En los ejemplos de este capítulo, las direcciones IP de los ordenadores terminan en .11 y .12, pero no tienen un significado específico.</p>
+</div>
+<p>¿Cómo sabe el PC1 cuál es su puerta de enlace predeterminada? Un host final puede conocer la dirección IP de su puerta de enlace predeterminada de dos maneras. Una es mediante la configuración manual, en la que un administrador especifica manualmente la puerta de enlace predeterminada en cada dispositivo. Sin embargo, esto es muy poco común en dispositivos de usuario como las PC; suelen utilizar el segundo método (el Protocolo de Configuración Dinámica de Host [DHCP]) para conocer automáticamente información como la dirección IP de su puerta de enlace predeterminada, así como su propia dirección IP (el DHCP se trata en el capítulo 4 del volumen 2 de este libro). En un dispositivo Windows, puede usar el comando ipconfig en la aplicación Símbolo del sistema para ver información como la dirección IP del dispositivo, la máscara de red (denominada máscara de subred en la salida del comando) y la puerta de enlace predeterminada. El siguiente ejemplo muestra la salida de este comando en el PC1:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>C:<span class="k">\Users\jmcdo</span>&gt; ipconfig
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>. . .
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Ethernet adapter Local Area Connection:
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   Connection-specific DNS Suffix  . : 
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   IPv4 Address. . . . . . . . . . . : 192.168.1.11
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   Default Gateway . . . . . . . . . : 192.168.1.1
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La puerta de enlace predeterminada de un host se configura como una dirección IP, no como una dirección MAC. Para conocer la dirección MAC de la puerta de enlace predeterminada, el host debe enviar una solicitud ARP a su dirección IP.</p>
+</div>
+<p>Hay un par de puntos principales que se deben tener en cuenta en esta sección: primero, para enviar un paquete a un destino en la misma red, un host encapsulará el paquete (dirigido a la dirección IP del host de destino) en una trama dirigida a la dirección MAC del host de destino. El segundo punto es que, para enviar un paquete a un destino en una red diferente, el host emisor encapsulará el paquete (dirigido a la dirección IP del host de destino) en una trama dirigida a la dirección MAC de la puerta de enlace predeterminada. En cualquier caso, se debe usar ARP para obtener la dirección MAC adecuada (la del host de destino o la de la puerta de enlace predeterminada).</p>
+<h2 id="fundamentos-de-routing">Fundamentos de routing</h2>
+<p>En el apartado anterior, vimos cómo un host envía paquetes a destinos fuera de su red local; envía cada paquete en una trama dirigida a la dirección MAC de la puerta de enlace predeterminada. Ahora examinaremos cómo la puerta de enlace predeterminada (un router) realiza su función de reenvío de paquetes entre redes, lo que se denomina enrutamiento. La Figura 9.3 ofrece una descripción general de cómo R1 reenvía un paquete de PC1 a PC3.
+Nota</p>
+<p>La tabla de enrutamiento de R1 en la Figura 9.3 está simplificada; examinaremos la tabla de enrutamiento completa de R1 en la Sección 9.2.1.</p>
+<p>Cuando un router recibe una trama destinada a su propia dirección MAC, la desencapsula para examinar el paquete que contiene (si el destino no es su propia dirección MAC, la descarta). Si la dirección IP de destino del paquete es su propia dirección IP, continúa desencapsulando el mensaje; es un mensaje para el router.</p>
+<p>Sin embargo, si la dirección IP de destino del paquete no es su propia dirección IP, el router intentará enrutarlo hacia su destino. Para ello, busca la dirección IP de destino del paquete en su tabla de enrutamiento para encontrar una ruta adecuada. Si encuentra una ruta adecuada, reenvía el paquete según esa ruta. De lo contrario, lo descarta.</p>
+<p><img alt="" src="../img/image3.png" /></p>
+<p>En la figura de arriba, R1 recibe un paquete de PC1 y lo reenvía a PC3.
+1. R1 recibe una trama en su interfaz G0/0. La trama está dirigida a la dirección MAC de R1, por lo que examina el paquete que contiene.
+2. R1 busca la dirección IP de destino del paquete en su tabla de enrutamiento. 192.168.2.11 pertenece a la red 192.168.2.0/24, por lo que selecciona esa ruta para reenviarlo. 
+3. R1 encapsula el paquete en una nueva trama destinada a la dirección MAC de PC3 y lo reenvía fuera de la interfaz especificada por la ruta (G0/1).</p>
+<h2 id="la-tabla-de-enrutamiento">La tabla de enrutamiento</h2>
+<p>La tabla de enrutamiento de un router es una base de datos de destinos conocidos por el router. Puede considerarse como un conjunto de instrucciones:</p>
+<ul>
+<li>Para enviar un paquete al destino X, reenvíelo al siguiente salto Y.</li>
+<li>O bien, si el destino está en una red conectada directamente, reenvíelo directamente al destino.</li>
+<li>O bien, si el destino es la dirección IP del router, continúe desencapsulando el mensaje (no reenvíe el paquete).</li>
+</ul>
+<p>El ejemplo que veíamos en la figura anterior es un ejemplo del segundo tipo de instrucción: el destino del paquete (PC3, 192.168.2.11) se encuentra en una red conectada directamente a R1 (192.168.2.0/24), por lo que R1 reenvía el paquete directamente al destino (encapsulándolo en una trama dirigida a PC3).</p>
+<p>A diferencia de los switches, que pueden generar su tabla de direcciones MAC automáticamente sin necesidad de configuración, la tabla de enrutamiento de un router estará vacía por defecto; no podrá reenviar paquetes. El siguiente ejemplo muestra la tabla de enrutamiento de R1 antes de cualquier configuración. El comando para ver la tabla de enrutamiento es <code>show ip route</code>:`</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>R1# show ip route
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>       E1 - OSPF external type 1, E2 - OSPF external type 2
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>       ia - IS-IS inter area, * - candidate default, U - per-user static route
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>       a - application route
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>       + - replicated route, <span class="c">% - next hop override, p - overrides from PfR</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Gateway of last resort is not set
+</span></code></pre></div>
+<p>Sin ninguna configuración, la salida muestra algunos códigos que representan los diferentes tipos de ruta que podrían aparecer en la tabla de enrutamiento. Finalmente, "Gateway of last resort is not set" indica que R1 no tiene una ruta predeterminada, algo que abordaremos más adelante.</p>
+<p>Configuremos R1 y veamos cómo cambia la salida de <code>show ip route</code>. Primero, no configuraremos ninguna ruta; en lugar de eso, configuremos las direcciones IP de R1 y habilitemos sus interfaces, como en el siguiente ejemplo:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>R1# configure terminal
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>R1(config)# interface g0/0
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>R1(config-if)# ip address 192.168.1.1 255.255.255.0
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>R1(config-if)# no shutdown
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>R1(config-if)# interface g0/1
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>R1(config-if)# ip address 192.168.2.1 255.255.255.0
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>R1(config-if)# no shutdown
+</span></code></pre></div>
+<p>Las interfaces de R1 ahora están configuradas según los diagramas anteriores: 192.168.1.1/24 en G0/0 y 192.168.2.1/24 en G0/1. Ahora, examinemos de nuevo la tabla de enrutamiento de R1 y veamos qué ha cambiado (omitiendo algunos códigos para ahorrar espacio):</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>R1# show ip route
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>. . .
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Gateway of last resort is not set
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>C        192.168.1.0/24 is directly connected, GigabitEthernet0/0
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>L        192.168.1.1/32 is directly connected, GigabitEthernet0/0
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>      192.168.2.0/24 is variably subnetted, 2 subnets, 2 masks
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>C        192.168.2.0/24 is directly connected, GigabitEthernet0/1
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>L        192.168.2.1/32 is directly connected, GigabitEthernet0/1
+</span></code></pre></div>
+<p>Con solo configurar las direcciones IP y habilitar las dos interfaces de R1, R1 insertó cuatro rutas en su tabla de enrutamiento: dos rutas conectadas (indicadas por el código <code>C</code>) y dos rutas locales (indicadas por el código <code>L</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La línea 192.168.1.0/24 tiene subredes variables; 2 subredes, 2 máscaras no es una ruta. Esta afirmación significa que en la tabla de enrutamiento hay dos rutas a subredes que encajan en la red de clase C 192.168.1.0/24, con dos máscaras de red diferentes (/24 y /32). Lo mismo aplica a la línea similar sobre 192.168.2.0/24. </p>
+</div>
+<h3 id="rutas-conectadas">Rutas conectadas</h3>
+<p>Una ruta conectada es una ruta a la red a la que está conectada una interfaz. Se añade automáticamente una ruta conectada a la tabla de enrutamiento por cada interfaz que tenga una dirección IP y esté activa (puede comprobar el estado de la interfaz con <code>show ip interface brief</code>). Por ejemplo, la interfaz G0/0 de R1 tiene la dirección IP 192.168.1.1/24, por lo que agrega automáticamente una ruta a la red 192.168.1.0/24 a su tabla de enrutamiento.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>192.168.1.0/24 es la dirección de red, con todos los bits de la porción de host establecidos en 0. Esto se puede determinar simplemente cambiando el octeto final de 1 a 0, ya que la máscara de red de la interfaz es /24.</p>
+</div>
+<p>Una ruta conectada indicará que la red está conectada directamente y también indicará a qué interfaz está conectada. Para ver solo las rutas conectadas en la tabla de enrutamiento de R1, en el siguiente ejemplo, filtro la salida usando la barra vertical <code>|</code> seguida de <code>include C</code> para mostrar solo las líneas que incluyen <code>C</code>:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>R1# show ip route | include C
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>C        192.168.1.0/24 is directly connected, GigabitEthernet0/0
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>C        192.168.2.0/24 is directly connected, GigabitEthernet0/1
+</span></code></pre></div>
+<p>Con estas rutas en su tabla de enrutamiento, R1 sabe que para reenviar un paquete a un host con una dirección IP en las redes 192.168.1.0/24 o 192.168.2.0/24, debe enviar el paquete desde la interfaz especificada en la ruta en una trama dirigida directamente al host de destino. Esto se vio en la figura 9.3; la dirección IP de destino del paquete era 192.168.2.11 (PC3), por lo que R1 reenvió el paquete desde la interfaz G0/1 en una trama dirigida a la dirección MAC de PC3.</p>
+<p>La siguiente imagen muestra cómo la ruta a 192.168.1.0/24 incluye todas las direcciones IP desde 192.168.1.0 hasta 192.168.1.255. La parte de red de la dirección de la ruta es fija, pero la parte del host puede ser cualquier número de 8 bits.</p>
+<p><img alt="" src="../img/router-%20image4.png" /></p>
+<p>Dirección IP y longitud del prefijo (expresada como máscara de red) de la ruta a 192.168.1.0/24. Debido a la longitud del prefijo /24, los primeros tres octetos son fijos (los bits no pueden cambiar). Sin embargo, el último octeto puede ser cualquier número de 8 bits: .1, .11, .100, .179, etc. Esto significa que cualquier paquete con una dirección IP de destino que comience por 192.168.1 puede reenviarse mediante esta ruta.</p>
+<h3 id="rutas-locales">Rutas locales</h3>
+<p>Una ruta local es una ruta a la dirección IP exacta configurada en la interfaz del router. Al igual que las rutas conectadas, se agrega automáticamente una ruta local a la tabla de enrutamiento por cada interfaz que tenga una dirección IP y esté activa. En el siguiente ejemplo, utilizo <code>show ip route | include L</code> para ver solo las rutas locales de R1. Tenga en cuenta que, al igual que las rutas conectadas, las rutas locales también indican que X está conectado directamente, seguido de la interfaz:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>R1# show ip route | include L
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>. . .
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>L        192.168.1.1/32 is directly connected, GigabitEthernet0/0
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>L        192.168.2.1/32 is directly connected, GigabitEthernet0/1
+</span></code></pre></div>
+<p>Para especificar la dirección IP exacta de la interfaz, una ruta local utiliza una longitud de prefijo /32; todos los bits de la máscara de red se establecen en 1. Esto se aplica independientemente de la máscara de red configurada en la interfaz. Por ejemplo, aunque ambas interfaces de R1 tienen una longitud de prefijo /24, sus rutas locales son /32. Esto se debe a que una ruta local solo especifica una dirección IP. Como se mencionó anteriormente, una ruta a 192.168.1.0/24 incluye todas las direcciones IP desde 192.168.1.0 hasta 192.168.1.255; dado que la longitud del prefijo es /24, el octeto final puede ser cualquier número entre 0 y 255. Por otro lado, una ruta a 192.168.1.1/32 incluye solo 192.168.1.1, debido a su longitud de prefijo /32; todos los bits se consideran parte de la porción de red y no se pueden modificar. La figura 9.5 muestra la dirección IP de R1 G0/0 con una longitud de prefijo /32 (escrita como una máscara de red).</p>
+<p>Una ruta local indica al router que los paquetes destinados a la dirección IP especificada en la ruta son para él mismo; debe continuar desencapsulando el mensaje y examinando su contenido. En este caso, el router no reenvía el paquete, sino que lo recibe. La ruta local es necesaria para distinguir la dirección IP del router de otras direcciones IP en la red conectada. Si R1 solo tuviera una ruta conectada a 192.168.1.0/24, pero ninguna ruta local, reenviaría los paquetes destinados a 192.168.1.1 desde su interfaz G0/0, en lugar de recibirlos.</p>
+<h2 id="eleccion-de-rutas">Elección de rutas</h2>
+<p>Cuando un router reenvía un paquete, debe decidir qué ruta de su tabla de enrutamiento utilizará para reenviarlo, lo que se denomina selección de ruta. Para determinar cómo reenviar un paquete en particular, el router seleccionará la ruta coincidente más específica. Definamos este término:</p>
+<ul>
+<li>Ruta coincidente: La dirección IP de destino del paquete forma parte de la red especificada en la ruta. De lo contrario, el paquete no se puede reenviar utilizando esta ruta.</li>
+<li>Más específica: La ruta con la longitud de prefijo más larga.</li>
+</ul>
+<p>Usemos un ejemplo para aclarar este concepto. La siguiente figura muestra el proceso de selección de ruta cuando R1 recibe un paquete dirigido a 192.168.1.1. La dirección IP de destino del paquete coincide con dos rutas en la tabla de enrutamiento de R1, por lo que selecciona la más específica.</p>
+<p><img alt="" src="../img/router-%20image5.png" /></p>
+<p>R1 recibe un paquete y selecciona la mejor ruta para él. 
+1. R1 recibe una trama en su interfaz G0/0. La MAC de destino es la suya, por lo que la desencapsula y examina el paquete que contiene.
+2. La dirección IP de destino del paquete es 192.168.1.1. R1 realiza una búsqueda en la tabla de enrutamiento y descubre que dos rutas coinciden con la dirección IP de destino del paquete: la ruta conectada a 192.168.1.0/24 y la ruta local a 192.168.1.1/32. R1 selecciona la ruta más específica: 192.168.1.1/32.
+3. Dado que R1 selecciona una ruta local, recibe el paquete por sí mismo; no lo reenvía.</p>
+<p>Una ruta con un prefijo /24 incluye 256 direcciones IP diferentes. Por ejemplo, 192.168.1.0/24 incluye las rutas de 192.168.1.0 a 192.168.1.255. Por otro lado, una ruta con un prefijo /32 solo incluye una dirección IP, por lo que una ruta /32 es más específica que una ruta /24. De hecho, una ruta /32 es la más específica posible; si la dirección IP de destino de un paquete coincide con una ruta /32, esa ruta siempre se seleccionará para ese paquete, independientemente de cuántas otras rutas coincidentes haya. </p>
+<p>¿Qué sucede si no hay ninguna ruta en la tabla de enrutamiento que coincida con la dirección IP de destino de un paquete? En ese caso, el enrutador descartará el paquete; no lo inundará de todos los puertos como lo hacen los conmutadores con tramas unicast desconocidas. Un conmutador a veces inunda de tramas, pero un enrutador nunca inunda de paquetes; reenvía el paquete, lo recibe para sí mismo o lo descarta. La Tabla 9.1 resume las acciones que un enrutador puede realizar en un paquete.</p>
+<table>
+<thead>
+<tr>
+<th>Condiciones de coincidencia</th>
+<th>Acción del enrutador</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>La dirección IP de destino del paquete coincide con una o más rutas no locales.</td>
+<td>Reenviar el paquete según la ruta coincidente más específica</td>
+</tr>
+<tr>
+<td>La dirección IP de destino del paquete coincide con una ruta local.</td>
+<td>Recibir el paquete</td>
+</tr>
+<tr>
+<td>La dirección IP de destino del paquete no coincide con ninguna ruta.</td>
+<td>Descartar el paquete</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rutas-estaticas">Rutas estáticas</h2>
+<p>El proceso de reenvío de paquetes descrito en la sección 9.2 se denomina enrutamiento, pero el término enrutamiento también se utiliza para referirse a los procesos que utilizan los enrutadores para aprender rutas. Además de las rutas conectadas y locales que un enrutador inserta automáticamente en su tabla de enrutamiento, existen dos métodos principales mediante los cuales los enrutadores pueden aprender rutas:</p>
+<p>Enrutamiento dinámico: Los enrutadores utilizan protocolos de enrutamiento dinámico (es decir, OSPF) para compartir información entre sí y crear sus tablas de enrutamiento.</p>
+<p>Enrutamiento estático: Un ingeniero/administrador configura manualmente las rutas en el enrutador.</p>
+<p>Las rutas conectadas permiten al enrutador reenviar paquetes a destinos en redes conectadas directamente a él, y las rutas locales permiten al enrutador recibir paquetes destinados a sus propias direcciones IP. Sin embargo, para reenviar paquetes a destinos que no están en redes conectadas directamente, el enrutador debe aprender de esos destinos mediante uno de los métodos mencionados anteriormente (abordaremos el enrutamiento dinámico en los capítulos 17 y 18).</p>
+<p>Al reenviar un paquete a un destino que no está conectado directamente al enrutador, este debe encapsularlo en una trama dirigida a la dirección MAC del siguiente salto, que corresponde al siguiente enrutador en la ruta hacia el destino. La Figura 9.7 muestra este proceso.</p>
+<p><img alt="" src="../img/router-%20image6.png" /></p>
+<p>PC1 envía un paquete a PC3 a través de R1, R2 y R3.
+1) PC1 envía el paquete en una trama a R1 G0/1. R1 lo recibe y realiza una búsqueda en la tabla de enrutamiento.
+2) R1 reenvía el paquete en una trama a R2 G0/0. R2 lo recibe y realiza una búsqueda en la tabla de enrutamiento.
+3) R2 reenvía el paquete en una trama a la MAC de R3 G0/0. R3 recibe el paquete y realiza una búsqueda en la tabla de enrutamiento. (4) R3 reenvía el paquete en una trama a PC3, que lo recibe y lo procesa.</p>
+<p>La imagen anterior muestra cómo los enrutadores reenvían paquetes hacia destinos remotos (no conectados directamente). Sin embargo, los enrutadores no tienen estas rutas en sus tablas de enrutamiento por defecto; estas rutas deben configurarse manualmente. Sin configurar ninguna ruta estática, si R1 recibe un paquete de PC1 con destino a 192.168.3.11, no encontrará ninguna ruta coincidente al realizar la búsqueda en la tabla de enrutamiento. No tendrá más remedio que descartar el paquete. La siguiente tabla enumera las redes que cada enrutador de la figura 9.7 reconoce sin configurar rutas estáticas.</p>
+<table>
+<thead>
+<tr>
+<th>Router</th>
+<th>Redes conocidas</th>
+<th>Redes desconocidas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>192.168.1.0/24<br>192.168.12.0/24</td>
+<td>192.168.3.0/24<br>192.168.23.0/24</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>192.168.12.0/24<br>192.168.23.0/24</td>
+<td>192.168.1.0/24<br>192.168.3.0/24</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>192.168.3.0/24<br>192.168.23.0/24</td>
+<td>192.168.1.0/24<br>192.168.12.0/24</td>
+</tr>
+</tbody>
+</table>
+<p>Dado el objetivo de habilitar la comunicación bidireccional entre PC1 y PC3, ¿qué rutas debemos configurar? Al observar la tabla 9.2, se podría suponer que debemos configurar seis rutas para que cada enrutador conozca todas las redes dentro de la red principal.</p>
+<p>Sin embargo, para reenviar paquetes entre dos hosts, cada enrutador solo necesita rutas a las redes de los hosts que se comunican (PC1 y PC3). R1, por ejemplo, no necesita conocer la red entre R2 y R3 (192.168.23.0/24); R1 solo necesita saber que para reenviar un paquete a un destino en 192.168.3.0/24, debe reenviarlo a R2. La Figura 9.8 demuestra este concepto: si configuramos una ruta a 192.168.3.0/24 en R1, con la dirección IP de R2 especificada como el siguiente salto, R1 podrá reenviar el paquete a R2. No necesita saber los detalles de la ruta que tomará el paquete después de R2; solo necesita saber que R2 es el siguiente salto.</p>
+<p>R1 reenvía un paquete destinado a 192.168.3.11 (PC3). R1 ​​tiene una ruta estática a 192.168.3.0/24 a través de 192.168.12.2 (R2). R1 ​​sabe que para reenviar un paquete hacia la red 192.168.3.0/24, debe reenviarlo a R2. R1 desconoce los detalles de la ruta que tomará el paquete después de R2, y no está obligado a conocerlos.</p>
+<p>En resumen, cada router necesita una ruta a 192.168.3.0/24 para poder reenviar paquetes de PC1 a PC3 y una ruta a 192.168.1.0/24 para poder reenviar paquetes de PC3 a PC1. El R1 ya tiene una ruta conectada a 192.168.1.0/24, y el R3 ya tiene una ruta conectada a 192.168.3.0/24. La Tabla 9.3 enumera las rutas estáticas que debemos configurar para habilitar la comunicación bidireccional entre la PC1 y la PC3.</p>
+<table>
+<thead>
+<tr>
+<th>Router</th>
+<th>Rutas necesarias</th>
+<th>Próximo salto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>192.168.3.0/24</td>
+<td>192.168.12.2 (R2 G0/0)</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>192.168.1.0/24</td>
+<td>192.168.12.1 (R1 G0/0)</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>192.168.3.0/24</td>
+<td>192.168.23.2 (R3 G0/0)</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>192.168.1.0/24</td>
+<td>192.168.23.1 (R2 G0/1)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En este ejemplo, nos referimos a las rutas necesarias para habilitar la comunicación bidireccional entre la PC1 y la PC3. Si bien no es necesario para tal fin, no hay problema en configurar una ruta a 192.168.23.0/24 en el R1 y una ruta a 192.168.12.0/24 en el R3.</p>
+</div>
+<h3 id="configurando-rutas-estaticas">Configurando rutas estáticas</h3>
+<p>El comando para configurar una ruta estática es, desde el modo de configuración global, <code>ip route</code>. Sin embargo, existen diferentes opciones en cuanto a los argumentos que se proporcionan con el comando:</p>
+<ul>
+<li><code>ip route red-destino máscara próximo-salto</code></li>
+<li><code>ip route red-destino máscara interfaz-salida</code></li>
+<li><code>ip route red-destino máscara interfaz-salida próximo-salto</code></li>
+</ul>
+<h3 id="rutas-estaticas-especificando-el-proximo-salto">Rutas estáticas especificando el próximo salto</h3>
+<p>Se puede configurar una ruta estática especificando la dirección de red de destino, la máscara de red y la dirección IP del siguiente salto. La Figura 9.9 muestra los comandos para configurar cada una de las rutas necesarias en R1, R2 y R3.</p>
+<p><img alt="" src="../img/router-%20image8.png" /></p>
+<p>Configuración de rutas estáticas en R1, R2 y R3 para habilitar la comunicación bidireccional entre PC1 y PC3. Las rutas especifican la dirección IP del siguiente salto. R1 requiere una ruta a 192.168.3.0/24, R2 requiere rutas a 192.168.1.0/24 y 192.168.3.0/24, y R3 requiere una ruta a 192.168.1.0/24.</p>
+<p>Una ruta estática que especifica únicamente la dirección IP del siguiente salto se denomina ruta estática recursiva. El nombre recursivo se debe a que requiere múltiples búsquedas en la tabla de enrutamiento para reenviar un paquete:</p>
+<p>Una búsqueda para encontrar la dirección IP del siguiente salto
+Una búsqueda para encontrar la interfaz a la que está conectado el siguiente salto</p>
+<p>Para demostrarlo, observemos la tabla de enrutamiento de R1 en el siguiente ejemplo. Cuando R1 recibe un paquete destinado a 192.168.3.11, descubre que la ruta coincidente más específica (de hecho, la única ruta coincidente) es la estática:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>R1# show ip route
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>. . .
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>      192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>C        192.168.1.0/24 is directly connected, GigabitEthernet0/1
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>L        192.168.1.1/32 is directly connected, GigabitEthernet0/1
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>S     192.168.3.0/24 [1/0] via 192.168.12.2
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>      192.168.12.0/24 is variably subnetted, 2 subnets, 2 masks
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>C        192.168.12.0/24 is directly connected, GigabitEthernet0/0
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>L        192.168.12.1/32 is directly connected, GigabitEthernet0/0
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El [1/0] en la ruta estática indica la distancia administrativa (AD) y la métrica de la ruta, respectivamente. La AD y la métrica se abordarán en el capítulo 17; no son relevantes para este capítulo.</p>
+</div>
+<p>La ruta estática indica <code>S 192.168.3.0/24 [1/0] vía 192.168.12.2</code> (nótese el código <code>S</code> para estática), pero esta información por sí sola no le indica a R1 por qué interfaz reenviar el paquete. Para obtenerla, realiza una segunda búsqueda de la dirección IP del siguiente salto: 192.168.12.2. La ruta más específica (y la única) que coincide con 192.168.12.2 es la ruta conectada a 192.168.12.0/24, que especifica la interfaz G0/0. Ahora, después de dos búsquedas, R1 conoce la dirección IP del siguiente salto y la interfaz por la que reenviar el paquete.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>R1 conoce la dirección IP del siguiente salto, pero la información que realmente necesita es la dirección MAC del siguiente salto. Para obtenerla, debe enviar una solicitud ARP a la dirección IP del siguiente salto.</p>
+</div>
+<h3 id="rutas-estaticas-especificando-la-interfaz-de-salida">Rutas estáticas especificando la interfaz de salida</h3>
+<p>En lugar de especificar la dirección IP del siguiente salto de la ruta, puede especificar la interfaz de salida, es decir, la interfaz desde la que el enrutador debe reenviar los paquetes. El siguiente ejemplo muestra las mismas rutas estáticas que vimos en la figura 9.9, pero configuradas con la interfaz de salida:</p>
+<ul>
+<li><code>R1(config)# ip route 192.168.3.0 255.255.255.0 g0/0</code></li>
+<li><code>R2(config)# ip route 192.168.1.0 255.255.255.0 g0/0</code></li>
+<li><code>R2(config)# ip route 192.168.3.0 255.255.255.0 g0/1</code></li>
+<li><code>R3(config)# ip route 192.168.1.0 255.255.255.0 g0/0</code></li>
+</ul>
+<p>Una ruta estática que especifica solo la interfaz de salida se denomina ruta estática conectada directamente. Esto se debe a que la ruta aparecerá como una red conectada directamente en la tabla de enrutamiento. El siguiente ejemplo muestra la ruta a 192.168.3.0/24 en la tabla de enrutamiento de R1:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>R1# show ip route
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>. . .
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>S     192.168.3.0/24 is directly connected, GigabitEthernet0/0
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>. . .
+</span></code></pre></div>
+<p>Este tipo de ruta estática tiene una desventaja: dado que R1 considera que la red 192.168.3.0/24 está conectada directamente a su interfaz G0/0, intentará enviar paquetes en tramas dirigidas directamente a PC3, en lugar de al siguiente salto.</p>
+<p>Esto significa que R1 no enviará una solicitud ARP para conocer la dirección MAC del siguiente salto; en su lugar, enviará una solicitud ARP para conocer la dirección MAC de PC3. El problema es que esta solicitud ARP no llegará a PC3, sino a R2 (los mensajes de difusión no van más allá de su red local). Sin embargo, R2 puede usar una función llamada proxy ARP para responder en nombre de PC3, indicándole a R1 que envíe el paquete a la dirección MAC G0/0 de R2. Esto se muestra en la figura 9.10.</p>
+<p><img alt="" src="../img/router-%20image9.png" /></p>
+<p>Un intercambio ARP proxy entre R1 y R2. (1) R1 envía una solicitud ARP para conocer la dirección MAC de PC3. (2) 192.168.3.11 no es la dirección IP de R2, pero R2 tiene una ruta a 192.168.3.0/24 en su tabla de enrutamiento, por lo que R2 usa ARP proxy para responder en nombre de PC3.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un enrutador solo usará proxy ARP para responder a una solicitud ARP si tiene una ruta al destino en su tabla de enrutamiento. De lo contrario, ignorará la solicitud.</p>
+</div>
+<p>El siguiente ejemplo muestra la tabla ARP de R1 (puede visualizarla con el comando <code>show arp</code>). Observe que se muestra la misma dirección MAC (<code>Hardware Addr</code>) para 192.168.12.2 y 192.168.3.11: la dirección MAC de la interfaz G0/0 de R2.</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>R1# show arp
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>. . .
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Internet  192.168.3.11            0   5254.0003.e684  ARPA   GigabitEthernet0/0
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>. . .
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>Internet  192.168.12.2            0   5254.0003.e684  ARPA   GigabitEthernet0/0
+</span></code></pre></div>
+<p>La dependencia del proxy ARP es una desventaja de las rutas estáticas conectadas directamente por dos razones. En primer lugar, aunque el proxy ARP está habilitado en los routers Cisco por defecto, en algunos casos puede estar deshabilitado (por ejemplo, si R2 no es un router Cisco). Si el proxy ARP está deshabilitado en R2, no responderá a la solicitud ARP de R1 y R1 no podrá reenviar el paquete a PC3.</p>
+<p>La segunda desventaja es que R1 necesitará crear una entrada ARP independiente para cada host en 192.168.3.0/24. Considera que cada host en 192.168.3.0/24 está conectado directamente, por lo que intentará obtener la dirección MAC de cada host; esto podría desperdiciar memoria en R1 si hay muchos hosts en la red. Por otro lado, si se especifica la dirección IP del siguiente salto en lugar de la interfaz de salida, R1 solo necesitará una entrada ARP para reenviar paquetes a 192.168.3.0/24: una entrada ARP para el siguiente salto.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aunque nos centramos en el R1 como ejemplo, lo mismo aplica para el R2, que considerará que las redes 192.168.1.0/24 y 192.168.3.0/24 están conectadas directamente, así como para el R3, que considerará que la red 192.168.1.0/24 está conectada directamente.</p>
+</div>
+<p>Debería conocer la definición de rutas estáticas conectadas directamente y poder configurarlas, pero debido a las desventajas de depender de ARP proxy, le recomiendo no usarlas en una red real. En su lugar, utilice rutas estáticas recursivas o la siguiente opción: rutas estáticas completamente especificadas.</p>
+<h3 id="rutas-estaticas-especificando-tanto-el-interfaz-de-salida-como-el-proximo-salto">Rutas estáticas especificando tanto el interfaz de salida como el próximo salto</h3>
+<p>La tercera opción al configurar una ruta estática es especificar tanto la interfaz de salida como el siguiente salto, lo que se denomina ruta estática completamente especificada. Las siguientes son las mismas cuatro rutas estáticas, esta vez configuradas como rutas estáticas completamente especificadas:</p>
+<ul>
+<li><code>R1(config)# ip route 192.168.3.0 255.255.255.0 g0/0 192.168.12.2</code></li>
+<li><code>R2(config)# ip route 192.168.1.0 255.255.255.0 g0/0 192.168.12.1</code></li>
+<li><code>R2(config)# ip route 192.168.3.0 255.255.255.0 g0/1 192.168.23.2</code></li>
+<li><code>R3(config)# ip route 192.168.1.0 255.255.255.0 g0/0 192.168.23.1</code></li>
+</ul>
+<p>La ventaja de este tipo de ruta estática es que el router sabe Tanto la dirección IP del siguiente salto como la interfaz desde la que se reenvía el paquete; no es necesario realizar una búsqueda recursiva ni depender de ARP proxy. El siguiente ejemplo muestra cómo aparece una ruta completamente especificada en la tabla de enrutamiento:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>R1# show ip route
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>. . .
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>S     192.168.3.0/24 [1/0] via 192.168.12.2, GigabitEthernet0/0
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>. . .
+</span></code></pre></div>
+<p>Este tipo de ruta estática puede parecer la mejor de las tres, pero en realidad, se pueden usar rutas recursivas o estáticas completamente especificadas sin una diferencia notable en el rendimiento. Sin embargo, generalmente se deben evitar las rutas estáticas conectadas directamente.</p>
+<h3 id="configurando-una-ruta-por-defecto">Configurando una ruta por defecto</h3>
+<p>La ruta predeterminada es una ruta al destino menos específico posible: 0.0.0.0/0. Esta ruta coincide con todas las direcciones IP posibles, desde 0.0.0.0 hasta 255.255.255.255. Al ser la ruta menos específica posible, la ruta predeterminada solo se seleccionará si no hay rutas más específicas en la tabla de enrutamiento del enrutador.</p>
+<p>Una ruta predeterminada se utiliza a menudo para proporcionar una ruta a internet. Hay más de un millón de rutas en la tabla de enrutamiento global de internet, una cantidad muy superior a la que la mayoría de los enrutadores pueden gestionar. Afortunadamente, un enrutador no necesita conocer ninguna red de destino específica en internet; si tiene una ruta predeterminada a internet, puede usarla para reenviar paquetes hacia internet, y la infraestructura del proveedor de servicios de internet (ISP) se encargará de reenviarlos al destino correcto.</p>
+<p>Se pueden usar rutas más específicas para destinos en la red corporativa interna, y el resto del tráfico (que no coincida con ninguna otra ruta) se enrutará utilizando la ruta predeterminada. La Figura 9.11 muestra un ejemplo: R1 tiene rutas específicas a 192.168.2.0/24 y 192.168.3.0/24, y luego una ruta predeterminada a internet; los paquetes con destinos que no coincidan con 192.168.2.0/24 o 192.168.3.0/24 (o las rutas conectadas y locales de R1) se reenviarán utilizando la ruta predeterminada.</p>
+<p><img alt="" src="../img/router-%20image10.png" /></p>
+<p>El R1 tiene dos rutas a redes de destino específicas y una ruta predeterminada a Internet. (1) Una ruta a 192.168.2.0/24, con R2 G0/0 como siguiente salto. (2) Una ruta a 192.168.3.0/24, con R3 G0/0 como siguiente salto. (3) Una ruta predeterminada, con la dirección IP del ISP (203.0.113.2) como siguiente salto.</p>
+<p>Para configurar una ruta predeterminada, especifique la red de destino 0.0.0.0 y la máscara de red 0.0.0.0 en el comando ip route; esto da como resultado 0.0.0.0/0, que incluye todas las direcciones IP posibles. Si un enrutador no tiene una ruta predeterminada configurada, verá la instrucción «Gateway of last resort is not set» encima de las rutas en la tabla de enrutamiento, como se muestra en el siguiente ejemplo. Esto significa que el enrutador no tiene una ruta predeterminada:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>R1# show ip route
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>. . .
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Gateway of last resort is not set
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puerta de enlace de último recurso (<em>gateway of last resort</em>) es otro término para la puerta de enlace predeterminada (<em>default gateway</em>). La ruta predeterminada en un router es como la puerta de enlace predeterminada de una PC; se utiliza para reenviar tráfico a destinos fuera de las redes conocidas del router.</p>
+</div>
+<p>Tras configurar las rutas estáticas que se muestran en la figura 9.11, el resultado cambia. En el siguiente ejemplo, utilizo el comando show ip route static para ver solo las rutas estáticas de R1. Observe que la dirección IP del ISP (203.0.113.2) ahora aparece como la puerta de enlace de último recurso:</p>
+<div class="language-rd highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>R1# show ip route static
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>. . .
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>       ia - IS-IS inter area, * - candidate default, U - per-user static route
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>. . .
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>Gateway of last resort is 203.0.113.2 to network 0.0.0.0
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>S*    0.0.0.0/0 [1/0] via 203.0.113.2
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>S     192.168.2.0/24 [1/0] via 192.168.12.2
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>S     192.168.3.0/24 [1/0] via 192.168.13.2
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Anteriormente en este capítulo, mencioné que un enrutador descartará los paquetes que no coincidan con ninguna ruta en su tabla de enrutamiento. Sin embargo, si el enrutador tiene una ruta predeterminada, esta situación no ocurrirá; la ruta predeterminada coincide con todas las direcciones IP. Si un paquete no coincide con una ruta más específica, el enrutador lo reenviará por la ruta predeterminada en lugar de descartarlo.</p>
+</div>
+<h2 id="resumen">Resumen</h2>
+<ul>
+<li>El término enrutamiento puede referirse al proceso de reenvío de paquetes entre redes y a la creación de una tabla de enrutamiento.</li>
+<li>Los hosts de una misma red pueden enviarse paquetes entre sí sin necesidad de un enrutador. Sin embargo, para enviar paquetes a destinos fuera de la red local, se requiere un enrutador.</li>
+<li>El enrutador al que un host envía paquetes destinados a redes externas se denomina puerta de enlace predeterminada. El host envía los paquetes en tramas dirigidas a la dirección MAC de la puerta de enlace predeterminada.</li>
+<li>La puerta de enlace predeterminada de un host puede configurarse manualmente o aprenderse automáticamente mediante DHCP.</li>
+<li>Puede usar el comando ipconfig en el Símbolo del sistema de Windows para ver información como la dirección IP, la máscara de red y la puerta de enlace predeterminada del PC.</li>
+<li>La tabla de enrutamiento es la base de datos de destinos conocidos del enrutador. Es un conjunto de instrucciones sobre qué hacer con los paquetes. La tabla de enrutamiento se puede ver con show ip route.</li>
+<li>Para cada interfaz que tenga una dirección IP y esté activa/activa, el enrutador agregará automáticamente dos rutas a su tabla de enrutamiento: una ruta conectada y una ruta local. Una ruta conectada es una ruta a la red a la que está conectada una interfaz. Las rutas conectadas se indican mediante el código C en la tabla de enrutamiento. Si un enrutador recibe un paquete destinado a un host en una red conectada directamente, lo reenviará directamente al host de destino (en una trama dirigida a la dirección MAC del host).</li>
+<li>Una ruta local es una ruta a la misma dirección IP configurada en la interfaz. Las rutas locales utilizan un prefijo /32 para especificar una única dirección IP. Si un enrutador recibe un paquete destinado a la dirección IP de una ruta local, significa que el paquete está destinado al propio enrutador; este lo recibirá para sí mismo, no lo reenviará.</li>
+<li>Una ruta a más de una dirección IP de destino (cualquier ruta con un prefijo menor que /32) se denomina ruta de red. Una ruta conectada es un ejemplo de ruta de red.</li>
+<li>Una ruta a una única dirección IP de destino (una ruta con un prefijo /32) se denomina ruta de host. Una ruta local es un ejemplo de ruta de host. El proceso de decidir qué ruta es la adecuada para reenviar un paquete se denomina selección de ruta. Para determinar cómo reenviar un paquete en particular, el enrutador seleccionará la ruta más específica (la que tenga el prefijo más largo).</li>
+<li>Una ruta /32 es la más específica posible; especifica solo una dirección IP. Una ruta /0 (ruta predeterminada) es la menos específica posible; especifica todas las direcciones IP posibles.</li>
+<li>Mientras que el reenvío de capa 3 implica buscar en la tabla de enrutamiento la ruta más específica, el reenvío de capa 2 implica buscar una coincidencia exacta en la tabla de direcciones MAC; las coincidencias parciales no cuentan.</li>
+<li>Si no hay rutas que coincidan con la dirección IP de destino de un paquete, el enrutador lo descartará.</li>
+<li>Para enrutar paquetes a destinos que no están conectados directamente al enrutador, este necesita aprender las rutas a esos destinos mediante enrutamiento dinámico (mediante un protocolo como OSPF) o enrutamiento estático (en el que las rutas se configuran manualmente en el enrutador). Para reenviar un paquete a un destino remoto, el enrutador lo encapsula en una trama destinada a la dirección MAC del siguiente salto (el siguiente enrutador en la ruta hacia el destino).</li>
+<li>Para que un enrutador reenvíe paquetes entre dos hosts, necesita rutas a la red de cada host; no necesita rutas a todas las redes en la ruta entre cada destino.</li>
+<li>El comando para configurar una ruta estática es ip route destination-network netmask {next-hop | exit-interface | exit-interface next-hop}.</li>
+<li>Una ruta estática que especifica solo el siguiente salto se denomina ruta estática recursiva; requiere múltiples búsquedas en la tabla de enrutamiento para reenviar un paquete: una para encontrar la dirección IP del siguiente salto y otra para encontrar la interfaz a la que está conectado el siguiente salto.</li>
+<li>Una ruta estática que especifica solo la interfaz de salida se denomina ruta estática conectada directamente porque hace que el enrutador trate la red como una red conectada directamente.</li>
+<li>Las rutas estáticas conectadas directamente requieren ARP proxy para funcionar. ARP proxy permite que un enrutador responda a las solicitudes ARP en nombre de otros hosts. El proxy ARP está habilitado en los routers Cisco de forma predeterminada, pero podría no estarlo en los routers de otros proveedores.</li>
+<li>Una ruta estática que especifica tanto la interfaz de salida como el siguiente salto se denomina ruta estática completamente especificada.</li>
+<li>Una ruta predeterminada es una ruta a 0.0.0.0/0. Al ser la ruta menos específica posible, solo se utilizará para reenviar paquetes que no coincidan con ninguna otra ruta en la tabla de enrutamiento.</li>
+<li>Si un router tiene una ruta predeterminada, no descartará los paquetes que no coincidan con otras rutas; en su lugar, los reenviará utilizando la ruta predeterminada.</li>
+<li>La ruta predeterminada se utiliza a menudo para proporcionar una ruta a internet; no es posible que un router aprenda rutas específicas para cada posible...</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.top","toc.integrate","search.highlight","content.code.annotate","content.code.copy"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

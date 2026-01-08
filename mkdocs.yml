@@ -45,12 +45,12 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
       use_pygments: true
-  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true 
   - attr_list
   - md_in_html
   - footnotes
+  - pymdownx.blocks.caption
   
 plugins: 
   - search:

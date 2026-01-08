@@ -1,0 +1,1 @@
+Página de apuntes del módulo de Planificación y administración de redes (PARE), de 1º de ASIR en el IES Severo Ochoa de Elche.
