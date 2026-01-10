@@ -271,7 +271,7 @@ SÍNTOMA: Dispositivos en esa VLAN no pueden comunicarse through trunk
 SOLUCIÓN: Añadir VLAN a la lista permitida
 ```
 
-## 🎯 **Resumen de Conceptos Clave**
+## **Resumen de Conceptos Clave**
 
 ### **TRUNK:**
 ```bash
@@ -388,7 +388,7 @@ Switch(config-if)# no shutdown
 
 ---
 
-## 🔒 **2. Port Security**
+## **2. Port Security**
 
 ### **Concepto Teórico Detallado**
 
@@ -516,11 +516,11 @@ Switch# show port-security address
 ! Muestra la tabla de direcciones MAC seguras aprendidas
 ```
 
-## 🌐 **3. DHCP Snooping**
+## **3. DHCP Snooping**
 
 ## **¿Pero qué es DHCP?**
 
-### 🔄 **¿Qué es DHCP?**
+### **¿Qué es DHCP?**
 
 **DHCP (Dynamic Host Configuration Protocol)** es el "servicio de entrega de direcciones" automático de las redes. En lugar de configurar manualmente cada dispositivo, DHCP asigna automáticamente:
 
@@ -529,37 +529,37 @@ Switch# show port-security address
 - ✅ **Gateway por defecto**
 - ✅ **Servidores DNS**
 
-## 📦 **El Proceso de 4 Pasos (DORA)**
+## **El Proceso de 4 Pasos (DORA)**
 
-### **1. 🎯 DISCOVER - "¿Hay algún servidor DHCP?"**
+### **1.DISCOVER - "¿Hay algún servidor DHCP?"**
 ```bash
 Cliente → Broadcast: "¡Hola! Necesito una IP, ¿alguien puede ayudarme?"
 ```
 - El cliente envía broadcast sin IP
 - Todos los dispositivos en la red local lo reciben
 
-### **2. 📨 OFFER - "Sí, te ofrezco esta IP"**
+### **2.OFFER - "Sí, te ofrezco esta IP"**
 ```bash
 Servidor DHCP → Cliente: "Te ofrezco la IP 192.168.1.100"
 ```
 - Servidor reserva una IP disponible
 - Envía oferta con configuración de red
 
-### **3. 📝 REQUEST - "Acepto tu oferta"** 
+### **3.REQUEST - "Acepto tu oferta"** 
 ```bash
 Cliente → Broadcast: "Acepto la IP 192.168.1.100 del servidor X"
 ```
 - Cliente confirma que acepta la IP
 - Se hace por broadcast por si hay múltiples servidores
 
-### **4. ✅ ACK - "Confirmado, usa esta IP"**
+### **4.ACK - "Confirmado, usa esta IP"**
 ```bash
 Servidor DHCP → Cliente: "Confirmado, usa 192.168.1.100 por 24 horas"
 ```
 - Confirmación final del servidor
 - Incluye tiempo de arrendamiento (lease time)
 
-## ⏰ **Renovación de IP**
+## **Renovación de IP**
 
 ```bash
 # A LOS 50% DEL TIEMPO DE ARRENDAMIENTO:
@@ -572,7 +572,7 @@ Servidor → Cliente: "Sí, renuevas por X tiempo más"
 
 ![Funcionamiento de DHCP](img/DHCP2.jpg){width=600 height=300}
 
-## 🎯 **En Resumen**
+## **En Resumen**
 
 **DHCP = Sistema automático que evita tener que configurar manualmente cada dispositivo en la red, asignando y gestionando direcciones IP de forma dinámica.**
 
