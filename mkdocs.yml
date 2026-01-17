@@ -1,4 +1,4 @@
-site_name: PARE - Prácticas de Administración de Redes y Equipos
+site_name: PARE - Planificación y Administración de Redes y Equipos
 site_url: https://raul-profesor.github.io/PARE
 
 theme:
@@ -69,6 +69,4 @@ extra_javascript:
   - https://unpkg.com/katex@0/dist/katex.min.js
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 
-extra:
-  analytics: 
-      provider: google 
+

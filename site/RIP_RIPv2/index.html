@@ -1,0 +1,1225 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/RIP_RIPv2/">
+      
+      
+        <link rel="prev" href="../rutas_dinamicas/">
+      
+      
+        <link rel="next" href="../ospf/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>RIP (Routing Information Protocol) - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rip-routing-information-protocol" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RIP (Routing Information Protocol)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SecSwitches/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-a-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción a RIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-funcionamiento-general-de-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Funcionamiento general de RIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-protocolos-vector-distancia-y-problemas-asociados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Protocolos vector-distancia y problemas asociados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ripv1-vision-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. RIPv1: visión general
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ripv2-version-moderna-de-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. RIPv2: versión moderna de RIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-temporizadores-en-ripv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Temporizadores en RIPv2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configuracion-basica-de-ripv2-en-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Configuración básica de RIPv2 en Cisco
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-control-del-envio-de-actualizaciones-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Control del envío de actualizaciones RIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-redistribucion-de-rutas-estaticas-en-ripv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Redistribución de rutas estáticas en RIPv2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-autenticacion-en-ripv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Autenticación en RIPv2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-verificacion-y-diagnostico-en-ripv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Verificación y diagnóstico en RIPv2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Conclusión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-a-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción a RIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-funcionamiento-general-de-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Funcionamiento general de RIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-protocolos-vector-distancia-y-problemas-asociados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Protocolos vector-distancia y problemas asociados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ripv1-vision-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. RIPv1: visión general
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ripv2-version-moderna-de-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. RIPv2: versión moderna de RIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-temporizadores-en-ripv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Temporizadores en RIPv2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configuracion-basica-de-ripv2-en-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Configuración básica de RIPv2 en Cisco
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-control-del-envio-de-actualizaciones-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Control del envío de actualizaciones RIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-redistribucion-de-rutas-estaticas-en-ripv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Redistribución de rutas estáticas en RIPv2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-autenticacion-en-ripv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Autenticación en RIPv2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-verificacion-y-diagnostico-en-ripv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Verificación y diagnóstico en RIPv2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Conclusión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Enrutamiento
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="rip-routing-information-protocol">RIP (Routing Information Protocol)</h1>
+<h2 id="1-introduccion-a-rip">1. Introducción a RIP</h2>
+<p>RIP (Routing Information Protocol) es un protocolo de enrutamiento dinámico diseñado para permitir que los routers intercambien información de rutas de forma automática. Pertenece a la categoría de protocolos <strong>IGP (Interior Gateway Protocol)</strong> y se utiliza dentro de un mismo sistema autónomo.</p>
+<p>RIP es un protocolo de tipo <strong>vector-distancia</strong>, lo que significa que cada router toma decisiones basándose únicamente en la información recibida de sus vecinos directos, sin conocer la topología completa de la red. Aunque hoy en día está prácticamente obsoleto en entornos profesionales, su estudio es clave para entender los fundamentos del enrutamiento dinámico.</p>
+<h2 id="2-funcionamiento-general-de-rip">2. Funcionamiento general de RIP</h2>
+<p>El funcionamiento de RIP se basa en la métrica del <strong>número de saltos</strong>. Cada router que atraviesa un paquete cuenta como un salto, y la ruta con menor número de saltos es considerada la mejor. RIP establece un límite máximo de 15 saltos, lo que restringe su uso a redes pequeñas. Cualquier ruta con métrica 16 se considera inalcanzable.</p>
+<p>Los routers que ejecutan RIP envían periódicamente su tabla de enrutamiento completa cada 30 segundos. Estas actualizaciones periódicas simplifican el diseño del protocolo, pero hacen que la convergencia sea lenta y que se genere tráfico incluso cuando no hay cambios en la red.</p>
+<h2 id="3-protocolos-vector-distancia-y-problemas-asociados">3. Protocolos vector-distancia y problemas asociados</h2>
+<p>En los protocolos vector-distancia, cada router confía en la información que le proporcionan sus vecinos. Cuando un router recibe una ruta anunciada, incrementa la métrica en una unidad y la compara con la que ya tiene en su tabla. Si la nueva ruta es mejor, la sustituye.</p>
+<p>Este mecanismo puede provocar problemas como bucles de enrutamiento o rutas inconsistentes cuando se producen fallos. Para mitigar estos problemas, RIP incorpora mecanismos como split horizon, route poisoning y temporizadores de espera.</p>
+<h2 id="4-ripv1-vision-general">4. RIPv1: visión general</h2>
+<p>RIPv1 es la primera versión del protocolo y está definida en el RFC 1058. Es un protocolo <strong>classful</strong>, lo que implica que no incluye la máscara de red en sus anuncios. Los routers asumen automáticamente las máscaras por defecto según la clase de la dirección IP, lo que impide el uso de VLSM y CIDR.</p>
+<p>Además, RIPv1 no incluye ningún mecanismo de autenticación, por lo que es vulnerable a anuncios de rutas falsos. Las actualizaciones se envían mediante broadcast, lo que provoca que todos los dispositivos de la red reciban estos mensajes, incluso aunque no participen en el protocolo.</p>
+<h2 id="5-ripv2-version-moderna-de-rip">5. RIPv2: versión moderna de RIP</h2>
+<p>RIPv2 surge para corregir las limitaciones de RIPv1 y está definido en el RFC 2453. Mantiene la simplicidad del protocolo original, pero introduce mejoras fundamentales que lo hacen mucho más flexible y seguro, especialmente en entornos educativos y de laboratorio.</p>
+<p>La mejora más importante es que RIPv2 es un protocolo <strong>classless</strong>. Esto significa que cada ruta anunciada incluye su máscara de red, permitiendo el uso de VLSM y CIDR. Gracias a esto, es posible diseñar esquemas de direccionamiento más eficientes, con subredes de distintos tamaños y sin desperdiciar direcciones IP.</p>
+<p>Otra mejora clave es el uso de <strong>multicast</strong> en lugar de broadcast. RIPv2 envía sus actualizaciones a la dirección 224.0.0.9, lo que reduce la carga en los dispositivos que no participan en RIP. Además, RIPv2 permite la <strong>autenticación</strong> de las actualizaciones, lo que evita que routers no autorizados inyecten rutas falsas en la red.</p>
+<h2 id="6-temporizadores-en-ripv2">6. Temporizadores en RIPv2</h2>
+<p>El comportamiento de RIPv2 está gobernado por varios temporizadores que determinan cómo y cuándo se intercambia la información de enrutamiento. Cada 30 segundos se envía una actualización periódica con todas las rutas conocidas. Si un router deja de recibir información sobre una ruta durante 180 segundos, la marca como inválida. Tras este periodo, entra en funcionamiento el temporizador de limpieza, que elimina definitivamente la ruta de la tabla.</p>
+<p>Estos temporizadores explican por qué RIPv2 tiene una convergencia lenta en comparación con protocolos más modernos como OSPF.</p>
+<h2 id="7-configuracion-basica-de-ripv2-en-cisco">7. Configuración básica de RIPv2 en Cisco</h2>
+<p>En dispositivos Cisco, la configuración de RIPv2 se realiza desde el proceso de enrutamiento RIP. Es fundamental especificar explícitamente la versión 2 y desactivar la sumarización<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> automática para evitar problemas en redes con VLSM.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Router&gt;<span class="w"> </span><span class="nb">enable</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Router#<span class="w"> </span>configure<span class="w"> </span>terminal
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Router<span class="o">(</span>config<span class="o">)</span><span class="c1"># router rip</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Router<span class="o">(</span>config-router<span class="o">)</span><span class="c1"># version 2</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Router<span class="o">(</span>config-router<span class="o">)</span><span class="c1"># no auto-summary</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Router<span class="o">(</span>config-router<span class="o">)</span><span class="c1"># network 192.168.1.0</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Router<span class="o">(</span>config-router<span class="o">)</span><span class="c1"># network 10.0.0.0</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Router<span class="o">(</span>config-router<span class="o">)</span><span class="c1"># end</span>
+</span></code></pre></div>
+<p>El comando <code>network</code> no indica directamente qué rutas se anuncian, sino en qué interfaces se activa RIP. Todas las interfaces cuya dirección IP pertenezca a esa red participarán en el protocolo.</p>
+<h2 id="8-control-del-envio-de-actualizaciones-rip">8. Control del envío de actualizaciones RIP</h2>
+<p>En muchos escenarios es recomendable limitar el envío de actualizaciones RIP hacia determinadas interfaces, especialmente hacia redes LAN donde no hay otros routers. Esto se consigue mediante interfaces pasivas.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Router<span class="o">(</span>config<span class="o">)</span><span class="c1"># router rip</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Router<span class="o">(</span>config-router<span class="o">)</span><span class="c1"># passive-interface g0/0</span>
+</span></code></pre></div>
+<p>Con este comando, la interfaz sigue anunciando su red, pero deja de enviar actualizaciones RIP por ella.</p>
+<h2 id="9-redistribucion-de-rutas-estaticas-en-ripv2">9. Redistribución de rutas estáticas en RIPv2</h2>
+<p>RIPv2 permite redistribuir rutas estáticas dentro del proceso de enrutamiento dinámico. Esto es útil cuando existen redes que no se pueden aprender dinámicamente.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Router<span class="o">(</span>config<span class="o">)</span><span class="c1"># ip route 192.168.50.0 255.255.255.0 10.0.0.2</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Router<span class="o">(</span>config<span class="o">)</span><span class="c1"># router rip</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Router<span class="o">(</span>config-router<span class="o">)</span><span class="c1"># redistribute static</span>
+</span></code></pre></div>
+<p>Las rutas estáticas redistribuidas aparecerán como rutas RIP en los routers vecinos.</p>
+<h2 id="10-autenticacion-en-ripv2">10. Autenticación en RIPv2</h2>
+<p>Para proteger las actualizaciones RIP, RIPv2 permite el uso de autenticación. En entornos Cisco, la opción más habitual es la autenticación mediante MD5, que proporciona integridad y autenticación de origen.</p>
+<p>Primero se crea una cadena de claves:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Router<span class="o">(</span>config<span class="o">)</span><span class="c1"># key chain RIP_KEYS</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Router<span class="o">(</span>config-keychain<span class="o">)</span><span class="c1"># key 1</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Router<span class="o">(</span>config-keychain-key<span class="o">)</span><span class="c1"># key-string cisco123</span>
+</span></code></pre></div>
+<p>A continuación, se aplica la autenticación a la interfaz correspondiente:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Router<span class="o">(</span>config<span class="o">)</span><span class="c1"># interface g0/1</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Router<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># ip rip authentication mode md5</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Router<span class="o">(</span>config-if<span class="o">)</span><span class="c1"># ip rip authentication key-chain RIP_KEYS</span>
+</span></code></pre></div>
+<p>Ambos extremos del enlace deben tener la misma configuración para que las actualizaciones se acepten correctamente.</p>
+<h2 id="11-verificacion-y-diagnostico-en-ripv2">11. Verificación y diagnóstico en RIPv2</h2>
+<p>Una parte esencial de la configuración de RIPv2 es la verificación. El comando <code>show ip route</code> permite comprobar que las rutas RIP se están aprendiendo correctamente y muestra la métrica y el siguiente salto.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Router#<span class="w"> </span>show<span class="w"> </span>ip<span class="w"> </span>route
+</span></code></pre></div>
+<p>El comando <code>show ip protocols</code> proporciona información detallada sobre el proceso RIP, incluyendo temporizadores, redes anunciadas y versión del protocolo.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Router#<span class="w"> </span>show<span class="w"> </span>ip<span class="w"> </span>protocols
+</span></code></pre></div>
+<p>Para observar el funcionamiento interno del protocolo, se puede utilizar:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Router#<span class="w"> </span>debug<span class="w"> </span>ip<span class="w"> </span>rip
+</span></code></pre></div>
+<p>Este comando muestra en tiempo real el intercambio de actualizaciones, aunque debe utilizarse con precaución en redes grandes.</p>
+<h2 id="12-conclusion">12. Conclusión</h2>
+<p>RIPv2 es un protocolo sencillo pero muy valioso desde el punto de vista formativo. Su estudio permite comprender conceptos esenciales como el enrutamiento dinámico, el uso de métricas, la convergencia, el impacto de los temporizadores y la importancia de la autenticación en protocolos de red. Estos conocimientos sirven como base sólida para abordar posteriormente protocolos más avanzados como OSPF o EIGRP.</p>
+<p>Sin embargo, su uso es prácticamente residual en escenarios nicho (redes TO o tecnología operativa p.ej. ), <em>legacy</em> o redes muy pequeñas donde la simplicidad es preferible a los beneficios de protocolos más modernos.</p>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><a href="https://ccnadesdecero.es/routing-information-protocol-rip/">RIP: Routing Information Protocol</a></li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://www.manageengine.com/latam/oputils/tech-topics/que-es-la-agregacion-de-rutas.html">Agregación de rutas</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>

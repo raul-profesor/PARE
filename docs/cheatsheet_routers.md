@@ -1,7 +1,3 @@
-¡Claro! Aquí tienes una **cheatsheet completa** con comandos básicos de configuración en routers Cisco, ideal para quienes están empezando.
-
----
-
 ## 🚀 **Cheatsheet: Configuración Básica Router Cisco**
 
 ### **1. Modos de Operación**

@@ -1,6 +1,6 @@
-# 🚀 Guía Completa de Seguridad en Switches Cisco
+#  Guía Completa de Seguridad en Switches Cisco
 
-## 📚 **1. VLANs (Virtual Local Area Networks)**
+##  **1. VLANs (Virtual Local Area Networks)**
 
 ### **Concepto Teórico Detallado**
 

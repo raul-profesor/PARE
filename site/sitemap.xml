@@ -7,12 +7,21 @@
         <loc>https://raul-profesor.github.io/PARE/SecSwitches/</loc>
       </url>
       <url>
-        <loc>https://raul-profesor.github.io/PARE/cheatsheet_routers/</loc>
-      </url>
-      <url>
         <loc>https://raul-profesor.github.io/PARE/dtp/</loc>
       </url>
       <url>
+        <loc>https://raul-profesor.github.io/PARE/cheatsheet_routers/</loc>
+      </url>
+      <url>
         <loc>https://raul-profesor.github.io/PARE/routers_y_rutas_estaticas/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/rutas_dinamicas/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/RIP_RIPv2/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/ospf/</loc>
       </url>
 </urlset>

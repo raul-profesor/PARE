@@ -1,0 +1,2132 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/ospf/">
+      
+      
+        <link rel="prev" href="../RIP_RIPv2/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>OSPF (Open Shortest Path First) - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ospf-open-shortest-path-first" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OSPF (Open Shortest Path First)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SecSwitches/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fundamentos-de-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentos de OSPF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentos de OSPF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-base-de-datos-de-estado-del-enlace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La base de datos de estado del enlace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#areas-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Áreas OSPF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#costo-de-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Costo de OSPF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-de-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de OSPF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de OSPF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-id-del-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El ID del router
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="El ID del router">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-de-loopback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces de loopback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cambiar-el-rid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cambiar el RID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direcciones-de-loopback-e-interfaces-de-loopback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direcciones de loopback e interfaces de loopback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activacion-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación de OSPF en interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-pasivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces pasivas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anunciando-una-ruta-predeterminada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anunciando una ruta predeterminada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vecinos-y-adyacencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vecinos y adyacencias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vecinos y adyacencias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estados-vecinos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estados vecinos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-red-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de red OSPF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de red OSPF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipo-de-red-de-broadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipo de red de broadcast
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-de-los-vecinos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos de los vecinos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-lsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de LSA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fundamentos-de-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentos de OSPF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentos de OSPF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-base-de-datos-de-estado-del-enlace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La base de datos de estado del enlace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#areas-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Áreas OSPF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#costo-de-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Costo de OSPF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-de-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de OSPF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de OSPF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-id-del-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El ID del router
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="El ID del router">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-de-loopback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces de loopback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cambiar-el-rid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cambiar el RID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direcciones-de-loopback-e-interfaces-de-loopback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direcciones de loopback e interfaces de loopback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activacion-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación de OSPF en interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-pasivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces pasivas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anunciando-una-ruta-predeterminada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anunciando una ruta predeterminada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vecinos-y-adyacencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vecinos y adyacencias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vecinos y adyacencias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estados-vecinos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estados vecinos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-red-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de red OSPF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de red OSPF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipo-de-red-de-broadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipo de red de broadcast
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-de-los-vecinos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos de los vecinos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-lsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de LSA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Enrutamiento
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="ospf-open-shortest-path-first">OSPF (Open Shortest Path First)</h1>
+<p>En esta unidad vamos a tratar los siguientes puntos:</p>
+<ul>
+<li>Anuncios y bases de datos de estados de enlaces de Open Shortest Path First</li>
+<li>Cómo calculan las rutas los routers OSPF</li>
+<li>Configuración de OSPF en routers Cisco</li>
+<li>Cómo los routers OSPF se convierten en vecinos y forman adyacencias</li>
+</ul>
+<p>OSPF (Open Shortest Path First) es un protocolo de puerta de enlace interior (IGP) fundamental para las redes empresariales modernas. Ya hemos abordado los protocolos de enrutamiento dinámico en general. En esta unidad, profundizaremos en el tema de OSPF y veremos cómo funciona realmente, incluyendo cómo los routers con OSPF se convierten en vecinos, comparten información de enrutamiento, calculan rutas y muchos otros detalles.</p>
+<p>Actualmente, se utilizan dos versiones de OSPF: OSPFv2, que se usa principalmente para redes IPv4, y OSPFv3, que se usa principalmente para redes IPv6 (aunque también puede usarse para IPv4). Para el examen CCNA, la versión que nos interesa es OSPFv2; todas las menciones de OSPF en este libro se refieren específicamente a OSPFv2, como se indica en el tema 3.4 del examen: Configurar y verificar OSPFv2 de área única.</p>
+<p>El nombre "Open Shortest Path First" tiene dos aspectos: abierto significa que es un protocolo estándar abierto; OSPF no es propiedad de Cisco. Todos los proveedores pueden implementar OSPF en sus dispositivos de red. Shortest Path First (SPF) es el nombre del algoritmo utilizado para calcular rutas; también se le conoce como algoritmo de Dijkstra, en honor a su creador, Edsger Dijkstra.</p>
+<h2 id="fundamentos-de-ospf">Fundamentos de OSPF</h2>
+<p>Hay tres pasos principales que siguen los routers OSPF para compartir información de enrutamiento y crear sus tablas de enrutamiento:</p>
+<ul>
+<li>Establecer relaciones de vecindad con otros routers habilitados para OSPF.</li>
+<li>Intercambiar información de enrutamiento para construir un mapa de conectividad de la red.</li>
+<li>Calcula las mejores rutas a cada destino.</li>
+</ul>
+<p>Comencemos examinando el segundo y tercer paso de ese proceso, y luego examinaremos los detalles de cómo los routers OSPF se convierten en vecinos en la sección 18.3.</p>
+<h3 id="la-base-de-datos-de-estado-del-enlace">La base de datos de estado del enlace</h3>
+<p>Al usar un protocolo de enrutamiento dinámico, los routers intercambian información de enrutamiento y la utilizan para calcular rutas automáticamente. En OSPF, los routers intercambian información de enrutamiento mediante estructuras de datos llamadas anuncios de estado de enlace (LSA). Cada router organiza los LSA que recibe en una base de datos llamada base de datos de estado de enlace (LSDB). La LSDB funciona como el mapa de la topología de red del router, que se utiliza para calcular la ruta más corta a cada red de destino; este es el conocido como <em>mapa de conectividad</em> de la red.</p>
+<p>La siguiente imagen muestra cómo los routers con OSPF habilitado comparten LSA para construir la LSDB. Cada router crea una LSA que incluye información sobre sus redes conectadas y la envía a sus routers vecinos, quienes la reenvían a otros routers en el área OSPF. Las áreas OSPF son divisiones lógicas de la red que abordaremos más adelante. El proceso de enviar LSA a todos los demás routers en el área OSPF se denomina inundación de LSA.</p>
+<figure id="__figura_1">
+<p><img alt="" src="../img/ospf-1.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> Los routers inundan el área OSPF con LSAs para garantizar que todos tengan una LSDB idéntica. Las LSAs que componen la LSDB contienen información sobre las redes conectadas de cada router, como su costo. La LSA del R1 indica que está conectado a 10.0.0.0/30, 10.0.0.4/30 y 10.1.1.0/24, cada una con un costo de 1.</p>
+</figcaption>
+</figure>
+<p>Es fundamental que todos los routers del área tengan la misma LSDB, de modo que cada router pueda usar el algoritmo SPF para calcular rutas a todas las redes de destino. Por ejemplo, los routers de la figura anterior usarán la LSDB para calcular una ruta a la red 10.1.1.0/24. Al usar la LSDB, es como si los routers vieran el mismo diagrama que nosotros, pero con información más detallada sobre cada enlace. Esto contrasta con los protocolos de enrutamiento por vector de distancia como RIP y EIGRP, donde cada router no tiene un mapa completo de la red.</p>
+<h3 id="areas-ospf">Áreas OSPF</h3>
+<p>La red que vimos en la figura de arriba era un ejemplo de OSPF de área única; la red es una unidad lógica única y todos los routers comparten la misma LSDB. En redes pequeñas, un enfoque de área única es práctico y sencillo, y no presenta grandes inconvenientes. Sin embargo, en una red grande con docenas o cientos de routers (en lugar de los seis de la imagen de arriba), un diseño de área única tiene múltiples efectos negativos:</p>
+<p>El LSDB más grande ocupa más recursos de memoria en los routers.
+El algoritmo SPF requiere más tiempo y recursos de CPU para calcular rutas.
+Un solo cambio en la red (es decir, una interfaz que se activa o desactiva) hace que las LSA inunden la red y haga que cada router ejecute nuevamente el algoritmo SPF.</p>
+<p>Al dividir una red OSPF grande en varias áreas más pequeñas, minimizamos estos efectos negativos. LSDB más pequeñas implican que OSPF utiliza menos recursos en los routers y que el algoritmo SPF no tarda tanto en calcular las rutas. Los cambios de red solo se anuncian dentro del área local, y si hay inestabilidad en la red (interfaces que se activan y desactivan), sus efectos se limitan a una sola área.</p>
+<p>Un área OSPF se puede definir como un conjunto de routers que comparten la misma LSDB. Si bien la lista de temas del examen CCNA indica que debe ser capaz de configurar y verificar OSPFv2 de área única, también necesita conocimientos básicos de qué es un área y las ventajas de OSPF multiárea.</p>
+<p>En la siguiente imagen se muestra una red OSPF multiárea compuesta por cuatro áreas. OSPF emplea una estructura jerárquica de dos niveles que consta de un área troncal (área 0) y otras áreas no troncales. Todas las áreas no troncales deben estar conectadas al área 0, y el tráfico entre áreas debe pasar por ella.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En OSPF de área única, se recomienda encarecidamente usar el área 0, aunque técnicamente es posible usar otro número de área. Usar el área 0 simplifica el proceso de expansión a OSPF multiárea en el futuro, si es necesario.</p>
+</div>
+<figure id="__figura_2">
+<p><img alt="" src="../img/ospf-2.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> Una red OSPF multiárea compuesta por cuatro áreas. El área 0 es el área principal a la que deben conectarse las demás áreas. Las áreas 1, 2 y 3 no son áreas principales, y el tráfico entre ellas debe pasar por el área 0.</p>
+</figcaption>
+</figure>
+<p>OSPF distingue cuatro tipos de routers. La Tabla 18.1 resume estos cuatro tipos de routers y enumera los routers de la imagen anterior que pertenecen a cada tipo. Tenga en cuenta que algunos routers se clasifican en varias categorías.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo de router</th>
+<th>En la imagen</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Router interno</td>
+<td>R1, R2, R6, R7, R8, R9, R10, R11, R12, R13</td>
+<td>Todas las interfaces habilitadas para OSPF están en la misma área.</td>
+</tr>
+<tr>
+<td>Router de backbone</td>
+<td>R1, R2, R3, R4, R5</td>
+<td>Al menos una interfaz está en el área 0.</td>
+</tr>
+<tr>
+<td>Router fronterizo de área (ABR)</td>
+<td>R3, R4, R5</td>
+<td>Routers que conectan una o más áreas al área 0.</td>
+</tr>
+<tr>
+<td>Router fronterizo del sistema autónomo (ASBR)</td>
+<td>R1</td>
+<td>Routers que conectan el sistema autónomo OSPF a redes externas (por ejemplo, Internet).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aunque R1 tiene una interfaz conectada a Internet, esa interfaz no utiliza OSPF y, por lo tanto, no afecta su clasificación como router OSPF interno.</p>
+</div>
+<p>Un router interno tiene todas sus interfaces habilitadas para OSPF en la misma área, ya sea el área 0 o un área no troncal. Un router troncal tiene al menos una interfaz en el área troncal. Un router de borde de área conecta una (o más) áreas al área 0; dado que las áreas no troncales no pueden conectarse directamente entre sí, todos los ABR también son routers troncales (aunque los routers troncales no son necesariamente ABR).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los ABR mantienen un LSDB separado para cada área a la que están conectados.</p>
+</div>
+<p>El último tipo de router es un router de límite de sistema autónomo (ASBR), un router que conecta el sistema autónomo (AS) OSPF a redes externas, como Internet o la red de otra empresa. Tenga en cuenta que este tipo es independiente de los demás; un ASBR puede ser un router troncal o no, y puede ser un router interno o un ABR. Como hemos mostrado en la tabla, el R1 de la imagen es un router interno, un router troncal y un ASBR, todo a la vez. Más adelante, veremos cómo configurar una ruta predeterminada en un ASBR y anunciarla a otros routers del AS OSPF.</p>
+<p>Las rutas OSPF se pueden clasificar como intraárea, interárea o externas. Las rutas intraárea son rutas a destinos en la misma área OSPF que el router; por ejemplo, si el router es interno en el área 1, todas las rutas a destinos dentro del área 1 son rutas intraárea. Las rutas interárea son rutas a destinos en un área a la que el router no se conecta; por ejemplo, si un ABR conectado a las áreas 0 y 1 aprende una ruta al área 2. Finalmente, las rutas a destinos externos (publicadas por un ASBR) se denominan rutas externas.</p>
+<h3 id="costo-de-ospf">Costo de OSPF</h3>
+<p>La métrica de OSPF se denomina costo y es el valor que utiliza para determinar la mejor ruta a cada destino (la más corta en OSPF). Cada interfaz habilitada para OSPF tiene un valor de costo asociado, y el costo de una ruta es el costo acumulado de cada interfaz desde la que se debe enviar un paquete para llegar a su destino. La siguiente imagen muestra este concepto: el costo de R1 para llegar a 192.168.3.0/24 es el costo acumulado de R1 G0/0, R2 G0/1 y R3 G0/1 (pero no de R2 G0/0 ni de R3 G0/0).</p>
+<figure id="__figura_3">
+<p><img alt="" src="../img/ospf-3.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> El costo de una ruta es el costo acumulado de cada interfaz desde la cual se debe enviar un paquete para llegar a su destino. El costo de R1 para llegar a 192.168.3.0/24 es 3: 1 para R1 G0/0, más 1 para R2 G0/1, más 1 para R3 G0/1.</p>
+</figcaption>
+</figure>
+<p>Aunque la representación del costo de OSPF en la figura de arriba es precisa, es más común referirse al costo de un enlace que al costo de cada interfaz que lo compone. Dado que ambos lados del enlace deben tener el mismo costo (se considera una configuración incorrecta si no lo tienen) y que un router solo considera un lado del enlace al calcular el costo de la ruta, es más sencillo considerar el enlace como una sola entidad.</p>
+<p>Usando nuevamente el ejemplo de la imagen anterior, no importa si R1 calcula una ruta a 192.168.3.0/24 o R3 a 192.168.1.0/24; el costo es el mismo en ambas direcciones. Salvo cuando me refiero específicamente al costo de una interfaz, me referiré al costo de un enlace en lugar del costo de cada interfaz individual.
+Ancho de banda de referencia</p>
+<p>El costo de un enlace se calcula dividiendo un valor de ancho de banda de referencia entre el ancho de banda del enlace; el ancho de banda de referencia predeterminado es de 100 Mbps. Si este cálculo resulta en un valor menor que 1, el costo OSPF se asigna como 1, ya que OSPF no acepta valores fraccionarios ni decimales. Esto da como resultado los siguientes valores de costo OSPF predeterminados:</p>
+<ul>
+<li>Enlace de 10 Mbps = 10 (100/10)</li>
+<li>Enlace de 100 Mbps = 1 (100/100)</li>
+<li>Enlace de 1000 Mbps (1 Gbps) = 1 (100/1000 = 0,1)</li>
+<li>Enlace de 10 000 Mbps (10 Gbps) = 1 (100/10 000 = 0,01)</li>
+</ul>
+<p>Quizás haya notado un problema: con el ancho de banda de referencia predeterminado de 100 Mbps, todos los enlaces con un ancho de banda de 100 Mbps o superior tienen el mismo costo. Si OSPF considera que un enlace de 100 Mbps es tan preferible como uno de 1 Gbps o 10 Gbps, es probable que calcule rutas subóptimas. Más abajo se muestra un ejemplo: aunque la ruta de R1 a 10.1.3.0/24 a través de R4 utiliza enlaces FastEthernet, se considera igual a la ruta de R1 a través de R2, que utiliza enlaces GigabitEthernet.</p>
+<figure id="__figura_4">
+<p><img alt="" src="../img/ospf-4.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> Aunque la ruta a 10.1.3.0/24 vía R2 es superior a la ruta vía R4, el costo OSPF de ambas rutas es el mismo. R1 agrega ambas rutas a la tabla de enrutamiento y las distribuye mediante ECMP.</p>
+</figcaption>
+</figure>
+<p>R1 agrega ambas rutas a la tabla de enrutamiento y usará ECMP para equilibrar la carga del tráfico. Si bien ECMP en sí no es perjudicial, intentar reenviar la misma cantidad de tráfico a través de enlaces con anchos de banda muy diferentes podría generar congestión en los enlaces más lentos, mientras que los enlaces más rápidos se subutilizan.</p>
+<p>OSPF se desarrolló hace décadas, cuando FastEthernet se consideraba un enlace de muy alta velocidad; por eso, el ancho de banda de referencia predeterminado es de 100 Mbps. Sin embargo, en las redes modernas es mejor ajustar el valor del ancho de banda de referencia para que OSPF pueda diferenciar entre enlaces con mayor ancho de banda. Para ajustar el valor del ancho de banda de referencia, utilice el comando auto-cost reference-bandwidth mbps en el modo de configuración del router OSPF.</p>
+<p>En el siguiente ejemplo, confirmo el costo de las interfaces de R1 con el comando "show ip ospf interface brief". Luego, ajusto el ancho de banda de referencia a 1000 Mbps, de modo que los enlaces GigabitEthernet tengan un costo de 1 y los enlaces FastEthernet, de 10. Aunque no existe un valor recomendado específico para el ancho de banda de referencia, es común configurarlo para que coincida con el ancho de banda del enlace más rápido de la red. Otra opción es establecer el ancho de banda de referencia en un valor mayor que el ancho de banda del enlace más rápido actual para permitir que se agreguen enlaces aún más rápidos a la red sin tener que volver a ajustar el ancho de banda de referencia.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>R1# show ip ospf interface brief
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Interface    PID   Area   IP Address/Mask    Cost  State Nbrs F/C
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Gi0/0        1     0      10.0.0.1/30        1     DR    1/1
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Fa1/0        1     0      10.0.0.5/30        1     DR    1/1
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>R1# configure terminal
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>R1(config)# router ospf 1
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>R1(config-router)# auto-cost reference-bandwidth 1000
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>% OSPF: Reference bandwidth is changed.
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        Please ensure reference bandwidth is consistent
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a> across all routers.
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>R1(config-router)# do show ip ospf interface brief
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Interface    PID   Area   IP Address/Mask    Cost  State Nbrs F/C
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Gi0/0        1     0      10.0.0.1/30        1     DR    1/1
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Fa1/0        1     0      10.0.0.5/30        10    DR    1/1
+</span></code></pre></div>
+<p>Como indica el mensaje de advertencia del ejemplo anterior, es importante configurar el mismo ancho de banda de referencia en todos los routers para garantizar una selección de ruta consistente. En el peor de los casos, tener diferentes anchos de banda de referencia podría generar bucles de enrutamiento: si el router A cree que la mejor ruta a un destino es a través del router B, pero el router B cree que la mejor ruta es a través del router A, los paquetes para ese destino se repetirán entre los dos routers hasta que expire su TTL, sin llegar nunca a su destino previsto.
+Modificar el coste de un enlace</p>
+<p>Aunque modificar el ancho de banda de referencia suele ser suficiente para que OSPF seleccione la ruta más eficiente a un destino, en algunos casos, puede ser necesario modificar el coste de un enlace específico para que sea más o menos preferible. Existen dos métodos para hacerlo:</p>
+<p>Configure el costo con el comando ip ospf cost cost en el modo de configuración de interfaz.
+Modifique el valor del ancho de banda de la interfaz con el comando bandwidth kbps en el modo de configuración de interfaz.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aunque el ancho de banda de referencia está configurado en megabits por segundo, el valor del ancho de banda de la interfaz está configurado en kilobits por segundo.</p>
+</div>
+<p>De los dos, el primer método es el preferido si se desea modificar el costo OSPF de un enlace específico: permite configurar directamente el costo OSPF de la interfaz. El segundo método, en cambio, se utiliza para influir en el cálculo automático de costos que vimos anteriormente: ancho de banda de referencia/ancho de banda de la interfaz. Sin embargo, el valor del ancho de banda de una interfaz afecta más allá de los valores de costo OSPF, como los mecanismos de QoS (calidad de servicio), por lo que generalmente es mejor no modificarlo.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Modificar el valor del ancho de banda de una interfaz en realidad no afecta el funcionamiento de la interfaz; es solo un valor utilizado para cálculos como el costo de OSPF, la métrica de EIGRP, etc. Para cambiar la velocidad a la que funciona una interfaz, utilice el comando speed.</p>
+</div>
+<h2 id="configuracion-de-ospf">Configuración de OSPF</h2>
+<p>En la sección <a href="#activacion-ospf">correspondiente</a>, vimos cómo activar OSPF en las interfaces del router con el comando <code>network</code>. Este comando por sí solo es suficiente para que OSPF funcione en su nivel más básico; tras activar OSPF en las interfaces de un router, este intentará establecer relaciones de vecindad y compartir LSA con otros routers conectados a dichas interfaces. En esta sección, veremos cómo configurar otros aspectos de OSPF, incluyendo una forma más sencilla de activar OSPF en las interfaces de un router.</p>
+<p>El primer paso para configurar OSPF es crear un proceso OSPF con el comando router ospf process-id. Este comando permite acceder al modo de configuración del router, desde donde se puede usar el comando network y muchos otros comandos relacionados con OSPF. De forma similar a cómo PVST+ crea múltiples instancias de STP en un switch, cada una calculando un árbol de expansión único, se pueden crear múltiples procesos OSPF. Cada uno de estos procesos calcula de forma independiente sus propias rutas a las redes de destino. Sin embargo, ejecutar múltiples procesos OSPF en un router es extremadamente raro, y los casos de uso específicos quedan fuera del alcance del examen CCNA. Para esta unidad, solo usaremos el ID de proceso 1 (aunque se puede elegir cualquier otro número).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El ID de proceso OSPF es localmente significativo; no importa si coincide con los routers vecinos. Por ejemplo, un router con el ID de proceso OSPF 1 puede convertirse en vecino de un router con el ID de proceso OSPF 65535 (el valor más alto posible).</p>
+</div>
+<p>Aquí se muestra la topología que configuraremos en esta sección: una red OSPF de área única con cuatro routers. La subred 10.1.3.0/24 está conectada a R3 G0/1, que configuraremos como interfaz pasiva (más información más adelante). R1 se conecta a internet y lo configuraremos para que anuncie una ruta predeterminada a los demás routers.</p>
+<figure id="__figura_5">
+<p><img alt="" src="../img/ospf-5.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 5. </span> Red OSPF de área única con cuatro routers. El R3 se conecta a la subred 10.1.3.0/24 en su interfaz G0/1, una interfaz pasiva. El R1 se conecta a internet y anuncia una ruta predeterminada a los demás routers.</p>
+</figcaption>
+</figure>
+<h3 id="el-id-del-router">El ID del router</h3>
+<p>Al usar por primera vez el comando router ospf para crear el proceso OSPF, el router se asignará un ID de router (RID), un valor único de 32 bits que lo identifica en el AS OSPF. A diferencia del ID de proceso, el RID debe ser único; no puede haber dos routers con el mismo RID en el AS. Para ver el RID de un router, puede usar el comando show ip protocols; este comando muestra información sobre los protocolos de enrutamiento activos en el router. En el siguiente ejemplo, creo el proceso OSPF 1 en R1 y verifico su RID:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>R1(config)# router ospf 1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>R1(config-router)# do show ip protocols
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>. . .
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Routing Protocol is &quot;ospf 1&quot;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  Outgoing update filter list for all interfaces is not set
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  Incoming update filter list for all interfaces is not set
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  Router ID 203.0.113.1
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>. . .
+</span></code></pre></div>
+<p>R1 seleccionó la dirección IP de su interfaz G0/2 (203.0.113.1) como su RID. El RID se asigna en el siguiente orden de prioridad:</p>
+<p>Configuración manual con el comando router-id
+Dirección IP más alta en una interfaz de loopback operativa (ascendente/ascendente) (cubriremos las interfaces de loopback en esta sección)
+Dirección IP más alta en una interfaz física operativa (arriba/arriba)</p>
+<p>Como se indicó en el primer punto, puede configurar manualmente el RID con el comando router-id. Sin embargo, este comando solo se puede configurar una vez que haya ingresado al modo de configuración del router. Para acceder a este modo, primero debe crear el proceso OSPF con el comando router ospf.</p>
+<p>Por lo tanto, al crear el proceso OSPF por primera vez, el router no puede considerar ninguna configuración manual de RID: aún no se ha establecido ninguna. En su lugar, solo considera la segunda y la tercera opción para asignar el RID: la dirección IP más alta en una interfaz de loopback operativa (si existe alguna) o, en su defecto, la dirección IP más alta en una interfaz física operativa. En este caso, R1 seleccionó la dirección IP más alta en una interfaz física operativa: la de G0/2.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si crea un proceso OSPF y el router no tiene interfaces operativas con una dirección IP, el proceso no podrá iniciarse hasta que configure el RID o una interfaz con una dirección IP se vuelva operativa.</p>
+</div>
+<h4 id="interfaces-de-loopback">Interfaces de loopback</h4>
+<p>Una interfaz de loopback es una interfaz de router virtual que siempre está activa y accesible mientras el dispositivo esté operativo (aunque se puede desactivar mediante el apagado). A diferencia de las interfaces físicas (por ejemplo, GigabitEthernet0/1), que dependen de puertos y conexiones físicas, las interfaces de loopback se basan completamente en software. La ventaja de una interfaz de loopback es que proporciona una interfaz estable y fiable que permite identificar y conectarse al router sin depender de ningún puerto físico en particular. Abajo se muestra cómo la interfaz de loopback del R1 proporciona una interfaz estable para que un administrador se conecte mediante Secure Shell (SSH).</p>
+<figure id="__figura_6">
+<p><img alt="" src="../img/ospf-6.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 6. </span> Un administrador usa SSH para conectarse a la interfaz Loopback0 de R1. Loopback0 no depende del estado de una interfaz física específica, como G0/0, que está inactiva debido a un fallo de hardware.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>SSH es un protocolo utilizado para acceder de forma remota a la CLI de un dispositivo de forma segura.</p>
+</div>
+<p>Si el administrador, por ejemplo, hubiera intentado conectarse a la dirección IP de la interfaz G0/0 de R1, la conexión habría fallado; la interfaz G0/0 está inactiva debido a un fallo de hardware. Por otro lado, la interfaz Loopback0 proporciona una dirección IP estable a la que el administrador puede conectarse independientemente del estado de los puertos físicos de R1. Sin embargo, es importante tener en cuenta que el PC del administrador aún necesita una ruta física válida para llegar a R1. Si tanto G0/0 como G0/1 estuvieran inactivos, el PC no podría conectarse a R1 a pesar de la interfaz Loopback.</p>
+<p>Aunque las interfaces de loopback no son obligatorias, se recomienda configurarlas en los routers y activar OSPF para que todos puedan acceder a las interfaces de loopback de los demás. Para crear una interfaz de loopback, utilice el comando interface loopback number; normalmente se empieza con Loopback0. En el siguiente ejemplo, configuro una interfaz de loopback en R1, le configuro una dirección IP y vuelvo a comprobar el RID de OSPF:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>R1(config)# interface loopback0
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>R1(config-if)# ip address 172.16.1.1 255.255.255.255
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>R1(config-if)# do show ip protocols
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>. . .
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  Router ID 203.0.113.1
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Es estándar configurar las interfaces de loopback con una máscara de red /32 (255.255.255.255). Esto se debe a que, por naturaleza, una interfaz de loopback no necesita comunicarse con otros dispositivos en la misma subred (como lo haría una interfaz física). En cambio, representa un solo dispositivo y, por lo tanto, no necesita un rango de direcciones.</p>
+</div>
+<p>A pesar de configurar una interfaz de loopback, el RID de R1 permanece invariable; para mantenerlo estable, IOS no lo vuelve a seleccionar al configurar una nueva interfaz. Es posible restablecer el proceso OSPF con el comando clear ip ospf process en modo EXEC privilegiado, pero ni siquiera esto hará que R1 seleccione la dirección IP de la interfaz de loopback como RID, como se muestra en el siguiente ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>R1# clear ip ospf process
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Reset ALL OSPF processes? [no]: yes
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>R1# show ip protocols
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>. . .
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  Router ID 203.0.113.1
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Es importante recordar que, una vez que el router haya seleccionado su RID, lo mantendrá incluso si se configura una interfaz de loopback y se restablece OSPF. La dirección IP de una interfaz de loopback solo se usará para la selección inicial del RID al crear el proceso OSPF. Para que un router cambie su RID después de haberlo seleccionado, debe configurarlo manualmente; lo explicaremos a continuación.</p>
+</div>
+<h4 id="cambiar-el-rid">Cambiar el RID</h4>
+<p>Una vez que R1 ha seleccionado su RID, la mejor manera de cambiarlo es configurarlo manualmente y luego reiniciar el proceso OSPF (si es necesario). En cualquier caso, codificar el RID del router con configuración manual se considera una buena práctica para garantizar RID predecibles en todos los routers. En el siguiente ejemplo, configuro el comando router-id en R1, lo que provoca que cambie su RID:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>R1(config)# router ospf 1
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>R1(config-router)# router-id 172.16.1.1
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>R1(config-router)# do show ip protocols
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>. . .
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  Router ID 172.16.1.1
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si el router ya ha establecido una relación de vecindad con uno o más vecinos OSPF, deberá reiniciar el proceso OSPF con el proceso clear ip ospf para que el RID recién configurado surta efecto. Sin embargo, en este punto del ejemplo, aún no he activado OSPF en ninguna de las interfaces del R1, por lo que no tiene vecinos OSPF. Por eso, el nuevo RID se implementó de inmediato.</p>
+</div>
+<p>Aunque el RID OSPF suele derivarse de una de las direcciones IP del router, es importante tener en cuenta que no es una dirección IP; es simplemente un valor de 32 bits con un formato similar al de una dirección IP (notación decimal con puntos). Siempre que el RID sea único en el AS OSPF, puede ser cualquier valor de 32 bits.</p>
+<p>En el siguiente ejemplo, configuro una interfaz de loopback en R2 y luego creo el proceso OSPF. En este caso, R2 toma la dirección IP de Loopback0 como su RID, ya que configuré la interfaz de loopback antes de crear el proceso OSPF:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>R2(config)# interface l0
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>R2(config-if)# ip address 172.16.1.2 255.255.255.255
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>R2(config-if)# router ospf 1
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>R2(config-router)# do show ip protocols
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>. . .
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  Router ID 172.16.1.2
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Por cuestiones de espacio, no mostraré las configuraciones, pero también configuré Loopback0 en R3 (172.16.1.3/32) y R4 (172.16.1.4/32) y creé el proceso OSPF.</p>
+</div>
+<h4 id="direcciones-de-loopback-e-interfaces-de-loopback">Direcciones de loopback e interfaces de loopback</h4>
+<p>Los mensajes enviados a cualquier dirección en este rango se reenvían al dispositivo local sin transmitirse por la red. Por ejemplo, si se ejecuta el comando ping 127.0.0.1 en una PC, se recibirá una respuesta de la propia PC. Esto puede usarse para probar el software de red del dispositivo.</p>
+<p>Aunque comparten el término "loopback", las interfaces de loopback son un concepto diferente de las direcciones de loopback. Las interfaces de loopback son interfaces virtuales en un router a las que se puede asignar cualquier dirección IP válida (excepto el rango de direcciones de loopback reservado). Las interfaces de loopback proporcionan una dirección IP estable y confiable que permite acceder al router y que no depende del estado de una interfaz física específica.</p>
+<h3 id="activacion-ospf">Activación de OSPF en interfaces</h3>
+<p>Activar OSPF en las interfaces es posiblemente la parte más importante de la configuración de OSPF; es lo que le indica al router que cree vecinos OSPF y comparta información de enrutamiento. En el siguiente ejemplo, se utiliza el comando <code>network</code> para activar OSPF en las interfaces G0/0, G0/1 y L0 del R1:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>R1(config)# router ospf 1
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>R1(config-router)# network 10.0.0.1 0.0.0.0 area 0
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>R1(config-router)# network 10.0.0.5 0.0.0.0 area 0
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>R1(config-router)# network 172.16.1.1 0.0.0.0 area 0
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>R1(config-router)# do show ip protocols
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>. . .
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  Router ID 172.16.1.1
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  Maximum path: 4
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>  Routing for Networks:
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    10.0.0.1 0.0.0.0 area 0
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    10.0.0.5 0.0.0.0 area 0
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    172.16.1.1 0.0.0.0 area 0
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>No se ha activado OSPF en R1 G0/2, que está conectado a internet. Más adelante, configuraremos una ruta predeterminada a través de G0/2 en R1 y la anunciaremos a los vecinos de R1, pero no es necesario activar OSPF en la interfaz.</p>
+</div>
+<p>Sin embargo, existe un método más sencillo para activar OSPF en las interfaces: el comando <code>ip ospf process-id area area</code> en el modo de configuración de interfaz. Mientras que el comando <code>network</code> especifica un rango de direcciones IP y el router activa OSPF en todas las interfaces con una dirección IP dentro de ese rango, este comando permite especificar explícitamente en qué interfaces se debe activar OSPF. En el siguiente ejemplo, se activa OSPF en las interfaces G0/0, G0/1 y L0 (Loopback0) del R2:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>R2(config)# interface range g0/0-1,l0
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>R2(config-if-range)# ip ospf 1 area 0
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>R2(config-if-range)# do show ip protocols
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>. . .
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>  Router ID 172.16.1.2
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  Maximum path: 4
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>  Routing for Networks:
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>  Routing on Interfaces Configured Explicitly (Area 0):
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    Loopback0    
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    GigabitEthernet0/0    
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    GigabitEthernet0/1
+</span></code></pre></div>
+<p>Creo que estará de acuerdo en que este método es mucho más sencillo que usar el comando network, aunque debería conocer ambos para el examen CCNA. En el siguiente ejemplo, utilizo este método para activar OSPF también en las interfaces de R3 y R4:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>R3(config)# interface range g0/0-2,l0
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>R3(config-if-range)# ip ospf 1 area 0
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>R4(config)# interface range g0/0-1,l0
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>R4(config-if-range)# ip ospf 1 area 0
+</span></code></pre></div>
+<h3 id="interfaces-pasivas">Interfaces pasivas</h3>
+<p>La activación de OSPF en una interfaz hace que el router realice dos acciones clave:</p>
+<ul>
+<li>Intenta formar relaciones de vecinos con los routers conectados a la interfaz.</li>
+<li>Anuncia el prefijo de red de la interfaz a los vecinos.</li>
+</ul>
+<p>Sin embargo, en algunos casos, podría ser conveniente que el router realice la segunda acción (anunciar el prefijo de red) sin intentar establecer relaciones de red en la interfaz. Para establecer relaciones de vecindad, los routers con OSPF habilitado envían mensajes de saludo desde sus interfaces. Si una interfaz no está conectada a otro router, estos mensajes de saludo se desperdician, consumiendo recursos de CPU y memoria del router y ancho de banda de la red. Además, estos mensajes OSPF innecesarios pueden representar un riesgo de seguridad, ya que usuarios maliciosos podrían recopilar información sobre la red al examinarlos.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aquí es donde entran en juego las interfaces pasivas. Una interfaz pasiva en OSPF es aquella que no envía mensajes OSPF para iniciar relaciones con vecinos, aunque esté habilitada para OSPF. Sin embargo, el router anunciará el prefijo de red de la interfaz a sus vecinos OSPF, lo que les permite reenviar paquetes a destinos en la red.</p>
+</div>
+<p>La figura de abajo muestra una situación en la que se debe configurar una interfaz pasiva. R3 G0/1 se conecta a la red 10.1.3.0/24, pero no hay otros routers conectados a la interfaz. Para permitir que R1, R2 y R4 conozcan 10.1.3.0/24 y evitar que R3 envíe mensajes de saludo OSPF desde la interfaz, esta debe configurarse como una interfaz pasiva.</p>
+<figure id="__figura_7">
+<p><img alt="" src="../img/ospf-7.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 7. </span> R3 anuncia el prefijo de red de G0/1 (una interfaz pasiva), pero no envía mensajes de saludo OSPF desde allí.</p>
+</figcaption>
+</figure>
+<p>Configurar interfaces de loopback como pasivas también se considera una buena práctica en OSPF. Dado que una interfaz de loopback es una interfaz virtual que no está conectada físicamente a ninguna red, no es prácticamente necesario que envíe mensajes de saludo OSPF para intentar establecer relaciones de vecindad. Para configurar una interfaz pasiva, utilice el comando passive-interface interface-name en el modo de configuración del router. En el siguiente ejemplo, configuro R3 G0/1 y L0 como interfaces pasivas:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>R3(config)# router ospf 1
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>R3(config-router)# passive-interface g0/1
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>R3(config-router)# passive-interface l0
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>R3(config-router)# do show ip protocols
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>. . .
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a> Routing on Interfaces Configured Explicitly (Area 0):
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    Loopback0
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    FastEthernet1/0
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    GigabitEthernet0/0
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    GigabitEthernet0/1
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>  Passive Interface(s):
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    GigabitEthernet0/1
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    Loopback0
+</span></code></pre></div>
+<p>Otro método para configurar interfaces pasivas es usar el comando <code>passive-interface default</code>, que establece todas las interfaces como pasivas por defecto. Luego, puede usar el comando <code>no passive-interface interface-name</code> para especificar qué interfaces no deben ser pasivas. Este método de configuración puede ser conveniente si un router tiene muchas interfaces habilitadas para OSPF, pero solo unas pocas interfaces en las que necesita establecer relaciones de vecindad OSPF. Aunque este no es el caso de R2, en el siguiente ejemplo, utilizo este método para configurar L0 como interfaz pasiva y G0/0 y G0/1 como no pasivas:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>R2(config)# router ospf 1
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>R2(config-router)# passive-interface default
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>R2(config-router)# no passive-interface g0/0
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>R2(config-router)# no passive-interface g0/1
+</span></code></pre></div>
+<h3 id="anunciando-una-ruta-predeterminada">Anunciando una ruta predeterminada</h3>
+<p>En la mayoría de los casos, los hosts conectados a routers en un sistema autónomo OSPF no solo necesitan comunicarse entre sí, sino también con hosts en redes externas, como Internet. Para habilitar esta comunicación, puede configurar una ruta predeterminada en el router conectado a su ISP y luego configurarlo para que comparta dicha ruta predeterminada con los demás routers del sistema autónomo OSPF. Aquí se muestra cómo configurar esto.</p>
+<figure id="__figura_8">
+<p><img alt="" src="../img/ospf-8.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 8. </span> El R1 funciona como un ASBR, anunciando una ruta predeterminada en el AS OSPF. Después de configurar una ruta predeterminada, utilice la función <code>default-information originate</code> para anunciar la ruta a otros routers en el AS OSPF.</p>
+</figcaption>
+</figure>
+<p>Para que R1 anuncie una ruta predeterminada a R2, R3 y R4, primero debe configurar una ruta predeterminada estática en R1. Si configura "default-information origin" en R1 sin configurar una ruta predeterminada, R1 no anunciará una ruta predeterminada a otros routers; primero debe tener una ruta predeterminada en su propia tabla de enrutamiento.</p>
+<p>Después de configurar la ruta predeterminada, use el comando <code>default-information originate</code> en el modo de configuración del router para que R1 anuncie la ruta predeterminada a los demás routers. Esto se hace en el siguiente ejemplo. Observe la instrucción adicional agregada a la salida de <code>show ip protocols</code> R1 is now an ASBR:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>R1(config)# ip route 0.0.0.0 0.0.0.0 203.0.113.2
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>R1(config)# router ospf 1
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>R1(config-router)# default-information originate
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>R1(config-router)# do show ip protocols
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>. . .
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>Routing Protocol is &quot;ospf 1&quot;
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  Outgoing update filter list for all interfaces is not set
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>  Incoming update filter list for all interfaces is not set
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  Router ID 172.16.1.1
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>  It is an autonomous system boundary router
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>. . .
+</span></code></pre></div>
+<p>En el siguiente ejemplo, se utiliza <code>show ip route ospf on R2</code> para ver las rutas que R2 aprendió mediante OSPF. R2 aprendió una ruta predeterminada de R1, además de las demás rutas aprendidas mediante OSPF:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>R2# show ip route ospf
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>. . .
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>O*E2  0.0.0.0/0 [110/1] via 10.0.0.1, 00:37:34,
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>      GigabitEthernet0/0
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>      10.0.0.0/8 is variably subnetted, 7 subnets, 3 masks
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>O        10.0.0.4/30 [110/2] via 10.0.0.1, 00:02:09,
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>      GigabitEthernet0/0
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>O        10.0.0.12/30 [110/2] via 10.0.0.10, 01:11:30,
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>      GigabitEthernet0/1
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>O        10.1.3.0/24 [110/2] via 10.0.0.10, 01:11:30,
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>      GigabitEthernet0/1
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>      172.16.0.0/32 is subnetted, 4 subnets
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>O        172.16.1.1 [110/2] via 10.0.0.1, 01:11:30,
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>      GigabitEthernet0/0
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>O        172.16.1.3 [110/2] via 10.0.0.10, 01:11:30,
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>      GigabitEthernet0/1
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>O        172.16.1.4 [110/3] via 10.0.0.10, 00:13:54,
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>      GigabitEthernet0/1
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>                    [110/3] via 10.0.0.1, 00:02:09,
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>      GigabitEthernet0/0
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las interfaces de loopback añaden un coste de 1 a una ruta. Por ejemplo, el coste de R2 para llegar a la interfaz de loopback de R1 (172.16.1.1) es de 2: 1 para el enlace R2-R1, más 1 para la L0 de R1 (Loopback0).</p>
+</div>
+<p>Observe que R2 ha insertado dos rutas a 172.16.1.4 en su tabla de enrutamiento; este es un ejemplo de ECMP. De forma predeterminada, OSPF insertará hasta cuatro rutas de igual costo a un destino en la tabla de enrutamiento. Este valor se puede modificar con el comando "maximum-paths number" en el modo de configuración del router, aunque el valor predeterminado de 4 suele ser suficiente para la mayoría de los escenarios de red.</p>
+<h2 id="vecinos-y-adyacencias">Vecinos y adyacencias</h2>
+<p>Para que los routers OSPF intercambien información de enrutamiento, primero necesitan establecer relaciones de vecindad entre sí. En esta sección, examinaremos este primer paso crucial de OSPF. A modo de resumen, los tres pasos fundamentales del proceso OSPF son establecer relaciones de vecindad, intercambiar información de enrutamiento y calcular rutas. La siguiente tabla resume los cinco tipos de mensajes que OSPF utiliza en este proceso; examinaremos la función de cada uno en esta sección a medida que explicamos cómo los routers OSPF establecen relaciones de vecindad.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Nombre</th>
+<th>Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Hola (Hello)</td>
+<td>Descubrimiento y mantenimiento de vecinos.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Descripción de la base de datos (DBD)</td>
+<td>Resume el LSDB del router. Se utiliza para comprobar si el LSDB de cada router es el mismo.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Solicitud de estado de enlace (LSR)</td>
+<td>Solicita LSA específicos de un vecino.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Actualización del estado del enlace (LSU)</td>
+<td>Envía LSA específicos a un vecino.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Reconocimiento del estado del enlace (LSAck)</td>
+<td>Se utiliza para confirmar la recepción de una LSU.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="estados-vecinos">Estados vecinos</h3>
+<p>Para que los routers OSPF intercambien información de enrutamiento, deben pasar por una serie de estados vecinos, en los cuales verifican la coincidencia de diversos parámetros de configuración. La imagne de bajo describe los estados vecinos OSPF, desde Inactivo hasta Completo.</p>
+<p>Podríamos dedicar varias páginas a este proceso. Si continúa sus estudios de OSPF más allá del CCNA, los detalles de este proceso son esenciales para comprender el protocolo OSPF y cómo solucionar sus problemas. Sin embargo, para el examen CCNA, basta con una comprensión general del propósito y la secuencia de cada estado.</p>
+<figure id="__figura_9">
+<p><img alt="" src="../img/ospf-9.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 9. </span> Estados vecinos OSPF: Inactivo, Inicialización, Bidireccional, ExStart, Intercambio, Cargando y Completo. Los routers que alcanzan el estado Bidireccional son vecinos OSPF. Algunos routers permanecen en este estado y otros establecen una adyacencia completa.</p>
+</figcaption>
+</figure>
+<p>Cuando OSPF se activa en una interfaz, el router envía regularmente mensajes de saludo OSPF, que se utilizan para descubrir dinámicamente vecinos OSPF y mantener las relaciones entre ellos una vez establecidas. Estos mensajes de saludo incluyen información diversa, dos de los cuales son el RID del router local y los RID de cualquier router vecino que tenga en cuenta en la interfaz.</p>
+<p>Los mensajes de saludo OSPF se envían a la dirección IP 224.0.0.5, que es una dirección IP de multidifusión. Mientras que los paquetes de unidifusión son uno a uno (de un host a otro) y los paquetes de difusión son uno a todos, los paquetes de multidifusión son uno a múltiples (pero no necesariamente todos). Un paquete enviado a la dirección IP de multidifusión 224.0.0.5 será inundado por un conmutador y, por lo tanto, recibido por todos los hosts del segmento. Sin embargo, solo las interfaces del router con OSPF activado estarán interesadas en el contenido del paquete; los demás hosts simplemente lo ignorarán, como se muestra en la imagen:</p>
+<figure id="__figura_10">
+<p><img alt="" src="../img/ospf-10.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 10. </span> Un mensaje <code>hello</code> OSPF del R1 se dirige a la dirección de multidifusión 224.0.0.5. El switch inunda la trama y los R2 G0/0 y R4 G0/0 con OSPF habilitado aceptan el mensaje de saludo. El R3 ignora el mensaje de saludo porque G0/0 no está habilitado para OSPF.</p>
+</figcaption>
+</figure>
+<p>El primer estado de vecino OSPF es Inactivo, aunque no es realmente un estado de vecino; significa que el router no ha recibido ningún mensaje de saludo en la interfaz. Luego, usando un ejemplo de los estados de vecino que se mostraba en una imagen más arriba, cuando R2 recibe por primera vez un mensaje <code>hello</code> de R1, R2 creará una entrada de vecino OSPF para R1 en el estado Init, como se muestra en el siguiente ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>R2# show ip ospf neighbor
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Neighbor ID     Pri   State           Dead Time   Address         Interface
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>172.16.1.1        1   INIT/DROTHER    00:00:38    10.0.0.1        GigabitEthernet0/0
+</span></code></pre></div>
+<p><code>show ip ospf neighbor</code> es un comando muy útil para comprobar los vecinos OSPF del router y sus estados. El estado inicial significa que el router ha recibido un mensaje <code>hello</code> OSPF de un router vecino, pero que dicho mensaje no incluye el RID del router local. R2 enviará entonces su propio mensaje de saludo a R1, incluyendo el RID de R1, tras haberlo aprendido del saludo de R1. Cuando R1 recibe este saludo de R2, R1 crea una entrada de vecino OSPF para R2 en el estado bidireccional, omitiendo el estado inicial. El siguiente ejemplo muestra la entrada de la tabla de vecinos OSPF de R1 para R2:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>R1# show ip ospf neighbor
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Neighbor ID     Pri   State           Dead Time   Address    Interface
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>172.16.1.2        1   2WAY/DROTHER    00:00:39    10.0.0.2   GigabitEthernet0/0
+</span></code></pre></div>
+<p>Tras recibir un saludo de R2 (y, por lo tanto, conocer su RID), R1 envía otro saludo a R2, incluyendo esta vez su RID en el mensaje. R2 entonces mueve su entrada de la tabla de vecinos para R1 al estado bidireccional. En este punto, R1 y R2 se consideran vecinos OSPF: se ven y se reconocen mutuamente, pero no han intercambiado información de enrutamiento.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En algunos casos, la elección de un router designado (DR) y un router designado de respaldo (BDR) se lleva a cabo en el estado bidireccional.</p>
+</div>
+<p>Para que los routers OSPF intercambien información de enrutamiento, deben establecer una adyacencia OSPF progresando hacia el estado completo. Para ello, pasan a los estados ExStart e Exchange, donde intercambian mensajes de descripción de base de datos (DBD), que son resúmenes del contenido de la LSDB de cada router. En el estado ExStart, determinan qué router liderará el intercambio DBD: el router con el RID más alto se convertirá en el líder y el router con el RID más bajo, en el seguidor. A continuación, el intercambio DBD se lleva a cabo en el estado Exchange.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Líder/Seguidor es una actualización reciente de la terminología OSPF, que reemplaza al antiguo "Maestro/Esclavo". Al ser una actualización reciente, los términos antiguos siguen siendo más comunes (y se utilizan en el software Cisco IOS), por lo que conviene conocerlos.</p>
+</div>
+<p>Tras intercambiar las DBD, los routers conocen el contenido de sus respectivas LSDB. A continuación, pasan al estado de carga, donde utilizan mensajes de solicitud de estado de enlace (LSR) para solicitar LSA específicas, mensajes de actualización de estado de enlace (LSU) para enviar LSA y mensajes de acuse de recibo de estado de enlace (LSAck) para confirmar la recepción de LSU.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las LSA son estructuras de datos que contienen información de enrutamiento OSPF y se envían en mensajes LSU. Las LSU son como los sobres que contienen las LSA.</p>
+</div>
+<p>Los routers entran entonces en estado completo, lo que significa que han sincronizado sus LSDB. En este punto, se denominan vecinos adyacentes o completamente adyacentes, y su relación de vecindad se denomina ahora adyacencia o adyacencia completa. Mientras la conexión entre los routers se mantenga estable, deberían permanecer en estado completo, compartiendo LSA a medida que la red cambia.</p>
+<p>Incluso después de establecer una relación de vecinos o adyacencia, los routers seguirán enviando mensajes de saludo a intervalos regulares, según lo determinado por el temporizador de saludo, que es de 10 segundos por defecto. El propósito de estos mensajes de saludo es mantener las relaciones con los vecinos. Si un router deja de recibir mensajes de saludo de un vecino, lo eliminará de la tabla de vecinos; esto se determina por el temporizador de inactividad, que es de 40 segundos por defecto. Esto significa que un router eliminará a un vecino si no ha recibido un mensaje <code>hello</code> de este durante los últimos 40 segundos.</p>
+<h3 id="tipos-de-red-ospf">Tipos de red OSPF</h3>
+<p>OSPF utiliza una configuración de interfaz denominada tipo de red para determinar su comportamiento en una red específica. En este contexto, una red es una conexión entre dos o más routers (un segmento). El tipo de red influye en aspectos como los temporizadores de mensajes OSPF, la elección de un DR y un BDR, y si todas las relaciones de vecinos se convertirán en adyacencias completas.</p>
+<p>Existen varios tipos de redes OSPF: de difusión, multiacceso sin difusión (NBMA), punto a punto, punto a multipunto, punto a multipunto sin difusión y loopback. Esta tabla resume estos dos tipos de red.</p>
+<table>
+<thead>
+<tr>
+<th>Broadcast</th>
+<th>Point-to-point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DR/BDR elegido</td>
+<td>Sin DR/BDR</td>
+</tr>
+<tr>
+<td>Establecer adyacencia completa solo con DR y BDR</td>
+<td>Establecer adyacencia completa</td>
+</tr>
+<tr>
+<td>Vecinos descubiertos dinámicamente</td>
+<td>Vecinos descubiertos dinámicamente</td>
+</tr>
+<tr>
+<td>Temporizadores predeterminados: hello = 10, dead = 40</td>
+<td>Temporizadores predeterminados: hello = 10, dead = 40</td>
+</tr>
+</tbody>
+</table>
+<p>Las dos características comunes de estos tipos de red son la detección dinámica de vecinos y los temporizadores predeterminados. Al enviar mensajes de saludo desde interfaces compatibles con OSPF, los routers pueden detectar dinámicamente qué vecinos están conectados a la interfaz, en lugar de requerir que un administrador configure manualmente las direcciones IP de los vecinos (como se requiere en algunos tipos de red OSPF).</p>
+<p>El temporizador de saludo predeterminado en ambos tipos de red es de 10 segundos, por lo que las interfaces envían mensajes de saludo a intervalos de 10 segundos. El temporizador de inactividad predeterminado es de 40 segundos, por lo que un vecino se elimina de la tabla de vecinos si no se recibe ningún mensaje de saludo durante 40 segundos. Otros tipos de red utilizan temporizadores predeterminados más largos, de 30 y 120 segundos.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si el router detecta una falla de enlace físico (lo que provoca que la interfaz pase a estado inactivo), OSPF eliminará inmediatamente al vecino, sin necesidad de esperar a que finalice la cuenta regresiva del temporizador de inactividad. Este temporizador solo es relevante si la interfaz permanece activa, pero el router deja de recibir mensajes de saludo del vecino (por cualquier motivo).</p>
+</div>
+<h4 id="tipo-de-red-de-broadcast">Tipo de red de <em>broadcast</em></h4>
+<p><em>Broadcast</em> es el tipo de red OSPF predeterminado para las interfaces Ethernet (de todas las velocidades: FastEthernet, GigabitEthernet, etc.). Puede confirmarse con el comando <code>show ip ospf interface</code>, como en el siguiente ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>R1# show ip ospf interface g0/0
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>GigabitEthernet0/0 is up, line protocol is up 
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  Internet Address 10.0.0.1/30, Area 0, Attached via Network Statement
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>  Process ID 1, Router ID 172.16.1.1, Network Type BROADCAST, Cost: 1
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>. . .
+</span></code></pre></div>
+<p>La principal característica definitoria del tipo de red de difusión es que un router designado (DR) y un router designado de respaldo (BDR) se eligen en el estado de vecino bidireccional; los demás routers conectados al segmento se convierten en DROthers (generalmente se pronuncia DR-other). Mientras que el DR y el BDR establecen adyacencias completas con todos los routers del segmento, los DROthers solo establecen adyacencia completa con el DR y el BDR del segmento y permanecen vecinos en el estado bidireccional con otros DROthers; no intercambian LSA entre sí.</p>
+<p>El propósito de elegir un DR y un BDR es reducir la cantidad de tráfico OSPF en el segmento, requiriendo únicamente que los routers intercambien LSA (en mensajes LSU) con el DR y el BDR del segmento. Abajo se muestra cómo se reduce el número de adyacencias (y, por lo tanto, los intercambios de LSA), lo que limita la cantidad de tráfico OSPF en el segmento y la cantidad de recursos utilizados en los routers.</p>
+<figure id="__figura_11">
+<p><img alt="" src="../img/ospf-11.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 11. </span> Seis routers están conectados al mismo segmento de red. Sin el DR/BDR, se requerirían 15 adyacencias OSPF (y 15 intercambios LSA). Con el DR/BDR, solo se requieren 9, lo que reduce la cantidad de tráfico OSPF.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para dirigir los mensajes únicamente al DR y al BDR, los DRothers envían los paquetes a la dirección IP de multidifusión 224.0.0.6. Recuerde las dos direcciones IP de multidifusión OSPF: 224.0.0.5 (todos los routers OSPF) y 224.0.0.6 (solo DR y BDR).</p>
+</div>
+<p>Dependiendo de la cantidad de routers conectados al segmento, la función DR/BDR de la red de difusión puede reducir considerablemente los recursos utilizados por OSPF en el segmento. Esto podría reducirse aún más seleccionando solo un DR, pero el BDR es importante para proporcionar estabilidad y resiliencia; si el DR falla por alguna razón, el BDR asume automáticamente el nuevo DR.</p>
+<p>Ahora se muestra un ejemplo de AS OSPF con DR, BDR y DROthers etiquetados. Se ha de tener en cuenta que el DR y el BDR se eligen por segmento, no por área. Por ejemplo, R2 es el DR para el segmento R1-R2, pero un DROther para el segmento R2-R3-R4-R5.</p>
+<figure id="__figura_12">
+<p><img alt="" src="../img/ospf-12.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 12. </span> Un AS OSPF compuesto por seis segmentos. La elección de DR/BDR se realiza por segmento, no por área. Los RID están entre paréntesis.</p>
+</figcaption>
+</figure>
+<p>Las interfaces G0/1 de R1, R3, R4 y R5 en la figura de arriba están etiquetadas como DR. Dado que no hay otros routers conectados a esos segmentos, no se realiza ninguna elección de DR/BDR; los routers simplemente se declaran como DR para esos segmentos. Sin embargo, no se establecerán adyacencias ni se intercambiarán LSAs desde esas interfaces; DR es solo un título en este caso. Además, estas interfaces deben configurarse en modo pasivo, por lo que no se enviarán mensajes de saludo OSPF.</p>
+<p>El siguiente ejemplo muestra la salida de <code>show ip ospf neighbor</code> en R5. Como DR del segmento R2-R3-R4-R5, R5 tiene adyacencia completa con todos los demás routers:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>R5# show ip ospf neighbor
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Neighbor ID  Pri  State         Dead Time  Address   Interface
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>172.16.1.2   1    FULL/DROTHER  00:00:34   10.0.0.1  GigabitEthernet0/0
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>172.16.1.3   1    FULL/DROTHER  00:00:34   10.0.0.2  GigabitEthernet0/0
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>172.16.1.4   1    FULL/BDR      00:00:38   10.0.0.3  GigabitEthernet0/0
+</span></code></pre></div>
+<p>Aunque la salida no indica explícitamente que R5 es el DR, dado que ninguno de los otros tres routers conectados al segmento lo es, se puede concluir que R5 debe ser el DR del segmento. Confirmemos esto usando el mismo comando en R2:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>R2# show ip ospf neighbor
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Neighbor ID  Pri  State         Dead Time  Address   Interface
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>172.16.1.1   1    FULL/BDR      00:00:30   10.0.0.9  GigabitEthernet0/0
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>172.16.1.3   1    2WAY/DROTHER  00:00:34   10.0.0.2  GigabitEthernet0/1
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>172.16.1.4   1    FULL/BDR      00:00:30   10.0.0.3  GigabitEthernet0/1
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>172.16.1.5   1    FULL/DR       00:00:31   10.0.0.4  GigabitEthernet0/1
+</span></code></pre></div>
+<p>Como se muestra en la salida, R5 es efectivamente el DR del segmento. Otro punto importante es que R2 y R3 no forman una adyacencia completa; como DROthers, permanecen vecinos en el estado bidireccional. Esto significa que no intercambian LSA entre sí.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aunque los DROthers no intercambian LSA directamente entre sí, conocerán las LSA de cada uno a través del DR/BDR. Recuerde que todos los routers en el área OSPF deben tener la misma LSDB.</p>
+</div>
+<p>A estas alturas, probablemente se esté preguntando cómo se eligen los DR y los BDR. Los DR y los BDR se eligen según los dos criterios siguientes:</p>
+<ul>
+<li>La máxima prioridad de interfaz</li>
+<li>El RID más alto</li>
+</ul>
+<p>El router con la prioridad de interfaz más alta se convertirá en el DR del segmento, y el router con la segunda prioridad más alta se convertirá en el BDR. La prioridad de interfaz OSPF es un valor configurable (predeterminado: 1) que se puede configurar con el comando <code>ip ospf priority priority</code> en el modo de configuración de interfaz.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si deseamos asegurarmps de que un router nunca se convierta en DR o BDR de un segmento, se puede configurar <code>ip ospf priority 0</code> en su interfaz.</p>
+</div>
+<p>En el ejemplo de la última imagen, todas las interfaces tenían la prioridad predeterminada de 1, por lo que se utilizó el segundo parámetro para determinar el DR de cada segmento: el RID OSPF. Si las prioridades de las interfaces están empatadas, el router con el RID más alto se convertirá en el DR (R5, 172.16.1.5) y el router con el segundo RID más alto, en el BDR (R4, 172.16.1.4).</p>
+<p>Modifiquemos la prioridad de la interfaz de R2 G0/1 para probar la elección de DR/BDR. En el siguiente ejemplo, establezco la prioridad de la interfaz de R2 G0/1 en 100 y confirmo los resultados:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>R2(config)# interface g0/1
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>R2(config-if)# ip ospf priority 100
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>R2(config-if)# do show ip ospf interface g0/1
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>GigabitEthernet0/1 is up, line protocol is up 
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>  Internet Address 10.0.0.1/29, Area 0, 
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>  Attached via Interface Enable
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>  Process ID 1, Router ID 172.16.1.2, Network Type BROADCAST, Cost: 1
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>. . .
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>  Transmit Delay is 1 sec, State DROTHER, Priority 100
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>. . .
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>R2(config-if)# do show ip ospf neighbor
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>Neighbor ID  Pri  State         Dead Time  Address   Interface
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>172.16.1.1   1    FULL/BDR      00:00:30   10.0.0.9  GigabitEthernet0/0
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>172.16.1.3   1    2WAY/DROTHER  00:00:34   10.0.0.2  GigabitEthernet0/1
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>172.16.1.4   1    FULL/BDR      00:00:30   10.0.0.3  GigabitEthernet0/1
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>172.16.1.5   1    FULL/DR       00:00:31   10.0.0.4  GigabitEthernet0/1
+</span></code></pre></div>
+<p>Aunque R2 G0/1 ahora tiene la máxima prioridad del segmento, R5 y R4 siguen siendo el DR y el BDR. Esto se debe a que, una vez elegidos, no se les preemptará (sus roles no se asumirán), incluso si se aumenta la prioridad de un router existente o si un router con mayor prioridad se conecta al segmento. Para que un DR o un BDR ceda su rol, se puede usar el comando <code>clear ip ospf process</code> para restablecer el proceso OSPF del router, como se hace en R5 en el siguiente ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>R5# clear ip ospf process
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Reset ALL OSPF processes? [no]: yes
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>R5# show ip ospf neighbor
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>Neighbor ID  Pri  State         Dead Time  Address   Interface
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>172.16.1.2   100  FULL/BDR      00:00:35   10.0.0.1  GigabitEthernet0/0
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>172.16.1.3   1    2WAY/DROTHER  00:00:31   10.0.0.2  GigabitEthernet0/0
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>172.16.1.4   1    FULL/DR       00:00:31   10.0.0.3  GigabitEthernet0/0
+</span></code></pre></div>
+<p>Tras reiniciar el proceso OSPF de R5, R4 (anteriormente el BDR) se convierte en el nuevo DR, y R2 en el nuevo BDR, a pesar de tener la máxima prioridad. Estos resultados revelan un punto importante sobre el funcionamiento del DR y el BDR: si el DR falla, los routers conectados al segmento no realizan una elección para el nuevo DR. En su lugar, el BDR asume inmediatamente el rol de nuevo DR; por eso, R4 se convierte en el nuevo DR. A continuación, se realiza una elección para determinar el nuevo BDR; R2 gana esta elección y se convierte en el nuevo BDR. Para que R2 sea el DR, habría que reiniciar el proceso OSPF de R4, lo que haría que R2 (el BDR) asumiera inmediatamente el rol de R4.</p>
+<p>Tipo de red punto a punto</p>
+<p>Si bien la característica DR/BDR del tipo de red de difusión puede reducir la cantidad de recursos utilizados por OSPF, la elección de un DR y un BDR extiende el tiempo que tardan los routers en establecer una adyacencia completa; si solo hay dos routers conectados al segmento, esto es innecesario e ineficiente.</p>
+<p>Una conexión punto a punto es un enlace directo entre dos routers. Cuando OSPF está habilitado en este enlace con el tipo de red predeterminado de difusión, un router se convierte en el DR y el otro, en el BDR. Sin embargo, estas designaciones no ofrecen ninguna ventaja en este caso, ya que ambos routers establecen una adyacencia completa.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El tipo de red punto a punto es el predeterminado en las interfaces seriales, que solían ser comunes en las conexiones WAN. Debido a la mayor velocidad y el menor costo de la fibra óptica Ethernet, las conexiones seriales ahora se consideran una tecnología obsoleta. Para usar este tipo de red en enlaces Ethernet, debe configurarse manualmente.</p>
+</div>
+<p>Al usar el tipo de red punto a punto OSPF, eliminamos el proceso de selección de DR/BDR, lo que permite a los routers establecer una adyacencia completa en menos tiempo. Este tipo de red está diseñado para conexiones directas entre dos routers y es la opción más eficiente en estas situaciones. La siguiente imagen muestra una situación en la que se debe configurar el tipo de red punto a punto. R1 y R2 tienen una conexión punto a punto, por lo que no es necesario seleccionar un DR ni un BDR.</p>
+<p><img alt="" src="../img/ospf-13.png" /></p>
+<p>La elección de un DR y BDR en una conexión entre dos routers no es necesaria, por lo que el enlace R1–R2 debe utilizar el tipo de red punto a punto.</p>
+<p>Para configurar el tipo de red punto a punto, se ha de utilizar el comando <code>ip ospf network point-to-point</code> en el modo de configuración de interfaz. ¡Hay que asegurarse de hacerlo en ambos lados de la conexión! En el siguiente ejemplo, se configura el tipo de red punto a punto en R1 G0/0 y R2 G0/0 y luego se confirma. Observamos que R1 y R2 establecen una adyacencia completa, pero ninguno es un DR ni un BDR, como lo indica el estado FULL/-:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>R1(config)# interface g0/0
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>R1(config-if)# ip ospf network point-to-point
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>R2(config)# interface g0/0
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>R2(config-if)# ip ospf network point-to-point
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>R2(config-if)# do show ip ospf neighbor
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>Neighbor ID  Pri  State         Dead Time  Address   Interface
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>172.16.1.3   1    2WAY/DROTHER  00:00:35   10.0.0.2  GigabitEthernet0/1
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>172.16.1.4   1    FULL/BDR      00:00:38   10.0.0.3  GigabitEthernet0/1
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>172.16.1.5   1    FULL/DR       00:00:36   10.0.0.4  GigabitEthernet0/1
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>172.16.1.1   0    FULL/  -      00:00:38   10.0.0.9  GigabitEthernet0/0
+</span></code></pre></div>
+<h3 id="requisitos-de-los-vecinos">Requisitos de los vecinos</h3>
+<p>Aunque los tipos de red punto a punto y de difusión OSPF permiten que los routers descubran vecinos de forma dinámica, eso no garantiza que realmente se convertirán en vecinos; hay un conjunto de requisitos que deben cumplirse, incluidos varios parámetros que deben coincidir (y uno que no debe coincidir):</p>
+<ul>
+<li>El número de área debe coincidir.</li>
+<li>La subred (dirección de red, máscara de red) debe coincidir.</li>
+<li>El proceso OSPF no estar <em>shutdown</em>.</li>
+<li>Los RID deben ser únicos.</li>
+<li>Los temporizadores de <em>hello</em> y <em>dead</em> deben coincidir.</li>
+<li>La configuración de autenticación debe coincidir.</li>
+<li>La configuración de MTU de IP debe coincidir.*</li>
+<li>El tipo de red debe coincidir.*</li>
+</ul>
+<p>Una discrepancia entre los dos últimos, que he marcado con asteriscos (*), no impedirá que los routers se conviertan en vecinos, pero sí que OSPF funcione correctamente. Analicemos estos requisitos uno por uno y veamos cómo afecta OSPF. Utilizaré una conexión simple entre dos routers: R1 (192.168.1.1/30) y R2 (192.168.1.2/30). En el siguiente ejemplo, configuro una discrepancia de número de área en R1 y R2, y no se convierten en vecinos OSPF. Tras corregir la discrepancia, el problema se resuelve:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>R1(config-if)# ip ospf 1 area 0
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>R2(config-if)# ip ospf 1 area 1
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>*Jun  9 03:40:12.255: %OSPF-4-ERRRCV: 
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>Received invalid packet: mismatched area ID from 
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>backbone area from 192.168.1.1, GigabitEthernet0/0
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>R2(config-if)# do show ip ospf neighbor
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>R2(config-if)# ip ospf 1 area 0
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>R2(config-if)# do show ip ospf neighbor
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>Neighbor ID  Pri  State     Dead Time  Address      Interface
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>192.168.1.1  1    FULL/BDR  00:00:37   192.168.1.1  GigabitEthernet0/0
+</span></code></pre></div>
+<p>En el siguiente ejemplo, cambio la máscara de red de la interfaz de R2. Aunque no cambié la dirección IP, la simple discrepancia de la máscara de red hace que la adyacencia cambie de "Completa" a "Inactiva".</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>R2(config-if)# ip address 192.168.1.2 255.255.255.0
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>*Jun  9 04:36:32.664: %OSPF-5-ADJCHG: Process 1, 
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>Nbr 192.168.1.1 on GigabitEthernet0/0 from FULL to 
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>DOWN, Neighbor Down: Interface down or detached
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>R2(config-if)# ip address 192.168.1.2 255.255.255.252
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>*Jun  9 04:37:36.071: %OSPF-5-ADJCHG: Process 1, 
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>Nbr 192.168.1.1 on GigabitEthernet0/0 from LOADING to 
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>FULL, Loading Done
+</span></code></pre></div>
+<p>El tercer requisito es que el proceso OSPF no debe estar en <code>shutdown</code>, lo que se refiere al comando que se puede usar en el modo de configuración del router para deshabilitar OSPF, de forma similar a cómo se usa el comando <code>shutdown</code> para deshabilitar una interfaz. Queda demostrado en el siguiente ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>R2(config)# router ospf 1
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>R2(config-router)# shutdown
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>*Jun  9 05:02:01.379: %OSPF-5-ADJCHG: Process 1, 
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>Nbr 192.168.1.1 on GigabitEthernet0/0 from FULL to 
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>DOWN, Neighbor Down: Interface down or detached
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>R2(config-router)# no shutdown
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>*Jun  9 05:02:07.114: %OSPF-5-ADJCHG: Process 1, 
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>Nbr 192.168.1.1 on GigabitEthernet0/0 from LOADING to 
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>FULL, Loading Done
+</span></code></pre></div>
+<p>El cuarto requisito es que los RID de los routers sean únicos, es decir, el único parámetro que no debe coincidir. En el siguiente ejemplo, modifico el RID de R2 para que coincida con el de R1, restablezco el proceso OSPF y no logran convertirse en vecinos. Eliminar la configuración del RID de R2 soluciona el problema:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>R2(config-router)# router-id 192.168.1.1
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>R2(config-router)# do clear ip ospf process
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>Reset ALL OSPF processes? [no]: yes
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>*Jun  9 05:06:09.209: %OSPF-5-ADJCHG: Process 1, 
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>Nbr 192.168.1.1 on GigabitEthernet0/0 from FULL to 
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>DOWN, Neighbor Down: Interface down or detached    
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>*Jun  9 05:06:11.679: %OSPF-4-DUP_RTRID_NBR: OSPF 
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>detected duplicate router-id 192.168.1.1 from 
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>192.168.1.1 on interface GigabitEthernet0/0
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>R2(config-router)# no router-id 192.168.1.1
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>*Jun  9 05:06:29.284: %OSPF-5-ADJCHG: Process 1, 
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>Nbr 192.168.1.1 on GigabitEthernet0/0 from LOADING to 
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>FULL, Loading Done
+</span></code></pre></div>
+<p>El quinto requisito es que los temporizadores de saludo y de inactividad coincidan. El temporizador de saludo predeterminado es de 10 segundos y el de inactividad, de 40 segundos, pero se pueden configurar con los comandos <code>ip ospf hello-interval seconds</code> e <code>ip ospf dead-interval seconds</code> en el modo de configuración de interfaz. En el siguiente ejemplo, modifico el temporizador de saludo de R2, lo que provoca la inactividad de la adyacencia con R1:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>R2(config)# interface g0/0
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>R2(config-if)# ip ospf hello-interval 5
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>*Jun  9 05:14:34.525: %OSPF-5-ADJCHG: Process 1, 
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>Nbr 192.168.1.1 on GigabitEthernet0/0 from FULL to 
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>DOWN, Neighbor Down: Dead timer expired
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>R2(config-if)# ip ospf hello-interval 10
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>*Jun  9 05:17:25.749: %OSPF-5-ADJCHG: Process 1, 
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>Nbr 192.168.1.1 on GigabitEthernet0/0 from LOADING to 
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>FULL, Loading Done
+</span></code></pre></div>
+<p>El sexto requisito es que la configuración de autenticación coincida. Puede configurar una contraseña para autenticar vecinos OSPF y garantizar que solo los routers previstos establezcan relaciones de vecindad. La autenticación OSPF queda fuera del alcance del examen CCNA, pero se puede usar el comando <code>ip ospf authentication</code> en el modo de configuración de interfaz para habilitar la autenticación y el comando <code>ip ospf authentication-key password</code> para configurar la contraseña.</p>
+<p>El séptimo requisito es que la configuración de la unidad máxima de transmisión (MTU) IP de los routers coincida. Con anterioridad hemos mencionodo alguna vez de forma breve la MTU IP; ésta determina el tamaño máximo de un paquete IPv4. Si bien una discrepancia en la MTU IP no impide que dos routers OSPF se conviertan en vecinos, no podrán establecer una adyacencia completa ni avanzar más allá de los estados ExStart/Exchange. Al igual que la autenticación, los detalles de la MTU IP quedan fuera del alcance del examen CCNA, pero se puede modificar la MTU IP de una interfaz con el comando <code>ip mtu bytes</code> en el modo de configuración de interfaz; la configuración predeterminada en las interfaces Ethernet es de 1500 bytes.</p>
+<p>El requisito final es que los tipos de red OSPF coincidan. Este requisito es diferente a los demás que hemos tratado hasta ahora: un router con el tipo de red de difusión y un router con el tipo de red punto a punto podrán establecer una adyacencia completa. Sin embargo, el problema radica en que los routers no podrán sincronizar sus LSDB; no aprenderán las rutas del otro.</p>
+<p>En el siguiente ejemplo, configuro una interfaz de loopback en R2 y habilito OSPF. Luego, configuro el tipo de red punto a punto G0/0 en R2, lo que resulta en una discrepancia en el tipo de red: la interfaz de R1 sigue usando el tipo de red de difusión. A pesar de la discrepancia en el tipo de red, la tabla de vecinos OSPF de R2 muestra una adyacencia completa con R1. A continuación, reviso las tablas de vecinos y de enrutamiento de R1:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>R2(config)# interface l0
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>R2(config-if)# ip address 10.10.10.2 255.255.255.255
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>R2(config-if)# ip ospf 1 area 0    
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>R2(config-if)# interface g0/0
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>R2(config-if)# ip ospf network point-to-point
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>R2(config-if)# do show ip ospf neighbor
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>Neighbor ID  Pri  State     Dead Time  Address      Interface
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>192.168.1.2  1    FULL/  -  00:00:34   192.168.1.2  GigabitEthernet0/0
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>R1# show ip ospf neighbor
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>Neighbor ID  Pri  State    Dead Time   Address      Interface
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>192.168.1.2  1    FULL/DR  00:00:34    192.168.1.2  GigabitEthernet0/0
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>R1# show ip route ospf
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>. . .
+</span></code></pre></div>
+<p>Las tablas de vecinos OSPF de R1 y R2 indican adyacencia completa, pero hay algo extraño: la salida de R2 muestra un estado FULL/ - (como se espera al usar el tipo de red punto a punto), pero la salida de R1 muestra FULL/DR; R1 cree que R2 es el DR. Además, aunque OSPF está activado en la interfaz de loopback de R2, la tabla de enrutamiento de R1 no muestra ninguna ruta a la dirección de la interfaz (10.10.10.2/32). A pesar de lograr la adyacencia completa, R1 y R2 no pudieron sincronizar sus LSDB. La solución es asegurar que ambos lados de la conexión usen el mismo tipo de red, ya sea de difusión o punto a punto.</p>
+<h2 id="tipos-de-lsa">Tipos de LSA</h2>
+<p>Los routers OSPF comparten información de enrutamiento mediante el envío de mensajes LSU, que contienen LSA. Existen varios tipos de LSA, cada uno con su propia finalidad, pero para el examen CCNA, debe conocer tres:</p>
+<ul>
+<li>Tipo 1 (LSA de router): generado por todos los routers, este LSA describe los enlaces del router.</li>
+<li>Tipo 2 (LSA de red): generada por el DR de una red de difusión, esta LSA enumera todos los routers en el segmento.</li>
+<li>Tipo 5 (LSA externa AS): generada por ASBR, esta LSA anuncia rutas a redes externas (es decir, una ruta predeterminada a Internet).</li>
+</ul>
+<p>Se muestra el AS OSPF que analizamos con anterioridad modificado con una conexión a Internet, la cual R1 anuncia con <code>default-information originate</code>. Se observa el contenido de la LSDB, compartida por los cinco routers.</p>
+<figure id="__figura_13">
+<p><img alt="" src="../img/ospf-14.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 13. </span> Un AS OSPF y el contenido de su LSDB. Cada router anuncia una LSA de tipo 1 (router). R5, como DR del segmento R2-R3-R4-R5, anuncia una LSA de tipo 2 (red). R1, como ASBR, anuncia una LSA de tipo 5.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>R3, R4 y R5 no anuncian una LSA de tipo 2 para sus interfaces G0/1. Como se mencionó anteriormente, al no tener vecinos en esas interfaces, son DR solo de nombre.</p>
+</div>
+<p>Para ver la LSDB de OSPF, utilice el comando <code>show ip ospf database</code>. El resultado de este comando debe ser el mismo en todos los routers; todos deben tener las mismas LSA en su LSDB. En el siguiente ejemplo, utilizo el comando en el R1. Los detalles de cómo leer el resultado quedan fuera del alcance de CCNA; solo tenga en cuenta que cada router anuncia una LSA de tipo 1, el R5 anuncia una única LSA de tipo 2 y el R1 anuncia una única LSA de tipo 5.</p>
+<p>R```
+R1# show ip ospf database
+           OSPF Router with ID (172.16.1.1) (Process ID 1)
+             Router Link States (Area 0)
+Link ID      ADV Router   Age    Seq#         Checksum   Link count
+172.16.1.1   172.16.1.1   1851   0x80000008   0x0015D5   3
+172.16.1.2   172.16.1.2   1852   0x8000000A   0x003688   4
+172.16.1.3   172.16.1.3   1825   0x80000014   0x002510   3
+172.16.1.4   172.16.1.4   1824   0x80000018   0x0052D9   3
+172.16.1.5   172.16.1.5   1824   0x80000015   0x008D9C   3</p>
+<div class="language-text highlight"><pre><span></span><code>         Net Link States (Area 0)
+</code></pre></div>
+<p>Link ID      ADV Router   Age    Seq#         Checksum
+10.0.0.4     172.16.1.5   1824   0x8000000E   0x00B89D</p>
+<div class="language-text highlight"><pre><span></span><code>         Type-5 AS External Link States
+</code></pre></div>
+<p>Link ID      ADV Router   Age    Seq#         Checksum   Tag
+0.0.0.0      172.16.1.1   1850   0x80000001   0x009B58   1
+```</p>
+<h2 id="resumen">Resumen</h2>
+<ul>
+<li>Se utilizan dos versiones de OSPF: OSPFv2 (para IPv4) y OSPFv3 (principalmente para IPv6).</li>
+<li>OSPF utiliza el algoritmo Shortest Path First (SPF), también llamado algoritmo de Dijkstra.</li>
+<li>Los routers OSPF pasan por tres pasos principales: formar relaciones de vecinos, intercambiar información de enrutamiento y calcular rutas.</li>
+<li>Los routers OSPF intercambian información de enrutamiento mediante anuncios de estado de enlace (LSA), organizados en la base de datos de estado de enlace (LSDB). El proceso de enviar LSA a todos los demás routers en la misma área OSPF se denomina inundación de LSA.</li>
+<li>Una red OSPF se puede dividir lógicamente en áreas. Todos los routers en un área OSPF comparten la misma LSDB. El área 0 es la red troncal a la que deben conectarse todas las demás áreas.</li>
+<li>En redes grandes, OSPF multiárea ofrece ventajas: los LSDB más pequeños ocupan menos recursos de memoria, el algoritmo SPF requiere menos tiempo y recursos de CPU para calcular rutas, y los cambios y la inestabilidad de la red quedan aislados en una sola área.</li>
+<li>Un router interno tiene todas las interfaces habilitadas para OSPF en la misma área. Un router troncal tiene al menos una interfaz en el área 0. Un router de borde de área (ABR) conecta una (o más) áreas al área 0. Un router de borde de sistema autónomo (ASBR) conecta el AS OSPF a redes externas.</li>
+<li>Las rutas intraárea son rutas a destinos en un área a la que el router está conectado. Las rutas interárea son rutas a destinos en un área a la que el router no está conectado. Las rutas externas son rutas a destinos fuera del sistema autónomo OSPF.</li>
+<li>La métrica de OSPF se llama costo, y el costo de una ruta es el costo acumulativo de cada interfaz desde la que se debe enviar un paquete para llegar al destino.</li>
+<li>El costo de un enlace se calcula dividiendo el ancho de banda de referencia (predeterminado: 100 Mbps) entre el ancho de banda del enlace. Los valores menores a 1 se asignan como 1, lo que significa que los enlaces con un ancho de banda de 100 Mbps o superior tienen un costo de 1 por defecto.</li>
+<li>Puede cambiar el ancho de banda de referencia con el comando auto-cost reference-bandwidth mbps en el modo de configuración del router.</li>
+<li>Puede modificar el costo de un enlace con ip ospf cost cost en cada interfaz o modificando el ancho de banda de las interfaces con bandwidth kbps.</li>
+<li>Utilice show ip ospf interface brief para ver las interfaces habilitadas para OSPF.</li>
+<li>El ID del proceso OSPF se especifica con el comando router ospf process-id y es significativo a nivel local; no tiene que coincidir entre routers.</li>
+<li>Utilice show ip protocols para ver información sobre los protocolos de enrutamiento en el router, como el RID OSPF, las interfaces habilitadas para OSPF, etc.</li>
+<li>El ID de router OSPF (RID) de cada router debe ser único. Se determina en el siguiente orden: (1) configuración manual con el comando router-id, (2) dirección IP más alta en una interfaz de loopback y (3) dirección IP más alta en una interfaz física.</li>
+<li>Una interfaz de loopback es una interfaz virtual que no depende del estado de una interfaz física específica. Puede crear una interfaz de loopback con el comando interface loopback number y configurar una dirección IP como si fuera una interfaz física.</li>
+<li>Además del comando de red, puede activar OSPF en las interfaces con el comando ip ospf process-id area area en el modo de configuración de interfaz.</li>
+<li>Una interfaz pasiva está habilitada para OSPF pero no envía mensajes de saludo OSPF.</li>
+<li>Para configurar una interfaz pasiva, utilice passive-interface interface-name en el modo de configuración del router o passive-interface predeterminado y luego no passive-interface interface-name para hacer que interfaces específicas sean no pasivas.</li>
+<li>Utilice la información predeterminada que se origina en el modo de configuración del router para hacer que un router anuncie su ruta predeterminada a sus vecinos OSPF (convirtiéndolo en un ASBR).</li>
+<li>OSPF utiliza cinco tipos de mensajes: hola, descripción de base de datos (DBD), solicitud de estado de enlace (LSR), actualización de estado de enlace (LSU) y reconocimiento de estado de enlace (LSAck).</li>
+<li>Los mensajes de saludo se utilizan para el descubrimiento y mantenimiento de vecinos. Los DBD proporcionan un resumen de la LSDB del router. Los LSR solicitan LSA específicos a un vecino. Las LSU envían LSA específicos a un vecino. Los LSAcks confirman la recepción de una LSU.</li>
+<li>Los mensajes de saludo OSPF se envían a la dirección IPv4 de multidifusión 224.0.0.5. Esta dirección se utiliza para enviar mensajes a todos los routers OSPF del segmento.</li>
+<li>Hay siete estados vecinos OSPF: Inactivo, Inicial, Bidireccional, ExStart, Intercambio, Cargando y Completo.</li>
+<li>Los routers OSPF en el estado bidireccional son vecinos pero aún no han intercambiado LSA.</li>
+<li>Los routers en estado completo son adyacentes o completamente adyacentes; tienen una adyacencia o adyacencia total. Han intercambiado LSA y sincronizado sus LSDB.</li>
+<li>Utilice show ip ospf neighbor para ver información sobre los vecinos OSPF.</li>
+<li>OSPF utiliza una configuración de interfaz denominada tipo de red para determinar cómo se comporta OSPF en una red particular (un segmento, un enlace entre uno o más routers).</li>
+<li>Utilice show ip ospf interface interface para ver detalles sobre una interfaz en particular.</li>
+<li>Las interfaces Ethernet utilizan el tipo de red de difusión por defecto. Este tipo de red permite que los vecinos se descubran dinámicamente y utiliza estos temporizadores predeterminados: hello = 10, dead = 40.</li>
+<li>Los routers OSPF eligen un router designado (DR) y un router designado de respaldo (BDR) en cada segmento de red de difusión. Los routers restantes son DROthers. La elección de DR/BDR se realiza en el estado bidireccional.</li>
+<li>Todos los routers del segmento establecen una adyacencia completa con el DR/BDR, pero los DROthers siguen siendo vecinos en el estado bidireccional entre sí.</li>
+<li>El DR y el BDR se determinan utilizando (1) la prioridad de interfaz más alta o (2) el RID más alto. La prioridad de interfaz predeterminada es 1. Se puede configurar con la prioridad IP OSPF.</li>
+<li>Aumentar la prioridad de interfaz/RID de un router o conectar un nuevo router con una prioridad de interfaz/RID más alta no hará que el router preempte el DR/BDR. Para que el DR o el BDR abandonen su función, utilice el proceso clear ip ospf.</li>
+<li>Si se pierde el DR, el BDR asume inmediatamente su papel y se celebran elecciones para el nuevo BDR.</li>
+<li>El tipo de red punto a punto es ideal para conexiones entre dos routers. Los routers establecen una adyacencia completa sin una elección de DR/BDR. Utilice ip ospf network point-to-point en el modo de configuración de interfaz para configurar este tipo de red.</li>
+<li>Para que los routers se conviertan en vecinos OSPF, el proceso OSPF no debe estar apagado, los RID deben ser únicos y los siguientes parámetros deben coincidir: número de área, subred, temporizadores de saludo/muerte, configuración de autenticación, configuración de MTU de IP y tipo de red.</li>
+<li>Si la configuración de la MTU de IP no coincide, los routers se quedarán bloqueados en los estados ExStart/Exchange. Si el tipo de red no coincide, los routers establecerán una adyacencia completa, pero no sincronizarán sus LSDB.</li>
+<li>Hay varios tipos de LSA, incluido el tipo 1 (LSA de router), el tipo 2 (LSA de red) y el tipo 5 (LSA externa AS).<ul>
+<li>Tipo 1 (LSA de router): generado por todos los routers, este LSA describe los enlaces del router.</li>
+<li>Tipo 2 (LSA de red): generada por el DR de una red de difusión, esta LSA enumera todos los routers en el segmento.</li>
+<li>Tipo 5 (LSA externa AS): generada por ASBR, esta LSA anuncia rutas a redes externas (es decir, una ruta predeterminada a Internet).</li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>
