@@ -42,7 +42,7 @@ El enrutamiento dinámico ofrece varias ventajas sobre el enrutamiento estático
 Las rutas estáticas, como su nombre indica, son estáticas e inmutables; no pueden reaccionar a los cambios en la red. Si una ruta deja de ser válida debido a un fallo de hardware en uno de los routers de la ruta, la ruta estática no se ajustará automáticamente para encontrar una ruta alternativa. La imagen de más abajo muestra un ejemplo: el enlace R2-R3 se cae debido a un fallo de hardware. Esto hace que R3 elimine su ruta a 192.168.30.0/24 de su tabla de enrutamiento; ya no puede acceder a la dirección IP del siguiente salto. Sin embargo, R1 desconoce el fallo del enlace. Como resultado, R1 mantiene su ruta a 192.168.30.0/24 a través de R2 en su tabla de enrutamiento, aunque ya no sea una ruta válida para llegar al destino.
 
 ![](img/routing_dinamico2.png){text-align: justify}
-///caption
+/// figura
 La ruta estática en R1 no puede adaptarse a un cambio en la red. (1) Una falla de hardware provoca la caída del enlace R2-R3. (2) R2 elimina su ruta a 192.168.30.0/24 porque ya no puede alcanzar el siguiente salto. (3) R1, sin percatarse de la falla de hardware, deja su ruta a 192.168.30.0/24 a través de R2 en su tabla de enrutamiento, a pesar de la existencia de una ruta alternativa.
 ///
 
@@ -52,7 +52,7 @@ La ruta estática en R1 no puede adaptarse a un cambio en la red. (1) Una falla 
 Dado que la ruta de R1 a 192.168.30.0/24 a través de R2 permanece en su tabla de enrutamiento, continuará reenviando paquetes destinados a hosts en la red 192.168.30.0/24 a R2. R2 no tiene otra opción que descartar los paquetes, ya que no tiene una ruta a 192.168.30.0/24 en su tabla de enrutamiento. La imagen muestra cómo el enrutamiento dinámico soluciona esto; permite a R1 adaptarse automáticamente al cambio de red, insertando una nueva ruta al destino en su tabla de enrutamiento.
 
 ![](img/routing_dinamico3.png){text-align: justify}
-///caption
+/// figura
 El enrutamiento dinámico permite que los routers se adapten a los cambios en la red calculando automáticamente nuevas rutas. (1) Una falla de hardware provoca la caída del enlace R2-R3. (2) R2 elimina su ruta a 192.168.30.0/24 a través de R3 y agrega una nueva ruta con R1 como siguiente salto. (3) R1 elimina su ruta a través de R2 y agrega una nueva ruta con R4 como siguiente salto.
 ///
 
@@ -66,7 +66,7 @@ En cuestión de segundos tras el fallo, todos los routers de la red detectarán 
 Otra ventaja importante del enrutamiento dinámico es la escalabilidad. Si bien el enrutamiento estático puede ser práctico para redes pequeñas, se vuelve cada vez más complejo e inmanejable a medida que la red crece. Por otro lado, los protocolos de enrutamiento dinámico se escalan fácilmente para admitir redes muy grandes y complejas. En la imagen se muestra una red de seis routers, cada uno conectado a una LAN que contiene varias subredes. Además, dos routers tienen conexiones a un ISP. Esta es una red bastante simple, pero incluso en una red de este tamaño, configurar manualmente rutas estáticas a cada destino en cada router no es muy práctico. Una opción más sencilla es habilitar un protocolo de enrutamiento en cada router y permitir que compartan la información de enrutamiento entre ellos.
 
 ![](img/routing_dinamico4.png){text-align: justify}
-///caption
+/// figura
 Configurar rutas estáticas a cada destino en cada router, incluso en una red bastante pequeña como esta, no es práctico; consumiría mucho tiempo y sería propenso a errores humanos.
 ///
 
@@ -82,14 +82,14 @@ Los protocolos de enrutamiento se dividen en dos categorías principales: **Prot
 La imagen de abajo muestra la diferencia entre los IGP y los EGP. Cada organización del diagrama utiliza un IGP para intercambiar información de enrutamiento dentro de su organización, pero un EGP para intercambiar información de enrutamiento con otras organizaciones.
 
 ![](img/routing_dinamico5.png){text-align: justify}
-///caption
+/// figura
 Los IGP se utilizan para intercambiar información de enrutamiento con routers del mismo sistema autónomo (conectados con líneas continuas). Los EGP se utilizan para intercambiar información de enrutamiento con routers de un sistema autónomo diferente (conectados con líneas discontinuas).
 ///
 
 La siguiente imagen enumera los protocolos de enrutamiento más utilizados en la actualidad. Además de clasificarse como IGP o EGP, los protocolos de enrutamiento pueden clasificarse por tipo de algoritmo, que describe cómo los routers comparten información y calculan rutas.
 
 ![](img/routing_dinamico6.png){text-align: justify}
-///caption
+/// figura
 Los cinco protocolos de enrutamiento de uso común en la actualidad. Los IGP se pueden clasificar como de vector-distancia o de estado de enlace. Los dos IGP de vector-distancia son RIP y EIGRP. Los dos IGP de estado de enlace son OSPF e IS-IS. El único protocolo de puerta de enlace exterior en uso actualmente, el Protocolo de Puerta de Enlace Fronterizo (Border Gateway Protocol), utiliza un algoritmo de vector-ruta.
 ///
 
@@ -106,7 +106,7 @@ Actualmente se utilizan dos protocolos principales de enrutamiento por vector de
 Los routers que utilizan un protocolo de vector-distancia comparten información sobre sus redes conocidas y las métricas para acceder a ellas. Las métricas son un concepto similar al costo raíz de STP. Mientras que el costo raíz de STP mide la eficiencia de una ruta al puente raíz, una métrica mide la eficiencia de una ruta a la red de destino; las métricas se abordarán en la sección 17.3.1. La siguiente figura muestra cómo un router obtiene información de una red de destino (LAN A) con un protocolo de enrutamiento de vector-distancia. R1 obtiene información de LAN A a través de dos vecinos: R2 y R5. Dado que la ruta a través de R5 tiene una métrica menor, R1 la inserta en su tabla de enrutamiento; es preferible un valor de métrica menor.
 
 ![](img/routing_dinamico7.png){text-align: justify}
-///caption
+/// figura
 Los routers comparten información de enrutamiento con un protocolo de enrutamiento por vector de distancia. R1 obtiene información de la LAN A de R2 y R5, pero inserta la ruta a través de R5 en su tabla de enrutamiento debido al menor valor de la métrica.
 ///
 
@@ -116,7 +116,7 @@ Los routers comparten información de enrutamiento con un protocolo de enrutamie
 La característica clave de los protocolos de enrutamiento por vector de distancia es que cada router no tiene un mapa completo de la red; para cada red de destino que aprende, solo conoce la métrica y el router del siguiente salto. Usando el ejemplo de la figura 17.7, R1 sabe que para llegar a la LAN A, puede reenviar paquetes a R2, cuya métrica es 2, o a R5, cuya métrica es 1; desconoce los detalles de la red más allá de R2 y R5, como se muestra a continuación:
 
 ![](img/routing_dinamico8.png){text-align: justify}
-///caption
+/// figura
 R1 obtiene información de la LAN A a través de R2 y R5 y selecciona una ruta basándose en esa información. R1 desconoce los detalles de la red más allá de R2 y R5.
 ///
 
@@ -130,7 +130,7 @@ Al igual que los protocolos de enrutamiento por vector de distancia, existen dos
 Al utilizar un protocolo de enrutamiento de estado de enlace, cada router crea un mapa de conectividad de la red. Para que todos los routers puedan crear su propio mapa de conectividad, cada uno comparte información sobre sus enlaces conectados y su estado (subredes conectadas, costo métrico, etc.); de ahí el nombre "estado de enlace". Esta información no solo se comparte con los routers vecinos directamente conectados, sino con todos los routers de la red, para que todos puedan crear el mismo mapa de conectividad. Cada router utiliza este mapa de la red para calcular la mejor ruta a cada destino. La Figura 17.9 muestra este concepto: el R1 crea un mapa de conectividad y lo utiliza para calcular una ruta a la LAN A.
 
 ![](img/routing_dinamico9.png){text-align: justify}
-///caption
+/// figura
 R1 construye un mapa de conectividad de la red y lo utiliza para calcular una ruta a LAN A.
 ///
 
@@ -146,7 +146,7 @@ En las redes modernas, solo se utiliza ampliamente un único EGP: el Protocolo d
 La Figura 17.10 muestra la lógica de vector de ruta: los paquetes del R1 a destinos en la Empresa B viajarán a través de los ISP A y B y luego llegarán a la Empresa B. El R1 conoce esta ruta comunicándose con el ISP A mediante BGP. En lugar de tomar decisiones de enrutamiento basadas en la serie de routers individuales por los que viajarán los paquetes, BGP toma decisiones de enrutamiento basadas en la serie de sistemas autónomos por los que viajarán (cada AS probablemente consta de varios routers).
 
 ![](img/routing_dinamico10.png){text-align: justify}
-///caption
+/// figura
 La ruta de R1 a la Empresa B pasa por el ISP A y el ISP B y luego llega a la Empresa B. La lógica de vector de ruta es de AS a AS, en lugar de router a router.
 ///
 
@@ -181,7 +181,7 @@ Tabla 17.1 Métricas del IGP (ver figura de la tabla)
 La Figura 17.11 muestra un ejemplo de selección de ruta en una red de routers que utilizan OSPF para compartir información de enrutamiento. El R1 utiliza su mapa de conectividad para calcular las posibles rutas para llegar a 192.168.3.0/24 y selecciona la mejor ruta para su tabla de enrutamiento.
 
 ![](img/routing_dinamico11.png){text-align: justify}
-///caption
+/// figura
 R1 inserta la mejor ruta a 192.168.3.0/24 en su tabla de enrutamiento. (1) R1 calcula las posibles rutas a 192.168.3.0/24. La ruta a través de R3 tiene una métrica de 2 y la ruta a través de R2 tiene una métrica de 4. (2) R1 selecciona la ruta a través de R3 debido a su métrica más baja y la inserta en su tabla de enrutamiento.
 ///
 
@@ -233,7 +233,7 @@ La Figura 17.12 muestra un ejemplo en el que se utiliza AD para seleccionar la r
     Debido a la fórmula que EIGRP utiliza para calcular las métricas, los valores de las métricas de las rutas EIGRP tienden a ser bastante altos en comparación con los de las rutas RIP y OSPF. Si bien la métrica de esta ruta es 3584 (debido a que el R1 y el destino solo están separados por unos pocos routers), no es raro que la métrica de las rutas EIGRP se encuentre entre decenas y cientos de miles.
 
 ![](img/routing_dinamico12.png){text-align: justify}
-///caption
+/// figura
 El R1 usa AD para seleccionar la ruta que ingresa a la tabla de enrutamiento. (1) El R1 aprende dos rutas a 10.0.0.0/24: vía EIGRP (métrica 3584) y vía OSPF (métrica 4). (2) El AD de EIGRP (90) es menor que el de OSPF (110), por lo que el R1 inserta la ruta EIGRP en su tabla de enrutamiento. Los valores de las métricas son irrelevantes en este caso.
 ///
 
@@ -257,7 +257,7 @@ Las métricas se utilizan para seleccionar rutas con el mismo destino, aprendida
     De forma predeterminada, se puede utilizar un máximo de cuatro rutas al mismo destino para el enrutamiento ECMP.
 
 ![](img/routing_dinamico13.png){text-align: justify}
-///caption
+/// figura
 Ejemplo de ECMP. El R1 aprende dos rutas a 10.0.0.0/24: una de R2 y otra de R4. Ambas rutas se aprenden mediante OSPF y tienen una métrica de 4. Por lo tanto, el R1 inserta ambas rutas en la tabla de enrutamiento; esto equilibrará la carga del tráfico entre ambas rutas.
 Figura 17.13 Un ejemplo de enrutamiento ECMP. (1) R1 aprende dos rutas a 10.0.0.0/24 a través de OSPF con la misma métrica: una de R2 y una de R4. (2) R1 inserta ambas rutas en su tabla de enrutamiento; equilibrará la carga del tráfico utilizando las dos rutas.
 ///
@@ -270,7 +270,7 @@ De forma predeterminada, las rutas estáticas tienen un AD de 1 y, por lo tanto,
 Una ruta estática flotante es una ruta estática configurada con un AD mayor que el valor predeterminado de 1 para que sea menos preferida. Por ejemplo, para que una ruta estática sea menos preferida que una ruta OSPF al mismo destino, debe configurarse con un AD mayor que 110 (el AD de OSPF). Para configurar una ruta estática flotante, simplemente añada el valor de AD al final del comando. Por ejemplo, puede configurar una ruta estática recursiva flotante con el comando `ip route destination-network netmask next-hop ad`. La Figura 17.14 muestra un ejemplo en el que se configura una ruta estática con un AD de 111 para que sea menos preferida que una ruta aprendida mediante OSPF.
 
 ![](img/routing_dinamico14.png){text-align: justify}
-///caption
+/// figura
 Una ruta estática flotante es menos preferida que una ruta OSPF al mismo destino.
 ///
 
@@ -318,7 +318,7 @@ La razón es que las cuatro rutas tienen destinos diferentes. Aunque comparten l
 Cabe destacar que las cuatro subredes del ejemplo se superponen, como se muestra en la figura 17.15. Las subredes /25, /26 y /27 se encuentran dentro de la subred /24. Sin embargo, al crear la tabla de enrutamiento, se consideran redes de destino diferentes y, por lo tanto, se insertarán en ella.
 
 ![](img/routing_dinamico15.png){text-align: justify}
-///caption
+/// figura
 Las cuatro rutas del ejemplo se superponen. 203.0.113.0/24 incluye 203.0.113.0–.255, 203.0.113.0/25 incluye 203.0.113.0–.127, 203.0.113.0/26 incluye 203.0.113.0–.63 y 203.0.113.0/27 incluye 203.0.113.0–.31. Sin embargo, IOS las considera rutas a diferentes destinos e insertará las cuatro rutas en la tabla de enrutamiento.
 ///
 
@@ -395,7 +395,7 @@ La Figura 17.16 muestra cómo se puede usar el comando network para activar OSPF
     OSPF utiliza áreas para dividir lógicamente la red; cubriremos las áreas OSPF en el capítulo 18. Por ahora, solo especificaremos el área 0 en el comando de red.
 
 ![](img/routing_dinamico16.png){text-align: justify}
-///caption
+/// figura
 Activación de OSPF en las interfaces de un router con el comando network. El comando utiliza una máscara comodín, que parece una máscara de red invertida.
 ///
 
@@ -420,7 +420,7 @@ A continuación, el comando que utilicé para activar OSPF en la interfaz G0/1 d
 En estos dos ejemplos, utilicé una máscara comodín de 0.0.0.3, que equivale a una máscara de red /30 (255.255.255.252) con los bits invertidos. La Figura 17.17 lo demuestra: todos los bits 1 de la máscara de red 255.255.255.252 son 0 en la máscara comodín 0.0.0.3 y viceversa.
 
 ![](img/routing_dinamico17.png){text-align: justify}
-///caption
+/// figura
 Máscara de red A /30 (255.255.255.252) y su máscara comodín equivalente (0.0.0.3). Los bits 1 en la máscara de red son 0 en la máscara comodín y viceversa.
 ///
 
@@ -464,7 +464,7 @@ Sin embargo, al usar el comando `network` de OSPF, la dirección IP y la máscar
 En los tres comandos `network` que analizamos, utilicé la dirección de red (la parte del host de todos los 0) de cada interfaz y la máscara comodín equivalente a la máscara de red de cada interfaz. Sin embargo, es importante destacar que el comando `network` es flexible: siempre que los bits correspondientes coincidan entre la dirección IP del `network` y la dirección IP de la interfaz (los indicados por un bit 0 en la máscara comodín), OSPF se activará en la interfaz. La Figura 17.18 muestra una forma diferente de activar OSPF en las interfaces del R1, esta vez utilizando solo dos comandos `network`.
 
 ![](img/routing_dinamico18.png){text-align: justify}
-///caption
+/// figura
 Activación de OSPF en las interfaces de R1 con dos comandos de red. El primer comando activa OSPF en las interfaces G0/0 y G0/1 de R1, y el segundo en G0/2.
 ///
 

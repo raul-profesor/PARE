@@ -236,7 +236,7 @@ El proceso de reenvío de paquetes descrito en la sección anterior se denomina 
 
 <u>**Enrutamiento estático:**</u> Un ingeniero/administrador configura manualmente las rutas en el router.
 
-Las rutas conectadas permiten al router reenviar paquetes a destinos en redes conectadas directamente a él, y las rutas locales permiten al router recibir paquetes destinados a sus propias direcciones IP. Sin embargo, para reenviar paquetes a destinos que no están en redes conectadas directamente, el router debe aprender de esos destinos mediante uno de los métodos mencionados anteriormente (abordaremos el enrutamiento dinámico en los capítulos 17 y 18).
+Las rutas conectadas permiten al router reenviar paquetes a destinos en redes conectadas directamente a él, y las rutas locales permiten al router recibir paquetes destinados a sus propias direcciones IP. Sin embargo, para reenviar paquetes a destinos que no están en redes conectadas directamente, el router debe aprender de esos destinos mediante uno de los métodos mencionados anteriormente.
 
 Al reenviar un paquete a un destino que no está conectado directamente al router, este debe encapsularlo en una trama dirigida a la dirección MAC del siguiente salto, que corresponde al siguiente router en la ruta hacia el destino. Aquí se puede ver este proceso:
 

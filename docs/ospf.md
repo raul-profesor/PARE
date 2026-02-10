@@ -46,13 +46,13 @@ Es fundamental que todos los routers del área tengan la misma LSDB, de modo que
 
 La red que vimos en la figura de arriba era un ejemplo de OSPF de área única; la red es una unidad lógica única y todos los routers comparten la misma LSDB. En redes pequeñas, un enfoque de área única es práctico y sencillo, y no presenta grandes inconvenientes. Sin embargo, en una red grande con docenas o cientos de routers (en lugar de los seis de la imagen de arriba), un diseño de área única tiene múltiples efectos negativos:
 
-El LSDB más grande ocupa más recursos de memoria en los routers.
-El algoritmo SPF requiere más tiempo y recursos de CPU para calcular rutas.
-Un solo cambio en la red (es decir, una interfaz que se activa o desactiva) hace que las LSA inunden la red y haga que cada router ejecute nuevamente el algoritmo SPF.
++ El LSDB más grande ocupa más recursos de memoria en los routers.
++ El algoritmo SPF requiere más tiempo y recursos de CPU para calcular rutas.
++ Un solo cambio en la red (es decir, una interfaz que se activa o desactiva) hace que las LSA inunden la red y haga que cada router ejecute nuevamente el algoritmo SPF.
 
 Al dividir una red OSPF grande en varias áreas más pequeñas, minimizamos estos efectos negativos. LSDB más pequeñas implican que OSPF utiliza menos recursos en los routers y que el algoritmo SPF no tarda tanto en calcular las rutas. Los cambios de red solo se anuncian dentro del área local, y si hay inestabilidad en la red (interfaces que se activan y desactivan), sus efectos se limitan a una sola área.
 
-Un área OSPF se puede definir como un conjunto de routers que comparten la misma LSDB. Si bien la lista de temas del examen CCNA indica que debe ser capaz de configurar y verificar OSPFv2 de área única, también necesita conocimientos básicos de qué es un área y las ventajas de OSPF multiárea.
+**Un área OSPF se puede definir como un conjunto de routers que comparten la misma LSDB.**
 
 En la siguiente imagen se muestra una red OSPF multiárea compuesta por cuatro áreas. OSPF emplea una estructura jerárquica de dos niveles que consta de un área troncal (área 0) y otras áreas no troncales. Todas las áreas no troncales deben estar conectadas al área 0, y el tráfico entre áreas debe pasar por ella.
 !!!note "Nota"
@@ -64,7 +64,7 @@ En la siguiente imagen se muestra una red OSPF multiárea compuesta por cuatro �
 Una red OSPF multiárea compuesta por cuatro áreas. El área 0 es el área principal a la que deben conectarse las demás áreas. Las áreas 1, 2 y 3 no son áreas principales, y el tráfico entre ellas debe pasar por el área 0.
 ///
 
-OSPF distingue cuatro tipos de routers. La Tabla 18.1 resume estos cuatro tipos de routers y enumera los routers de la imagen anterior que pertenecen a cada tipo. Tenga en cuenta que algunos routers se clasifican en varias categorías.
+OSPF distingue cuatro tipos de routers. La tabla a continuación resume estos cuatro tipos de routers y enumera los routers de la imagen anterior que pertenecen a cada tipo. Ten en cuenta que algunos routers se clasifican en varias categorías.
 
 | Tipo de router | En la imagen| Descripción |
 |----------------|-------------------|-------------|
@@ -76,12 +76,12 @@ OSPF distingue cuatro tipos de routers. La Tabla 18.1 resume estos cuatro tipos 
 !!!note "Nota"
     Aunque R1 tiene una interfaz conectada a Internet, esa interfaz no utiliza OSPF y, por lo tanto, no afecta su clasificación como router OSPF interno.
 
-Un router interno tiene todas sus interfaces habilitadas para OSPF en la misma área, ya sea el área 0 o un área no troncal. Un router troncal tiene al menos una interfaz en el área troncal. Un router de borde de área conecta una (o más) áreas al área 0; dado que las áreas no troncales no pueden conectarse directamente entre sí, todos los ABR también son routers troncales (aunque los routers troncales no son necesariamente ABR).
+Un router interno tiene todas sus interfaces habilitadas para OSPF en la misma área, ya sea el área 0 o un área no troncal. Un router troncal tiene al menos una interfaz en el área troncal. Un *router de borde de área* (**ABR**) conecta una (o más) áreas al área 0; dado que las áreas no troncales no pueden conectarse directamente entre sí, todos los ABR también son routers troncales (aunque los routers troncales no son necesariamente ABR).
 
 !!!note "Nota"
     Los ABR mantienen un LSDB separado para cada área a la que están conectados.
 
-El último tipo de router es un router de límite de sistema autónomo (ASBR), un router que conecta el sistema autónomo (AS) OSPF a redes externas, como Internet o la red de otra empresa. Tenga en cuenta que este tipo es independiente de los demás; un ASBR puede ser un router troncal o no, y puede ser un router interno o un ABR. Como hemos mostrado en la tabla, el R1 de la imagen es un router interno, un router troncal y un ASBR, todo a la vez. Más adelante, veremos cómo configurar una ruta predeterminada en un ASBR y anunciarla a otros routers del AS OSPF.
+El último tipo de router es un router de límite de sistema autónomo (ASBR), un router que conecta el sistema autónomo (AS) OSPF a redes externas, como Internet o la red de otra empresa. Ten en cuenta que este tipo es independiente de los demás; un ASBR puede ser un router troncal o no, y puede ser un router interno o un ABR. Como hemos mostrado en la tabla, el R1 de la imagen es un router interno, un router troncal y un ASBR, todo a la vez. Más adelante, veremos cómo configurar una ruta predeterminada en un ASBR y anunciarla a otros routers del AS OSPF.
 
 Las rutas OSPF se pueden clasificar como intraárea, interárea o externas. Las rutas intraárea son rutas a destinos en la misma área OSPF que el router; por ejemplo, si el router es interno en el área 1, todas las rutas a destinos dentro del área 1 son rutas intraárea. Las rutas interárea son rutas a destinos en un área a la que el router no se conecta; por ejemplo, si un ABR conectado a las áreas 0 y 1 aprende una ruta al área 2. Finalmente, las rutas a destinos externos (publicadas por un ASBR) se denominan rutas externas.
 
@@ -98,7 +98,8 @@ El costo de una ruta es el costo acumulado de cada interfaz desde la cual se deb
 Aunque la representación del costo de OSPF en la figura de arriba es precisa, es más común referirse al costo de un enlace que al costo de cada interfaz que lo compone. Dado que ambos lados del enlace deben tener el mismo costo (se considera una configuración incorrecta si no lo tienen) y que un router solo considera un lado del enlace al calcular el costo de la ruta, es más sencillo considerar el enlace como una sola entidad.
 
 Usando nuevamente el ejemplo de la imagen anterior, no importa si R1 calcula una ruta a 192.168.3.0/24 o R3 a 192.168.1.0/24; el costo es el mismo en ambas direcciones. Salvo cuando me refiero específicamente al costo de una interfaz, me referiré al costo de un enlace en lugar del costo de cada interfaz individual.
-Ancho de banda de referencia
+
+#### Ancho de banda de referencia
 
 El costo de un enlace se calcula dividiendo un valor de ancho de banda de referencia entre el ancho de banda del enlace; el ancho de banda de referencia predeterminado es de 100 Mbps. Si este cálculo resulta en un valor menor que 1, el costo OSPF se asigna como 1, ya que OSPF no acepta valores fraccionarios ni decimales. Esto da como resultado los siguientes valores de costo OSPF predeterminados:
 
@@ -107,7 +108,7 @@ El costo de un enlace se calcula dividiendo un valor de ancho de banda de refere
 + Enlace de 1000 Mbps (1 Gbps) = 1 (100/1000 = 0,1)
 + Enlace de 10 000 Mbps (10 Gbps) = 1 (100/10 000 = 0,01)
 
-Quizás haya notado un problema: con el ancho de banda de referencia predeterminado de 100 Mbps, todos los enlaces con un ancho de banda de 100 Mbps o superior tienen el mismo costo. Si OSPF considera que un enlace de 100 Mbps es tan preferible como uno de 1 Gbps o 10 Gbps, es probable que calcule rutas subóptimas. Más abajo se muestra un ejemplo: aunque la ruta de R1 a 10.1.3.0/24 a través de R4 utiliza enlaces FastEthernet, se considera igual a la ruta de R1 a través de R2, que utiliza enlaces GigabitEthernet.
+Quizás hayáis notado un problema: con el ancho de banda de referencia predeterminado de 100 Mbps, todos los enlaces con un ancho de banda de 100 Mbps o superior tienen el mismo costo. Si OSPF considera que un enlace de 100 Mbps es tan preferible como uno de 1 Gbps o 10 Gbps, es probable que calcule rutas subóptimas. Más abajo se muestra un ejemplo: aunque la ruta de R1 a 10.1.3.0/24 a través de R4 utiliza enlaces FastEthernet, se considera igual a la ruta de R1 a trav R2, que utiliza enlaces GigabitEthernet.
 
 ![](img/ospf-4.png)
 
@@ -119,7 +120,7 @@ R1 agrega ambas rutas a la tabla de enrutamiento y usará ECMP para equilibrar l
 
 OSPF se desarrolló hace décadas, cuando FastEthernet se consideraba un enlace de muy alta velocidad; por eso, el ancho de banda de referencia predeterminado es de 100 Mbps. Sin embargo, en las redes modernas es mejor ajustar el valor del ancho de banda de referencia para que OSPF pueda diferenciar entre enlaces con mayor ancho de banda. Para ajustar el valor del ancho de banda de referencia, utilice el comando auto-cost reference-bandwidth mbps en el modo de configuración del router OSPF.
 
-En el siguiente ejemplo, confirmo el costo de las interfaces de R1 con el comando "show ip ospf interface brief". Luego, ajusto el ancho de banda de referencia a 1000 Mbps, de modo que los enlaces GigabitEthernet tengan un costo de 1 y los enlaces FastEthernet, de 10. Aunque no existe un valor recomendado específico para el ancho de banda de referencia, es común configurarlo para que coincida con el ancho de banda del enlace más rápido de la red. Otra opción es establecer el ancho de banda de referencia en un valor mayor que el ancho de banda del enlace más rápido actual para permitir que se agreguen enlaces aún más rápidos a la red sin tener que volver a ajustar el ancho de banda de referencia.
+En el siguiente ejemplo, se confirma el costo de las interfaces de R1 con el comando `show ip ospf interface brief`. Luego, se ajusta el ancho de banda de referencia a 1000 Mbps, de modo que los enlaces GigabitEthernet tengan un costo de 1 y los enlaces FastEthernet, de 10. Aunque no existe un valor recomendado específico para el ancho de banda de referencia, es común configurarlo para que coincida con el ancho de banda del enlace más rápido de la red. Otra opción es establecer el ancho de banda de referencia en un valor mayor que el ancho de banda del enlace más rápido actual para permitir que se agreguen enlaces aún más rápidos a la red sin tener que volver a ajustar el ancho de banda de referencia.
 
 ```
 R1# show ip ospf interface brief
@@ -139,12 +140,13 @@ Fa1/0        1     0      10.0.0.5/30        10    DR    1/1
 ```
 
 Como indica el mensaje de advertencia del ejemplo anterior, es importante configurar el mismo ancho de banda de referencia en todos los routers para garantizar una selección de ruta consistente. En el peor de los casos, tener diferentes anchos de banda de referencia podría generar bucles de enrutamiento: si el router A cree que la mejor ruta a un destino es a través del router B, pero el router B cree que la mejor ruta es a través del router A, los paquetes para ese destino se repetirán entre los dos routers hasta que expire su TTL, sin llegar nunca a su destino previsto.
-Modificar el coste de un enlace
+
+#### Modificar el coste de un enlace
 
 Aunque modificar el ancho de banda de referencia suele ser suficiente para que OSPF seleccione la ruta más eficiente a un destino, en algunos casos, puede ser necesario modificar el coste de un enlace específico para que sea más o menos preferible. Existen dos métodos para hacerlo:
 
-Configure el costo con el comando ip ospf cost cost en el modo de configuración de interfaz.
-Modifique el valor del ancho de banda de la interfaz con el comando bandwidth kbps en el modo de configuración de interfaz.
++ Configurar el costo con el comando `ip ospf cost cost` en el modo de configuración de interfaz.
++ Modificar el valor del ancho de banda de la interfaz con el comando `bandwidth kbps` en el modo de configuración de interfaz.
 
 !!!note "Nota"
     Aunque el ancho de banda de referencia está configurado en megabits por segundo, el valor del ancho de banda de la interfaz está configurado en kilobits por segundo.
@@ -152,13 +154,13 @@ Modifique el valor del ancho de banda de la interfaz con el comando bandwidth kb
 De los dos, el primer método es el preferido si se desea modificar el costo OSPF de un enlace específico: permite configurar directamente el costo OSPF de la interfaz. El segundo método, en cambio, se utiliza para influir en el cálculo automático de costos que vimos anteriormente: ancho de banda de referencia/ancho de banda de la interfaz. Sin embargo, el valor del ancho de banda de una interfaz afecta más allá de los valores de costo OSPF, como los mecanismos de QoS (calidad de servicio), por lo que generalmente es mejor no modificarlo.
 
 !!!note "Nota"
-    Modificar el valor del ancho de banda de una interfaz en realidad no afecta el funcionamiento de la interfaz; es solo un valor utilizado para cálculos como el costo de OSPF, la métrica de EIGRP, etc. Para cambiar la velocidad a la que funciona una interfaz, utilice el comando speed.
+    Modificar el valor del ancho de banda de una interfaz en realidad no afecta el funcionamiento de la interfaz; es solo un valor utilizado para cálculos como el costo de OSPF, la métrica de EIGRP, etc. Para cambiar la velocidad a la que funciona una interfaz, se ha de utilizar el comando `speed`.
 
 ## Configuración de OSPF
 
 En la sección [correspondiente](#activacion-ospf), vimos cómo activar OSPF en las interfaces del router con el comando `network`. Este comando por sí solo es suficiente para que OSPF funcione en su nivel más básico; tras activar OSPF en las interfaces de un router, este intentará establecer relaciones de vecindad y compartir LSA con otros routers conectados a dichas interfaces. En esta sección, veremos cómo configurar otros aspectos de OSPF, incluyendo una forma más sencilla de activar OSPF en las interfaces de un router.
 
-El primer paso para configurar OSPF es crear un proceso OSPF con el comando router ospf process-id. Este comando permite acceder al modo de configuración del router, desde donde se puede usar el comando network y muchos otros comandos relacionados con OSPF. De forma similar a cómo PVST+ crea múltiples instancias de STP en un switch, cada una calculando un árbol de expansión único, se pueden crear múltiples procesos OSPF. Cada uno de estos procesos calcula de forma independiente sus propias rutas a las redes de destino. Sin embargo, ejecutar múltiples procesos OSPF en un router es extremadamente raro, y los casos de uso específicos quedan fuera del alcance del examen CCNA. Para esta unidad, solo usaremos el ID de proceso 1 (aunque se puede elegir cualquier otro número).
+El primer paso para configurar OSPF es crear un proceso OSPF con el comando `router ospf process-id`. Este comando permite acceder al modo de configuración del router, desde donde se puede usar el comando network y muchos otros comandos relacionados con OSPF. Se pueden crear múltiples procesos OSPF. Cada uno de estos procesos calcula de forma independiente sus propias rutas a las redes de destino. Sin embargo, ejecutar múltiples procesos OSPF en un router es extremadamente raro, y los casos de uso específicos quedan fuera del objetivo de este curso. Para esta unidad, solo usaremos el ID de proceso 1 (aunque se puede elegir cualquier otro número).
 
 !!!note "Nota"
     El ID de proceso OSPF es localmente significativo; no importa si coincide con los routers vecinos. Por ejemplo, un router con el ID de proceso OSPF 1 puede convertirse en vecino de un router con el ID de proceso OSPF 65535 (el valor más alto posible).
@@ -167,14 +169,13 @@ Aquí se muestra la topología que configuraremos en esta sección: una red OSPF
 
 ![](img/ospf-5.png)
 
-
 /// figura
 Red OSPF de área única con cuatro routers. El R3 se conecta a la subred 10.1.3.0/24 en su interfaz G0/1, una interfaz pasiva. El R1 se conecta a internet y anuncia una ruta predeterminada a los demás routers.
 ///
 
 ### El ID del router
 
-Al usar por primera vez el comando router ospf para crear el proceso OSPF, el router se asignará un ID de router (RID), un valor único de 32 bits que lo identifica en el AS OSPF. A diferencia del ID de proceso, el RID debe ser único; no puede haber dos routers con el mismo RID en el AS. Para ver el RID de un router, puede usar el comando show ip protocols; este comando muestra información sobre los protocolos de enrutamiento activos en el router. En el siguiente ejemplo, creo el proceso OSPF 1 en R1 y verifico su RID:
+Al usar por primera vez el comando `router ospf` para crear el proceso OSPF, el router se asignará un ID de router (RID), un valor único de 32 bits que lo identifica en el AS OSPF. A diferencia del ID de proceso, el RID debe ser único; no puede haber dos routers con el mismo RID en el AS. Para ver el RID de un router, se puede usar el comando `show ip protocols`; este comando muestra información sobre los protocolos de enrutamiento activos en el router. En el siguiente ejemplo, se crea el proceso OSPF 1 en R1 y verifico su RID:
 
 ```
 R1(config)# router ospf 1
@@ -188,22 +189,24 @@ Routing Protocol is "ospf 1"
 . . .
 ```
 
-R1 seleccionó la dirección IP de su interfaz G0/2 (203.0.113.1) como su RID. El RID se asigna en el siguiente orden de prioridad:
+R1 ha seleccionado la dirección IP de su interfaz *G0/2 (203.0.113.1)* como su RID. El RID se asigna en el siguiente orden de prioridad:
 
-Configuración manual con el comando router-id
-Dirección IP más alta en una interfaz de loopback operativa (ascendente/ascendente) (cubriremos las interfaces de loopback en esta sección)
-Dirección IP más alta en una interfaz física operativa (arriba/arriba)
+1. Configuración manual con el comando router-id
+2. Dirección IP más alta en una interfaz de loopback operativa (ascendente/ascendente) (cubriremos las interfaces de loopback en esta sección)
+3. Dirección IP más alta en una interfaz física operativa (arriba/arriba)
 
-Como se indicó en el primer punto, puede configurar manualmente el RID con el comando router-id. Sin embargo, este comando solo se puede configurar una vez que haya ingresado al modo de configuración del router. Para acceder a este modo, primero debe crear el proceso OSPF con el comando router ospf.
+Como se indicó en el primer punto, se puede configurar manualmente el RID con el comando `router-id`. Sin embargo, este comando solo se puede configurar una vez que se haya ingresado al modo de configuración del router. Para acceder a este modo, primero se debe crear el proceso OSPF con el comando `router ospf`.
 
-Por lo tanto, al crear el proceso OSPF por primera vez, el router no puede considerar ninguna configuración manual de RID: aún no se ha establecido ninguna. En su lugar, solo considera la segunda y la tercera opción para asignar el RID: la dirección IP más alta en una interfaz de loopback operativa (si existe alguna) o, en su defecto, la dirección IP más alta en una interfaz física operativa. En este caso, R1 seleccionó la dirección IP más alta en una interfaz física operativa: la de G0/2.
+Por lo tanto, al crear el proceso OSPF por primera vez, el router no puede considerar ninguna configuración manual de RID: aún no se ha establecido ninguna. En su lugar, solo considera la segunda y la tercera opción para asignar el RID: la dirección IP más alta en una interfaz de *loopback* operativa (si existe alguna) o, en su defecto, la dirección IP más alta en una interfaz física operativa. En este caso, R1 seleccionó la dirección IP más alta en una interfaz física operativa: la de *G0/2*.
 
 !!!note "Nota"
-    Si crea un proceso OSPF y el router no tiene interfaces operativas con una dirección IP, el proceso no podrá iniciarse hasta que configure el RID o una interfaz con una dirección IP se vuelva operativa.
+    Si se crea un proceso OSPF y el router no tiene interfaces operativas con una dirección IP, el proceso no podrá iniciarse hasta que se configure el RID o una interfaz con una dirección IP se vuelva operativa.
 
-#### Interfaces de loopback
+#### Interfaces de *loopback*
 
-Una interfaz de loopback es una interfaz de router virtual que siempre está activa y accesible mientras el dispositivo esté operativo (aunque se puede desactivar mediante el apagado). A diferencia de las interfaces físicas (por ejemplo, GigabitEthernet0/1), que dependen de puertos y conexiones físicas, las interfaces de loopback se basan completamente en software. La ventaja de una interfaz de loopback es que proporciona una interfaz estable y fiable que permite identificar y conectarse al router sin depender de ningún puerto físico en particular. Abajo se muestra cómo la interfaz de loopback del R1 proporciona una interfaz estable para que un administrador se conecte mediante Secure Shell (SSH).
+Una interfaz de *loopback* es una interfaz de router virtual que siempre está activa y accesible mientras el dispositivo esté operativo (aunque se puede desactivar mediante el apagado). 
+
+A diferencia de las interfaces físicas (por ejemplo, GigabitEthernet0/1), que dependen de puertos y conexiones físicas, las interfaces de loopback se basan completamente en software. La ventaja de una interfaz de loopback es que proporciona una interfaz estable y fiable que permite identificar y conectarse al router sin depender de ningún puerto físico en particular. Abajo se muestra cómo la interfaz de loopback del R1 proporciona una interfaz estable para que un administrador se conecte mediante Secure Shell (SSH).
 
 ![](img/ospf-6.png)
 
@@ -216,7 +219,7 @@ Un administrador usa SSH para conectarse a la interfaz Loopback0 de R1. Loopback
 
 Si el administrador, por ejemplo, hubiera intentado conectarse a la dirección IP de la interfaz G0/0 de R1, la conexión habría fallado; la interfaz G0/0 está inactiva debido a un fallo de hardware. Por otro lado, la interfaz Loopback0 proporciona una dirección IP estable a la que el administrador puede conectarse independientemente del estado de los puertos físicos de R1. Sin embargo, es importante tener en cuenta que el PC del administrador aún necesita una ruta física válida para llegar a R1. Si tanto G0/0 como G0/1 estuvieran inactivos, el PC no podría conectarse a R1 a pesar de la interfaz Loopback.
 
-Aunque las interfaces de loopback no son obligatorias, se recomienda configurarlas en los routers y activar OSPF para que todos puedan acceder a las interfaces de loopback de los demás. Para crear una interfaz de loopback, utilice el comando interface loopback number; normalmente se empieza con Loopback0. En el siguiente ejemplo, configuro una interfaz de loopback en R1, le configuro una dirección IP y vuelvo a comprobar el RID de OSPF:
+Aunque las interfaces de loopback no son obligatorias, se recomienda configurarlas en los routers y activar OSPF para que todos puedan acceder a las interfaces de loopback de los demás. Para crear una interfaz de loopback, utilice el comando interface loopback number; normalmente se empieza con Loopback0. En el siguiente ejemplo, se configura una interfaz de loopback en R1, se le configura una dirección IP y se vuelve a comprobar el RID de OSPF:
 
 ```
 R1(config)# interface loopback0
@@ -226,12 +229,10 @@ R1(config-if)# do show ip protocols
   Router ID 203.0.113.1
 . . .
 ```
-
-
 !!!note "Nota"
     Es estándar configurar las interfaces de loopback con una máscara de red /32 (255.255.255.255). Esto se debe a que, por naturaleza, una interfaz de loopback no necesita comunicarse con otros dispositivos en la misma subred (como lo haría una interfaz física). En cambio, representa un solo dispositivo y, por lo tanto, no necesita un rango de direcciones.
 
-A pesar de configurar una interfaz de loopback, el RID de R1 permanece invariable; para mantenerlo estable, IOS no lo vuelve a seleccionar al configurar una nueva interfaz. Es posible restablecer el proceso OSPF con el comando clear ip ospf process en modo EXEC privilegiado, pero ni siquiera esto hará que R1 seleccione la dirección IP de la interfaz de loopback como RID, como se muestra en el siguiente ejemplo:
+A pesar de configurar una interfaz de loopback, el RID de R1 permanece invariable; para mantenerlo estable, IOS no lo vuelve a seleccionar al configurar una nueva interfaz. Es posible restablecer el proceso OSPF con el comando `clear ip ospf process` en modo EXEC privilegiado, pero ni siquiera esto hará que R1 seleccione la dirección IP de la interfaz de loopback como RID, como se muestra en el siguiente ejemplo:
 
 ```
 R1# clear ip ospf process
@@ -241,13 +242,12 @@ R1# show ip protocols
   Router ID 203.0.113.1
 . . .
 ```
-
 !!!note "Nota"
     Es importante recordar que, una vez que el router haya seleccionado su RID, lo mantendrá incluso si se configura una interfaz de loopback y se restablece OSPF. La dirección IP de una interfaz de loopback solo se usará para la selección inicial del RID al crear el proceso OSPF. Para que un router cambie su RID después de haberlo seleccionado, debe configurarlo manualmente; lo explicaremos a continuación.
 
 #### Cambiar el RID
 
-Una vez que R1 ha seleccionado su RID, la mejor manera de cambiarlo es configurarlo manualmente y luego reiniciar el proceso OSPF (si es necesario). En cualquier caso, codificar el RID del router con configuración manual se considera una buena práctica para garantizar RID predecibles en todos los routers. En el siguiente ejemplo, configuro el comando router-id en R1, lo que provoca que cambie su RID:
+Una vez que R1 ha seleccionado su RID, la mejor manera de cambiarlo es configurarlo manualmente y luego reiniciar el proceso OSPF (si es necesario). En cualquier caso, codificar el RID del router con configuración manual se considera una buena práctica para garantizar RID predecibles en todos los routers. En el siguiente ejemplo, se configura el comando `router-id` en R1, lo que provoca que cambie su RID:
 
 ```
 R1(config)# router ospf 1
@@ -257,13 +257,12 @@ R1(config-router)# do show ip protocols
   Router ID 172.16.1.1
 . . .
 ```
-
 !!!note "Nota"
-    Si el router ya ha establecido una relación de vecindad con uno o más vecinos OSPF, deberá reiniciar el proceso OSPF con el proceso clear ip ospf para que el RID recién configurado surta efecto. Sin embargo, en este punto del ejemplo, aún no he activado OSPF en ninguna de las interfaces del R1, por lo que no tiene vecinos OSPF. Por eso, el nuevo RID se implementó de inmediato.
+    Si el router ya ha establecido una relación de vecindad con uno o más vecinos OSPF, deberá reiniciar el proceso OSPF con el proceso `clear ip ospf` para que el RID recién configurado surta efecto. Sin embargo, en este punto del ejemplo, aún no se hs activado OSPF en ninguna de las interfaces del R1, por lo que no tiene vecinos OSPF. Por eso, el nuevo RID se implementó de inmediato.
 
 Aunque el RID OSPF suele derivarse de una de las direcciones IP del router, es importante tener en cuenta que no es una dirección IP; es simplemente un valor de 32 bits con un formato similar al de una dirección IP (notación decimal con puntos). Siempre que el RID sea único en el AS OSPF, puede ser cualquier valor de 32 bits.
 
-En el siguiente ejemplo, configuro una interfaz de loopback en R2 y luego creo el proceso OSPF. En este caso, R2 toma la dirección IP de Loopback0 como su RID, ya que configuré la interfaz de loopback antes de crear el proceso OSPF:
+En el siguiente ejemplo, se configura una interfaz de loopback en R2 y luego se crea el proceso OSPF. En este caso, R2 toma la dirección IP de Loopback0 como su RID, ya que se ha configurado la interfaz de loopback antes de crear el proceso OSPF:
 
 ```
 R2(config)# interface l0
@@ -274,9 +273,8 @@ R2(config-router)# do show ip protocols
   Router ID 172.16.1.2
 . . .
 ```
-
 !!!note "Nota"
-    Por cuestiones de espacio, no mostraré las configuraciones, pero también configuré Loopback0 en R3 (172.16.1.3/32) y R4 (172.16.1.4/32) y creé el proceso OSPF.
+    Por cuestiones de espacio, no se mostrarán las configuraciones, pero también ha sido configurada Loopback0 en R3 (172.16.1.3/32) y R4 (172.16.1.4/32) y se ha creado el proceso OSPF.
 
 #### Direcciones de loopback e interfaces de loopback 
 
@@ -325,7 +323,7 @@ R2(config-if-range)# do show ip protocols
     GigabitEthernet0/1
 ```
 
-Creo que estará de acuerdo en que este método es mucho más sencillo que usar el comando network, aunque debería conocer ambos para el examen CCNA. En el siguiente ejemplo, utilizo este método para activar OSPF también en las interfaces de R3 y R4:
+Creo que estaremos de acuerdo en que este método es mucho más sencillo que usar el comando `network`. En el siguiente ejemplo, se utiliza este método para activar OSPF también en las interfaces de R3 y R4:
 
 ```
 R3(config)# interface range g0/0-2,l0
@@ -342,7 +340,9 @@ La activación de OSPF en una interfaz hace que el router realice dos acciones c
 + Intenta formar relaciones de vecinos con los routers conectados a la interfaz.
 + Anuncia el prefijo de red de la interfaz a los vecinos.
 
-Sin embargo, en algunos casos, podría ser conveniente que el router realice la segunda acción (anunciar el prefijo de red) sin intentar establecer relaciones de red en la interfaz. Para establecer relaciones de vecindad, los routers con OSPF habilitado envían mensajes de saludo desde sus interfaces. Si una interfaz no está conectada a otro router, estos mensajes de saludo se desperdician, consumiendo recursos de CPU y memoria del router y ancho de banda de la red. Además, estos mensajes OSPF innecesarios pueden representar un riesgo de seguridad, ya que usuarios maliciosos podrían recopilar información sobre la red al examinarlos.
+Sin embargo, en algunos casos, podría ser conveniente que el router realice la segunda acción (anunciar el prefijo de red) sin intentar establecer relaciones de red en la interfaz. Para establecer relaciones de vecindad, los routers con OSPF habilitado envían mensajes de saludo desde sus interfaces.
+
+Si una interfaz no está conectada a otro router, estos mensajes de saludo se desperdician, consumiendo recursos de CPU y memoria del router y ancho de banda de la red. Además, estos mensajes OSPF innecesarios pueden representar un riesgo de seguridad, ya que usuarios maliciosos podrían recopilar información sobre la red al examinarlos.
 
 !!!note "Nota"
     Aquí es donde entran en juego las interfaces pasivas. Una interfaz pasiva en OSPF es aquella que no envía mensajes OSPF para iniciar relaciones con vecinos, aunque esté habilitada para OSPF. Sin embargo, el router anunciará el prefijo de red de la interfaz a sus vecinos OSPF, lo que les permite reenviar paquetes a destinos en la red.
@@ -355,7 +355,7 @@ La figura de abajo muestra una situación en la que se debe configurar una inter
 R3 anuncia el prefijo de red de G0/1 (una interfaz pasiva), pero no envía mensajes de saludo OSPF desde allí.
 ///
 
-Configurar interfaces de loopback como pasivas también se considera una buena práctica en OSPF. Dado que una interfaz de loopback es una interfaz virtual que no está conectada físicamente a ninguna red, no es prácticamente necesario que envíe mensajes de saludo OSPF para intentar establecer relaciones de vecindad. Para configurar una interfaz pasiva, utilice el comando passive-interface interface-name en el modo de configuración del router. En el siguiente ejemplo, configuro R3 G0/1 y L0 como interfaces pasivas:
+Configurar interfaces de loopback como pasivas también se considera una buena práctica en OSPF. Dado que una interfaz de loopback es una interfaz virtual que no está conectada físicamente a ninguna red, no es prácticamente necesario que envíe mensajes de saludo OSPF para intentar establecer relaciones de vecindad. Para configurar una interfaz pasiva, se utiliza el comando `passive-interface interface-name en el modo de configuración del router. En el siguiente ejemplo, se configuran R3 G0/1 y L0 como interfaces pasivas:
 
 ```
 R3(config)# router ospf 1
@@ -373,7 +373,7 @@ R3(config-router)# do show ip protocols
     Loopback0
 ```
 
-Otro método para configurar interfaces pasivas es usar el comando `passive-interface default`, que establece todas las interfaces como pasivas por defecto. Luego, puede usar el comando `no passive-interface interface-name` para especificar qué interfaces no deben ser pasivas. Este método de configuración puede ser conveniente si un router tiene muchas interfaces habilitadas para OSPF, pero solo unas pocas interfaces en las que necesita establecer relaciones de vecindad OSPF. Aunque este no es el caso de R2, en el siguiente ejemplo, utilizo este método para configurar L0 como interfaz pasiva y G0/0 y G0/1 como no pasivas:
+Otro método para configurar interfaces pasivas es usar el comando `passive-interface default`, que establece todas las interfaces como pasivas por defecto. Luego, puede usar el comando `no passive-interface interface-name` para especificar qué interfaces no deben ser pasivas. Este método de configuración puede ser conveniente si un router tiene muchas interfaces habilitadas para OSPF, pero solo unas pocas interfaces en las que necesita establecer relaciones de vecindad OSPF. Aunque este no es el caso de R2, en el siguiente ejemplo, se utiliza este método para configurar L0 como interfaz pasiva y G0/0 y G0/1 como no pasivas:
 
 ```
 R2(config)# router ospf 1
@@ -384,17 +384,19 @@ R2(config-router)# no passive-interface g0/1
 
 ### Anunciando una ruta predeterminada
 
-En la mayoría de los casos, los hosts conectados a routers en un sistema autónomo OSPF no solo necesitan comunicarse entre sí, sino también con hosts en redes externas, como Internet. Para habilitar esta comunicación, puede configurar una ruta predeterminada en el router conectado a su ISP y luego configurarlo para que comparta dicha ruta predeterminada con los demás routers del sistema autónomo OSPF. Aquí se muestra cómo configurar esto.
+En la mayoría de los casos, los hosts conectados a routers en un sistema autónomo OSPF no solo necesitan comunicarse entre sí, sino también con hosts en redes externas, como Internet. Para habilitar esta comunicación, se puede configurar una ruta predeterminada en el router conectado a su ISP y luego configurarlo para que comparta dicha ruta predeterminada con los demás routers del sistema autónomo OSPF. Aquí se muestra cómo configurar esto.
 
 ![](img/ospf-8.png)
 
 /// figura
-El R1 funciona como un ASBR, anunciando una ruta predeterminada en el AS OSPF. Después de configurar una ruta predeterminada, utilice la función `default-information originate` para anunciar la ruta a otros routers en el AS OSPF.
+El R1 funciona como un ASBR, anunciando una ruta predeterminada en el AS OSPF. Después de configurar una ruta predeterminada, se utiliza la función `default-information originate` para anunciar la ruta a otros routers en el AS OSPF.
 ///
 
-Para que R1 anuncie una ruta predeterminada a R2, R3 y R4, primero debe configurar una ruta predeterminada estática en R1. Si configura "default-information origin" en R1 sin configurar una ruta predeterminada, R1 no anunciará una ruta predeterminada a otros routers; primero debe tener una ruta predeterminada en su propia tabla de enrutamiento.
+Para que R1 anuncie una ruta predeterminada a R2, R3 y R4, primero debe configurar una ruta predeterminada estática en R1. Si configura `default-information origin` en R1 sin configurar una ruta predeterminada, R1 no anunciará una ruta predeterminada a otros routers; primero debe tener una ruta predeterminada en su propia tabla de enrutamiento.
 
-Después de configurar la ruta predeterminada, use el comando `default-information originate` en el modo de configuración del router para que R1 anuncie la ruta predeterminada a los demás routers. Esto se hace en el siguiente ejemplo. Observe la instrucción adicional agregada a la salida de `show ip protocols` R1 is now an ASBR:
+Después de configurar la ruta predeterminada, se ha de usar el comando `default-information originate` en el modo de configuración del router para que R1 anuncie la ruta predeterminada a los demás routers. Esto se muestra en el siguiente ejemplo.
+
+Observad la instrucción adicional agregada a la salida de `show ip protocols`, R1 es ahora un ASBR:
 
 ```
 R1(config)# ip route 0.0.0.0 0.0.0.0 203.0.113.2
@@ -438,7 +440,7 @@ O        172.16.1.4 [110/3] via 10.0.0.10, 00:13:54,
 !!!note "Nota"
     Las interfaces de loopback añaden un coste de 1 a una ruta. Por ejemplo, el coste de R2 para llegar a la interfaz de loopback de R1 (172.16.1.1) es de 2: 1 para el enlace R2-R1, más 1 para la L0 de R1 (Loopback0).
 
-Observe que R2 ha insertado dos rutas a 172.16.1.4 en su tabla de enrutamiento; este es un ejemplo de ECMP. De forma predeterminada, OSPF insertará hasta cuatro rutas de igual costo a un destino en la tabla de enrutamiento. Este valor se puede modificar con el comando "maximum-paths number" en el modo de configuración del router, aunque el valor predeterminado de 4 suele ser suficiente para la mayoría de los escenarios de red.
+Observad que R2 ha insertado dos rutas a 172.16.1.4 en su tabla de enrutamiento; este es un ejemplo de ECMP. De forma predeterminada, OSPF insertará hasta cuatro rutas de igual costo a un destino en la tabla de enrutamiento. Este valor se puede modificar con el comando `maximum-paths number` en el modo de configuración del router, aunque el valor predeterminado de 4 suele ser suficiente para la mayoría de los escenarios de red.
 
 ## Vecinos y adyacencias
 
@@ -457,7 +459,7 @@ Para que los routers OSPF intercambien información de enrutamiento, primero nec
 
 Para que los routers OSPF intercambien información de enrutamiento, deben pasar por una serie de estados vecinos, en los cuales verifican la coincidencia de diversos parámetros de configuración. La imagne de bajo describe los estados vecinos OSPF, desde Inactivo hasta Completo.
 
-Podríamos dedicar varias páginas a este proceso. Si continúa sus estudios de OSPF más allá del CCNA, los detalles de este proceso son esenciales para comprender el protocolo OSPF y cómo solucionar sus problemas. Sin embargo, para el examen CCNA, basta con una comprensión general del propósito y la secuencia de cada estado.
+Podríamos hablar largo y tendido sobre este proceso pero sobrepasa los objetivos del curso.
 
 ![](img/ospf-9.png)
 
@@ -467,7 +469,9 @@ Estados vecinos OSPF: Inactivo, Inicialización, Bidireccional, ExStart, Interca
 
 Cuando OSPF se activa en una interfaz, el router envía regularmente mensajes de saludo OSPF, que se utilizan para descubrir dinámicamente vecinos OSPF y mantener las relaciones entre ellos una vez establecidas. Estos mensajes de saludo incluyen información diversa, dos de los cuales son el RID del router local y los RID de cualquier router vecino que tenga en cuenta en la interfaz.
 
-Los mensajes de saludo OSPF se envían a la dirección IP 224.0.0.5, que es una dirección IP de multidifusión. Mientras que los paquetes de unidifusión son uno a uno (de un host a otro) y los paquetes de difusión son uno a todos, los paquetes de multidifusión son uno a múltiples (pero no necesariamente todos). Un paquete enviado a la dirección IP de multidifusión 224.0.0.5 será inundado por un conmutador y, por lo tanto, recibido por todos los hosts del segmento. Sin embargo, solo las interfaces del router con OSPF activado estarán interesadas en el contenido del paquete; los demás hosts simplemente lo ignorarán, como se muestra en la imagen:
+Los mensajes de saludo OSPF se envían a la dirección IP *224.0.0.5*, que es una dirección IP de multidifusión. Mientras que los paquetes de unidifusión son uno a uno (de un host a otro) y los paquetes de difusión son uno a todos, los paquetes de multidifusión son uno a múltiples (pero no necesariamente todos). 
+
+Un paquete enviado a la dirección IP de multidifusión 224.0.0.5 será inundado por un switch y, por lo tanto, recibido por todos los hosts del segmento. Sin embargo, solo las interfaces del router con OSPF activado estarán interesadas en el contenido del paquete; los demás hosts simplemente lo ignorarán, como se muestra en la imagen:
 
 ![](img/ospf-10.png)
 
@@ -512,7 +516,7 @@ Incluso después de establecer una relación de vecinos o adyacencia, los router
 
 ### Tipos de red OSPF
 
-OSPF utiliza una configuración de interfaz denominada tipo de red para determinar su comportamiento en una red específica. En este contexto, una red es una conexión entre dos o más routers (un segmento). El tipo de red influye en aspectos como los temporizadores de mensajes OSPF, la elección de un DR y un BDR, y si todas las relaciones de vecinos se convertirán en adyacencias completas.
+OSPF utiliza una configuración de interfaz denominada *network type* para determinar su comportamiento en una red específica. En este contexto, una red es una conexión entre dos o más routers (un segmento). El tipo de red influye en aspectos como los temporizadores de mensajes OSPF, la elección de un DR y un BDR, y si todas las relaciones de vecinos se convertirán en adyacencias completas.
 
 Existen varios tipos de redes OSPF: de difusión, multiacceso sin difusión (NBMA), punto a punto, punto a multipunto, punto a multipunto sin difusión y loopback. Esta tabla resume estos dos tipos de red.
 
@@ -523,7 +527,6 @@ Existen varios tipos de redes OSPF: de difusión, multiacceso sin difusión (NBM
 | Establecer adyacencia completa solo con DR y BDR | Establecer adyacencia completa |
 | Vecinos descubiertos dinámicamente | Vecinos descubiertos dinámicamente |
 | Temporizadores predeterminados: hello = 10, dead = 40 | Temporizadores predeterminados: hello = 10, dead = 40 |
-
 
 Las dos características comunes de estos tipos de red son la detección dinámica de vecinos y los temporizadores predeterminados. Al enviar mensajes de saludo desde interfaces compatibles con OSPF, los routers pueden detectar dinámicamente qué vecinos están conectados a la interfaz, en lugar de requerir que un administrador configure manualmente las direcciones IP de los vecinos (como se requiere en algunos tipos de red OSPF).
 
@@ -555,7 +558,7 @@ Seis routers están conectados al mismo segmento de red. Sin el DR/BDR, se reque
 ///
 
 !!!note "Nota"
-    Para dirigir los mensajes únicamente al DR y al BDR, los DRothers envían los paquetes a la dirección IP de multidifusión 224.0.0.6. Recuerde las dos direcciones IP de multidifusión OSPF: 224.0.0.5 (todos los routers OSPF) y 224.0.0.6 (solo DR y BDR).
+    Para dirigir los mensajes únicamente al DR y al BDR, los DRothers envían los paquetes a la dirección IP de multidifusión 224.0.0.6. Recuerdad las dos direcciones IP de multidifusión OSPF: 224.0.0.5 (todos los routers OSPF) y 224.0.0.6 (solo DR y BDR).
 
 Dependiendo de la cantidad de routers conectados al segmento, la función DR/BDR de la red de difusión puede reducir considerablemente los recursos utilizados por OSPF en el segmento. Esto podría reducirse aún más seleccionando solo un DR, pero el BDR es importante para proporcionar estabilidad y resiliencia; si el DR falla por alguna razón, el BDR asume automáticamente el nuevo DR.
 
@@ -595,9 +598,9 @@ Neighbor ID  Pri  State         Dead Time  Address   Interface
 Como se muestra en la salida, R5 es efectivamente el DR del segmento. Otro punto importante es que R2 y R3 no forman una adyacencia completa; como DROthers, permanecen vecinos en el estado bidireccional. Esto significa que no intercambian LSA entre sí.
 
 !!!note "Nota"
-    Aunque los DROthers no intercambian LSA directamente entre sí, conocerán las LSA de cada uno a través del DR/BDR. Recuerde que todos los routers en el área OSPF deben tener la misma LSDB.
+    Aunque los DROthers no intercambian LSA directamente entre sí, conocerán las LSA de cada uno a través del DR/BDR. Recuerdad que todos los routers en el área OSPF deben tener la misma LSDB.
 
-A estas alturas, probablemente se esté preguntando cómo se eligen los DR y los BDR. Los DR y los BDR se eligen según los dos criterios siguientes:
+A estas alturas, probablemente uno se pregunte cómo se eligen los DR y los BDR. Los DR y los BDR se eligen según los dos criterios siguientes:
 
 + La máxima prioridad de interfaz
 + El RID más alto
@@ -605,11 +608,11 @@ A estas alturas, probablemente se esté preguntando cómo se eligen los DR y los
 El router con la prioridad de interfaz más alta se convertirá en el DR del segmento, y el router con la segunda prioridad más alta se convertirá en el BDR. La prioridad de interfaz OSPF es un valor configurable (predeterminado: 1) que se puede configurar con el comando `ip ospf priority priority` en el modo de configuración de interfaz.
 
 !!!note "Nota"
-    Si deseamos asegurarmps de que un router nunca se convierta en DR o BDR de un segmento, se puede configurar `ip ospf priority 0` en su interfaz.
+    Si deseamos asegurarnos de que un router nunca se convierta en DR o BDR de un segmento, se puede configurar `ip ospf priority 0` en su interfaz.
 
 En el ejemplo de la última imagen, todas las interfaces tenían la prioridad predeterminada de 1, por lo que se utilizó el segundo parámetro para determinar el DR de cada segmento: el RID OSPF. Si las prioridades de las interfaces están empatadas, el router con el RID más alto se convertirá en el DR (R5, 172.16.1.5) y el router con el segundo RID más alto, en el BDR (R4, 172.16.1.4).
 
-Modifiquemos la prioridad de la interfaz de R2 G0/1 para probar la elección de DR/BDR. En el siguiente ejemplo, establezco la prioridad de la interfaz de R2 G0/1 en 100 y confirmo los resultados:
+Modifiquemos la prioridad de la interfaz de R2 G0/1 para probar la elección de DR/BDR. En el siguiente ejemplo, se establece la prioridad de la interfaz de R2 G0/1 en 100 y se confirman los resultados:
 
 ```
 R2(config)# interface g0/1
@@ -630,7 +633,7 @@ Neighbor ID  Pri  State         Dead Time  Address   Interface
 172.16.1.5   1    FULL/DR       00:00:31   10.0.0.4  GigabitEthernet0/1
 ```
 
-Aunque R2 G0/1 ahora tiene la máxima prioridad del segmento, R5 y R4 siguen siendo el DR y el BDR. Esto se debe a que, una vez elegidos, no se les preemptará (sus roles no se asumirán), incluso si se aumenta la prioridad de un router existente o si un router con mayor prioridad se conecta al segmento. Para que un DR o un BDR ceda su rol, se puede usar el comando `clear ip ospf process` para restablecer el proceso OSPF del router, como se hace en R5 en el siguiente ejemplo:
+Aunque R2 G0/1 ahora tiene la máxima prioridad del segmento, R5 y R4 siguen siendo el DR y el BDR. Esto se debe a que, una vez elegidos, no serán *preempted* (sus roles no se asumirán), incluso si se aumenta la prioridad de un router existente o si un router con mayor prioridad se conecta al segmento. Para que un DR o un BDR ceda su rol, se puede usar el comando `clear ip ospf process` para restablecer el proceso OSPF del router, como se hace en R5 en el siguiente ejemplo:
 
 ```
 R5# clear ip ospf process
@@ -644,14 +647,14 @@ Neighbor ID  Pri  State         Dead Time  Address   Interface
 
 Tras reiniciar el proceso OSPF de R5, R4 (anteriormente el BDR) se convierte en el nuevo DR, y R2 en el nuevo BDR, a pesar de tener la máxima prioridad. Estos resultados revelan un punto importante sobre el funcionamiento del DR y el BDR: si el DR falla, los routers conectados al segmento no realizan una elección para el nuevo DR. En su lugar, el BDR asume inmediatamente el rol de nuevo DR; por eso, R4 se convierte en el nuevo DR. A continuación, se realiza una elección para determinar el nuevo BDR; R2 gana esta elección y se convierte en el nuevo BDR. Para que R2 sea el DR, habría que reiniciar el proceso OSPF de R4, lo que haría que R2 (el BDR) asumiera inmediatamente el rol de R4.
 
-Tipo de red punto a punto
+#### Tipo de red punto a punto
 
 Si bien la característica DR/BDR del tipo de red de difusión puede reducir la cantidad de recursos utilizados por OSPF, la elección de un DR y un BDR extiende el tiempo que tardan los routers en establecer una adyacencia completa; si solo hay dos routers conectados al segmento, esto es innecesario e ineficiente.
 
 Una conexión punto a punto es un enlace directo entre dos routers. Cuando OSPF está habilitado en este enlace con el tipo de red predeterminado de difusión, un router se convierte en el DR y el otro, en el BDR. Sin embargo, estas designaciones no ofrecen ninguna ventaja en este caso, ya que ambos routers establecen una adyacencia completa.
 
 !!!note "Nota"
-    El tipo de red punto a punto es el predeterminado en las interfaces seriales, que solían ser comunes en las conexiones WAN. Debido a la mayor velocidad y el menor costo de la fibra óptica Ethernet, las conexiones seriales ahora se consideran una tecnología obsoleta. Para usar este tipo de red en enlaces Ethernet, debe configurarse manualmente.
+    El tipo de red punto a punto es el predeterminado en las interfaces serial, que solían ser comunes en las conexiones WAN. Debido a la mayor velocidad y el menor costo de la fibra óptica Ethernet, las conexiones serial ahora se consideran una tecnología obsoleta. Para usar este tipo de red en enlaces Ethernet, debe configurarse manualmente.
 
 Al usar el tipo de red punto a punto OSPF, eliminamos el proceso de selección de DR/BDR, lo que permite a los routers establecer una adyacencia completa en menos tiempo. Este tipo de red está diseñado para conexiones directas entre dos routers y es la opción más eficiente en estas situaciones. La siguiente imagen muestra una situación en la que se debe configurar el tipo de red punto a punto. R1 y R2 tienen una conexión punto a punto, por lo que no es necesario seleccionar un DR ni un BDR.
 
@@ -688,7 +691,7 @@ Aunque los tipos de red punto a punto y de difusión OSPF permiten que los route
 + La configuración de MTU de IP debe coincidir.*
 + El tipo de red debe coincidir.*
 
-Una discrepancia entre los dos últimos, que he marcado con asteriscos (*), no impedirá que los routers se conviertan en vecinos, pero sí que OSPF funcione correctamente. Analicemos estos requisitos uno por uno y veamos cómo afecta OSPF. Utilizaré una conexión simple entre dos routers: R1 (192.168.1.1/30) y R2 (192.168.1.2/30). En el siguiente ejemplo, configuro una discrepancia de número de área en R1 y R2, y no se convierten en vecinos OSPF. Tras corregir la discrepancia, el problema se resuelve:
+Una discrepancia entre los dos últimos, que se ha marcado con asteriscos (*), no impedirá que los routers se conviertan en vecinos, pero sí que OSPF funcione correctamente. Analicemos estos requisitos uno por uno y veamos cómo afecta OSPF. Utilizaremos una conexión simple entre dos routers: R1 (192.168.1.1/30) y R2 (192.168.1.2/30). En el siguiente ejemplo, se configura una discrepancia de número de área en R1 y R2, y no se convierten en vecinos OSPF. Tras corregir la discrepancia, el problema se resuelve:
 
 ```
 R1(config-if)# ip ospf 1 area 0
@@ -704,7 +707,7 @@ Neighbor ID  Pri  State     Dead Time  Address      Interface
 192.168.1.1  1    FULL/BDR  00:00:37   192.168.1.1  GigabitEthernet0/0
 ```
 
-En el siguiente ejemplo, cambio la máscara de red de la interfaz de R2. Aunque no cambié la dirección IP, la simple discrepancia de la máscara de red hace que la adyacencia cambie de "Completa" a "Inactiva".
+En el siguiente ejemplo, se cambia la máscara de red de la interfaz de R2. Aunque no cambié la dirección IP, la simple discrepancia de la máscara de red hace que la adyacencia cambie de "Completa" a "Inactiva".
 
 ```
 R2(config-if)# ip address 192.168.1.2 255.255.255.0
@@ -731,7 +734,7 @@ Nbr 192.168.1.1 on GigabitEthernet0/0 from LOADING to
 FULL, Loading Done
 ```
 
-El cuarto requisito es que los RID de los routers sean únicos, es decir, el único parámetro que no debe coincidir. En el siguiente ejemplo, modifico el RID de R2 para que coincida con el de R1, restablezco el proceso OSPF y no logran convertirse en vecinos. Eliminar la configuración del RID de R2 soluciona el problema:
+El cuarto requisito es que los RID de los routers sean únicos, es decir, el único parámetro que no debe coincidir. En el siguiente ejemplo, modificamos el RID de R2 para que coincida con el de R1, restablecemos el proceso OSPF y no logran convertirse en vecinos. Eliminar la configuración del RID de R2 soluciona el problema:
 
 ```
 R2(config-router)# router-id 192.168.1.1
@@ -763,13 +766,13 @@ Nbr 192.168.1.1 on GigabitEthernet0/0 from LOADING to
 FULL, Loading Done
 ```
 
-El sexto requisito es que la configuración de autenticación coincida. Puede configurar una contraseña para autenticar vecinos OSPF y garantizar que solo los routers previstos establezcan relaciones de vecindad. La autenticación OSPF queda fuera del alcance del examen CCNA, pero se puede usar el comando `ip ospf authentication` en el modo de configuración de interfaz para habilitar la autenticación y el comando `ip ospf authentication-key password` para configurar la contraseña.
+El sexto requisito es que la configuración de autenticación coincida. Puede configurar una contraseña para autenticar vecinos OSPF y garantizar que solo los routers previstos establezcan relaciones de vecindad. Se puede usar el comando `ip ospf authentication` en el modo de configuración de interfaz para habilitar la autenticación y el comando `ip ospf authentication-key password` para configurar la contraseña.
 
-El séptimo requisito es que la configuración de la unidad máxima de transmisión (MTU) IP de los routers coincida. Con anterioridad hemos mencionodo alguna vez de forma breve la MTU IP; ésta determina el tamaño máximo de un paquete IPv4. Si bien una discrepancia en la MTU IP no impide que dos routers OSPF se conviertan en vecinos, no podrán establecer una adyacencia completa ni avanzar más allá de los estados ExStart/Exchange. Al igual que la autenticación, los detalles de la MTU IP quedan fuera del alcance del examen CCNA, pero se puede modificar la MTU IP de una interfaz con el comando `ip mtu bytes` en el modo de configuración de interfaz; la configuración predeterminada en las interfaces Ethernet es de 1500 bytes.
+El séptimo requisito es que la configuración de la unidad máxima de transmisión (MTU) IP de los routers coincida. Con anterioridad hemos mencionodo alguna vez de forma breve la MTU IP; ésta determina el tamaño máximo de un paquete IPv4. Si bien una discrepancia en la MTU IP no impide que dos routers OSPF se conviertan en vecinos, no podrán establecer una adyacencia completa ni avanzar más allá de los estados ExStart/Exchange. Se puede modificar la MTU IP de una interfaz con el comando `ip mtu bytes` en el modo de configuración de interfaz; la configuración predeterminada en las interfaces Ethernet es de 1500 bytes.
 
 El requisito final es que los tipos de red OSPF coincidan. Este requisito es diferente a los demás que hemos tratado hasta ahora: un router con el tipo de red de difusión y un router con el tipo de red punto a punto podrán establecer una adyacencia completa. Sin embargo, el problema radica en que los routers no podrán sincronizar sus LSDB; no aprenderán las rutas del otro.
 
-En el siguiente ejemplo, configuro una interfaz de loopback en R2 y habilito OSPF. Luego, configuro el tipo de red punto a punto G0/0 en R2, lo que resulta en una discrepancia en el tipo de red: la interfaz de R1 sigue usando el tipo de red de difusión. A pesar de la discrepancia en el tipo de red, la tabla de vecinos OSPF de R2 muestra una adyacencia completa con R1. A continuación, reviso las tablas de vecinos y de enrutamiento de R1:
+En el siguiente ejemplo, configuramos una interfaz de loopback en R2 y habilito OSPF. Luego, configuramos el tipo de red punto a punto G0/0 en R2, lo que resulta en una discrepancia en el tipo de red: la interfaz de R1 sigue usando el tipo de red de difusión. A pesar de la discrepancia en el tipo de red, la tabla de vecinos OSPF de R2 muestra una adyacencia completa con R1. A continuación, revisamos las tablas de vecinos y de enrutamiento de R1:
 
 ```
 R2(config)# interface l0
@@ -809,9 +812,9 @@ Un AS OSPF y el contenido de su LSDB. Cada router anuncia una LSA de tipo 1 (rou
 !!!note "Nota"
     R3, R4 y R5 no anuncian una LSA de tipo 2 para sus interfaces G0/1. Como se mencionó anteriormente, al no tener vecinos en esas interfaces, son DR solo de nombre.
 
-Para ver la LSDB de OSPF, utilice el comando `show ip ospf database`. El resultado de este comando debe ser el mismo en todos los routers; todos deben tener las mismas LSA en su LSDB. En el siguiente ejemplo, utilizo el comando en el R1. Los detalles de cómo leer el resultado quedan fuera del alcance de CCNA; solo tenga en cuenta que cada router anuncia una LSA de tipo 1, el R5 anuncia una única LSA de tipo 2 y el R1 anuncia una única LSA de tipo 5.
+Para ver la LSDB de OSPF, utilizaremos el comando `show ip ospf database`. El resultado de este comando debe ser el mismo en todos los routers; todos deben tener las mismas LSA en su LSDB. En el siguiente ejemplo, se utilizs el comando en el R1. Únicamente tened en cuenta que cada router anuncia una LSA de tipo 1, el R5 anuncia una única LSA de tipo 2 y el R1 anuncia una única LSA de tipo 5.
 
-R```
+```
 R1# show ip ospf database
            OSPF Router with ID (172.16.1.1) (Process ID 1)
              Router Link States (Area 0)
@@ -831,6 +834,7 @@ Link ID      ADV Router   Age    Seq#         Checksum   Tag
 0.0.0.0      172.16.1.1   1850   0x80000001   0x009B58   1
 ```
 
+
 ## Resumen
 
 + Se utilizan dos versiones de OSPF: OSPFv2 (para IPv4) y OSPFv3 (principalmente para IPv6).
@@ -843,33 +847,33 @@ Link ID      ADV Router   Age    Seq#         Checksum   Tag
 + Las rutas intraárea son rutas a destinos en un área a la que el router está conectado. Las rutas interárea son rutas a destinos en un área a la que el router no está conectado. Las rutas externas son rutas a destinos fuera del sistema autónomo OSPF.
 + La métrica de OSPF se llama costo, y el costo de una ruta es el costo acumulativo de cada interfaz desde la que se debe enviar un paquete para llegar al destino.
 + El costo de un enlace se calcula dividiendo el ancho de banda de referencia (predeterminado: 100 Mbps) entre el ancho de banda del enlace. Los valores menores a 1 se asignan como 1, lo que significa que los enlaces con un ancho de banda de 100 Mbps o superior tienen un costo de 1 por defecto.
-+ Puede cambiar el ancho de banda de referencia con el comando auto-cost reference-bandwidth mbps en el modo de configuración del router.
-+ Puede modificar el costo de un enlace con ip ospf cost cost en cada interfaz o modificando el ancho de banda de las interfaces con bandwidth kbps.
-+ Utilice show ip ospf interface brief para ver las interfaces habilitadas para OSPF.
-+ El ID del proceso OSPF se especifica con el comando router ospf process-id y es significativo a nivel local; no tiene que coincidir entre routers.
-+ Utilice show ip protocols para ver información sobre los protocolos de enrutamiento en el router, como el RID OSPF, las interfaces habilitadas para OSPF, etc.
++ Se puede cambiar el ancho de banda de referencia con el comando auto-cost reference-bandwidth mbps en el modo de configuración del router.
++ Se puede modificar el costo de un enlace con ip ospf cost cost en cada interfaz o modificando el ancho de banda de las interfaces con bandwidth kbps.
++ Utilizremos `show ip ospf interface brief` para ver las interfaces habilitadas para OSPF.
++ El ID del proceso OSPF se especifica con el comando `router ospf process-id` y es significativo a nivel local; no tiene que coincidir entre routers.
++ Utilizamos `show ip protocols` para ver información sobre los protocolos de enrutamiento en el router, como el RID OSPF, las interfaces habilitadas para OSPF, etc.
 + El ID de router OSPF (RID) de cada router debe ser único. Se determina en el siguiente orden: (1) configuración manual con el comando router-id, (2) dirección IP más alta en una interfaz de loopback y (3) dirección IP más alta en una interfaz física.
-+ Una interfaz de loopback es una interfaz virtual que no depende del estado de una interfaz física específica. Puede crear una interfaz de loopback con el comando interface loopback number y configurar una dirección IP como si fuera una interfaz física.
++ Una interfaz de loopback es una interfaz virtual que no depende del estado de una interfaz física específica. Podemos crear una interfaz de *loopback* con el comando `interface loopback numbe`r y configurar una dirección IP como si fuera una interfaz física.
 + Además del comando de red, puede activar OSPF en las interfaces con el comando ip ospf process-id area area en el modo de configuración de interfaz.
 + Una interfaz pasiva está habilitada para OSPF pero no envía mensajes de saludo OSPF.
-+ Para configurar una interfaz pasiva, utilice passive-interface interface-name en el modo de configuración del router o passive-interface predeterminado y luego no passive-interface interface-name para hacer que interfaces específicas sean no pasivas.
++ Para configurar una interfaz pasiva, utilizamos `passive-interface interface-name` en el modo de configuración del router o `passive-interface predeterminado` y luego `no passive-interface interface-name` para hacer que interfaces específicas sean no pasivas.
 + Utilice la información predeterminada que se origina en el modo de configuración del router para hacer que un router anuncie su ruta predeterminada a sus vecinos OSPF (convirtiéndolo en un ASBR).
-+ OSPF utiliza cinco tipos de mensajes: hola, descripción de base de datos (DBD), solicitud de estado de enlace (LSR), actualización de estado de enlace (LSU) y reconocimiento de estado de enlace (LSAck).
++ OSPF utiliza cinco tipos de mensajes: **hello**, descripción de base de datos (DBD), solicitud de estado de enlace (LSR), actualización de estado de enlace (LSU) y reconocimiento de estado de enlace (LSAck).
 + Los mensajes de saludo se utilizan para el descubrimiento y mantenimiento de vecinos. Los DBD proporcionan un resumen de la LSDB del router. Los LSR solicitan LSA específicos a un vecino. Las LSU envían LSA específicos a un vecino. Los LSAcks confirman la recepción de una LSU.
 + Los mensajes de saludo OSPF se envían a la dirección IPv4 de multidifusión 224.0.0.5. Esta dirección se utiliza para enviar mensajes a todos los routers OSPF del segmento.
 + Hay siete estados vecinos OSPF: Inactivo, Inicial, Bidireccional, ExStart, Intercambio, Cargando y Completo.
 + Los routers OSPF en el estado bidireccional son vecinos pero aún no han intercambiado LSA.
 + Los routers en estado completo son adyacentes o completamente adyacentes; tienen una adyacencia o adyacencia total. Han intercambiado LSA y sincronizado sus LSDB.
-+ Utilice show ip ospf neighbor para ver información sobre los vecinos OSPF.
++ Utilizamos `show ip ospf neighbor` para ver información sobre los vecinos OSPF.
 + OSPF utiliza una configuración de interfaz denominada tipo de red para determinar cómo se comporta OSPF en una red particular (un segmento, un enlace entre uno o más routers).
-+ Utilice show ip ospf interface interface para ver detalles sobre una interfaz en particular.
++ Utilice `show ip ospf interface interface` para ver detalles sobre una interfaz en particular.
 + Las interfaces Ethernet utilizan el tipo de red de difusión por defecto. Este tipo de red permite que los vecinos se descubran dinámicamente y utiliza estos temporizadores predeterminados: hello = 10, dead = 40.
 + Los routers OSPF eligen un router designado (DR) y un router designado de respaldo (BDR) en cada segmento de red de difusión. Los routers restantes son DROthers. La elección de DR/BDR se realiza en el estado bidireccional.
 + Todos los routers del segmento establecen una adyacencia completa con el DR/BDR, pero los DROthers siguen siendo vecinos en el estado bidireccional entre sí.
 + El DR y el BDR se determinan utilizando (1) la prioridad de interfaz más alta o (2) el RID más alto. La prioridad de interfaz predeterminada es 1. Se puede configurar con la prioridad IP OSPF.
-+ Aumentar la prioridad de interfaz/RID de un router o conectar un nuevo router con una prioridad de interfaz/RID más alta no hará que el router preempte el DR/BDR. Para que el DR o el BDR abandonen su función, utilice el proceso clear ip ospf.
++ Aumentar la prioridad de interfaz/RID de un router o conectar un nuevo router con una prioridad de interfaz/RID más alta no hará que el router preempte el DR/BDR. Para que el DR o el BDR abandonen su función, utilice el proceso `clear ip ospf`.
 + Si se pierde el DR, el BDR asume inmediatamente su papel y se celebran elecciones para el nuevo BDR.
-+ El tipo de red punto a punto es ideal para conexiones entre dos routers. Los routers establecen una adyacencia completa sin una elección de DR/BDR. Utilice ip ospf network point-to-point en el modo de configuración de interfaz para configurar este tipo de red.
++ El tipo de red punto a punto es ideal para conexiones entre dos routers. Los routers establecen una adyacencia completa sin una elección de DR/BDR. Utilizamos `ip ospf network point-to-point` en el modo de configuración de interfaz para configurar este tipo de red.
 + Para que los routers se conviertan en vecinos OSPF, el proceso OSPF no debe estar apagado, los RID deben ser únicos y los siguientes parámetros deben coincidir: número de área, subred, temporizadores de saludo/muerte, configuración de autenticación, configuración de MTU de IP y tipo de red.
 + Si la configuración de la MTU de IP no coincide, los routers se quedarán bloqueados en los estados ExStart/Exchange. Si el tipo de red no coincide, los routers establecerán una adyacencia completa, pero no sincronizarán sus LSDB.
 + Hay varios tipos de LSA, incluido el tipo 1 (LSA de router), el tipo 2 (LSA de red) y el tipo 5 (LSA externa AS).
