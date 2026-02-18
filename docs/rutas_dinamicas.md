@@ -18,7 +18,7 @@ Lo que aquí trataremos tiene, de alguna forma, una correspondencia con algunos 
 
 + 3.1 Interpretar los componentes de la tabla de enrutamiento
 + 3.2 Determinar cómo un router toma una decisión de reenvío de forma predeterminada
-+ 3.3 Configurar y verificar el enrutamiento estático IPv4 e IPv6
++ 3.3 Configurar y verificar el enrutamiento estático IPv4
 + 3.4 Configurar y verificar OSPFv2
 
 ## Enrutamiento dinámico vs. enrutamiento estático
@@ -26,11 +26,14 @@ Lo que aquí trataremos tiene, de alguna forma, una correspondencia con algunos 
 El enrutamiento dinámico es un proceso mediante el cual los routers comparten información sobre la red, lo que les permite crear sus tablas de enrutamiento sin necesidad de que un administrador configure manualmente cada ruta. Esto se logra mediante un protocolo de enrutamiento, que define cómo se comunican los routers para compartir información de enrutamiento y cómo la utilizan para crear sus tablas de enrutamiento. 
 
 La imagen siguiente muestra un ejemplo del funcionamiento de los protocolos de enrutamiento. R1, R2 y R3 utilizan un protocolo de enrutamiento para intercambiar mensajes, informándose mutuamente de sus redes conocidas. Cada router utilizará esta información para crear su tabla de enrutamiento, sin necesidad de que un administrador configure manualmente las rutas.
-Figura 17.1 R1, R2 y R3 utilizan un protocolo de enrutamiento para compartir información de enrutamiento. 
+
 
 Cada router utilizará esta información para crear su tabla de enrutamiento.
 
 ![](img/routing_dinamico1.png){text-align: justify}
+/// figura
+R1, R2 y R3 utilizan un protocolo de enrutamiento para compartir información de enrutamiento. 
+///
 
 !!!note "Nota"
     El intercambio de información de enrutamiento también se denomina *advertisement* (anuncio) . R1, R2 y R3 anuncian sus redes conocidas entre sí.
