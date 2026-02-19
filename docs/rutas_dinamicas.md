@@ -9,8 +9,8 @@ En esta unidad veremos los siguientes puntos:
 
 + Las ventajas del enrutamiento dinámico sobre el enrutamiento estático
 + Los tipos de protocolos de enrutamiento dinámico
-+ Cómo decide un router qué rutas ingresar en su tabla de enrutamiento
-+ Activación de protocolos de enrutamiento dinámico con el comando de red
++ Cómo decide un router qué rutas introducir en su tabla de enrutamiento
++ Activación de protocolos de enrutamiento dinámico con el comando `network`
 
 En la unidad anterior aprendimos sobre el enrutamiento estático, en el que un administrador configura manualmente las rutas para crear la tabla de enrutamiento de un router. Al usar el enrutamiento dinámico, los routers se comunican entre sí y crean sus tablas de enrutamiento automáticamente. Si bien el enrutamiento estático tiene sus usos, el enrutamiento dinámico ofrece varias ventajas que examinaremos en este capítulo.
 
@@ -77,7 +77,7 @@ Antes de examinar los diferentes tipos de protocolos de enrutamiento, cabe menci
 
 ## Tipos de protocolos de enrutamiento
 
-Los protocolos de enrutamiento se dividen en dos categorías principales: **Protocolos de Puerta de Enlace Interior (IGP - Interior Gatewa Protocol)** y **Protocolos de Puerta de Enlace Exterior (EGP - Exterior Gateway Protocols)**. Los IGP se utilizan para intercambiar información de enrutamiento dentro de un único sistema autónomo (AS), es decir, la red de una organización. Los EGP, por otro lado, se utilizan para intercambiar información de enrutamiento entre diferentes sistemas autónomos, como entre una empresa y un ISP o entre dos ISP.
+Los protocolos de enrutamiento se dividen en dos categorías principales: **Protocolos de Puerta de Enlace Interior (IGP - Interior Gateway Protocol)** y **Protocolos de Puerta de Enlace Exterior (EGP - Exterior Gateway Protocols)**. Los IGP se utilizan para intercambiar información de enrutamiento dentro de un único sistema autónomo (AS), es decir, la red de una organización. Los EGP, por otro lado, se utilizan para intercambiar información de enrutamiento entre diferentes sistemas autónomos, como entre una empresa y un ISP o entre dos ISP.
 
 !!!note "Nota"
     Puerta de enlace es un término antiguo para router. Aunque hoy en día los llamamos routers, el término puerta de enlace todavía se usa en algunos contextos (como puerta de enlace predeterminada, como ya hemos visto.
@@ -106,7 +106,7 @@ Actualmente se utilizan dos protocolos principales de enrutamiento por vector de
 !!!note "Nota"
     Aunque EIGRP fue desarrollado por Cisco, la mayor parte de su funcionalidad se publicó en la RFC 7868, por lo que otros proveedores pueden implementarlo en sus dispositivos. Sin embargo, muy pocos proveedores lo han implementado, por lo que, en general, se puede afirmar que EIGRP solo funciona en routers Cisco.
 
-Los routers que utilizan un protocolo de vector-distancia comparten información sobre sus redes conocidas y las métricas para acceder a ellas. Las métricas son un concepto similar al costo raíz de STP. Mientras que el costo raíz de STP mide la eficiencia de una ruta al puente raíz, una métrica mide la eficiencia de una ruta a la red de destino; las métricas se abordarán en la sección 17.3.1. La siguiente figura muestra cómo un router obtiene información de una red de destino (LAN A) con un protocolo de enrutamiento de vector-distancia. R1 obtiene información de LAN A a través de dos vecinos: R2 y R5. Dado que la ruta a través de R5 tiene una métrica menor, R1 la inserta en su tabla de enrutamiento; es preferible un valor de métrica menor.
+Los routers que utilizan un protocolo de vector-distancia comparten información sobre sus redes conocidas y las métricas para acceder a ellas. Las métricas son un concepto similar al costo raíz de STP. Mientras que el costo raíz de STP mide la eficiencia de una ruta al puente raíz, una métrica mide la eficiencia de una ruta a la red de destino. La siguiente figura muestra cómo un router obtiene información de una red de destino (LAN A) con un protocolo de enrutamiento de vector-distancia. R1 obtiene información de LAN A a través de dos vecinos: R2 y R5. Dado que la ruta a través de R5 tiene una métrica menor, R1 la inserta en su tabla de enrutamiento; es preferible un valor de métrica menor.
 
 ![](img/routing_dinamico7.png){text-align: justify}
 /// figura
@@ -116,7 +116,7 @@ Los routers comparten información de enrutamiento con un protocolo de enrutamie
 !!!note "Nota"
     El tipo de ruta R en la figura indica una ruta aprendida mediante el protocolo de enrutamiento RIP.
 
-La característica clave de los protocolos de enrutamiento por vector de distancia es que cada router no tiene un mapa completo de la red; para cada red de destino que aprende, solo conoce la métrica y el router del siguiente salto. Usando el ejemplo de la figura 17.7, R1 sabe que para llegar a la LAN A, puede reenviar paquetes a R2, cuya métrica es 2, o a R5, cuya métrica es 1; desconoce los detalles de la red más allá de R2 y R5, como se muestra a continuación:
+La característica clave de los protocolos de enrutamiento por vector de distancia es que cada router no tiene un mapa completo de la red; para cada red de destino que aprende, solo conoce la métrica y el router del siguiente salto. Usando el ejemplo de la figura, R1 sabe que para llegar a la LAN A, puede reenviar paquetes a R2, cuya métrica es 2, o a R5, cuya métrica es 1; desconoce los detalles de la red más allá de R2 y R5, como se muestra a continuación:
 
 ![](img/routing_dinamico8.png){text-align: justify}
 /// figura
@@ -128,9 +128,9 @@ R1 obtiene información de la LAN A a través de R2 y R5 y selecciona una ruta b
 
 ### Protocolos de estado de enlace
 
-Al igual que los protocolos de enrutamiento por vector de distancia, existen dos protocolos principales de enrutamiento de estado de enlace en uso actualmente: Sistema Intermedio a Sistema Intermedio (IS-IS) y Open Shortest Path First (OSPF), ambos protocolos estándar de la industria. IS-IS se utiliza con mayor frecuencia en redes de proveedores de servicios (como las redes de ISP) y no se trata en el examen CCNA; no lo abordaremos en detalle en este libro. Por otro lado, OSPF es uno de los temas principales del examen CCNA y lo abordaremos en detalle en el capítulo 18.
+Al igual que los protocolos de enrutamiento por vector de distancia, existen dos protocolos principales de enrutamiento de estado de enlace en uso actualmente: Sistema Intermedio a Sistema Intermedio (IS-IS) y Open Shortest Path First (OSPF), ambos protocolos estándar de la industria. IS-IS se utiliza con mayor frecuencia en redes de proveedores de servicios (como las redes de ISP) y no lo abordaremos en detalle aquí. OSPF sí lo abordaremos con detalle más adelante.
 
-Al utilizar un protocolo de enrutamiento de estado de enlace, cada router crea un mapa de conectividad de la red. Para que todos los routers puedan crear su propio mapa de conectividad, cada uno comparte información sobre sus enlaces conectados y su estado (subredes conectadas, costo métrico, etc.); de ahí el nombre "estado de enlace". Esta información no solo se comparte con los routers vecinos directamente conectados, sino con todos los routers de la red, para que todos puedan crear el mismo mapa de conectividad. Cada router utiliza este mapa de la red para calcular la mejor ruta a cada destino. La Figura 17.9 muestra este concepto: el R1 crea un mapa de conectividad y lo utiliza para calcular una ruta a la LAN A.
+Al utilizar un protocolo de enrutamiento de estado de enlace, cada router crea un mapa de conectividad de la red. Para que todos los routers puedan crear su propio mapa de conectividad, cada uno comparte información sobre sus enlaces conectados y su estado (subredes conectadas, costo métrico, etc.); de ahí el nombre "estado de enlace". Esta información no solo se comparte con los routers vecinos directamente conectados, sino con todos los routers de la red, para que todos puedan crear el mismo mapa de conectividad. Cada router utiliza este mapa de la red para calcular la mejor ruta a cada destino. La figura de abajo muestra este concepto: el R1 crea un mapa de conectividad y lo utiliza para calcular una ruta a la LAN A.
 
 ![](img/routing_dinamico9.png){text-align: justify}
 /// figura
@@ -140,13 +140,13 @@ R1 construye un mapa de conectividad de la red y lo utiliza para calcular una ru
 !!!note "Nota"
     El tipo de ruta O indica una ruta aprendida a través del protocolo de enrutamiento OSPF.
 
-Construir este mapa de la red y usarlo para calcular rutas requiere más recursos de CPU y memoria en el router que los requeridos por los protocolos de enrutamiento por vector de distancia, lo cual puede ser un problema en redes muy grandes. El mapa se almacena en memoria mediante una estructura llamada base de datos de estado de enlace (LSDB), y calcular rutas a partir de la LSDB puede consumir muchos recursos de la CPU. Sin embargo, existen métodos para superar esta limitación, como dividir la red en áreas, que abordaremos en el capítulo 18.
+Construir este mapa de la red y usarlo para calcular rutas requiere más recursos de CPU y memoria en el router que los requeridos por los protocolos de enrutamiento por vector de distancia, lo cual puede ser un problema en redes muy grandes. El mapa se almacena en memoria mediante una estructura llamada base de datos de estado de enlace (LSDB), y calcular rutas a partir de la LSDB puede consumir muchos recursos de la CPU. Sin embargo, existen métodos para superar esta limitación, como dividir la red en áreas.
 
 ### Protocolos de puerta de enlace exterior
 
 En las redes modernas, solo se utiliza ampliamente un único EGP: el Protocolo de Puerta de Enlace de Frontera (BGP). BGP utiliza un algoritmo de vector de ruta para calcular rutas. Al igual que los dos tipos de algoritmos IGP, el nombre de vector de ruta nos da una pista sobre cómo funciona BGP. La ruta es la serie de sistemas autónomos que un paquete recorrerá a lo largo de su ruta hacia su destino; por ejemplo, podría pasar por dos ISP diferentes antes de llegar al Sistema Autónomo de destino.
 
-La Figura 17.10 muestra la lógica de vector de ruta: los paquetes del R1 a destinos en la Empresa B viajarán a través de los ISP A y B y luego llegarán a la Empresa B. El R1 conoce esta ruta comunicándose con el ISP A mediante BGP. En lugar de tomar decisiones de enrutamiento basadas en la serie de routers individuales por los que viajarán los paquetes, BGP toma decisiones de enrutamiento basadas en la serie de sistemas autónomos por los que viajarán (cada AS probablemente consta de varios routers).
+La Figura  muestra la lógica de vector de ruta: los paquetes del R1 a destinos en la Empresa B viajarán a través de los ISP A y B y luego llegarán a la Empresa B. El R1 conoce esta ruta comunicándose con el ISP A mediante BGP. En lugar de tomar decisiones de enrutamiento basadas en la serie de routers individuales por los que viajarán los paquetes, BGP toma decisiones de enrutamiento basadas en la serie de sistemas autónomos por los que viajarán (cada AS probablemente consta de varios routers).
 
 ![](img/routing_dinamico10.png){text-align: justify}
 /// figura
@@ -155,7 +155,7 @@ La ruta de R1 a la Empresa B pasa por el ISP A y el ISP B y luego llega a la Emp
 
 
 !!!note "Nota"
-    La Figura 17.10 simplifica el funcionamiento de BGP. BGP considera múltiples atributos de la ruta, no solo el número de sistemas autónomos.
+    La Figura  simplifica el funcionamiento de BGP. BGP considera múltiples atributos de la ruta, no solo el número de sistemas autónomos.
 
 ## Selección de ruta
 
@@ -170,10 +170,9 @@ Si un router aprende varias rutas al mismo destino, solo insertará la mejor rut
 
 ### El parámetro de la métrica
 
-Ya vimos un ejemplo del funcionamiento de las métricas en la figura 17.7. R1 aprendió dos rutas para llegar a la LAN A: una con una métrica de 2 y otra con una métrica de 1. ¿Cuál de las dos rutas insertó R1 en su tabla de enrutamiento? R1 seleccionó la última debido a su métrica más baja.
+Ya vimos un ejemplo del funcionamiento de las métricas en la figura anterior. R1 aprendió dos rutas para llegar a la LAN A: una con una métrica de 2 y otra con una métrica de 1. ¿Cuál de las dos rutas insertó R1 en su tabla de enrutamiento? R1 seleccionó la última debido a su métrica más baja.
 
-La métrica de cada protocolo de enrutamiento se calcula de forma diferente. RIP utiliza un conteo de saltos simple: la cantidad de routers entre el router y el destino constituye la métrica de la ruta. OSPF utiliza un valor de costo calculado a partir del ancho de banda de cada enlace de la ruta. EIGRP utiliza un cálculo más complejo basado en el ancho de banda y el retardo (el tiempo que tardan los bits en viajar a través de un enlace), así como otros parámetros. La Tabla 17.1 resume cómo RIP, EIGRP y OSPF calculan las métricas.
-Tabla 17.1 Métricas del IGP (ver figura de la tabla)
+La métrica de cada protocolo de enrutamiento se calcula de forma diferente. RIP utiliza un conteo de saltos simple: la cantidad de routers entre el router y el destino constituye la métrica de la ruta. OSPF utiliza un valor de costo calculado a partir del ancho de banda de cada enlace de la ruta. EIGRP utiliza un cálculo más complejo basado en el ancho de banda y el retardo (el tiempo que tardan los bits en viajar a través de un enlace), así como otros parámetros. La tabla a continuación resume cómo RIP, EIGRP y OSPF calculan las métricas.
 
 | IGP | Métrica | Descripción |
 |-----|---------|-------------|
@@ -181,14 +180,14 @@ Tabla 17.1 Métricas del IGP (ver figura de la tabla)
 | EIGRP | Métrica basada en ancho de banda y retardo | Una fórmula compleja que puede tomar en cuenta muchos valores. Por defecto, se utilizan el ancho de banda y el retardo. |
 | OSPF | Costo | El costo de cada enlace se calcula en base al ancho de banda. La métrica de una ruta es el costo total de cada enlace en la ruta. |
 
-La Figura 17.11 muestra un ejemplo de selección de ruta en una red de routers que utilizan OSPF para compartir información de enrutamiento. El R1 utiliza su mapa de conectividad para calcular las posibles rutas para llegar a 192.168.3.0/24 y selecciona la mejor ruta para su tabla de enrutamiento.
+La siguiente figura muestra un ejemplo de selección de ruta en una red de routers que utilizan OSPF para compartir información de enrutamiento. El R1 utiliza su mapa de conectividad para calcular las posibles rutas para llegar a 192.168.3.0/24 y selecciona la mejor ruta para su tabla de enrutamiento.
 
 ![](img/routing_dinamico11.png){text-align: justify}
 /// figura
 R1 inserta la mejor ruta a 192.168.3.0/24 en su tabla de enrutamiento. (1) R1 calcula las posibles rutas a 192.168.3.0/24. La ruta a través de R3 tiene una métrica de 2 y la ruta a través de R2 tiene una métrica de 4. (2) R1 selecciona la ruta a través de R3 debido a su métrica más baja y la inserta en su tabla de enrutamiento.
 ///
 
-El siguiente ejemplo muestra la ruta en la tabla de enrutamiento de R1. Preste atención a los dos valores entre corchetes:
+El siguiente ejemplo muestra la ruta en la tabla de enrutamiento de R1. Prestad atención a los dos valores entre corchetes:
 
 ```rd
 R1# show ip route
@@ -196,7 +195,7 @@ R1# show ip route
 O     192.168.3.0/24 [110/2] via 192.168.1.6, 00:08:35, GigabitEthernet0/0
 ```
 
-Después de la red de destino 192.168.3.0/24, la ruta incluye dos valores entre corchetes: [110/2]. El primer valor (110) corresponde a la distancia administrativa de la ruta (descrita en la sección 17.3.2) y el segundo valor (2) a su métrica. En el siguiente ejemplo, deshabilito la interfaz G0/0 de R1, lo que invalida la ruta vía R3. A continuación, reviso de nuevo la tabla de enrutamiento; la ruta alternativa vía R2, con una métrica de 4, se inserta en la tabla de enrutamiento en lugar de la ruta vía R3.
+Después de la red de destino 192.168.3.0/24, la ruta incluye dos valores entre corchetes: [110/2]. El primer valor (110) corresponde a la distancia administrativa de la ruta y el segundo valor (2) a su métrica. En el siguiente ejemplo, deshabilito la interfaz G0/0 de R1, lo que invalida la ruta vía R3. A continuación, reviso de nuevo la tabla de enrutamiento; la ruta alternativa vía R2, con una métrica de 4, se inserta en la tabla de enrutamiento en lugar de la ruta vía R3.
 
 ```rd
 R1(config)# interface g0/0
@@ -210,9 +209,9 @@ O     192.168.3.0/24 [110/4] via 192.168.1.2, 00:00:04, GigabitEthernet0/1
 
 Aunque la mayoría de los routers solo ejecutan un protocolo de enrutamiento, hay casos en los que un router ejecuta varios protocolos; por ejemplo, si dos empresas (que ejecutan diferentes protocolos de enrutamiento) conectan sus redes para permitir la comunicación entre ellas. Al ejecutar varios protocolos de enrutamiento, un router puede obtener información sobre la misma red de destino a partir de diferentes protocolos de enrutamiento. En tales casos, el router necesita una forma de comparar las rutas para determinar cuál debe ingresar en la tabla de enrutamiento.
 
-Cada protocolo de enrutamiento utiliza diferentes parámetros para determinar la métrica de una ruta: RIP utiliza un simple conteo de saltos, OSPF utiliza un costo basado en el ancho de banda y la métrica de EIGRP se calcula mediante una fórmula que puede considerar diversos factores. El proceso de selección de rutas de BGP, que queda fuera del alcance del examen CCNA, es mucho más complejo que un simple valor métrico. Dado que la métrica de cada protocolo de enrutamiento es diferente, no se pueden comparar directamente; sería como preguntar: "¿Qué es mejor: 20 kilogramos o 10 kilómetros?". Si un router aprende múltiples rutas a la misma red de destino desde diferentes protocolos de enrutamiento, necesita usar algo más para seleccionar qué ruta entra en la tabla de enrutamiento.
+Cada protocolo de enrutamiento utiliza diferentes parámetros para determinar la métrica de una ruta: RIP utiliza un simple conteo de saltos, OSPF utiliza un costo basado en el ancho de banda y la métrica de EIGRP se calcula mediante una fórmula que puede considerar diversos factores. El proceso de selección de rutas de BGP es mucho más complejo que un simple valor métrico. Dado que la métrica de cada protocolo de enrutamiento es diferente, no se pueden comparar directamente; sería como preguntar: "¿Qué es mejor: 20 kilogramos o 10 kilómetros?". Si un router aprende múltiples rutas a la misma red de destino desde diferentes protocolos de enrutamiento, necesita usar algo más para seleccionar qué ruta entra en la tabla de enrutamiento.
 
-Esa es la función de la distancia administrativa (AD). La AD es un valor que indica la preferencia de un protocolo de enrutamiento. Un valor de AD bajo indica que el IOS considera que un protocolo de enrutamiento es más confiable, es decir, que tiene mayor probabilidad de seleccionar buenas rutas. Mientras que una métrica se utiliza para comparar rutas aprendidas mediante el mismo protocolo de enrutamiento, la AD se utiliza para comparar rutas aprendidas mediante diferentes protocolos de enrutamiento. La Tabla 17.2 muestra los valores de AD predeterminados de algunos protocolos de enrutamiento diferentes (incluidas las rutas conectadas y estáticas).
+Esa es la función de la distancia administrativa (AD). La AD es un valor que indica la preferencia de un protocolo de enrutamiento. Un valor de AD bajo indica que se considera que un protocolo de enrutamiento es más confiable, es decir, que tiene mayor probabilidad de seleccionar buenas rutas. Mientras que una métrica se utiliza para comparar rutas aprendidas mediante el mismo protocolo de enrutamiento, la AD se utiliza para comparar rutas aprendidas mediante diferentes protocolos de enrutamiento. La tabla muestra los valores de AD predeterminados de algunos protocolos de enrutamiento diferentes (incluidas las rutas conectadas y estáticas).
 
 | Tipo de ruta / Protocolo | AD por defecto |
 |--------------------------|----------------|
@@ -226,11 +225,10 @@ Esa es la función de la distancia administrativa (AD). La AD es un valor que in
 | BGP Interno (IBGP)       | 200            |
 | Ruta inutilizable        | 255            |
 
-Tabla 17.2 Valores de AD predeterminados (ver figura de la tabla)
 
 Al igual que al comparar valores de métricas, se prefiere el valor de AD más bajo. Las rutas conectadas (las rutas que se agregan automáticamente al configurar una dirección IP en una interfaz) tienen un AD de 0; siempre se prefieren sobre otros tipos de ruta. Las rutas estáticas, con un AD de 1, se prefieren por defecto sobre las rutas aprendidas de cualquier protocolo de enrutamiento dinámico; sin embargo, más adelante en esta sección explicaremos cómo reducir su preferencia. El valor de AD menos preferido es 255. Los routers Cisco pueden usar este valor para marcar una ruta como inutilizable; se eliminará de la tabla de enrutamiento.
 
-La Figura 17.12 muestra un ejemplo en el que se utiliza AD para seleccionar la ruta que entra en la tabla de enrutamiento. R1 obtiene la red de destino 10.0.0.0/24 mediante EIGRP y OSPF. Aunque el valor de la métrica de la ruta EIGRP (3584) es numéricamente mayor que el de la ruta OSPF (4), esto es irrelevante en este caso; los valores de las métricas de EIGRP y OSPF no se pueden comparar directamente. En su lugar, se utiliza AD para decidir qué ruta entra en la tabla de enrutamiento. El AD de EIGRP (90) es menor que el de OSPF (110), por lo que R1 inserta la ruta EIGRP en su tabla de enrutamiento.
+La figura a continuación muestra un ejemplo en el que se utiliza AD para seleccionar la ruta que entra en la tabla de enrutamiento. R1 obtiene la red de destino 10.0.0.0/24 mediante EIGRP y OSPF. Aunque el valor de la métrica de la ruta EIGRP (3584) es numéricamente mayor que el de la ruta OSPF (4), esto es irrelevante en este caso; los valores de las métricas de EIGRP y OSPF no se pueden comparar directamente. En su lugar, se utiliza AD para decidir qué ruta entra en la tabla de enrutamiento. El AD de EIGRP (90) es menor que el de OSPF (110), por lo que R1 inserta la ruta EIGRP en su tabla de enrutamiento.
 
 !!!note "Nota"
     Debido a la fórmula que EIGRP utiliza para calcular las métricas, los valores de las métricas de las rutas EIGRP tienden a ser bastante altos en comparación con los de las rutas RIP y OSPF. Si bien la métrica de esta ruta es 3584 (debido a que el R1 y el destino solo están separados por unos pocos routers), no es raro que la métrica de las rutas EIGRP se encuentre entre decenas y cientos de miles.
@@ -250,7 +248,7 @@ D        10.0.0.0 [90/3584] via 192.168.12.2, 00:33:30, GigabitEthernet0/0
 ```
 
 !!!note "Nota"
-    Las métricas y el AD solo se utilizan para comparar rutas al mismo destino: la misma dirección de red de destino con la misma longitud de prefijo. Si dos rutas tienen la misma dirección de red de destino, pero diferente longitud de prefijo (por ejemplo, 192.168.0.0/24 y 192.168.0.0/25), se consideran destinos diferentes; ambas rutas se insertarán en la tabla de enrutamiento. Aclararemos este punto en la sección 17.3.3.
+    Las métricas y el AD solo se utilizan para comparar rutas al mismo destino: la misma dirección de red de destino con la misma longitud de prefijo. Si dos rutas tienen la misma dirección de red de destino, pero diferente longitud de prefijo (por ejemplo, 192.168.0.0/24 y 192.168.0.0/25), se consideran destinos diferentes; ambas rutas se insertarán en la tabla de enrutamiento.
 
 ### ECMP
 
@@ -262,7 +260,7 @@ Las métricas se utilizan para seleccionar rutas con el mismo destino, aprendida
 ![](img/routing_dinamico13.png){text-align: justify}
 /// figura
 Ejemplo de ECMP. El R1 aprende dos rutas a 10.0.0.0/24: una de R2 y otra de R4. Ambas rutas se aprenden mediante OSPF y tienen una métrica de 4. Por lo tanto, el R1 inserta ambas rutas en la tabla de enrutamiento; esto equilibrará la carga del tráfico entre ambas rutas.
-Figura 17.13 Un ejemplo de enrutamiento ECMP. (1) R1 aprende dos rutas a 10.0.0.0/24 a través de OSPF con la misma métrica: una de R2 y una de R4. (2) R1 inserta ambas rutas en su tabla de enrutamiento; equilibrará la carga del tráfico utilizando las dos rutas.
+Un ejemplo de enrutamiento ECMP. (1) R1 aprende dos rutas a 10.0.0.0/24 a través de OSPF con la misma métrica: una de R2 y una de R4. (2) R1 inserta ambas rutas en su tabla de enrutamiento; equilibrará la carga del tráfico utilizando las dos rutas.
 ///
 
 
@@ -270,7 +268,7 @@ Figura 17.13 Un ejemplo de enrutamiento ECMP. (1) R1 aprende dos rutas a 10.0.0.
 
 De forma predeterminada, las rutas estáticas tienen un AD de 1 y, por lo tanto, se prefieren a las rutas aprendidas mediante un protocolo de enrutamiento dinámico. Sin embargo, en algunos casos, podría ser conveniente configurar una ruta estática como respaldo, que solo se incluya en la tabla de enrutamiento si se pierde la ruta principal (aprendida mediante un protocolo de enrutamiento). Esta es la función de las rutas estáticas flotantes.
 
-Una ruta estática flotante es una ruta estática configurada con un AD mayor que el valor predeterminado de 1 para que sea menos preferida. Por ejemplo, para que una ruta estática sea menos preferida que una ruta OSPF al mismo destino, debe configurarse con un AD mayor que 110 (el AD de OSPF). Para configurar una ruta estática flotante, simplemente añada el valor de AD al final del comando. Por ejemplo, puede configurar una ruta estática recursiva flotante con el comando `ip route destination-network netmask next-hop ad`. La Figura 17.14 muestra un ejemplo en el que se configura una ruta estática con un AD de 111 para que sea menos preferida que una ruta aprendida mediante OSPF.
+Una ruta estática flotante es una ruta estática configurada con un AD mayor que el valor predeterminado de 1 para que sea menos preferida. Por ejemplo, para que una ruta estática sea menos preferida que una ruta OSPF al mismo destino, debe configurarse con un AD mayor que 110 (el AD de OSPF). Para configurar una ruta estática flotante, simplemente añada el valor de AD al final del comando. Por ejemplo, puede configurar una ruta estática recursiva flotante con el comando `ip route destination-network netmask next-hop ad`. La Figura  muestra un ejemplo en el que se configura una ruta estática con un AD de 111 para que sea menos preferida que una ruta aprendida mediante OSPF.
 
 ![](img/routing_dinamico14.png){text-align: justify}
 /// figura
@@ -280,9 +278,9 @@ Una ruta estática flotante es menos preferida que una ruta OSPF al mismo destin
 !!!note "Nota"
     Si configura una ruta estática flotante con el mismo AD que un protocolo de enrutamiento dinámico, se seguirá prefiriendo la ruta estática. Debe configurar rutas estáticas flotantes con un AD mayor que el protocolo de enrutamiento.
 
-Una ruta estática flotante funciona como ruta de respaldo, ofreciendo una ruta secundaria para los datos si la ruta principal falla. Si bien los protocolos de enrutamiento dinámico también pueden ofrecer la misma funcionalidad (recalculando la siguiente mejor ruta si la mejor ruta actual falla), una ruta estática flotante puede proporcionar una ruta de respaldo a través de un router con el que el router local no intercambia información de enrutamiento. En la figura 17.14, R1 tiene una relación de vecino OSPF con R4, pero no con R2. Las rutas estáticas flotantes también ofrecen las ventajas mencionadas anteriormente, como control y previsibilidad; permiten controlar con exactitud qué ruta tomará el tráfico si falla la ruta principal.
+Una ruta estática flotante funciona como ruta de respaldo, ofreciendo una ruta secundaria para los datos si la ruta principal falla. Si bien los protocolos de enrutamiento dinámico también pueden ofrecer la misma funcionalidad (recalculando la siguiente mejor ruta si la mejor ruta actual falla), una ruta estática flotante puede proporcionar una ruta de respaldo a través de un router con el que el router local no intercambia información de enrutamiento. En la figura , R1 tiene una relación de vecino OSPF con R4, pero no con R2. Las rutas estáticas flotantes también ofrecen las ventajas mencionadas anteriormente, como control y previsibilidad; permiten controlar con exactitud qué ruta tomará el tráfico si falla la ruta principal.
 
-En el siguiente ejemplo, pruebo la ruta estática flotante que vimos en la figura 17.14. Al revisar por primera vez la tabla de enrutamiento de R1, la ruta OSPF está presente. Luego, deshabilito la interfaz G0/1 de R1 (simulando un fallo de hardware) y reviso la tabla de enrutamiento de nuevo; esta vez, la ruta estática flotante (con un AD de 111) ha reemplazado a la ruta OSPF:
+En el siguiente ejemplo, pruebo la ruta estática flotante que vimos en la figura . Al revisar por primera vez la tabla de enrutamiento de R1, la ruta OSPF está presente. Luego, deshabilito la interfaz G0/1 de R1 (simulando un fallo de hardware) y reviso la tabla de enrutamiento de nuevo; esta vez, la ruta estática flotante (con un AD de 111) ha reemplazado a la ruta OSPF:
 
 ```rd
 R1(config)# do show ip route 
@@ -318,7 +316,7 @@ Considere el siguiente ejemplo. R1 aprende las siguientes rutas mediante configu
 
 La razón es que las cuatro rutas tienen destinos diferentes. Aunque comparten la misma dirección de red de destino (203.0.113.0), todas tienen longitudes de prefijo diferentes y, por lo tanto, se consideran destinos diferentes. No es necesario compararlas; R1 las insertará todas en la tabla de enrutamiento.
 
-Cabe destacar que las cuatro subredes del ejemplo se superponen, como se muestra en la figura 17.15. Las subredes /25, /26 y /27 se encuentran dentro de la subred /24. Sin embargo, al crear la tabla de enrutamiento, se consideran redes de destino diferentes y, por lo tanto, se insertarán en ella.
+Cabe destacar que las cuatro subredes del ejemplo se superponen, como se muestra en la figura . Las subredes /25, /26 y /27 se encuentran dentro de la subred /24. Sin embargo, al crear la tabla de enrutamiento, se consideran redes de destino diferentes y, por lo tanto, se insertarán en ella.
 
 ![](img/routing_dinamico15.png){text-align: justify}
 /// figura
@@ -392,7 +390,7 @@ Aunque RIP, EIGRP y OSPF comparten el comando `network`, existen diferencias de 
 !!!note "Nota"
     Un router puede ejecutar procesos OSPF independientes (instancias), por lo que debe especificar un id de proceso en el comando router ospf. Sin embargo, los casos de uso de múltiples procesos OSPF quedan fuera del alcance del examen CCNA.
 
-La Figura 17.16 muestra cómo se puede usar el comando network para activar OSPF en las interfaces de un router. La sintaxis del comando network es `network ip-address wildcard-mask area area-id`. La clave de este comando es la máscara wildcard, que parece una máscara de red invertida, pero tiene una función diferente.
+La Figura  muestra cómo se puede usar el comando network para activar OSPF en las interfaces de un router. La sintaxis del comando network es `network ip-address wildcard-mask area area-id`. La clave de este comando es la máscara wildcard, que parece una máscara de red invertida, pero tiene una función diferente.
 
 !!!note "Nota"
     OSPF utiliza áreas para dividir lógicamente la red; cubriremos las áreas OSPF en el capítulo 18. Por ahora, solo especificaremos el área 0 en el comando de red.
@@ -404,7 +402,7 @@ Activación de OSPF en las interfaces de un router con el comando network. El co
 
 Una máscara *wildcard* o comodín, al igual que una máscara de red, es una serie de 32 bits. Su propósito es indicar qué bits deben coincidir entre dos direcciones IP y cuáles no. La máscara comodín del comando `network` especifica qué bits deben coincidir entre la dirección IP del comando `network`y la dirección IP configurada en la interfaz de un router. Un bit 0 en la máscara comodín significa que los bits en la misma posición de la dirección IP del comando `network` y la dirección IP de la interfaz deben coincidir. Un bit 1 en la máscara comodín significa que los bits no tienen que coincidir.
 
-Examinemos los tres comandos `network`utilizados en la figura 17.16. En el siguiente ejemplo, muestro el comando `network` utilizado para activar OSPF en la interfaz G0/0 de R1. Observe que los bits correspondientes coinciden entre la dirección IP del comando de red (192.168.1.0) y la dirección IP G0/0 de R1 (192.168.1.1); estos bits se especifican con 0 en la máscara comodín.
+Examinemos los tres comandos `network`utilizados en la figura . En el siguiente ejemplo, muestro el comando `network` utilizado para activar OSPF en la interfaz G0/0 de R1. Observe que los bits correspondientes coinciden entre la dirección IP del comando de red (192.168.1.0) y la dirección IP G0/0 de R1 (192.168.1.1); estos bits se especifican con 0 en la máscara comodín.
 
 ```rd
 192.168.1.1 = 11000000.10101000.00000001.00000001
@@ -420,7 +418,7 @@ A continuación, el comando que utilicé para activar OSPF en la interfaz G0/1 d
 0.0.0.3     = 00000000.00000000.00000000.00000011
 ```
 
-En estos dos ejemplos, utilicé una máscara comodín de 0.0.0.3, que equivale a una máscara de red /30 (255.255.255.252) con los bits invertidos. La Figura 17.17 lo demuestra: todos los bits 1 de la máscara de red 255.255.255.252 son 0 en la máscara comodín 0.0.0.3 y viceversa.
+En estos dos ejemplos, utilicé una máscara comodín de 0.0.0.3, que equivale a una máscara de red /30 (255.255.255.252) con los bits invertidos. La Figura  lo demuestra: todos los bits 1 de la máscara de red 255.255.255.252 son 0 en la máscara comodín 0.0.0.3 y viceversa.
 
 ![](img/routing_dinamico17.png){text-align: justify}
 /// figura
@@ -438,7 +436,7 @@ Finalmente, veamos el comando que usé para activar OSPF en la interfaz G0/2 de 
 0.0.0.255   = 00000000.00000000.00000000.11111111
 ```
 
-En la Tabla 17.3 se enumeran algunas máscaras de red y sus máscaras comodín equivalentes.
+En la Tabla  se enumeran algunas máscaras de red y sus máscaras comodín equivalentes.
 
 | Longitud del prefijo | Máscara de red    | Máscara comodín (último octeto en binario) |
 |----------------------|-------------------|--------------------------------------------|
@@ -452,7 +450,7 @@ En la Tabla 17.3 se enumeran algunas máscaras de red y sus máscaras comodín e
 | /31                  | 255.255.255.254   | 0.0.0.1 (00000001)                         |
 | /32                  | 255.255.255.255   | 0.0.0.0 (00000000)                         |
 
-Tabla 17.3 Máscaras de red /24+ y máscaras comodín (ver figura de la tabla)
+Tabla  Máscaras de red /24+ y máscaras comodín (ver figura de la tabla)
 
 
 ### ¿Por qué mascarillas comodín?
@@ -464,7 +462,7 @@ Sin embargo, al usar el comando `network` de OSPF, la dirección IP y la máscar
 + Una máscara de red (o máscara de subred) se utiliza para distinguir las partes de red y host de una dirección IP. Determina la longitud del prefijo de red de una subred.
 + En el contexto del comando de red OSPF, una dirección IP y una máscara comodín no definen un prefijo de red. En cambio, definen un rango de direcciones IP (que no necesariamente pertenecen a la misma subred). Este rango se utiliza para determinar qué interfaces del router participarán en el proceso OSPF (es decir, qué interfaces enviarán y recibirán información de enrutamiento OSPF).
 
-En los tres comandos `network` que analizamos, utilicé la dirección de red (la parte del host de todos los 0) de cada interfaz y la máscara comodín equivalente a la máscara de red de cada interfaz. Sin embargo, es importante destacar que el comando `network` es flexible: siempre que los bits correspondientes coincidan entre la dirección IP del `network` y la dirección IP de la interfaz (los indicados por un bit 0 en la máscara comodín), OSPF se activará en la interfaz. La Figura 17.18 muestra una forma diferente de activar OSPF en las interfaces del R1, esta vez utilizando solo dos comandos `network`.
+En los tres comandos `network` que analizamos, utilicé la dirección de red (la parte del host de todos los 0) de cada interfaz y la máscara comodín equivalente a la máscara de red de cada interfaz. Sin embargo, es importante destacar que el comando `network` es flexible: siempre que los bits correspondientes coincidan entre la dirección IP del `network` y la dirección IP de la interfaz (los indicados por un bit 0 en la máscara comodín), OSPF se activará en la interfaz. La Figura  muestra una forma diferente de activar OSPF en las interfaces del R1, esta vez utilizando solo dos comandos `network`.
 
 ![](img/routing_dinamico18.png){text-align: justify}
 /// figura
@@ -488,7 +486,7 @@ El segundo comando activa OSPF en G0/2 de forma diferente al ejemplo anterior. A
 0.0.0.0     = 00000000.00000000.00000000.00000000
 ```
 
-Como acabamos de ver, el comando `network` es bastante flexible. El resultado de los dos ejemplos anteriores (figuras 17.17 y 17.18) es el mismo: OSPF se activa en las interfaces de R1, y R1 anuncia la dirección de red de sus interfaces a sus vecinos. Sin embargo, el método recomendado para usar el comando `network` es el último que vimos: especificar la dirección IP exacta de la interfaz y usar una máscara comodín de 0.0.0.0.
+Como acabamos de ver, el comando `network` es bastante flexible. El resultado de los dos ejemplos anteriores (figuras  y ) es el mismo: OSPF se activa en las interfaces de R1, y R1 anuncia la dirección de red de sus interfaces a sus vecinos. Sin embargo, el método recomendado para usar el comando `network` es el último que vimos: especificar la dirección IP exacta de la interfaz y usar una máscara comodín de 0.0.0.0.
 
 El motivo de esta recomendación es evitar la activación involuntaria de OSPF en las interfaces. Si utiliza un comando `network` con un rango de direcciones más amplio, cualquier interfaz con una dirección IP dentro de ese rango se incluirá en el proceso OSPF. Al especificar la dirección IP exacta de la interfaz con una máscara comodín de 0.0.0.0, se garantiza que solo se incluya la interfaz deseada.
 
@@ -497,7 +495,7 @@ El motivo de esta recomendación es evitar la activación involuntaria de OSPF e
 
 Existen dos conceptos erróneos importantes que muchos estudiantes tienen sobre el comando "network" de OSPF. El primero es que la máscara comodín del comando "network" debe coincidir con la máscara de red de la interfaz. Esto no es así, como vimos en los ejemplos anteriores; siempre que los bits correctos entre la dirección IP del comando "network" y la dirección IP de la interfaz (los bits especificados por la máscara comodín) coincidan, OSPF se activará en la interfaz.
 
-El segundo error es que el comando network especifica qué redes debe anunciar OSPF. No es así; más bien, especifica en qué interfaces debe activarse OSPF. El router anunciará entonces el prefijo de red de la interfaz. Para aclarar, veamos qué hacen los dos comandos de la figura 17.18. Este es el primer comando:
+El segundo error es que el comando network especifica qué redes debe anunciar OSPF. No es así; más bien, especifica en qué interfaces debe activarse OSPF. El router anunciará entonces el prefijo de red de la interfaz. Para aclarar, veamos qué hacen los dos comandos de la figura . Este es el primer comando:
 
 ```
 R1(config-router)# network 192.168.1.0 0.0.0.7 area 0
