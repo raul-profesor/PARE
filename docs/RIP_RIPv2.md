@@ -96,6 +96,8 @@ Router(config-router)# redistribute static
 
 Las rutas estáticas redistribuidas aparecerán como rutas RIP en los routers vecinos.
 
+Si lo que queremos es que únicamente se redistribuya la ruta por defecto de todas las estáticas, porque por ejemplo nuestro router actúa de *gateway* hacia Internet para el resto, utilizaremos el comando: `default-information originate`
+
 
 
 ## 10. Autenticación en RIPv2

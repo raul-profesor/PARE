@@ -268,7 +268,7 @@ Un ejemplo de enrutamiento ECMP. (1) R1 aprende dos rutas a 10.0.0.0/24 a travé
 
 De forma predeterminada, las rutas estáticas tienen un AD de 1 y, por lo tanto, se prefieren a las rutas aprendidas mediante un protocolo de enrutamiento dinámico. Sin embargo, en algunos casos, podría ser conveniente configurar una ruta estática como respaldo, que solo se incluya en la tabla de enrutamiento si se pierde la ruta principal (aprendida mediante un protocolo de enrutamiento). Esta es la función de las rutas estáticas flotantes.
 
-Una ruta estática flotante es una ruta estática configurada con un AD mayor que el valor predeterminado de 1 para que sea menos preferida. Por ejemplo, para que una ruta estática sea menos preferida que una ruta OSPF al mismo destino, debe configurarse con un AD mayor que 110 (el AD de OSPF). Para configurar una ruta estática flotante, simplemente añada el valor de AD al final del comando. Por ejemplo, puede configurar una ruta estática recursiva flotante con el comando `ip route destination-network netmask next-hop ad`. La Figura  muestra un ejemplo en el que se configura una ruta estática con un AD de 111 para que sea menos preferida que una ruta aprendida mediante OSPF.
+Una ruta estática flotante es una ruta estática configurada con un AD mayor que el valor predeterminado de 1 para que sea menos preferida. Por ejemplo, para que una ruta estática sea menos preferida que una ruta OSPF al mismo destino, debe configurarse con un AD mayor que 110 (el AD de OSPF). Para configurar una ruta estática flotante, simplemente se añade el valor de AD al final del comando. Por ejemplo, se puede configurar una ruta estática recursiva flotante con el comando `ip route destination-network netmask next-hop ad`. La Figura 17.14 muestra un ejemplo en el que se configura una ruta estática con un AD de 111 para que sea menos preferida que una ruta aprendida mediante OSPF.
 
 ![](img/routing_dinamico14.png){text-align: justify}
 /// figura
@@ -280,7 +280,7 @@ Una ruta estática flotante es menos preferida que una ruta OSPF al mismo destin
 
 Una ruta estática flotante funciona como ruta de respaldo, ofreciendo una ruta secundaria para los datos si la ruta principal falla. Si bien los protocolos de enrutamiento dinámico también pueden ofrecer la misma funcionalidad (recalculando la siguiente mejor ruta si la mejor ruta actual falla), una ruta estática flotante puede proporcionar una ruta de respaldo a través de un router con el que el router local no intercambia información de enrutamiento. En la figura , R1 tiene una relación de vecino OSPF con R4, pero no con R2. Las rutas estáticas flotantes también ofrecen las ventajas mencionadas anteriormente, como control y previsibilidad; permiten controlar con exactitud qué ruta tomará el tráfico si falla la ruta principal.
 
-En el siguiente ejemplo, pruebo la ruta estática flotante que vimos en la figura . Al revisar por primera vez la tabla de enrutamiento de R1, la ruta OSPF está presente. Luego, deshabilito la interfaz G0/1 de R1 (simulando un fallo de hardware) y reviso la tabla de enrutamiento de nuevo; esta vez, la ruta estática flotante (con un AD de 111) ha reemplazado a la ruta OSPF:
+En el siguiente ejemplo, se prueba la ruta estática flotante que vimos en la figura anterior. Al revisar por primera vez la tabla de enrutamiento de R1, la ruta OSPF está presente. Luego, deshabilitamos la interfaz G0/1 de R1 (simulando un fallo de hardware) y revisamos la tabla de enrutamiento de nuevo; esta vez, la ruta estática flotante (con un AD de 111) ha reemplazado a la ruta OSPF:
 
 ```rd
 R1(config)# do show ip route 
@@ -311,12 +311,18 @@ Considere el siguiente ejemplo. R1 aprende las siguientes rutas mediante configu
 + (B) 203.0.113.0/25 vía RIP, métrica 4
 + (C) 203.0.113.0/26 a través de EIGRP, métrica 5678
 + (D) 203.0.113.0/27 a través de OSPF, métrica 10
+Consideremos el siguiente ejemplo. R1 aprende las siguientes rutas mediante configuración manual y protocolos de enrutamiento dinámico:
 
-¿Qué ruta(s) insertará R1 en su tabla de enrutamiento? Tras leer hasta este punto, podría pensar que R1 seleccionará la ruta estática porque tiene el AD más bajo. O quizás piense que R1 seleccionará la ruta OSPF porque tiene la longitud de prefijo más larga (utilizando la regla de la "ruta coincidente más específica" que se explica en el capítulo 9). Sin embargo, la respuesta es que R1 insertará las cuatro rutas en su tabla de enrutamiento.
++ (A) 203.0.113.0/24 a través de enrutamiento estático
++ (B) 203.0.113.0/25 vía RIP, métrica 4
++ (C) 203.0.113.0/26 a través de EIGRP, métrica 5678
++ (D) 203.0.113.0/27 a través de OSPF, métrica 10
+
+¿Qué ruta(s) insertará R1 en su tabla de enrutamiento? Tras leer hasta este punto, podríamos pensar que R1 seleccionará la ruta estática porque tiene el AD más bajo. O quizás pensemos que R1 seleccionará la ruta OSPF porque tiene la longitud de prefijo más larga (utilizando la regla de la "ruta coincidente más específica" que ya hemos visto. Sin embargo, la respuesta es que R1 insertará las cuatro rutas en su tabla de enrutamiento.
 
 La razón es que las cuatro rutas tienen destinos diferentes. Aunque comparten la misma dirección de red de destino (203.0.113.0), todas tienen longitudes de prefijo diferentes y, por lo tanto, se consideran destinos diferentes. No es necesario compararlas; R1 las insertará todas en la tabla de enrutamiento.
 
-Cabe destacar que las cuatro subredes del ejemplo se superponen, como se muestra en la figura . Las subredes /25, /26 y /27 se encuentran dentro de la subred /24. Sin embargo, al crear la tabla de enrutamiento, se consideran redes de destino diferentes y, por lo tanto, se insertarán en ella.
+Cabe destacar que las cuatro subredes del ejemplo se superponen, como se muestra en la figura de abajo. Las subredes /25, /26 y /27 se encuentran dentro de la subred /24. Sin embargo, al crear la tabla de enrutamiento, se consideran redes de destino diferentes y, por lo tanto, se insertarán en ella.
 
 ![](img/routing_dinamico15.png){text-align: justify}
 /// figura
@@ -343,9 +349,9 @@ Veamos otro ejemplo. R1 aprende las siguientes rutas mediante protocolos de enru
 
 El segundo aspecto de la selección de ruta es el reenvío de paquetes: seleccionar la ruta de la tabla de enrutamiento que se utilizará para reenviar un paquete en particular. Este proceso es más sencillo, ya que solo se considera una cosa: la ruta más específica. Al reenviar un paquete, no se consideran los valores de AD ni de métricas de las rutas.
 
-Sin embargo, identificar la ruta que un router seleccionará para reenviar un paquete puede ser difícil, ya que el proceso de identificar qué rutas coinciden con el destino de un paquete en particular y cuál de ellas es la más específica requiere la conversión entre binario y decimal. Por eso, enfaticé la importancia de familiarizarse con el sistema binario al abordar el direccionamiento y la subred IPv4 en capítulos anteriores.
+Sin embargo, identificar la ruta que un router seleccionará para reenviar un paquete puede ser difícil, ya que el proceso de identificar qué rutas coinciden con el destino de un paquete en particular y cuál de ellas es la más específica requiere la conversión entre binario y decimal. Por eso, ya enfatizamos la importancia de familiarizarse con el sistema binario al abordar el direccionamiento y la subred IPv4 en capítulos anteriores.
 
-Veamos un ejemplo de selección de ruta en el contexto del reenvío de paquetes. Examine la tabla de enrutamiento de R1 a continuación. ¿Qué ruta seleccionará para reenviar un paquete con destino a 203.0.113.65?
+Veamos un ejemplo de selección de ruta en el contexto del reenvío de paquetes. Examinad la tabla de enrutamiento de R1 a continuación. ¿Qué ruta seleccionará para reenviar un paquete con destino a 203.0.113.65?
 
 ```
 R1# show ip route
@@ -356,7 +362,7 @@ D        203.0.113.0/26 [90/5678] via 192.168.1.10
 O        203.0.113.0/27 [110/10] via 192.168.1.14
 ```
 
-El primer paso es identificar qué rutas coinciden con el destino del paquete. Como vimos en el capítulo 9, si la dirección IP de destino del paquete forma parte de la red especificada en la ruta, se considera una coincidencia. En el siguiente ejemplo, he escrito cada ruta en binario, así como la dirección IP de destino del paquete (203.0.113.65):
+El primer paso es identificar qué rutas coinciden con el destino del paquete. Sabemos que si la dirección IP de destino del paquete forma parte de la red especificada en la ruta, se considera una coincidencia. En el siguiente ejemplo, se ha escrito cada ruta en binario, así como la dirección IP de destino del paquete (203.0.113.65):
 
 ```
 203.0.113.0/24 = 11001011.00000000.01110001.00000000
@@ -379,21 +385,21 @@ De las dos rutas coincidentes, la ruta a 203.0.113.0/25 es más específica; tie
 
 ## El comando `network`
 
-RIP, EIGRP y OSPF se configuran activando el protocolo en una o más interfaces del router. El router anuncia el prefijo de red (dirección y máscara de red) de la interfaz. La configuración de RIP y EIGRP queda fuera del alcance del examen CCNA, y abordaremos la configuración de OSPF con más detalle en el capítulo 18. Sin embargo, en esta sección, analizaremos un comando compartido por los tres protocolos: el comando `network`. Este comando le indica al router que:
+RIP, EIGRP y OSPF se configuran activando el protocolo en una o más interfaces del router. El router anuncia el prefijo de red (dirección y máscara de red) de la interfaz. En esta sección, analizaremos un comando compartido por los tres protocolos: el comando `network`. Este comando le indica al router que:
 
 + Busque interfaces con una dirección IP que esté dentro del rango especificado
 + Active el protocolo de enrutamiento en esas interfaces
 + Anuncie el prefijo de red de las interfaces a sus vecinos
 
-Aunque RIP, EIGRP y OSPF comparten el comando `network`, existen diferencias de sintaxis entre ellos; nos centraremos en OSPF, ya que su configuración es un tema del examen CCNA. Para configurar OSPF en un router Cisco, utilice el comando router ospf process-id en el modo de configuración global para acceder al modo de configuración del router, un nuevo modo de configuración desde el cual puede utilizar el comando network.
+Aunque RIP, EIGRP y OSPF comparten el comando `network`, existen diferencias de sintaxis entre ellos. Para configurar OSPF en un router Cisco por ejemplo, utilizamos el comando `router ospf process-id` en el modo de configuración global para acceder al modo de configuración del router, un nuevo modo de configuración desde el cual puede utilizar el comando network.
 
 !!!note "Nota"
-    Un router puede ejecutar procesos OSPF independientes (instancias), por lo que debe especificar un id de proceso en el comando router ospf. Sin embargo, los casos de uso de múltiples procesos OSPF quedan fuera del alcance del examen CCNA.
+    Un router puede ejecutar procesos OSPF independientes (instancias), por lo que debe especificar un id de proceso en el comando router ospf.
 
-La Figura  muestra cómo se puede usar el comando network para activar OSPF en las interfaces de un router. La sintaxis del comando network es `network ip-address wildcard-mask area area-id`. La clave de este comando es la máscara wildcard, que parece una máscara de red invertida, pero tiene una función diferente.
+La figura muestra cómo se puede usar el comando `network` para activar OSPF en las interfaces de un router. La sintaxis del comando network es `network ip-address wildcard-mask area area-id`. La clave de este comando es la máscara wildcard, que parece una máscara de red invertida, pero tiene una función diferente.
 
 !!!note "Nota"
-    OSPF utiliza áreas para dividir lógicamente la red; cubriremos las áreas OSPF en el capítulo 18. Por ahora, solo especificaremos el área 0 en el comando de red.
+    OSPF utiliza áreas para dividir lógicamente la red. Por ahora, solo especificaremos el área 0 en el comando de red.
 
 ![](img/routing_dinamico16.png){text-align: justify}
 /// figura
@@ -402,7 +408,7 @@ Activación de OSPF en las interfaces de un router con el comando network. El co
 
 Una máscara *wildcard* o comodín, al igual que una máscara de red, es una serie de 32 bits. Su propósito es indicar qué bits deben coincidir entre dos direcciones IP y cuáles no. La máscara comodín del comando `network` especifica qué bits deben coincidir entre la dirección IP del comando `network`y la dirección IP configurada en la interfaz de un router. Un bit 0 en la máscara comodín significa que los bits en la misma posición de la dirección IP del comando `network` y la dirección IP de la interfaz deben coincidir. Un bit 1 en la máscara comodín significa que los bits no tienen que coincidir.
 
-Examinemos los tres comandos `network`utilizados en la figura . En el siguiente ejemplo, muestro el comando `network` utilizado para activar OSPF en la interfaz G0/0 de R1. Observe que los bits correspondientes coinciden entre la dirección IP del comando de red (192.168.1.0) y la dirección IP G0/0 de R1 (192.168.1.1); estos bits se especifican con 0 en la máscara comodín.
+Examinemos los tres comandos `network`utilizados en la figura . En el siguiente ejemplo, se muestra el comando `network` utilizado para activar OSPF en la interfaz G0/0 de R1. Observad que los bits correspondientes coinciden entre la dirección IP del comando de red (192.168.1.0) y la dirección IP G0/0 de R1 (192.168.1.1); estos bits se especifican con 0 en la máscara comodín.
 
 ```rd
 192.168.1.1 = 11000000.10101000.00000001.00000001
@@ -410,7 +416,7 @@ Examinemos los tres comandos `network`utilizados en la figura . En el siguiente 
 0.0.0.3     = 00000000.00000000.00000000.00000011
 ```
 
-A continuación, el comando que utilicé para activar OSPF en la interfaz G0/1 de R1. Nuevamente, los bits correspondientes coinciden con la dirección IP especificada en el comando de red y la dirección IP de G0/1:
+A continuación, el comando que utilizamos para activar OSPF en la interfaz G0/1 de R1. Nuevamente, los bits correspondientes coinciden con la dirección IP especificada en el comando de red y la dirección IP de G0/1:
 
 ```rd
 192.168.1.5 = 11000000.10101000.00000001.00000101
@@ -418,7 +424,7 @@ A continuación, el comando que utilicé para activar OSPF en la interfaz G0/1 d
 0.0.0.3     = 00000000.00000000.00000000.00000011
 ```
 
-En estos dos ejemplos, utilicé una máscara comodín de 0.0.0.3, que equivale a una máscara de red /30 (255.255.255.252) con los bits invertidos. La Figura  lo demuestra: todos los bits 1 de la máscara de red 255.255.255.252 son 0 en la máscara comodín 0.0.0.3 y viceversa.
+En estos dos ejemplos, se utiliza una máscara comodín de 0.0.0.3, que equivale a una máscara de red /30 (255.255.255.252) con los bits invertidos. La figura de abajo lo demuestra: todos los bits 1 de la máscara de red 255.255.255.252 son 0 en la máscara comodín 0.0.0.3 y viceversa.
 
 ![](img/routing_dinamico17.png){text-align: justify}
 /// figura
@@ -428,7 +434,7 @@ Máscara de red A /30 (255.255.255.252) y su máscara comodín equivalente (0.0.
 !!!note "Nota"
     Un atajo para calcular la máscara comodín equivalente de una máscara de red es restar cada octeto de la máscara de red de 255. Los primeros tres octetos de una máscara de red /30 son 255 y 255-255 = 0. El octeto final es 252 y 255-252 = 3.
 
-Finalmente, veamos el comando que usé para activar OSPF en la interfaz G0/2 de R1. Esta vez, la longitud del prefijo de la interfaz es /24, por lo que usé la máscara comodín equivalente a una máscara de red /24: 0.0.0.255.
+Finalmente, veamos el comando que se ha usado para activar OSPF en la interfaz G0/2 de R1. Esta vez, la longitud del prefijo de la interfaz es /24, por lo que se usa la máscara comodín equivalente a una máscara de red /24: 0.0.0.255.
 
 ```rd
 192.168.2.1 = 11000000.10101000.00000010.00000000
@@ -450,19 +456,18 @@ En la Tabla  se enumeran algunas máscaras de red y sus máscaras comodín equiv
 | /31                  | 255.255.255.254   | 0.0.0.1 (00000001)                         |
 | /32                  | 255.255.255.255   | 0.0.0.0 (00000000)                         |
 
-Tabla  Máscaras de red /24+ y máscaras comodín (ver figura de la tabla)
 
 
-### ¿Por qué mascarillas comodín?
+### ¿Por qué mascaras comodín o *wildcards*?
 
-Quizás se pregunte por qué usamos máscaras comodín en lugar de máscaras de red. La clave está en recordar para qué sirven las máscaras de red: identifican el tamaño de un prefijo de red, distinguiendo entre la parte de red y la parte de host de una dirección IP. Por ejemplo, al configurar `ip address 192.168.1.1 255.255.255.0` en la interfaz de un router, este indica que su dirección IP es 192.168.1.1: los primeros tres octetos corresponden a la parte de red y el último a la parte de host. El prefijo es 192.168.1.0/24.
+Quizás os preguntáis por qué usamos máscaras comodín en lugar de máscaras de red. La clave está en recordar para qué sirven las máscaras de red: identifican el tamaño de un prefijo de red, distinguiendo entre la parte de red y la parte de host de una dirección IP. Por ejemplo, al configurar `ip address 192.168.1.1 255.255.255.0` en la interfaz de un router, este indica que su dirección IP es 192.168.1.1: los primeros tres octetos corresponden a la parte de red y el último a la parte de host. El prefijo es 192.168.1.0/24.
 
 Sin embargo, al usar el comando `network` de OSPF, la dirección IP y la máscara comodín se usan de forma diferente; no definen un prefijo de red como lo haría una máscara de red. En cambio, especifican un rango de direcciones IP, que no necesariamente forman parte de la misma subred. Este rango se utiliza para determinar qué interfaces del router participarán en OSPF, es decir, cuáles enviarán y recibirán información de enrutamiento OSPF. A continuación, un breve resumen:
 
 + Una máscara de red (o máscara de subred) se utiliza para distinguir las partes de red y host de una dirección IP. Determina la longitud del prefijo de red de una subred.
 + En el contexto del comando de red OSPF, una dirección IP y una máscara comodín no definen un prefijo de red. En cambio, definen un rango de direcciones IP (que no necesariamente pertenecen a la misma subred). Este rango se utiliza para determinar qué interfaces del router participarán en el proceso OSPF (es decir, qué interfaces enviarán y recibirán información de enrutamiento OSPF).
 
-En los tres comandos `network` que analizamos, utilicé la dirección de red (la parte del host de todos los 0) de cada interfaz y la máscara comodín equivalente a la máscara de red de cada interfaz. Sin embargo, es importante destacar que el comando `network` es flexible: siempre que los bits correspondientes coincidan entre la dirección IP del `network` y la dirección IP de la interfaz (los indicados por un bit 0 en la máscara comodín), OSPF se activará en la interfaz. La Figura  muestra una forma diferente de activar OSPF en las interfaces del R1, esta vez utilizando solo dos comandos `network`.
+En los tres comandos `network` que analizamos, se utilizó la dirección de red (la parte del host de todos los 0) de cada interfaz y la máscara comodín equivalente a la máscara de red de cada interfaz. Sin embargo, es importante destacar que el comando `network` es flexible: siempre que los bits correspondientes coincidan entre la dirección IP del `network` y la dirección IP de la interfaz (los indicados por un bit 0 en la máscara comodín), OSPF se activará en la interfaz. La siguiente imagen  muestra una forma diferente de activar OSPF en las interfaces del R1, esta vez utilizando solo dos comandos `network`.
 
 ![](img/routing_dinamico18.png){text-align: justify}
 /// figura
@@ -486,16 +491,16 @@ El segundo comando activa OSPF en G0/2 de forma diferente al ejemplo anterior. A
 0.0.0.0     = 00000000.00000000.00000000.00000000
 ```
 
-Como acabamos de ver, el comando `network` es bastante flexible. El resultado de los dos ejemplos anteriores (figuras  y ) es el mismo: OSPF se activa en las interfaces de R1, y R1 anuncia la dirección de red de sus interfaces a sus vecinos. Sin embargo, el método recomendado para usar el comando `network` es el último que vimos: especificar la dirección IP exacta de la interfaz y usar una máscara comodín de 0.0.0.0.
+Como acabamos de ver, el comando `network` es bastante flexible. El resultado de los dos ejemplos anteriores es el mismo: OSPF se activa en las interfaces de R1, y R1 anuncia la dirección de red de sus interfaces a sus vecinos. Sin embargo, el método recomendado para usar el comando `network` es el último que vimos: especificar la dirección IP exacta de la interfaz y usar una máscara comodín de 0.0.0.0.
 
-El motivo de esta recomendación es evitar la activación involuntaria de OSPF en las interfaces. Si utiliza un comando `network` con un rango de direcciones más amplio, cualquier interfaz con una dirección IP dentro de ese rango se incluirá en el proceso OSPF. Al especificar la dirección IP exacta de la interfaz con una máscara comodín de 0.0.0.0, se garantiza que solo se incluya la interfaz deseada.
+El motivo de esta recomendación es evitar la activación involuntaria de OSPF en las interfaces. Si se utiliza un comando `network` con un rango de direcciones más amplio, cualquier interfaz con una dirección IP dentro de ese rango se incluirá en el proceso OSPF. Al especificar la dirección IP exacta de la interfaz con una máscara comodín de 0.0.0.0, se garantiza que solo se incluya la interfaz deseada.
 
 !!!note "Nota"
     Un método abreviado para activar OSPF en todas las interfaces es usar la red 0.0.0.0 255.255.255.255 área 0. Una máscara comodín de 255.255.255.255 equivale a una máscara de red de 0.0.0.0 y coincide con todas las direcciones IP posibles. Esto es útil para activar OSPF rápidamente en un entorno de laboratorio, pero no se recomienda en una red real.
 
-Existen dos conceptos erróneos importantes que muchos estudiantes tienen sobre el comando "network" de OSPF. El primero es que la máscara comodín del comando "network" debe coincidir con la máscara de red de la interfaz. Esto no es así, como vimos en los ejemplos anteriores; siempre que los bits correctos entre la dirección IP del comando "network" y la dirección IP de la interfaz (los bits especificados por la máscara comodín) coincidan, OSPF se activará en la interfaz.
+Existen dos conceptos erróneos importantes que muchos estudiantes tienen sobre el comando `network` de OSPF. El primero es que la máscara comodín del comando `network` debe coincidir con la máscara de red de la interfaz. Esto no es así, como vimos en los ejemplos anteriores; siempre que los bits correctos entre la dirección IP del comando `network` y la dirección IP de la interfaz (los bits especificados por la máscara comodín) coincidan, OSPF se activará en la interfaz.
 
-El segundo error es que el comando network especifica qué redes debe anunciar OSPF. No es así; más bien, especifica en qué interfaces debe activarse OSPF. El router anunciará entonces el prefijo de red de la interfaz. Para aclarar, veamos qué hacen los dos comandos de la figura . Este es el primer comando:
+El segundo error es que el comando `network` especifica qué redes debe anunciar OSPF. No es así; más bien, especifica en qué interfaces debe activarse OSPF. El router anunciará entonces el prefijo de red de la interfaz. Para aclarar, veamos qué hacen los dos comandos de la figura . Este es el primer comando:
 
 ```
 R1(config-router)# network 192.168.1.0 0.0.0.7 area 0
