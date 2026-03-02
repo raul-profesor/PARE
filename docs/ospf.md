@@ -14,7 +14,7 @@ En esta unidad vamos a tratar los siguientes puntos:
 
 OSPF (Open Shortest Path First) es un protocolo de puerta de enlace interior (IGP) fundamental para las redes empresariales modernas. Ya hemos abordado los protocolos de enrutamiento dinámico en general. En esta unidad, profundizaremos en el tema de OSPF y veremos cómo funciona realmente, incluyendo cómo los routers con OSPF se convierten en vecinos, comparten información de enrutamiento, calculan rutas y muchos otros detalles.
 
-Actualmente, se utilizan dos versiones de OSPF: OSPFv2, que se usa principalmente para redes IPv4, y OSPFv3, que se usa principalmente para redes IPv6 (aunque también puede usarse para IPv4). Para el examen CCNA, la versión que nos interesa es OSPFv2; todas las menciones de OSPF en este libro se refieren específicamente a OSPFv2, como se indica en el tema 3.4 del examen: Configurar y verificar OSPFv2 de área única.
+Actualmente, se utilizan dos versiones de OSPF: OSPFv2, que se usa principalmente para redes IPv4, y OSPFv3, que se usa principalmente para redes IPv6 (aunque también puede usarse para IPv4).
 
 El nombre "Open Shortest Path First" tiene dos aspectos: abierto significa que es un protocolo estándar abierto; OSPF no es propiedad de Cisco. Todos los proveedores pueden implementar OSPF en sus dispositivos de red. Shortest Path First (SPF) es el nombre del algoritmo utilizado para calcular rutas; también se le conoce como algoritmo de Dijkstra, en honor a su creador, Edsger Dijkstra.
 
@@ -26,7 +26,7 @@ Hay tres pasos principales que siguen los routers OSPF para compartir informaci�
 + Intercambiar información de enrutamiento para construir un mapa de conectividad de la red.
 + Calcula las mejores rutas a cada destino.
 
-Comencemos examinando el segundo y tercer paso de ese proceso, y luego examinaremos los detalles de cómo los routers OSPF se convierten en vecinos en la sección 18.3.
+Comencemos examinando el segundo y tercer paso de ese proceso, y luego examinaremos los detalles de cómo los routers OSPF se convierten en vecinos.
 
 ### La base de datos de estado del enlace
 
@@ -64,7 +64,7 @@ En la siguiente imagen se muestra una red OSPF multiárea compuesta por cuatro �
 Una red OSPF multiárea compuesta por cuatro áreas. El área 0 es el área principal a la que deben conectarse las demás áreas. Las áreas 1, 2 y 3 no son áreas principales, y el tráfico entre ellas debe pasar por el área 0.
 ///
 
-OSPF distingue cuatro tipos de routers. La tabla a continuación resume estos cuatro tipos de routers y enumera los routers de la imagen anterior que pertenecen a cada tipo. Ten en cuenta que algunos routers se clasifican en varias categorías.
+OSPF distingue cuatro tipos de routers. La tabla a continuación resume estos cuatro tipos de routers y enumera los routers de la imagen anterior que pertenecen a cada tipo. Tened en cuenta que algunos routers se clasifican en varias categorías.
 
 | Tipo de router | En la imagen| Descripción |
 |----------------|-------------------|-------------|
@@ -81,7 +81,7 @@ Un router interno tiene todas sus interfaces habilitadas para OSPF en la misma �
 !!!note "Nota"
     Los ABR mantienen un LSDB separado para cada área a la que están conectados.
 
-El último tipo de router es un router de límite de sistema autónomo (ASBR), un router que conecta el sistema autónomo (AS) OSPF a redes externas, como Internet o la red de otra empresa. Ten en cuenta que este tipo es independiente de los demás; un ASBR puede ser un router troncal o no, y puede ser un router interno o un ABR. Como hemos mostrado en la tabla, el R1 de la imagen es un router interno, un router troncal y un ASBR, todo a la vez. Más adelante, veremos cómo configurar una ruta predeterminada en un ASBR y anunciarla a otros routers del AS OSPF.
+El último tipo de router es un router de límite de sistema autónomo (ASBR), un router que conecta el sistema autónomo (AS) OSPF a redes externas, como Internet o la red de otra empresa. Tened en cuenta que este tipo es independiente de los demás; un ASBR puede ser un router troncal o no, y puede ser un router interno o un ABR. Como hemos mostrado en la tabla, el R1 de la imagen es un router interno, un router troncal y un ASBR, todo a la vez. Más adelante, veremos cómo configurar una ruta predeterminada en un ASBR y anunciarla a otros routers del AS OSPF.
 
 Las rutas OSPF se pueden clasificar como intraárea, interárea o externas. Las rutas intraárea son rutas a destinos en la misma área OSPF que el router; por ejemplo, si el router es interno en el área 1, todas las rutas a destinos dentro del área 1 son rutas intraárea. Las rutas interárea son rutas a destinos en un área a la que el router no se conecta; por ejemplo, si un ABR conectado a las áreas 0 y 1 aprende una ruta al área 2. Finalmente, las rutas a destinos externos (publicadas por un ASBR) se denominan rutas externas.
 
@@ -108,7 +108,7 @@ El costo de un enlace se calcula dividiendo un valor de ancho de banda de refere
 + Enlace de 1000 Mbps (1 Gbps) = 1 (100/1000 = 0,1)
 + Enlace de 10 000 Mbps (10 Gbps) = 1 (100/10 000 = 0,01)
 
-Quizás hayáis notado un problema: con el ancho de banda de referencia predeterminado de 100 Mbps, todos los enlaces con un ancho de banda de 100 Mbps o superior tienen el mismo costo. Si OSPF considera que un enlace de 100 Mbps es tan preferible como uno de 1 Gbps o 10 Gbps, es probable que calcule rutas subóptimas. Más abajo se muestra un ejemplo: aunque la ruta de R1 a 10.1.3.0/24 a través de R4 utiliza enlaces FastEthernet, se considera igual a la ruta de R1 a trav R2, que utiliza enlaces GigabitEthernet.
+Quizás hayáis notado un problema: con el ancho de banda de referencia predeterminado de 100 Mbps, todos los enlaces con un ancho de banda de 100 Mbps o superior tienen el mismo costo. Si OSPF considera que un enlace de 100 Mbps es tan preferible como uno de 1 Gbps o 10 Gbps, es probable que calcule rutas subóptimas. Más abajo se muestra un ejemplo: aunque la ruta de R1 a 10.1.3.0/24 a través de R4 utiliza enlaces FastEthernet, se considera igual a la ruta de R1 a través de R2, que utiliza enlaces GigabitEthernet.
 
 ![](img/ospf-4.png)
 
@@ -243,7 +243,7 @@ R1# show ip protocols
 . . .
 ```
 !!!note "Nota"
-    Es importante recordar que, una vez que el router haya seleccionado su RID, lo mantendrá incluso si se configura una interfaz de loopback y se restablece OSPF. La dirección IP de una interfaz de loopback solo se usará para la selección inicial del RID al crear el proceso OSPF. Para que un router cambie su RID después de haberlo seleccionado, debe configurarlo manualmente; lo explicaremos a continuación.
+    Es importante recordar que, una vez que el router haya seleccionado su RID, lo mantendrá incluso si se configura una interfaz de loopback y se restablece OSPF. La dirección IP de una interfaz de loopback solo se usará para la selección inicial del RID al crear el proceso OSPF. Para que un router cambie su RID después de haberlo seleccionado, se debe configurar manualmente; lo explicaremos a continuación.
 
 #### Cambiar el RID
 
@@ -258,7 +258,7 @@ R1(config-router)# do show ip protocols
 . . .
 ```
 !!!note "Nota"
-    Si el router ya ha establecido una relación de vecindad con uno o más vecinos OSPF, deberá reiniciar el proceso OSPF con el proceso `clear ip ospf` para que el RID recién configurado surta efecto. Sin embargo, en este punto del ejemplo, aún no se hs activado OSPF en ninguna de las interfaces del R1, por lo que no tiene vecinos OSPF. Por eso, el nuevo RID se implementó de inmediato.
+    Si el router ya ha establecido una relación de vecindad con uno o más vecinos OSPF, se deberá reiniciar el proceso OSPF con el proceso `clear ip ospf` para que el RID recién configurado surta efecto. Sin embargo, en este punto del ejemplo, aún no se ha activado OSPF en ninguna de las interfaces del R1, por lo que no tiene vecinos OSPF. Por eso, el nuevo RID se implementó de inmediato.
 
 Aunque el RID OSPF suele derivarse de una de las direcciones IP del router, es importante tener en cuenta que no es una dirección IP; es simplemente un valor de 32 bits con un formato similar al de una dirección IP (notación decimal con puntos). Siempre que el RID sea único en el AS OSPF, puede ser cualquier valor de 32 bits.
 
@@ -355,7 +355,7 @@ La figura de abajo muestra una situación en la que se debe configurar una inter
 R3 anuncia el prefijo de red de G0/1 (una interfaz pasiva), pero no envía mensajes de saludo OSPF desde allí.
 ///
 
-Configurar interfaces de loopback como pasivas también se considera una buena práctica en OSPF. Dado que una interfaz de loopback es una interfaz virtual que no está conectada físicamente a ninguna red, no es prácticamente necesario que envíe mensajes de saludo OSPF para intentar establecer relaciones de vecindad. Para configurar una interfaz pasiva, se utiliza el comando `passive-interface interface-name en el modo de configuración del router. En el siguiente ejemplo, se configuran R3 G0/1 y L0 como interfaces pasivas:
+Configurar interfaces de loopback como pasivas también se considera una buena práctica en OSPF. Dado que una interfaz de loopback es una interfaz virtual que no está conectada físicamente a ninguna red, no es prácticamente necesario que envíe mensajes de saludo OSPF para intentar establecer relaciones de vecindad. Para configurar una interfaz pasiva, se utiliza el comando `passive-interface interface-name` en el modo de configuración del router. En el siguiente ejemplo, se configuran R3 G0/1 y L0 como interfaces pasivas:
 
 ```
 R3(config)# router ospf 1
