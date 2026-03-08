@@ -457,7 +457,7 @@ Para que los routers OSPF intercambien información de enrutamiento, primero nec
 
 ### Estados vecinos
 
-Para que los routers OSPF intercambien información de enrutamiento, deben pasar por una serie de estados vecinos, en los cuales verifican la coincidencia de diversos parámetros de configuración. La imagne de bajo describe los estados vecinos OSPF, desde Inactivo hasta Completo.
+Para que los routers OSPF intercambien información de enrutamiento, deben pasar por una serie de estados vecinos, en los cuales verifican la coincidencia de diversos parámetros de configuración. La imagen de abajo describe los estados vecinos OSPF, desde Inactivo hasta Completo.
 
 Podríamos hablar largo y tendido sobre este proceso pero sobrepasa los objetivos del curso.
 
@@ -467,7 +467,7 @@ Podríamos hablar largo y tendido sobre este proceso pero sobrepasa los objetivo
 Estados vecinos OSPF: Inactivo, Inicialización, Bidireccional, ExStart, Intercambio, Cargando y Completo. Los routers que alcanzan el estado Bidireccional son vecinos OSPF. Algunos routers permanecen en este estado y otros establecen una adyacencia completa.
 ///
 
-Cuando OSPF se activa en una interfaz, el router envía regularmente mensajes de saludo OSPF, que se utilizan para descubrir dinámicamente vecinos OSPF y mantener las relaciones entre ellos una vez establecidas. Estos mensajes de saludo incluyen información diversa, dos de los cuales son el RID del router local y los RID de cualquier router vecino que tenga en cuenta en la interfaz.
+Cuando OSPF se activa en una interfaz, el router envía regularmente mensajes de saludo OSPF, que se utilizan para descubrir dinámicamente vecinos OSPF y mantener las relaciones entre ellos una vez establecidas. Estos mensajes de saludo incluyen información diversa, dos de esos parámetros son el RID del router local y los RID de cualquier router vecino que se conozca en la interfaz.
 
 Los mensajes de saludo OSPF se envían a la dirección IP *224.0.0.5*, que es una dirección IP de multidifusión. Mientras que los paquetes de unidifusión son uno a uno (de un host a otro) y los paquetes de difusión son uno a todos, los paquetes de multidifusión son uno a múltiples (pero no necesariamente todos). 
 
@@ -518,7 +518,7 @@ Incluso después de establecer una relación de vecinos o adyacencia, los router
 
 OSPF utiliza una configuración de interfaz denominada *network type* para determinar su comportamiento en una red específica. En este contexto, una red es una conexión entre dos o más routers (un segmento). El tipo de red influye en aspectos como los temporizadores de mensajes OSPF, la elección de un DR y un BDR, y si todas las relaciones de vecinos se convertirán en adyacencias completas.
 
-Existen varios tipos de redes OSPF: de difusión, multiacceso sin difusión (NBMA), punto a punto, punto a multipunto, punto a multipunto sin difusión y loopback. Esta tabla resume estos dos tipos de red.
+Existen varios tipos de redes OSPF: de difusión, multiacceso sin difusión (NBMA), punto a punto, punto a multipunto, punto a multipunto sin difusión y loopback. Esta tabla resume las dos más importantes:
 
 
 | Broadcast | Point-to-point |
@@ -558,7 +558,7 @@ Seis routers están conectados al mismo segmento de red. Sin el DR/BDR, se reque
 ///
 
 !!!note "Nota"
-    Para dirigir los mensajes únicamente al DR y al BDR, los DRothers envían los paquetes a la dirección IP de multidifusión 224.0.0.6. Recuerdad las dos direcciones IP de multidifusión OSPF: 224.0.0.5 (todos los routers OSPF) y 224.0.0.6 (solo DR y BDR).
+    Para dirigir los mensajes únicamente al DR y al BDR, los DRothers envían los paquetes a la dirección IP de multidifusión 224.0.0.6. Recoerdad las dos direcciones IP de multidifusión OSPF: 224.0.0.5 (todos los routers OSPF) y 224.0.0.6 (solo DR y BDR).
 
 Dependiendo de la cantidad de routers conectados al segmento, la función DR/BDR de la red de difusión puede reducir considerablemente los recursos utilizados por OSPF en el segmento. Esto podría reducirse aún más seleccionando solo un DR, pero el BDR es importante para proporcionar estabilidad y resiliencia; si el DR falla por alguna razón, el BDR asume automáticamente el nuevo DR.
 
@@ -598,7 +598,7 @@ Neighbor ID  Pri  State         Dead Time  Address   Interface
 Como se muestra en la salida, R5 es efectivamente el DR del segmento. Otro punto importante es que R2 y R3 no forman una adyacencia completa; como DROthers, permanecen vecinos en el estado bidireccional. Esto significa que no intercambian LSA entre sí.
 
 !!!note "Nota"
-    Aunque los DROthers no intercambian LSA directamente entre sí, conocerán las LSA de cada uno a través del DR/BDR. Recuerdad que todos los routers en el área OSPF deben tener la misma LSDB.
+    Aunque los DROthers no intercambian LSA directamente entre sí, conocerán las LSA de cada uno a través del DR/BDR. recordad que todos los routers en el área OSPF deben tener la misma LSDB.
 
 A estas alturas, probablemente uno se pregunte cómo se eligen los DR y los BDR. Los DR y los BDR se eligen según los dos criterios siguientes:
 
@@ -766,9 +766,9 @@ Nbr 192.168.1.1 on GigabitEthernet0/0 from LOADING to
 FULL, Loading Done
 ```
 
-El sexto requisito es que la configuración de autenticación coincida. Puede configurar una contraseña para autenticar vecinos OSPF y garantizar que solo los routers previstos establezcan relaciones de vecindad. Se puede usar el comando `ip ospf authentication` en el modo de configuración de interfaz para habilitar la autenticación y el comando `ip ospf authentication-key password` para configurar la contraseña.
+El sexto requisito es que la configuración de autenticación coincida. Se puede configurar una contraseña para autenticar vecinos OSPF y garantizar que solo los routers previstos establezcan relaciones de vecindad. Se puede usar el comando `ip ospf authentication` en el modo de configuración de interfaz para habilitar la autenticación y el comando `ip ospf authentication-key password` para configurar la contraseña.
 
-El séptimo requisito es que la configuración de la unidad máxima de transmisión (MTU) IP de los routers coincida. Con anterioridad hemos mencionodo alguna vez de forma breve la MTU IP; ésta determina el tamaño máximo de un paquete IPv4. Si bien una discrepancia en la MTU IP no impide que dos routers OSPF se conviertan en vecinos, no podrán establecer una adyacencia completa ni avanzar más allá de los estados ExStart/Exchange. Se puede modificar la MTU IP de una interfaz con el comando `ip mtu bytes` en el modo de configuración de interfaz; la configuración predeterminada en las interfaces Ethernet es de 1500 bytes.
+El séptimo requisito es que la configuración de la unidad máxima de transmisión (MTU) IP de los routers coincida. Con anterioridad hemos mencionado alguna vez de forma breve la MTU IP; ésta determina el tamaño máximo de un paquete IPv4. Si bien una discrepancia en la MTU IP no impide que dos routers OSPF se conviertan en vecinos, no podrán establecer una adyacencia completa ni avanzar más allá de los estados ExStart/Exchange. Se puede modificar la MTU IP de una interfaz con el comando `ip mtu bytes` en el modo de configuración de interfaz; la configuración predeterminada en las interfaces Ethernet es de 1500 bytes.
 
 El requisito final es que los tipos de red OSPF coincidan. Este requisito es diferente a los demás que hemos tratado hasta ahora: un router con el tipo de red de difusión y un router con el tipo de red punto a punto podrán establecer una adyacencia completa. Sin embargo, el problema radica en que los routers no podrán sincronizar sus LSDB; no aprenderán las rutas del otro.
 
@@ -795,7 +795,7 @@ Las tablas de vecinos OSPF de R1 y R2 indican adyacencia completa, pero hay algo
 
 ## Tipos de LSA
 
-Los routers OSPF comparten información de enrutamiento mediante el envío de mensajes LSU, que contienen LSA. Existen varios tipos de LSA, cada uno con su propia finalidad, pero para el examen CCNA, debe conocer tres:
+Los routers OSPF comparten información de enrutamiento mediante el envío de mensajes LSU, que contienen LSA. Existen varios tipos de LSA, cada uno con su propia finalidad, pero estos son los 3 que debemos conocer:
 
 + Tipo 1 (LSA de router): generado por todos los routers, este LSA describe los enlaces del router.
 + Tipo 2 (LSA de red): generada por el DR de una red de difusión, esta LSA enumera todos los routers en el segmento.
