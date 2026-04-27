@@ -24,4 +24,13 @@
       <url>
         <loc>https://raul-profesor.github.io/PARE/ospf/</loc>
       </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/intervlan/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/acl_estandar/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/acl_extendida/</loc>
+      </url>
 </urlset>

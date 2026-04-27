@@ -1,0 +1,1417 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/nat/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>NAT (Netork Address Translation) - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M384%20512H96c-53%200-96-43-96-96V96C0%2043%2043%200%2096%200h304c26.5%200%2048%2021.5%2048%2048v288c0%2020.9-13.4%2038.7-32%2045.3V448c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032zM96%20384c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032h256v-64zm32-232c0%2013.3%2010.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24H152c-13.3%200-24%2010.7-24%2024m24%2072c-13.3%200-24%2010.7-24%2024s10.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24z%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M352%200c0-17.7-14.3-32-32-32s-32%2014.3-32%2032v64h-96c-53%200-96%2043-96%2096v224c0%2053%2043%2096%2096%2096h256c53%200%2096-43%2096-96V160c0-53-43-96-96-96h-96zM160%20368c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24M224%20176a48%2048%200%201%201%200%2096%2048%2048%200%201%201%200-96m144%2048a48%2048%200%201%201%2096%200%2048%2048%200%201%201-96%200m-304%200c0-17.7-14.3-32-32-32S0%20206.3%200%20224v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32zm544-32c-17.7%200-32%2014.3-32%2032v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32v-96c0-17.7-14.3-32-32-32%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M416%20427.4c58.5-44%2096-111.6%2096-187.4C512%20107.5%20397.4%200%20256%200S0%20107.5%200%20240c0%2075.8%2037.5%20143.4%2096%20187.4V464c0%2026.5%2021.5%2048%2048%2048h32v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h64v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h32c26.5%200%2048-21.5%2048-48zM96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v151.5L7.5%20426.3C2.6%20435%200%20444.7%200%20454.7%200%20486.4%2025.6%20512%2057.3%20512h333.4c31.6%200%2057.3-25.6%2057.3-57.3%200-10-2.6-19.8-7.5-28.4L320%20215.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20215.5V64h64v151.5c0%2011.1%202.9%2022.1%208.4%2031.8L306%20320H142l41.6-72.7c5.5-9.7%208.4-20.6%208.4-31.8%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20576%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M480-16c6.9%200%2013%204.4%2015.2%2010.9l13.5%2040.4%2040.4%2013.5C555.6%2051%20560%2057.1%20560%2064s-4.4%2013-10.9%2015.2l-40.4%2013.5-13.5%2040.4c-2.2%206.5-8.3%2010.9-15.2%2010.9s-13-4.4-15.2-10.9l-13.5-40.4-40.4-13.5C404.4%2077%20400%2070.9%20400%2064s4.4-13%2010.9-15.2l40.4-13.5%2013.5-40.4C467-11.6%20473.1-16%20480-16M321.4%2097.4c12.5-12.5%2032.8-12.5%2045.3%200l80%2080c12.5%2012.5%2012.5%2032.8%200%2045.3l-10.9%2010.9c7.9%2022%2012.2%2045.7%2012.2%2070.5%200%20114.9-93.1%20208-208%20208S32%20418.9%2032%20304%20125.1%2096%20240%2096c24.7%200%2048.5%204.3%2070.5%2012.3zM144%20304c0-53%2043-96%2096-96%2013.3%200%2024-10.7%2024-24s-10.7-24-24-24c-79.5%200-144%2064.5-144%20144%200%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-32-352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200m-8%2064h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M64%20480c-35.3%200-64-28.7-64-64V96c0-35.3%2028.7-64%2064-64h320c35.3%200%2064%2028.7%2064%2064v213.5c0%2017-6.7%2033.3-18.7%2045.3L322.7%20461.3c-12%2012-28.3%2018.7-45.3%2018.7zm325.5-176H296c-13.3%200-24%2010.7-24%2024v93.5z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m0-336c-17.7%200-32%2014.3-32%2032%200%2013.3-10.7%2024-24%2024s-24-10.7-24-24c0-44.2%2035.8-80%2080-80s80%2035.8%2080%2080c0%2047.2-36%2067.2-56%2074.5v3.8c0%2013.3-10.7%2024-24%2024s-24-10.7-24-24v-8.1c0-20.5%2014.8-35.2%2030.1-40.2%206.4-2.1%2013.2-5.5%2018.2-10.3%204.3-4.2%207.7-10%207.7-19.6%200-17.7-14.3-32-32-32zm-32%20192a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64zm256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M434.8%2070.1c14.3%2010.4%2017.5%2030.4%207.1%2044.7l-256%20352c-5.5%207.6-14%2012.3-23.4%2013.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200l101.5%20101.5%20234-321.7c10.4-14.3%2030.4-17.5%2044.7-7.1z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M461.2%2018.9C472.7%2024%20480%2035.4%20480%2048v416c0%2012.6-7.3%2024-18.8%2029.1s-24.8%203.2-34.3-5.1l-46.6-40.7c-43.6-38.1-98.7-60.3-156.4-63V480c0%2017.7-14.3%2032-32%2032h-32c-17.7%200-32-14.3-32-32v-96C57.3%20384%200%20326.7%200%20256s57.3-128%20128-128h84.5c61.8-.2%20121.4-22.7%20167.9-63.3L427%2024c9.4-8.3%2022.9-10.2%2034.3-5.1zM224%20320v.2c70.3%202.7%20137.8%2028.5%20192%2073.4V118.3c-54.2%2044.9-121.7%2070.7-192%2073.4z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%200c14.7%200%2028.2%208.1%2035.2%2021l216%20400c6.7%2012.4%206.4%2027.4-.8%2039.5S486.1%20480%20472%20480H40c-14.1%200-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9%2020.5-21%2035.2-21m0%20352a32%2032%200%201%200%200%2064%2032%2032%200%201%200%200-64m0-192c-18.2%200-32.7%2015.5-31.4%2033.7l7.4%20104c.9%2012.5%2011.4%2022.3%2023.9%2022.3%2012.6%200%2023-9.7%2023.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nat-netork-address-translation" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              NAT (Netork Address Translation)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SecSwitches/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_estandar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_extendida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direcciones-ipv4-privadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direcciones IPv4 privadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conceptos-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos NAT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conceptos NAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-proceso-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El proceso NAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminologia-nat-de-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminología NAT de Cisco
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terminología NAT de Cisco">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inside-y-outside" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside y Outside
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-y-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local y global
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de NAT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de NAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nat-estatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NAT estático
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat-dinamico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NAT dinámico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pat-dinamico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PAT dinámico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PAT dinámico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pat-dinamico-mediante-un-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PAT dinámico mediante un pool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pat-dinamico-mediante-la-direccion-ip-de-una-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PAT dinámico mediante la dirección IP de una interfaz
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="nat-netork-address-translation">NAT (Netork Address Translation)</h1>
+<p>Este capítulo abarca:</p>
+<ul>
+<li>Direcciones IPv4 privadas</li>
+<li>Utilizar NAT para traducir entre direcciones IPv4 privadas y públicas.</li>
+<li>Los diferentes tipos de NAT</li>
+<li>Configuración de NAT </li>
+</ul>
+<h2 id="introduccion">Introducción</h2>
+<p>El agotamiento de las direcciones IPv4 es un problema importante desde hace mucho tiempo. La solución a largo plazo es conocida: IPv6. Sin embargo, IPv4 sigue siendo dominante hoy en día gracias a algunas soluciones que han sido muy efectivas para extender su vida útil. Analizamos una de estas soluciones en el capítulo 11 del volumen 1 sobre el subneteo con enrutamiento entre dominios sin clases (CIDR), que ofrece mayor flexibilidad que el rígido sistema de direccionamiento con clases que lo precedió.</p>
+<p>En esta unidad abordaremos dos soluciones importantes que, en conjunto, han demostrado ser esenciales para preservar el espacio de direcciones IPv4: el direccionamiento IPv4 privado (que ya hemos visto anteriormente en el curso) y la traducción de direcciones de red (NAT). Se han reservado tres rangos de direcciones IPv4 para su uso gratuito en redes privadas sin necesidad de que sean globalmente únicas, y NAT proporciona una forma de traducir esas direcciones privadas a direcciones públicas para la comunicación a través de internet.</p>
+<h2 id="direcciones-ipv4-privadas">Direcciones IPv4 privadas</h2>
+<p>Las direcciones IPv4 privadas son direcciones IPv4 que cualquier organización o individuo puede utilizar libremente para sus redes internas; no es necesario que sean únicas a nivel global. En el RFC 1918, Asignación de direcciones para redes privadas de Internet, se definen tres rangos de direcciones IPv4 privadas:</p>
+<ul>
+<li>10.0.0.0/8 (10.0.0.0–10.255.255.255)</li>
+<li>172.16.0.0/12 (172.16.0.0–172.31.255.255)</li>
+<li>192.168.0.0/16 (192.168.0.0–192.168.255.255)</li>
+</ul>
+<p>Abajo se muestran tres redes LAN conectadas a Internet. Todas las redes LAN utilizan direcciones IPv4 del tercer rango privado (192.168.0.0/16). Nótese que las tres subredes se superponen: 192.168.0.0/23 (192.168.0.0–192.168.1.255), 192.168.1.0/24 (192.168.1.0–192.168.1.255) y 192.168.1.0/25 (192.168.1.0–192.168.1.127). Esto no representa un problema, ya que las redes nunca están conectadas directamente; sus direcciones no tienen por qué ser únicas.</p>
+<figure id="__figura_1">
+<p><img alt="" src="../img/nat1.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> Direcciones IPv4 públicas y privadas. Las direcciones IPv4 privadas se pueden usar libremente para redes internas y no tienen que ser únicas a nivel mundial. Las direcciones IPv4 públicas, utilizadas para la comunicación a través de Internet, deben ser únicas a nivel mundial.</p>
+</figcaption>
+</figure>
+<p>Las direcciones IPv4 que no se encuentran en los rangos de la RFC 1918 (o en otro rango reservado) son direcciones IPv4 públicas; estas direcciones deben ser únicas a nivel global, ya que se utilizan para la comunicación a través de Internet. Si dos hosts conectados a Internet tienen la misma dirección IP, otros enrutadores no podrán determinar cuál de los dos hosts es el destinatario previsto de un paquete destinado a su dirección compartida. Las direcciones Anycast (descritas en el capítulo 20 del volumen 1) constituyen una excepción a esta regla; se asignan intencionadamente a varios hosts.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las direcciones IPv4 públicas de la figura anterior también pertenecen a rangos reservados: 192.0.2.0/24, 198.51.100.0/24 y 203.0.113.0/24 están reservadas para su uso en documentación y ejemplos, pero a menudo se utilizan para representar direcciones públicas.</p>
+</div>
+<p>Las direcciones IPv4 privadas no son enrutables a través de internet; los paquetes originados o destinados a direcciones privadas serán descartados por el proveedor de servicios de internet (ISP). Si tienes un PC con Windows, usa ipconfig para comprobar la dirección IPv4 de tu PC (ifconfig si usas macOS/Linux); casi con toda seguridad se trata de una dirección privada. Entonces, ¿cómo puede tu PC comunicarse a través de internet a pesar de tener una dirección privada? La respuesta es NAT.</p>
+<h2 id="conceptos-nat">Conceptos NAT</h2>
+<p>La <em>traducción de direcciones de red</em> (NAT) es el proceso de modificar las direcciones IP de origen y/o destino de un paquete y, por lo general, la realiza un enrutador (o cortafuegos) en el perímetro de la red, es decir, un enrutador que conecta la red interna con internet. Al traducir las direcciones IP privadas a direcciones IP públicas, NAT permite que los hosts con direcciones IP privadas se comuniquen a través de internet.</p>
+<h3 id="el-proceso-nat">El proceso NAT</h3>
+<p>En la imagen de abajo se muestra el proceso NAT. PC1, un host con una dirección IP privada, envía un paquete al servidor en 8.8.8.8. R1 utiliza NAT para traducir entre la dirección IP privada de PC1 (que no es enrutable a través de Internet) y una dirección IP pública.</p>
+<figure id="__figura_2">
+<p><img alt="" src="../img/nat2.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> R1 realiza la conversión entre la dirección IP privada de PC1 y una dirección IP pública para su uso a través de Internet.</p>
+</figcaption>
+</figure>
+<p>En el paso 1, PC1 envía un paquete desde su dirección IP privada (la dirección IP de su interfaz de red). En el paso 2, R1 traduce la dirección IP de origen del paquete de PC1 a una dirección IP pública antes de reenviarlo a través de internet. Luego, en el paso 3, el servidor 8.8.8.8 responde enviando un paquete destinado a la dirección IP pública, que R1 traduce de nuevo a la dirección IP privada de PC1 antes de reenviarlo a PC1 en el paso 4.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>NAT se diseñó para traducir direcciones IP privadas y públicas, pero también es posible realizar traducciones entre direcciones privadas y públicas. Sin embargo, los casos de uso de NAT entre direcciones privadas y públicas son más limitados que los de NAT entre direcciones privadas. Para el examen CCNA, se puede asumir que NAT es entre direcciones privadas y públicas.</p>
+</div>
+<h3 id="terminologia-nat-de-cisco">Terminología NAT de Cisco</h3>
+<p>Cuando un host en una red interna se comunica con un host en una red externa a través de un enrutador con NAT habilitado, hay cuatro direcciones involucradas desde el punto de vista del enrutador:</p>
+<ul>
+<li>La dirección IP del host interno antes de NAT (local interno)</li>
+<li>La dirección IP del host interno después de NAT (interno global)</li>
+<li>La dirección IP del host externo antes de NAT (local externo)</li>
+<li>La dirección IP del host externo después de NAT (externo global)</li>
+</ul>
+<p>Cisco utiliza cuatro términos para describir cada una de estas direcciones: local interna, global interna, local externa y global externa. En esta sección, analizaremos la distinción entre interna y externa, así como entre local y global, y luego definiremos estos cuatro términos, fundamentales para el examen CCNA.</p>
+<h4 id="inside-y-outside">Inside y Outside</h4>
+<p>Cisco utiliza los términos «interior» y «exterior» para referirse a las redes internas y externas, respectivamente. Una dirección interna es la dirección IP de un host ubicado en la red interna del router, y una dirección externa es la dirección IP de un host ubicado en la red externa. De forma similar, los hosts de la red interna se denominan hosts internos, y los hosts de la red externa se denominan hosts externos. La figura 9.3 ilustra estos conceptos. La interfaz G0/0 del router R1 se conecta a la red interna, y la interfaz G0/1 se conecta a la red externa (Internet).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para mayor coherencia, a partir de ahora usaré los términos <em>inside</em> y <em>outside</em>, ya que son los que usa Cisco en el contexto de NAT. Su significado es el mismo que el de <em>interno</em> y <em>externo</em>.</p>
+</div>
+<figure id="__figura_3">
+<p><img alt="" src="../img/nat3.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> La distinción entre interior y exterior desde la perspectiva de R1. La red interior es la red interna de R1, y la red exterior es la red externa (todo lo demás).</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Todos estos términos dependen de la perspectiva. Desde la perspectiva de R1, PC1 es un host interno y 8.8.8.8 es un host externo, pero desde la perspectiva de 8.8.8.8 y su enrutador (no mostrado), ocurre lo contrario.</p>
+</div>
+<p>Más adelante se abordará la configuración de NAT, pero la figura muestra un paso importante del proceso: especificar las interfaces interna y externa del router con el comando ip nat {inside | outside}. Dado que R1 G0/0 está configurado con el comando ip nat inside, PC1 es un host interno. Y dado que R1 G0/1 está configurado con ip nat outside, 8.8.8.8 es un host externo.</p>
+<h4 id="local-y-global">Local y global</h4>
+<p>Cuando PC1 (un host interno) envía un paquete a un destino en la red externa, la dirección IP de origen de ese paquete es la dirección IP configurada en PC1: una dirección IP privada. Pero, ¿qué sucede después de que R1 utiliza NAT para traducir la dirección IP de origen del paquete de PC1 a una dirección IP pública? La dirección después de la traducción sigue representando a PC1, por lo que continúa siendo una dirección interna, pero es necesario otro criterio para diferenciar entre las direcciones antes y después de NAT: la distinción entre local y global.</p>
+<p>Una dirección local es la dirección antes de que el enrutador la traduzca, y una dirección global es la dirección después de que el enrutador la traduzca. En otras palabras, una dirección local es la dirección de un host desde la perspectiva de la red interna, y una dirección global es la dirección de un host desde la perspectiva de la red externa. La figura 9.4 ilustra la distinción entre direcciones locales y globales.
+Local/global y privado/público</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Las direcciones locales y globales pueden parecer similares a las direcciones privadas y públicas. Sin embargo, estos conceptos no siempre coinciden. Por ejemplo, en la figura 9.4, 8.8.8.8 (una dirección pública) es tanto una dirección local como una dirección global desde la perspectiva de R1.</p>
+<p>Los términos <em>local</em> y <em>global</em> son específicos de NAT y tienen significados concretos. Las direcciones locales se utilizan dentro de una red NAT, mientras que las direcciones globales se utilizan fuera de ella. NAT traduce las direcciones locales a direcciones globales cuando el tráfico fluye desde el interior hacia el exterior de la red y viceversa, independientemente de si las direcciones son privadas o públicas.</p>
+</div>
+<figure id="__figura_4">
+<p><img alt="" src="../img/nat4.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> La distinción entre local y global. Las direcciones locales aparecen en la red interna y las direcciones globales aparecen en la red externa.</p>
+</figcaption>
+</figure>
+<p>Desde la perspectiva de PC1 y de otros hosts en la red interna, la dirección IP de PC1 es una dirección IP privada (es decir, 10.0.0.10). Sin embargo, desde la perspectiva de cualquier host en la red externa, la dirección IP de PC1 es una dirección IP pública (es decir, 203.0.113.1). Por ejemplo, cuando el servidor en 8.8.8.8 responde al paquete de PC1, dirige su respuesta a la dirección IP pública, no a la dirección IP privada de PC1; el servidor ni siquiera conoce la dirección IP privada de PC1.</p>
+<p>Al combinar las distinciones entre interior/exterior y local/global, obtenemos los cuatro términos mencionados al inicio de esta sección: interior local, interior global, exterior local y exterior global. Aquí sen ilustra estas cuatro direcciones.</p>
+<figure id="__figura_5">
+<p><img alt="" src="../img/nat5.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 5. </span> Direcciones locales internas, globales internas, locales externas y globales externas. La distinción entre internas y externas diferencia entre los hosts ubicados en las redes internas y externas, y la distinción entre locales y globales diferencia entre las perspectivas de los hosts en las redes internas y externas.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En nuestro ejemplo, R1 no traduce la dirección IP del host externo, por lo que las direcciones locales externas y globales externas son idénticas.</p>
+</div>
+<p>Ahora podemos definir con mayor precisión esos cuatro términos:</p>
+<ul>
+<li>Local interno (inside local): la dirección IP de un host ubicado en la red interna desde la perspectiva de la red interna.</li>
+<li>Dirección IP global interna (inside global): la dirección IP de un host ubicado en la red interna desde la perspectiva de la red externa.</li>
+<li>Red externa local (outside local): la dirección IP de un host ubicado en la red externa desde la perspectiva de la red interna.</li>
+<li>Global externo (outside global): la dirección IP de un host ubicado en la red externa desde la perspectiva de la red externa.</li>
+</ul>
+<p>Como se indicó en la nota anterior, las direcciones IP externas locales y globales son idénticas en nuestro ejemplo. Esto se debe a que R1 solo realiza NAT de origen en el paquete de PC1; solo traduce la dirección IP de origen del paquete. R1 no realiza NAT de destino en el paquete de PC1; no traduce la dirección IP de destino del paquete. No abordaremos el NAT de destino en este curso.</p>
+<div class="admonition info">
+<p class="admonition-title">Todo es cuestión de perspectiva</p>
+<p>Como ya se comentó anteriormente, estos términos dependen de la perspectiva; son relativos a R1, el enrutador que realiza la traducción de direcciones de red (NAT) en nuestro ejemplo. Para R1, 8.8.8.8 es tanto una dirección local externa como una dirección global externa. Sin embargo, es probable que el servidor en 8.8.8.8 esté conectado a su propio enrutador que también realiza NAT, con su propia perspectiva sobre lo que está dentro y fuera, lo que es local y lo que es global. Desde la perspectiva de ese enrutador, 8.8.8.8 es la dirección global interna del servidor, y su dirección local interna es una dirección IP privada desconocida para R1, PC1 o cualquier otro host fuera de esa red.</p>
+</div>
+<h2 id="tipos-de-nat">Tipos de NAT</h2>
+<p>Existen varios tipos de NAT. Para el examen CCNA, debes conocer los siguientes tres:</p>
+<ul>
+<li><strong>NAT estático</strong>: traducciones estáticas uno a uno</li>
+<li><strong>NAT dinámico</strong>: traducciones dinámicas uno a uno.</li>
+<li><strong>PAT dinámico (Traducción de direcciones de puerto)</strong>: traducciones dinámicas de muchos a uno</li>
+</ul>
+<p>Cada tipo tiene sus propias aplicaciones, pero la PAT dinámica es, con diferencia, la más utilizada, ya que permite que miles de hosts compartan una única dirección IP pública. En esta sección, analizaremos cada tipo y cómo configurarlo en un router Cisco.</p>
+<h3 id="nat-estatico">NAT estático</h3>
+<p>El primer tipo de NAT que veremos es el NAT estático, que consiste en configurar de forma estática asignaciones uno a uno de direcciones locales internas (privadas) a direcciones globales internas (públicas). En la imagen se muestra el NAT estático y cómo configurarlo en Cisco IOS.</p>
+<figure id="__figura_6">
+<p><img alt="" src="../img/nat6.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 6. </span> NAT estático. Las direcciones locales internas 10.0.0.11 y 10.0.0.12 se asignan estáticamente a las direcciones globales internas 192.0.2.1 y 192.0.2.2, respectivamente.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La figura sólo muestra las traducciones en una dirección (de PC1/PC2 al servidor), pero R1 también traducirá las respuestas del servidor (como se muestra en las figuras anteriores).</p>
+</div>
+<p>Al asignar la dirección IP privada de PC1 (10.0.0.11) a una dirección IP pública (192.0.2.1), PC1 puede comunicarse a través de internet. Para permitir que otro host interno (PC2) se comunique a través de internet, se necesita una segunda dirección IP pública (192.0.2.2). Esta es la limitación de la NAT estática: es una correspondencia uno a uno. Por lo tanto, no resuelve el problema del agotamiento de direcciones IPv4, aunque a veces se utiliza para permitir que hosts específicos se comuniquen a través de internet. En el siguiente ejemplo, se muestran las configuraciones:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>R1(config)# 
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>interface g0/0                                      
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>R1(config-if)# ip nat inside                                    
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>R1(config-if)# interface g0/1                                   
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>R1(config-if)# ip nat outside                                   
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>R1(config-if)# exit
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>R1(config)# ip nat inside source static 10.0.0.11 192.0.2.1     
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>R1(config)# ip nat inside source static 10.0.0.12 192.0.2.2  
+</span></code></pre></div></td></tr></table></div>
+<p>El primer paso consiste en configurar las interfaces interna y externa con <code>ip nat {inside | outside}</code> en el modo de configuración de interfaz, como se explicó en la sección anterior. A continuación, solo queda crear asignaciones estáticas con el comando <code>ip nat inside source static inside-local inside-global</code>. En el ejemplo, asigné las direcciones locales internas 10.0.0.11 y 10.0.0.12 a las direcciones globales internas 192.0.2.1 y 192.0.2.2, respectivamente.</p>
+<p>Esta figura aclara el significado de las palabras clave del comando:</p>
+<figure id="__figura_7">
+<p><img alt="" src="../img/nat7.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 7. </span> NAT estático. Las direcciones locales internas 10.0.0.11 y 10.0.0.12 se asignan estáticamente a las direcciones globales internas 192.0.2.1 y 192.0.2.2, respectivamente.</p>
+</figcaption>
+</figure>
+<p>La palabra clave <code>inside</code> le indica a R1 que realice traducciones para las direcciones IP que se originan en la red interna. Específicamente, R1 traducirá las direcciones locales internas a direcciones globales internas a medida que los paquetes se muevan desde la red interna a la red externa.</p>
+<p>La palabra clave <code>source</code> que sigue indica a R1 que traduzca la dirección IP de origen de los paquetes provenientes de hosts en la red interna. Por lo tanto, cuando R1 reenvía un paquete desde PC1, traducirá la dirección IP de origen del paquete de 10.0.0.11 a 192.0.2.1. Sin embargo, es importante recordar que lo contrario ocurre con la respuesta del host externo. Cuando una respuesta proviene del host externo y está destinada a 192.0.2.1, R1 traducirá la dirección IP de destino del paquete de nuevo a 10.0.0.11, lo que permitirá que el paquete se entregue correctamente a PC1.</p>
+<p>La lista de temas del examen CCNA indica que debes ser capaz de "configurar y verificar NAT de origen interno", por lo que todas las instrucciones NAT que configuremos comenzarán con <code>ip nat inside source</code>. El resto del comando es lo que diferencia entre NAT estático, NAT dinámico y PAT dinámico. Al usar la palabra clave <code>static</code>, puedes configurar asignaciones estáticas de direcciones locales internas a direcciones globales internas, como en este ejemplo.</p>
+<p>Tras configurar NAT estático, puede usar el comando <code>show ip nat translations</code> para ver la tabla de traducción del router, como en el siguiente ejemplo. Un aspecto que puede resultar confuso en la salida de este comando es que la columna de la izquierda es <code>Inside global</code>, seguida de <code>Inside local</code>. Creo que lo contrario tiene más sentido, ¡pero Cisco no me pidió mi opinión al diseñar este comando!</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>R1# show ip nat translations
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>Pro Inside global      Inside local       Outside local      Outside global
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>--- 192.0.2.1          10.0.0.11          ---                ---
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>--- 192.0.2.2          10.0.0.12          ---                ---  
+</span></code></pre></div></td></tr></table></div>
+<p>Se crea una entrada estática en la tabla para cada asignación: 10.0.0.11 a 192.0.2.1 y 10.0.0.12 a 192.0.2.2; las demás columnas están vacías. Para ver información en estas columnas, abriré navegadores web en PC1 y PC2 y accederé a algunos sitios web. Cuando un host interno se comunica con un host externo, se crean entradas dinámicas adicionales en la tabla NAT. Estas entradas dinámicas están vinculadas a la asignación estática, pero registran el estado de las sesiones de comunicación individuales. El siguiente ejemplo muestra una pequeña parte del resultado posterior:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>R1# show ip nat translations
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>Pro Inside global      Inside local       Outside local      Outside global
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>tcp 192.0.2.1:54568    10.0.0.11:54568    34.117.65.55:443   34.117.65.55:443
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>--- 192.0.2.1          10.0.0.11          ---                ---
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>tcp 192.0.2.2:53154    10.0.0.12:53154    34.117.65.55:443   34.117.65.55:443
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>--- 192.0.2.2          10.0.0.12          ---                ---
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los números que aparecen después de las direcciones IP (separados por dos puntos) indican los números de puerto TCP y UDP utilizados por PC1/PC2 y los hosts externos. Así se puede identificar que en el ejemplo anterior se está utilizando HTTPS (puerto TCP 443).</p>
+</div>
+<p>Mientras que las entradas estáticas son permanentes, las dinámicas se eliminan tras un periodo de inactividad. Por ejemplo, si PC1 y PC2 dejan de comunicarse con el servidor HTTPS en 34.117.65.55, estas entradas se eliminarán automáticamente, quedando solo las estáticas. También puede usar el comando <code>clear ip nat translation *</code> en el modo EXEC privilegiado para borrar manualmente todas las entradas dinámicas de la tabla de traducción NAT.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>No confundáis las entradas estáticas/dinámicas de la tabla de traducción con NAT estática/dinámica; todas las entradas que acabamos de examinar son el resultado de traducciones NAT estáticas.</p>
+</div>
+<h3 id="nat-dinamico">NAT dinámico</h3>
+<p>El siguiente tipo de NAT que veremos es el NAT dinámico. El NAT estático y el dinámico son similares en que ambos implican la asignación uno a uno de direcciones locales internas a direcciones globales internas. La diferencia radica en cómo se asignan estas direcciones. En el NAT estático, cada dirección se configura de forma estática, una por una. En el NAT dinámico, el enrutador crea dinámicamente las direcciones a partir de un conjunto de direcciones disponibles. En la imagen de abajo muestra el NAT dinámico; aparte de los comandos de configuración, el proceso NAT es similar al del NAT estático.</p>
+<figure id="__figura_8">
+<p><img alt="" src="../img/nat8.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 8. </span> NAT dinámico. Se utiliza una ACL para identificar un rango de direcciones locales internas y un grupo NAT para identificar un rango de direcciones globales internas. Las direcciones del grupo se asignan según el principio de primero en llegar, primero en ser atendido.</p>
+</figcaption>
+</figure>
+<p>La configuración dinámica de NAT consta de tres pasos principales:</p>
+<ol>
+<li>Definir un rango de direcciones locales internas (privadas) con una ACL.</li>
+<li>Definir un rango de direcciones internas globales (públicas) con un grupo NAT.</li>
+<li>Asigner la ACL al grupo NAT.</li>
+</ol>
+<p>Cuando el enrutador reenvía un paquete desde un host con una dirección IP dentro del rango especificado por la ACL, traduce la dirección IP de origen a una de las direcciones globales internas disponibles según el principio de primero en llegar, primero en ser atendido. El siguiente ejemplo muestra las configuraciones necesarias:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>R1(config)# interface g0/0
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>R1(config-if)# ip nat inside
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>R1(config-if)# interface g0/1
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>R1(config-if)# ip nat outside
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>R1(config-if)# exit
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>R1(config)# access-list 1 permit 10.0.0.0 0.0.0.255
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>R1(config)# ip nat pool POOL1 192.0.2.1 192.0.2.5 prefix-length 29
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>R1(config)# ip nat inside source list 1 pool POOL1
+</span></code></pre></div></td></tr></table></div>
+<p>Al igual que en NAT estático, debe usar <code>ip nat {inside | outside}</code> para especificar qué interfaz(es) se conectan a la red interna y cuáles a la red externa. A continuación, cree una ACL para identificar un rango de direcciones locales internas que se traducirán. Los paquetes permitidos por la ACL se traducirán, y los paquetes denegados no se traducirán; se reenviarán tal cual (sin embargo, si su dirección IP de origen es una dirección IP privada, el ISP los descartará).
+Nota</p>
+<p>La ACL no se utiliza para decidir qué paquetes deben reenviarse y cuáles deben bloquearse; solo se utiliza para decidir qué paquetes deben traducirse mediante NAT. Este es otro uso común de las ACL, que son bastante versátiles.</p>
+<p>La ACL que creé es access-list 1 permit 10.0.0.0 0.0.0.255, que permite todas las direcciones IP desde 10.0.0.0 hasta 10.0.0.255, pero deniega todas las demás direcciones IP mediante la denegación implícita. R1 utilizará NAT para traducir los paquetes con una dirección IP de origen dentro del rango permitido, pero los paquetes con una dirección IP de origen que no esté dentro de ese rango no se traducirán.</p>
+<p>El siguiente paso consiste en especificar un rango de direcciones IP globales internas (las direcciones IPv4 públicas que se utilizarán para la comunicación a través de Internet). Esto se logra creando un grupo NAT con el comando <code>ip nat pool name start-ip end-ip prefix-length length</code>. Los argumentos <code>start-ip</code> y <code>end-ip</code> identifican el rango; yo configuré <code>192.0.2.1 192.0.2.5</code> para especificar un rango de cinco direcciones públicas: 192.0.2.1–192.0.2.5.</p>
+<div class="admonition nota">
+<p class="admonition-title">Nota</p>
+<p>En una red real, no se puede usar libremente cualquier dirección IPv4 pública. Las direcciones públicas deben ser únicas a nivel mundial, y su asignación está regulada por la IANA y los RIR que dependen de ella (como vimos en el capítulo 20 del volumen 1). Para obtener un rango de direcciones IP públicas, una empresa debe solicitarlo a un ISP o directamente a un RIR.</p>
+</div>
+<p>En el comando <code>ip nat pool</code>, también debe especificar una longitud de prefijo; esto se utiliza para garantizar que todas las direcciones dentro del rango especificado se encuentren en la misma subred. Especificé el rango 192.0.2.1–192.0.2.5 con una longitud de prefijo /29. Esto implica la subred 192.0.2.0/29 (todos los bits de host establecidos a 0), que incluye todas las direcciones desde 192.0.2.0 hasta 192.0.2.7. El rango especificado (192.0.2.1–192.0.2.5) está incluido en esa subred, por lo que el comando se ejecuta correctamente. De lo contrario, el comando sería rechazado.</p>
+<div class="admonition nota">
+<p class="admonition-title">Nota</p>
+<p>En lugar de <code>prefix-length</code>, puede usar la palabra clave <code>netmask</code>; por ejemplo, <code>ip nat pool POOL1 192.0.2.1 192.0.2.5 netmask 255.255.255.248</code>.</p>
+</div>
+<p>El último paso consiste en combinar la ACL y el pool con una instrucción NAT, asignando el rango de direcciones locales internas (la ACL) al rango de direcciones globales internas (el pool). El comando es <code>ip nat inside source list acl pool pool</code>. En el ejemplo, asigné la ACL 1 a POOL1 con <code>ip nat inside source list 1 pool POOL1</code>. Tras ejecutar este comando, la configuración NAT dinámica queda completa.</p>
+<p>Cabe reiterar que la traducción de direcciones de red (NAT) dinámica es uno a uno, al igual que la NAT estática. Varias direcciones locales internas no pueden traducirse a la misma dirección global interna simultáneamente. Las direcciones globales internas se asignan por orden de llegada, y si el grupo se agota, los paquetes de otros hosts no podrán traducirse y se descartarán. Dichos hosts tendrán que esperar a que haya una dirección global interna disponible; esta es una desventaja importante de la NAT dinámica.</p>
+<p>La imagen de abajo lo demuestra. Las primeras cinco direcciones locales internas se traducen a direcciones globales internas, pero la sexta no se puede traducir, lo que provoca que el paquete se descarte. El séptimo paquete, procedente de 10.1.1.2, se reenvía sin traducirse porque su dirección IP de origen está bloqueada por la ACL 1.</p>
+<figure id="__figura_9">
+<p><img alt="" src="../img/nat9.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 9. </span> El grupo de NAT dinámico se agota. Los paquetes que coinciden con la ACL pero que no se pueden traducir se descartan. Los paquetes rechazados por la ACL se reenvían tal cual.</p>
+</figcaption>
+</figure>
+<p>Al igual que con NAT estático, puede ver la tabla de traducción del enrutador con el comando <code>show ip nat translations</code>. La salida es la misma que cuando se usa NAT estático. El siguiente ejemplo muestra algunas entradas en la tabla de traducción de R1. Para cada traducción, se agrega una entrada que muestra solo la asignación local interna a global interna, y luego se agregan entradas adicionales para cada sesión de comunicación desde un host interno a un host externo; en este caso, se muestran una sesión DNS (UDP 53), una sesión HTTPS (TCP 443) y una sesión HTTP (TCP 80):</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>R1# show ip nat translations
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>Pro Inside global      Inside local       Outside local      Outside global
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>udp 192.0.2.2:58910    10.0.0.11:58910    8.8.8.8:53         8.8.8.8:53
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>--- 192.0.2.2          10.0.0.11          ---                ---
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>tcp 192.0.2.3:33630    10.0.0.12:33630    142.250.207.14:443 142.250.207.14:443
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>--- 192.0.2.3          10.0.0.12          ---                ---
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>tcp 192.0.2.1:32980    10.0.0.13:32980    34.107.221.82:80   34.107.221.82:80
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>--- 192.0.2.1          10.0.0.13          ---                ---
+</span></code></pre></div></td></tr></table></div>
+<p>De los tipos de NAT que vamos a ver, el NAT dinámico es el que menos casos de uso reales tiene. Al igual que el NAT estático, solo proporciona traducciones uno a uno. Sin embargo, a diferencia del NAT estático, no permite controlar las traducciones. Si el número de hosts internos supera el conjunto disponible de direcciones IP globales internas, no hay una forma sencilla de controlar qué hosts acceden a internet y cuáles deben esperar. Obtener suficientes direcciones IP públicas para dar soporte a todos los hosts internos simplemente no es factible para la mayoría de las empresas hoy en día, dado el problema del agotamiento de las direcciones IPv4.</p>
+<h3 id="pat-dinamico">PAT dinámico</h3>
+<p>La traducción dinámica de direcciones de puerto (PAT) es un tipo de NAT que traduce tanto las direcciones IP como los números de puerto TCP/UDP (si es necesario) para establecer asignaciones de muchos a uno entre las direcciones locales internas y las direcciones globales internas. Al utilizar un número de puerto único para cada sesión de comunicación, una única dirección IP pública puede ser compartida por varios hosts internos simultáneamente; el enrutador con NAT habilitado utiliza los números de puerto para realizar un seguimiento de cada sesión individual.</p>
+<p>En total existen 65.536 (2¹⁶) números de puerto, lo que significa que una única dirección IP pública puede, en teoría, soportar decenas de miles de sesiones desde hosts internos; la cantidad real dependerá de varios factores, como la capacidad de memoria del enrutador. Este tipo de NAT, combinado con los rangos de direcciones IPv4 privadas, ha extendido considerablemente la vida útil de IPv4.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>ICMP no utiliza números de puerto como TCP y UDP, pero muchos tipos de mensajes ICMP usan un campo de identificador de 16 bits con un propósito similar. Al traducir paquetes ICMP (por ejemplo, ping), el identificador cumple la función que desempeñan los números de puerto TCP/UDP.</p>
+</div>
+<h4 id="pat-dinamico-mediante-un-pool">PAT dinámico mediante un pool</h4>
+<p>Una forma de configurar PAT dinámico es simplemente añadir la palabra clave <code>overload</code> al final de una instrucción NAT dinámica; de hecho, otro nombre para PAT es sobrecarga de NAT. El siguiente ejemplo muestra cómo configurar PAT dinámico de esta manera:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>R1(config)# interface g0/0
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>R1(config-if)# ip nat inside
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>R1(config-if)# interface g0/1
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>R1(config-if)# ip nat outside
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>R1(config-if)# exit
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>R1(config)# access-list 1 permit 10.0.0.0 0.0.0.255
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>R1(config)# ip nat pool POOL1 192.0.2.1 192.0.2.5 prefix-length 29
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>R1(config)# ip nat inside source list 1 pool POOL1 overload
+</span></code></pre></div></td></tr></table></div>
+<p>A continuación se muestra cómo funcionan las traducciones después de estas configuraciones. Cuando el enrutador traduce un paquete, mantendrá los números de puerto antes y después de la traducción sin cambios, si es posible. Sin embargo, si el número de puerto previo a la traducción de un paquete ya está en uso para otra sesión, el enrutador lo traducirá a uno disponible.</p>
+<figure id="__figura_10">
+<p><img alt="" src="../img/nat10.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 10. </span> PAT dinámico mediante un grupo NAT. El enrutador mantiene los números de puerto pre y post traducción iguales si es posible, pero los traduce si es necesario.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Una vez traducido el primer paquete de una sesión, se utiliza el mismo número de puerto para el resto de la sesión; cada paquete individual no necesita un número de puerto único.</p>
+</div>
+<p>Observad que en el ejemplo de la figura anterior, R1 traduce las direcciones locales internas de los tres paquetes a la misma dirección global interna, aunque el grupo NAT tenga cinco direcciones disponibles. El enrutador utilizará todos los números de puerto disponibles para una dirección global interna (es decir, 192.0.2.1) antes de traducir a la siguiente dirección disponible en el grupo (es decir, 192.0.2.2).</p>
+<p>Cuando el enrutador recibe los paquetes de respuesta, puede identificar a qué sesión pertenecen gracias a los números de puerto únicos. A continuación, el enrutador puede traducir la dirección global interna de cada paquete a la dirección local interna correspondiente. A continuación se ilustra este proceso.</p>
+<figure id="__figura_11">
+<p><img alt="" src="../img/nat11.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 11. </span> El enrutador rastrea cada sesión y traduce la dirección de destino de cada respuesta a la dirección local interna apropiada.</p>
+</figcaption>
+</figure>
+<h4 id="pat-dinamico-mediante-la-direccion-ip-de-una-interfaz">PAT dinámico mediante la dirección IP de una interfaz</h4>
+<p>Aunque la traducción de direcciones IP dinámica (PAT) se puede configurar con un grupo de direcciones, sus capacidades de traducción de muchos a uno implican que muchas organizaciones solo necesitan una única dirección IP pública, no un grupo de ellas. Además, si un enrutador está conectado a internet, ya tiene asignada una dirección IP pública: la dirección IP de la interfaz conectada a internet. Con PAT, el enrutador puede traducir las direcciones IP de los hosts internos a la dirección IP de su propia interfaz.</p>
+<p>Ahora se muestra cómo configurar esto en Cisco IOS. Los paquetes de los hosts en la LAN interna de R1 se traducen a la dirección IP de la interfaz G0/1 de R1: 203.0.113.2.</p>
+<figure id="__figura_12">
+<p><img alt="" src="../img/nat12.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 12. </span> PAT dinámico usando la dirección IP de una interfaz. R1 traduce las direcciones locales internas a la dirección IP de su propia interfaz G0/1: 203.0.113.2.</p>
+</figcaption>
+</figure>
+<p>Así es como se configura con mayor frecuencia el PAT dinámico, ya que permite que los hosts internos se comuniquen a través de internet utilizando la dirección IP ya configurada en el router; no se necesitan direcciones públicas adicionales. El siguiente ejemplo muestra los pasos de configuración; analicemos cada comando:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>R1(config)# interface g0/0
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>R1(config-if)# ip nat inside
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>R1(config-if)# interface g0/1
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>R1(config-if)# ip nat outside
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>R1(config-if)# exit
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>R1(config)# access-list 1 permit 10.0.0.0 0.0.0.255
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>R1(config)# ip nat inside source list 1 interface g0/1 overload
+</span></code></pre></div></td></tr></table></div>
+<p>Como en los ejemplos anteriores, primero se deben configurar las interfaces interna y externa con <code>ip nat {inside | outside}</code> en el modo de configuración de interfaz. Luego, como en NAT dinámico, configure una ACL para determinar qué direcciones IP deben traducirse. Esta ACL funciona igual que las de las configuraciones NAT que vimos anteriormente: los paquetes permitidos por la ACL se traducirán antes de ser reenviados, pero los paquetes rechazados por la ACL se reenviarán tal cual.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si un paquete está permitido por la ACL pero no se puede traducir por falta de direcciones o números de puerto, se descartará. Sin embargo, es probable que esto no ocurra con PAT dinámico, ya que hay muchos números de puerto disponibles.</p>
+</div>
+<p>Solo queda configurar la instrucción NAT. La sintaxis en este caso es <code>ip nat inside source list acl interface interface overload</code>. Esto le indica al enrutador que use PAT para traducir los paquetes permitidos por la ACL a la dirección IP de la interfaz especificada. Los números de puerto se usan para realizar un seguimiento de cada sesión, incluidas las sesiones del propio enrutador (cuando este envía sus propios paquetes usando esa dirección IP).
+Nota</p>
+<p>La palabra clave <code>overload</code> es opcional. Si la omite, iOS la agregará automáticamente.</p>
+<p>El siguiente ejemplo muestra la tabla de traducción de R1 después de que tres hosts internos se hayan comunicado con un servidor HTTPS. Las tres direcciones locales internas se traducen a 203.0.113.2, pero todas tienen puertos de origen únicos, lo que permite a R1 realizar un seguimiento de ellas:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>R1# show ip nat translations 
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>Pro Inside global      Inside local     Outside local      Outside global
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>tcp 203.0.113.2:44578  10.0.0.11:44578  34.117.65.55:443   34.117.65.55:443
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>tcp 203.0.113.2:33032  10.0.0.12:33032  34.117.65.55:443   34.117.65.55:443
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>tcp 203.0.113.2:39102  10.0.0.13:39102  34.117.65.55:443   34.117.65.55:443
+</span></code></pre></div></td></tr></table></div>
+<p>Otro comando útil para verificar NAT es <code>show ip nat statistics</code>. El siguiente ejemplo muestra la salida en R1:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>R1# show ip nat statistics
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>Total active translations: 3 (0 static, 3 dynamic; 3 extended)
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>Peak translations: 292, occurred 02:54:25 ago
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>Outside interfaces:
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>  GigabitEthernet0/1
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>Inside interfaces:
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>  GigabitEthernet0/0
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>Hits: 179478  Misses: 0
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>CEF Translated packets: 175983, CEF Punted packets: 3495
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>Expired translations: 1566
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a>. . .
+</span></code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>

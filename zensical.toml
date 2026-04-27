@@ -15,7 +15,10 @@ nav = [
         "routers_y_rutas_estaticas.md",
         "rutas_dinamicas.md",
         "RIP_RIPv2.md",
-        "ospf.md"
+        "ospf.md",
+        "intervlan.md",
+        "acl_estandar.md",
+        "acl_extendida.md"
     ]}
 ]
 
@@ -52,6 +55,19 @@ accent = "deep orange"
 toggle.icon = "lucide/moon"
 toggle.name = "Cambiar a modo claro"
 
+[project.theme.icon.admonition]
+note = "fontawesome/solid/note-sticky"
+abstract = "fontawesome/solid/book"
+info = "fontawesome/solid/circle-info"
+tip = "fontawesome/solid/bullhorn"
+success = "fontawesome/solid/check"
+question = "fontawesome/solid/circle-question"
+warning = "fontawesome/solid/triangle-exclamation"
+failure = "fontawesome/solid/bomb"
+danger = "fontawesome/solid/skull"
+bug = "fontawesome/solid/robot"
+example = "fontawesome/solid/flask"
+quote = "fontawesome/solid/quote-left"
 
 [project.markdown_extensions.md_in_html]
 [project.markdown_extensions.pymdownx.blocks.caption] 

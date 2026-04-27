@@ -1,0 +1,1537 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/acl_extendida/">
+      
+      
+        <link rel="prev" href="../acl_estandar/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>Listas de control de acceso extendidas (ACL) - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M384%20512H96c-53%200-96-43-96-96V96C0%2043%2043%200%2096%200h304c26.5%200%2048%2021.5%2048%2048v288c0%2020.9-13.4%2038.7-32%2045.3V448c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032zM96%20384c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032h256v-64zm32-232c0%2013.3%2010.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24H152c-13.3%200-24%2010.7-24%2024m24%2072c-13.3%200-24%2010.7-24%2024s10.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24z%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M352%200c0-17.7-14.3-32-32-32s-32%2014.3-32%2032v64h-96c-53%200-96%2043-96%2096v224c0%2053%2043%2096%2096%2096h256c53%200%2096-43%2096-96V160c0-53-43-96-96-96h-96zM160%20368c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24M224%20176a48%2048%200%201%201%200%2096%2048%2048%200%201%201%200-96m144%2048a48%2048%200%201%201%2096%200%2048%2048%200%201%201-96%200m-304%200c0-17.7-14.3-32-32-32S0%20206.3%200%20224v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32zm544-32c-17.7%200-32%2014.3-32%2032v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32v-96c0-17.7-14.3-32-32-32%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M416%20427.4c58.5-44%2096-111.6%2096-187.4C512%20107.5%20397.4%200%20256%200S0%20107.5%200%20240c0%2075.8%2037.5%20143.4%2096%20187.4V464c0%2026.5%2021.5%2048%2048%2048h32v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h64v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h32c26.5%200%2048-21.5%2048-48zM96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v151.5L7.5%20426.3C2.6%20435%200%20444.7%200%20454.7%200%20486.4%2025.6%20512%2057.3%20512h333.4c31.6%200%2057.3-25.6%2057.3-57.3%200-10-2.6-19.8-7.5-28.4L320%20215.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20215.5V64h64v151.5c0%2011.1%202.9%2022.1%208.4%2031.8L306%20320H142l41.6-72.7c5.5-9.7%208.4-20.6%208.4-31.8%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20576%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M480-16c6.9%200%2013%204.4%2015.2%2010.9l13.5%2040.4%2040.4%2013.5C555.6%2051%20560%2057.1%20560%2064s-4.4%2013-10.9%2015.2l-40.4%2013.5-13.5%2040.4c-2.2%206.5-8.3%2010.9-15.2%2010.9s-13-4.4-15.2-10.9l-13.5-40.4-40.4-13.5C404.4%2077%20400%2070.9%20400%2064s4.4-13%2010.9-15.2l40.4-13.5%2013.5-40.4C467-11.6%20473.1-16%20480-16M321.4%2097.4c12.5-12.5%2032.8-12.5%2045.3%200l80%2080c12.5%2012.5%2012.5%2032.8%200%2045.3l-10.9%2010.9c7.9%2022%2012.2%2045.7%2012.2%2070.5%200%20114.9-93.1%20208-208%20208S32%20418.9%2032%20304%20125.1%2096%20240%2096c24.7%200%2048.5%204.3%2070.5%2012.3zM144%20304c0-53%2043-96%2096-96%2013.3%200%2024-10.7%2024-24s-10.7-24-24-24c-79.5%200-144%2064.5-144%20144%200%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-32-352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200m-8%2064h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M64%20480c-35.3%200-64-28.7-64-64V96c0-35.3%2028.7-64%2064-64h320c35.3%200%2064%2028.7%2064%2064v213.5c0%2017-6.7%2033.3-18.7%2045.3L322.7%20461.3c-12%2012-28.3%2018.7-45.3%2018.7zm325.5-176H296c-13.3%200-24%2010.7-24%2024v93.5z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m0-336c-17.7%200-32%2014.3-32%2032%200%2013.3-10.7%2024-24%2024s-24-10.7-24-24c0-44.2%2035.8-80%2080-80s80%2035.8%2080%2080c0%2047.2-36%2067.2-56%2074.5v3.8c0%2013.3-10.7%2024-24%2024s-24-10.7-24-24v-8.1c0-20.5%2014.8-35.2%2030.1-40.2%206.4-2.1%2013.2-5.5%2018.2-10.3%204.3-4.2%207.7-10%207.7-19.6%200-17.7-14.3-32-32-32zm-32%20192a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64zm256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M434.8%2070.1c14.3%2010.4%2017.5%2030.4%207.1%2044.7l-256%20352c-5.5%207.6-14%2012.3-23.4%2013.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200l101.5%20101.5%20234-321.7c10.4-14.3%2030.4-17.5%2044.7-7.1z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M461.2%2018.9C472.7%2024%20480%2035.4%20480%2048v416c0%2012.6-7.3%2024-18.8%2029.1s-24.8%203.2-34.3-5.1l-46.6-40.7c-43.6-38.1-98.7-60.3-156.4-63V480c0%2017.7-14.3%2032-32%2032h-32c-17.7%200-32-14.3-32-32v-96C57.3%20384%200%20326.7%200%20256s57.3-128%20128-128h84.5c61.8-.2%20121.4-22.7%20167.9-63.3L427%2024c9.4-8.3%2022.9-10.2%2034.3-5.1zM224%20320v.2c70.3%202.7%20137.8%2028.5%20192%2073.4V118.3c-54.2%2044.9-121.7%2070.7-192%2073.4z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%200c14.7%200%2028.2%208.1%2035.2%2021l216%20400c6.7%2012.4%206.4%2027.4-.8%2039.5S486.1%20480%20472%20480H40c-14.1%200-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9%2020.5-21%2035.2-21m0%20352a32%2032%200%201%200%200%2064%2032%2032%200%201%200%200-64m0-192c-18.2%200-32.7%2015.5-31.4%2033.7l7.4%20104c.9%2012.5%2011.4%2022.3%2023.9%2022.3%2012.6%200%2023-9.7%2023.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#listas-de-control-de-acceso-extendidas-acl" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Listas de control de acceso extendidas (ACL)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SecSwitches/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_estandar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-de-acl-extendidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de ACL extendidas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de ACL extendidas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coincidencia-de-protocolo-origen-y-destino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coincidencia de protocolo, origen y destino
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coincidencia-de-numeros-de-puerto-tcpudp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coincidencia de números de puerto TCP/UDP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-requisitos-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de requisitos de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edicion-de-acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edición de ACL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Edición de ACL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eliminacion-de-ace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eliminación de ACE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reordenamiento-de-ace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reordenamiento de ACE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-de-acl-extendidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de ACL extendidas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de ACL extendidas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coincidencia-de-protocolo-origen-y-destino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coincidencia de protocolo, origen y destino
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coincidencia-de-numeros-de-puerto-tcpudp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coincidencia de números de puerto TCP/UDP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-requisitos-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de requisitos de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edicion-de-acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edición de ACL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Edición de ACL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eliminacion-de-ace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eliminación de ACE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reordenamiento-de-ace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reordenamiento de ACE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Enrutamiento
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="listas-de-control-de-acceso-extendidas-acl">Listas de control de acceso extendidas (ACL)</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>Con anterioridad ya vimos las ACL estándar, que filtran paquetes según un único parámetro: la dirección IP de origen. Si bien las ACL estándar tienen su utilidad, son una herramienta poco precisa; no proporcionan un control exacto sobre qué tipos de tráfico se permiten y cuáles se deniegan. Las ACL extendidas, tema de este capítulo, son una herramienta más precisa: permiten filtrar paquetes según muchos más parámetros, lo que proporciona un control más granular del tráfico.</p>
+<p>Aunque las ACL extendidas pueden ser más complejas que las estándar, la buena noticia es que los fundamentos de su funcionamiento, tal como vimos en el capítulo anterior, siguen siendo los mismos. Al igual que las ACL estándar, las entradas de control de acceso (ACE) de una ACL extendida se procesan en orden descendente. Las ACL extendidas incluyen una denegación implícita que descarta todo el tráfico que no coincida con una ACE configurada explícitamente. Además, las ACL extendidas deben aplicarse a una interfaz en las direcciones de entrada y/o salida para que surtan efecto.</p>
+<p>Dadas estas similitudes, en esta sección veremos cómo configurar las ACL extendidas: cómo configurar las ACE que filtren paquetes según su protocolo, direcciones IP de origen/destino y puertos de origen/destino. </p>
+<h2 id="configuracion-de-acl-extendidas">Configuración de ACL extendidas</h2>
+<p>Las ACL extendidas pueden filtrar paquetes según diversos parámetros, como:</p>
+<ul>
+<li>El protocolo de la carga útil del paquete (TCP, UDP, ICMP, etc.)</li>
+<li>Direcciones IP de origen y/o destino</li>
+<li>Puertos TCP/UDP de origen y/o destino</li>
+</ul>
+<p>La configuración de las ACL extendidas es muy similar a la de las ACL estándar: se pueden configurar ACL numeradas en el modo de configuración global con el comando <code>access-list</code> o crear y configurar ACL con nombre mediante el comando <code>ip access-list</code>. Sin embargo, debido a los parámetros adicionales que las ACL extendidas pueden usar para hacer coincidir los paquetes, existen palabras clave y argumentos adicionales con los que conviene familiarizarse.</p>
+<h3 id="coincidencia-de-protocolo-origen-y-destino">Coincidencia de protocolo, origen y destino</h3>
+<p>Comencemos configurando listas de control de acceso (ACL) que identifiquen los paquetes según el protocolo encapsulado, la dirección IP de origen y la dirección IP de destino. El siguiente ejemplo muestra la sintaxis del comando para configurar una ACL numerada con estos parámetros:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>R1(config)# access-list number {permit | deny} protocol source destination
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las ACL numeradas extendidas deben usar un número de uno de los rangos apropiados: 100–199 o 2000–2699.</p>
+</div>
+<p>El siguiente ejemplo muestra cómo configurar una ACL extendida en el modo de configuración de ACL con nombre. Al igual que con las ACL estándar, las versiones modernas de Cisco IOS permiten configurar tanto ACL numeradas extendidas como ACL con nombre extendidas en el modo de configuración de ACL con nombre.</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>R1(config)# ip access-list extended {name | number}
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>R1(config-ext-nacl)# [seq-num] {permit | deny} protocol source destination
+</span></code></pre></div></td></tr></table></div>
+Los argumentos de protocolo, origen y destino en estos comandos son los parámetros de coincidencia; aquí se especifica qué paquetes deben coincidir con la ACE y ser procesados ​​por ella. Para que un paquete coincida con una ACE, debe coincidir con todos los valores especificados: el protocolo, el origen y el destino. ¡Las coincidencias parciales no cuentan! La imagen ofrece más detalles sobre los valores que se pueden configurar para estos argumentos.</p>
+<figure id="__figura_1">
+<p><img alt="" src="../img/ext_acl1.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> Parámetros de coincidencia posibles. El argumento de protocolo especifica el protocolo de la carga útil del paquete. Los argumentos de <em>source</em> y <em>destination</em> especifican las direcciones IP de origen y destino del paquete, respectivamente.</p>
+</figcaption>
+</figure>
+<p>El argumento  <code>protocol</code> requiere una explicación adicional. Se puede especificar una palabra clave como <code>icmp</code>, <code>tcp</code>, <code>udp</code> u <code>ospf</code> para que coincida con los paquetes que contienen una carga útil ICMP, TCP, UDP u OSPF, respectivamente. Otra palabra clave común es <code>ip</code>, que coincide con todos los paquetes IPv4. Utilizad esta opción si no os importa el protocolo del mensaje encapsulado y deseáis que la coincidencia se base únicamente en las direcciones IP de origen y destino.</p>
+<p>Debéis familiarizaros con las opciones para los argumentos <code>source</code> y <code>destination</code>: las vimos en el capítulo anterior. Al proporcionar una dirección IP y una máscara comodín (<code>ip-addr wildcard-mask</code>), podéis especificar un rango de direcciones IP para la coincidencia. La palabra clave <code>any</code> coincide con todas las direcciones IP posibles, equivalente a <strong>0.0.0.0 255.255.255.255</strong> (esta es una máscara comodín /0, no una máscara de red /32). También <code>host ip-addr</code> os permite especificar una única dirección IP para la coincidencia, equivalente a una dirección IP y una máscara comodín /32 (<strong>0.0.0.0</strong>).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Al configurar una ACL estándar, puede hacer coincidir una única dirección IP simplemente especificándola, sin la palabra clave <code>host</code> ni una máscara comodín. Sin embargo, esto no funciona en las ACL extendidas. Para que una dirección IP coincida con una dirección IP específica en una ACL extendida, por ejemplo, 8.8.8.8, utilice <code>host 8.8.8.8</code> o <code>8.8.8.8 0.0.0.0</code>.</p>
+</div>
+<p>Con estos tres parámetros, puede cumplir requisitos de seguridad más precisos que con las ACL estándar; por ejemplo, <em>«bloquear todo el tráfico TCP del host A a la LAN B»</em> o <em>«permitir solo el tráfico ICMP de la LAN X a la LAN Y»</em>. La siguiente tabla enumera y explica algunos ejemplos de ACE. Compare cada ACE y su explicación para familiarizarse con la lógica de las ACE que comparan paquetes según el protocolo, el origen y el destino.</p>
+<table>
+<thead>
+<tr>
+<th>ACE</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>permit ip any any</code></td>
+<td>Permite todos los paquetes IPv4 desde cualquier origen a cualquier destino</td>
+</tr>
+<tr>
+<td><code>deny udp 10.0.0.0 0.0.0.255 192.168.1.0 0.0.0.255</code></td>
+<td>Impide que la red 10.0.0.0/24 envíe mensajes UDP a 192.168.1.0/24</td>
+</tr>
+<tr>
+<td><code>deny icmp any 203.0.113.0 0.0.0.255</code></td>
+<td>Impide que todos los hosts envíen mensajes ICMP (por ejemplo, ping) a 203.0.113.0/24</td>
+</tr>
+<tr>
+<td><code>permit ip host 172.16.1.1 any</code></td>
+<td>Permite todos los paquetes IPv4 desde 172.16.1.1 a cualquier destino</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora examinemos una ACL extendida completa y consideremos su efecto en el tráfico. El esquema a continuación muestra una red de ejemplo —la misma que vimos en el capítulo anterior— y una ACL extendida con nombre, aplicada en la interfaz G0/2 de R1.</p>
+<figure id="__figura_2">
+<p><img alt="" src="../img/ext_acl2.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> La ACL extendida TEST1 se aplica en la interfaz G0/2 de R1. TEST1 permite el tráfico ICMP desde PC1 hacia 192.168.3.0/24, deniega el tráfico ICMP desde 192.168.1.0/24 y 192.168.2.0/24, deniega todo el tráfico UDP y permite todos los demás paquetes IPv4.</p>
+</figcaption>
+</figure>
+<p>La primera entrada de control de acceso (ACE) de TEST1 permite el tráfico ICMP desde PC1 (192.168.1.11) hacia hosts en la LAN del servidor A, como SRV1; esto permitiría a PC1 probar la conectividad, por ejemplo, haciendo ping a SRV1. Sin embargo, la segunda y la tercera ACE deniegan todo el tráfico ICMP proveniente de los hosts en las subredes de ingeniería y contabilidad (excepto el tráfico ICMP de PC1, que coincide con la primera ACE).</p>
+<p>La cuarta ACE deniega todo el tráfico UDP, y la última ACE permite todos los demás paquetes IPv4. Las palabras clave <code>any any</code> en ambas ACE indican que coincidirán con paquetes desde cualquier dirección IP de origen a cualquier dirección IP de destino. Tened en cuenta que la ACL se aplica en sentido saliente en la interfaz G0/2 de R1, por lo que solo filtra los paquetes que se reenviarán desde esa interfaz hacia R2 y sus LAN conectadas.</p>
+<p>Como ya se ha explicado con anterioridad, las ACL estándar deben aplicarse lo más cerca posible del destino. Las ACL estándar no proporcionan un control granular sobre qué paquetes se filtran, por lo que si se aplican demasiado cerca de su origen, se podría bloquear inadvertidamente tráfico legítimo proveniente de dicho origen.</p>
+<p>Las ACL extendidas, sin embargo, ofrecen un mayor control sobre qué tipos de paquetes se permiten y cuáles se deniegan. Por ello, es más eficiente aplicarlas lo más cerca posible del origen. Una ACL extendida bien configurada solo bloqueará el tráfico previsto, y aplicarla cerca del origen es más eficiente, ya que evita que los paquetes viajen a través de toda la red solo para ser descartados justo antes de llegar a su destino.</p>
+<p>En este ejemplo, filtramos los paquetes de las LAN de los departamentos de ingeniería y contabilidad hacia las LAN del servidor A y del servidor B. Al aplicar la regla TEST1 de salida en R1 G0/2, los paquetes de ambas LAN de origen se filtran al inicio de su ruta hacia cualquiera de las LAN de destino.</p>
+<h3 id="coincidencia-de-numeros-de-puerto-tcpudp">Coincidencia de números de puerto TCP/UDP</h3>
+<p>La coincidencia de paquetes según el protocolo, el origen y el destino proporciona un control mucho más preciso que las ACL estándar. Sin embargo, al añadir los números de puerto TCP y UDP, podemos lograr un control aún mayor sobre qué paquetes se permiten o se deniegan. La figura muestra cómo configurar una ACE que incluya puertos en sus parámetros de coincidencia; prestad especial atención a los valores de las palabras clave que se pueden proporcionar para los argumentos del operador.</p>
+<figure id="__figura_3">
+<p><img alt="" src="../img/ext_acl3.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> Configuración de una ACE que coincide con paquetes según el protocolo (TCP/UDP), las direcciones IP de origen/destino y los puertos de origen/destino</p>
+</figcaption>
+</figure>
+<p>A continuación, se muestra un ejemplo y una explicación de cada una de las palabras clave que puede proporcionar para los argumentos del operador:</p>
+<ul>
+<li><code>eq 80</code> = Equal to 80 (Igual a 80)</li>
+<li><code>gt 80</code> = Greater than 80 (Mayor que 80, pero sin incluir 80)</li>
+<li><code>lt 80</code> = Less than 80 (Menor que 80, pero sin incluir 80)</li>
+<li><code>neq 80</code> = Not equal to 80 (No igual a 80, cualquier valor excepto 80)</li>
+<li><code>range 80 100</code> = From 80 to 100 (Desde 80 hasta 100, incluyendo 80 y 100)</li>
+</ul>
+<p>La tabla muestra algunos ejemplos de ACE que incluyen los números de puerto de origen y/o destino en su lista de parámetros coincidentes. Compare cada ACE con su explicación para familiarizarse con su lógica. Asegúrese de poder identificar cada parte de cada ACE: el protocolo, las direcciones IP de origen, los puertos de origen, las direcciones IP de destino y los puertos de destino. Algunas ACE especifican tanto el número de puerto de origen como el de destino, pero otras solo especifican uno. Si no especifica un número de puerto de origen, todos los números de puerto de origen se considerarán coincidentes, y lo mismo ocurre con el número de puerto de destino.</p>
+<table>
+<thead>
+<tr>
+<th>ACE</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>permit tcp 10.0.0.0 0.0.0.255 any eq 443</code></td>
+<td>Permite a los hosts de la red 10.0.0.0/24 acceder a cualquier servidor web usando HTTPS (puerto 443)</td>
+</tr>
+<tr>
+<td><code>deny udp any gt 50000 host 203.0.113.1</code></td>
+<td>Evita que cualquier host con un puerto de origen UDP mayor a 50000 acceda a 203.0.113.1</td>
+</tr>
+<tr>
+<td><code>permit tcp 10.0.0.0 0.0.0.255 gt 9999 host 203.0.113.1 neq 23</code></td>
+<td>Permite a los hosts de la red 10.0.0.0/24 con puerto de origen TCP mayor a 9999 acceder a todos los puertos TCP de 203.0.113.1 excepto el puerto 23</td>
+</tr>
+<tr>
+<td><code>deny tcp any lt 1024 any gt 1023</code></td>
+<td>Deniega todos los mensajes TCP con puerto de origen menor a 1024 y puerto de destino mayor a 1023</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recordad que un paquete debe coincidir con todos los parámetros de la ACE para considerarse una coincidencia. Si la ACE especifica el protocolo, la IP de origen, el puerto de origen, la IP de destino y el puerto de destino, los cinco parámetros deben coincidir.</p>
+</div>
+<p>La siguiente imagen muestra cada una de las ACE de la primera tabla e identifica cada parte: protocolo, IP de origen, puerto de origen, IP de destino y puerto de destino.</p>
+<figure id="__figura_4">
+<p><img alt="" src="../img/ext_acl4.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> ACE que coinciden con paquetes según el protocolo, la IP de origen, el puerto de origen, la IP de destino y el puerto de destino. No todas las ACE especifican tanto el puerto de origen como el de destino.</p>
+</figcaption>
+</figure>
+<p>Ahora examinemos una ACL extendida que utiliza ACE como estas, filtrando paquetes según los puertos de origen y/o destino. Examinemos la ACL que se muestra en la figura de más abajo (aplicada en el extremo saliente de R1 G0/2) y consideremos qué tráfico está permitido y cuál no.</p>
+<figure id="__figura_5">
+<p><img alt="" src="../img/ext_acl5.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 5. </span> La ACL extendida TEST2 se aplica en el extremo saliente de R1 G0/2. TEST2 permite el tráfico HTTPS desde el departamento de ingeniería al servidor LAN A, deniega todo el demás tráfico HTTPS, permite todo el tráfico NTP a SRV2, deniega todo el demás tráfico NTP y permite todos los demás paquetes IPv4.</p>
+</figcaption>
+</figure>
+<p>En el siguiente ejemplo, se configura la ACL que se muestra en la figura anterior y se confirma con <code>show access-lists</code>. Observad que el puerto UDP 123, tal como se especifica en las ACE tercera y cuarta, se reemplaza por la palabra clave <code>ntp</code>, ya que NTP utiliza el puerto UDP 123. Puede configurar algunos números de puerto conocidos especificando el número de puerto o la palabra clave equivalente. Independientemente de la configuración, la palabra clave (es decir, <code>ntp</code>) aparecerá en la salida de los comandos <code>show</code>. Sin embargo, como también demuestra el ejemplo, no todos los protocolos comunes tienen dicha palabra clave; el puerto TCP 443 no se reemplaza por <code>https</code>.</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>R1(config)# ip access-list extended TEST2
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>R1(config-ext-nacl)# permit tcp 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 443
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>R1(config-ext-nacl)# deny tcp any any eq 443
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>R1(config-ext-nacl)# permit udp any host 192.168.4.19 eq 123
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>R1(config-ext-nacl)# deny udp any any eq 123
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>R1(config-ext-nacl)# permit ip any any
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>R1(config-ext-nacl)# do show access-lists
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>Extended IP access list TEST2
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>    10 permit tcp 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 443     
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>    20 deny tcp 192.168.2.0 0.0.0.255 any eq 443                         
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>    30 permit udp any host 192.168.4.19 eq ntp                           
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>    40 deny udp any any eq ntp                                           
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>    50 permit ip any any
+</span></code></pre></div></td></tr></table></div>
+A veces, en vez del número de puerto se utiliza la palabra clave o protocolo asociado por defecto a ese número de puerto:</p>
+<ul>
+<li>TCP 20 (FTP data) = ftp-data</li>
+<li>TCP 21 (FTP control) = ftp</li>
+<li>TCP 23 (Telnet) = telnet</li>
+<li>TCP/UDP 53 (DNS) = domain</li>
+<li>UDP 67 (DHCP server) = bootps</li>
+<li>UDP 68 (DHCP client) = bootpc</li>
+<li>UDP 69 (TFTP) = tftp</li>
+<li>TCP 80 (HTTP) = www</li>
+</ul>
+<h2 id="ejemplo-de-requisitos-de-seguridad">Ejemplo de requisitos de seguridad</h2>
+<p>Ahora que hemos examinado las ACL extendidas y sus componentes, practiquemos su configuración para cumplir con un conjunto de requisitos definidos por el equipo de seguridad de nuestra organización ficticia. Las ACL extendidas añaden cierta complejidad a las ACL estándar, por lo que esta práctica es especialmente importante.</p>
+<p>A continuación se muestra el escenario, con tres requisitos que debemos cumplir al configurar las ACL extendidas.</p>
+<figure id="__figura_6">
+<p><img alt="" src="../img/ext_acl6.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 6. </span> Requisitos que deben cumplirse al configurar las ACL extendidas</p>
+</figcaption>
+</figure>
+<p>El primer requisito establece que <em>«Solo se permite ICMP entre el servidor LAN A y el servidor LAN B»</em>. Lo lograremos con dos listas de control de acceso (ACL):</p>
+<ul>
+<li>
+<p>Una ACL que permite el tráfico ICMP desde el servidor LAN A al servidor LAN B y deniega el resto del tráfico entre ellos, pero permite todo el tráfico hacia otros destinos.</p>
+</li>
+<li>
+<p>Una ACL que permite el tráfico ICMP desde el servidor LAN B al servidor LAN A y deniega el resto del tráfico entre ellos, pero permite todo el tráfico hacia otros destinos.</p>
+</li>
+</ul>
+<p>En el siguiente ejemplo, configuramos la primera ACL y la aplicamos como tráfico entrante en R2 G0/0; esto filtra los paquetes enviados desde los hosts del servidor LAN A.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>R2(config)# ip access-list extended ICMP_1
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>R2(config-ext-nacl)# permit icmp 192.168.3.0 0.0.0.255 192.168.4.0 0.0.0.255              
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>R2(config-ext-nacl)# deny ip 192.168.3.0 0.0.0.255 192.168.4.0 0.0.0.255              
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>R2(config-ext-nacl)# permit ip any any         
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>R2(config-ext-nacl)# interface g0/0            
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>R2(config-if)# ip access-group ICMP_1 in       
+</span></code></pre></div></td></tr></table></div>
+<p>Eso cumple con la mitad del primer requisito. En el siguiente ejemplo, configuramos la segunda ACL, esta vez aplicándola de entrada en R2 G0/1:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>R2(config)# ip access-list extended ICMP_2
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>R2(config-ext-nacl)# permit icmp 192.168.4.0 0.0.0.255 192.168.3.0 0.0.0.255               
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>R2(config-ext-nacl)# deny ip 192.168.4.0 0.0.0.255 192.168.3.0 0.0.0.255               
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>R2(config-ext-nacl)# permit ip any any          
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>R2(config-ext-nacl)# interface g0/1             
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>R2(config-if)# ip access-group ICMP_2 in        
+</span></code></pre></div></td></tr></table></div>
+<p>El efecto de estas dos ACL es que los hosts de la LAN del servidor A y la LAN del servidor B solo podrán comunicarse entre sí mediante ICMP (por ejemplo, ping). Sin embargo, se permite otro tráfico mediante la ACE <code>permit ip any any</code> al final de ambas ACL.</p>
+<p>El segundo requisito de nuestro escenario establece que <em>«los hosts del departamento de ingeniería no pueden usar HTTP para acceder a la LAN del servidor A ni a la LAN del servidor B»</em>. </p>
+<p>Esto se puede lograr con una ACL aplicada en la interfaz G0/0 de R1. La ACL debe denegar los mensajes TCP originados en hosts de la LAN del servidor A y destinados al puerto 80 en hosts de la LAN del servidor A o la LAN del servidor B.</p>
+<p>En el siguiente ejemplo, configuramos dicha ACL:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>R1(config)# ip access-list extended NO_HTTP
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>R1(config-ext-nacl)# deny tcp 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 80        
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>R1(config-ext-nacl)# deny tcp 192.168.1.0 0.0.0.255 192.168.4.0 0.0.0.255 eq 80        
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>R1(config-ext-nacl)# permit ip any any         
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>R1(config-ext-nacl)# interface g0/0            
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>R1(config-if)# ip access-group NO_HTTP in      
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Cuando un host utiliza HTTP para acceder a recursos en otro host (un servidor), usa el puerto 80 como puerto de destino, no el de origen. Por lo tanto, para filtrar el tráfico HTTP de un cliente a un servidor, aseguraos de que la coincidencia se base en el puerto de destino, no en el de origen. Esto también se aplica a otros protocolos; el siguiente ejemplo filtra el tráfico TFTP haciendo coincidir el puerto de destino 69.</p>
+</div>
+<p>El último requisito indica:<em> «Denegar todo el tráfico TFTP de los hosts del departamento de contabilidad»</em>. </p>
+<p>Podemos cumplir este requisito con una ACL simple de dos ACE: una ACE para denegar el tráfico TFTP y otra para permitir todo el demás tráfico. En el siguiente ejemplo, configuramos esa ACL y la aplicamos a la entrada en R1 G0/1. </p>
+<p>Para fines demostrativos, la configuraremos como una ACL numerada desde el modo de configuración global.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>R1(config)# access-list 100 deny udp 192.168.2.0 0.0.0.255 any eq 69   
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>R1(config)# access-list 100 permit ip any any                          
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>R1(config)# interface g0/1                                             
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>R1(config-if)# ip access-group 100 in                                  
+</span></code></pre></div></td></tr></table></div>
+<p>Ahora hemos cumplido los tres requisitos. Para repasar, la figura de abajo muestra nuevamente los requisitos y las cuatro ACL que configuramos para cumplirlos.</p>
+<figure id="__figura_7">
+<p><img alt="" src="../img/ext_acl7.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 7. </span> Cuatro ACL configuradas en R1 y R2 cumplen los requisitos. Las ACL ICMP_1 e ICMP_2 cumplen el requisito 1, la ACL NO_HTTP cumple el requisito 2 y la ACL 100 cumple el requisito 3.</p>
+</figcaption>
+</figure>
+<h2 id="edicion-de-acl">Edición de ACL</h2>
+<p>El orden en que se configuran las ACE de una ACL es muy importante, ya que determina el orden en que el router las procesará al evaluar un paquete con respecto a la ACL. Sin embargo, incluso si se configuran las ACE en el orden correcto, en algunos casos puede ser necesario editar la ACL posteriormente. Por ejemplo, puede ser necesario eliminar una ACE o insertar una nueva entre las existentes. En esta sección, veremos cómo hacerlo.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Todo lo que se describe en esta sección se aplica tanto a las ACL estándar como a las extendidas. Para simplificar las ACL, se usan ACL estándar.</p>
+</div>
+<h3 id="eliminacion-de-ace">Eliminación de ACE</h3>
+<p>Negar un comando en Cisco IOS es tan sencillo como insertar la palabra clave <code>no</code> delante. Sin embargo, veamos qué sucede cuando usamos este método para eliminar una ACE de una ACL numerada:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span>
+<span class="normal"><a href="#__codelineno-7-8">8</a></span>
+<span class="normal"><a href="#__codelineno-7-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>R1(config)# do show access-lists    
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>Standard IP access list 1
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>    10 deny   192.168.1.1
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>    20 deny   192.168.2.1
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>    30 deny   192.168.3.0, wildcard bits 0.0.0.255
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>    40 permit any
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>R1(config)# no access-list 1 deny 192.168.3.0 0.0.0.255     
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>R1(config)# do show access-lists
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>R1(config)# 
+</span></code></pre></div></td></tr></table></div>
+Tras usar <code>no</code> para negar el comando de la ACE 30, la ACL 1 ya no aparece en la salida de <code>show access-lists</code>: <strong>¡se eliminó toda la ACL!</strong> </p>
+<p>Al editar una ACL numerada desde el modo de configuración global, no se pueden eliminar ACE individuales; solo se puede eliminar la ACL completa. Afortunadamente, el modo de ACL con nombre soluciona esta limitación.</p>
+<p>Eliminar una ACE en el modo de configuración de ACL con nombre es sencillo: basta con usar <code>no</code> seguido del número de secuencia. Esto funciona tanto para ACL numeradas como con nombre; solo recordad hacerlo desde el modo de configuración de ACL con nombre. En el siguiente ejemplo, eliminamos la ACE 30 de la misma ACL que antes, sin eliminar la ACL completa esta vez:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>R1(config)# do show access-lists    
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>Standard IP access list 1
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>    10 deny   192.168.1.1
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>    20 deny   192.168.2.1
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>    30 deny   192.168.3.0, wildcard bits 0.0.0.255
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>    40 permit any
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>R1(config)# ip access-list standard 1        
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>R1(config-std-nacl)# no 30                   
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>R1(config-std-nacl)# do show access-lists
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>Standard IP access list 1
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a>    10 deny   192.168.1.1                    
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a>    20 deny   192.168.2.1                    
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a>    40 permit any                            
+</span></code></pre></div></td></tr></table></div>
+El modo de configuración de ACL con nombre también ofrece la ventaja de permitir insertar nuevas ACE entre las existentes especificando un número de secuencia al principio del comando de configuración. En el siguiente ejemplo, insertamos una nueva ACE 30 en la misma ACL que antes, en lugar de la ACE 30 que acabamos de eliminar:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>R1(config-std-nacl)# 30 deny 192.168.4.0 0.0.0.255
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>R1(config-std-nacl)# do show access-lists         
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>Standard IP access list 1
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>    10 deny   192.168.1.1
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>    20 deny   192.168.2.1
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>    30 deny   192.168.4.0, wildcard bits 0.0.0.255
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a>    40 permit any
+</span></code></pre></div></td></tr></table></div>
+<h3 id="reordenamiento-de-ace">Reordenamiento de ACE</h3>
+<p>El modo de configuración de ACL con nombre permite configurar nuevas ACE entre las existentes especificando el número de secuencia de cada ACE. Pero, ¿qué ocurre si no hay espacio entre las ACE? Por defecto, los números de secuencia comienzan en 10 y se incrementan de 10 en 10, por lo que este problema es poco frecuente. Sin embargo, si se agota el espacio entre las ACE, Cisco IOS proporciona un comando útil que ajusta automáticamente los números de secuencia. La sintaxis del comando es <code>ip access-list resequence {name|number} starting-seq-num increment</code>. Aquí muestra un ejemplo del comando y explica los dos últimos argumentos (<code>starting-seq-num increment</code> e <code>increment</code>):</p>
+<figure id="__figura_8">
+<p><img alt="" src="../img/ext_acl8.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 8. </span> El comando <code>ip access-list resequence</code>. El argumento <code>número-secuencia-inicial</code> especifica el nuevo número de secuencia de la primera ACE de la ACL, y el argumento <code>incremento</code> especifica el incremento para cada ACE subsiguiente.</p>
+</figcaption>
+</figure>
+<p>En el siguiente ejemplo, visualizamos una ACL de ejemplo (ACL 2) que contiene cuatro ACE con los números de secuencia 10, 18, 19 y 20. A continuación, utilizamos el comando <code>ip access-list resequence</code> para ajustar los números de secuencia. Tras ejecutar el comando, queda espacio entre las ACE para insertar nuevas según sea necesario.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>R1(config)# do show access-lists
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>Standard IP access list 2
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>    10 deny 192.168.1.0 0.0.0.255
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>    18 deny 192.168.3.0 0.0.0.255
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>    19 deny 192.168.4.0 0.0.0.255
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>    20 permit any    
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>R1(config)# ip access-list resequence 2 10 10       
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>R1(config)# do show access-lists
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>Standard IP access list 2
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>    10 deny 192.168.1.0 0.0.0.255                   
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a>    20 deny 192.168.3.0 0.0.0.255                   
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a>    30 deny 192.168.4.0 0.0.0.255                   
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a>    40 permit any                                   
+</span></code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>

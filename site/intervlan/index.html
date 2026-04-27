@@ -1,0 +1,1657 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/intervlan/">
+      
+      
+        <link rel="prev" href="../ospf/">
+      
+      
+        <link rel="next" href="../acl_estandar/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>Enrutamiento intervlan - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M384%20512H96c-53%200-96-43-96-96V96C0%2043%2043%200%2096%200h304c26.5%200%2048%2021.5%2048%2048v288c0%2020.9-13.4%2038.7-32%2045.3V448c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032zM96%20384c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032h256v-64zm32-232c0%2013.3%2010.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24H152c-13.3%200-24%2010.7-24%2024m24%2072c-13.3%200-24%2010.7-24%2024s10.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24z%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M352%200c0-17.7-14.3-32-32-32s-32%2014.3-32%2032v64h-96c-53%200-96%2043-96%2096v224c0%2053%2043%2096%2096%2096h256c53%200%2096-43%2096-96V160c0-53-43-96-96-96h-96zM160%20368c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24M224%20176a48%2048%200%201%201%200%2096%2048%2048%200%201%201%200-96m144%2048a48%2048%200%201%201%2096%200%2048%2048%200%201%201-96%200m-304%200c0-17.7-14.3-32-32-32S0%20206.3%200%20224v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32zm544-32c-17.7%200-32%2014.3-32%2032v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32v-96c0-17.7-14.3-32-32-32%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M416%20427.4c58.5-44%2096-111.6%2096-187.4C512%20107.5%20397.4%200%20256%200S0%20107.5%200%20240c0%2075.8%2037.5%20143.4%2096%20187.4V464c0%2026.5%2021.5%2048%2048%2048h32v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h64v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h32c26.5%200%2048-21.5%2048-48zM96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v151.5L7.5%20426.3C2.6%20435%200%20444.7%200%20454.7%200%20486.4%2025.6%20512%2057.3%20512h333.4c31.6%200%2057.3-25.6%2057.3-57.3%200-10-2.6-19.8-7.5-28.4L320%20215.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20215.5V64h64v151.5c0%2011.1%202.9%2022.1%208.4%2031.8L306%20320H142l41.6-72.7c5.5-9.7%208.4-20.6%208.4-31.8%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20576%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M480-16c6.9%200%2013%204.4%2015.2%2010.9l13.5%2040.4%2040.4%2013.5C555.6%2051%20560%2057.1%20560%2064s-4.4%2013-10.9%2015.2l-40.4%2013.5-13.5%2040.4c-2.2%206.5-8.3%2010.9-15.2%2010.9s-13-4.4-15.2-10.9l-13.5-40.4-40.4-13.5C404.4%2077%20400%2070.9%20400%2064s4.4-13%2010.9-15.2l40.4-13.5%2013.5-40.4C467-11.6%20473.1-16%20480-16M321.4%2097.4c12.5-12.5%2032.8-12.5%2045.3%200l80%2080c12.5%2012.5%2012.5%2032.8%200%2045.3l-10.9%2010.9c7.9%2022%2012.2%2045.7%2012.2%2070.5%200%20114.9-93.1%20208-208%20208S32%20418.9%2032%20304%20125.1%2096%20240%2096c24.7%200%2048.5%204.3%2070.5%2012.3zM144%20304c0-53%2043-96%2096-96%2013.3%200%2024-10.7%2024-24s-10.7-24-24-24c-79.5%200-144%2064.5-144%20144%200%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-32-352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200m-8%2064h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M64%20480c-35.3%200-64-28.7-64-64V96c0-35.3%2028.7-64%2064-64h320c35.3%200%2064%2028.7%2064%2064v213.5c0%2017-6.7%2033.3-18.7%2045.3L322.7%20461.3c-12%2012-28.3%2018.7-45.3%2018.7zm325.5-176H296c-13.3%200-24%2010.7-24%2024v93.5z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m0-336c-17.7%200-32%2014.3-32%2032%200%2013.3-10.7%2024-24%2024s-24-10.7-24-24c0-44.2%2035.8-80%2080-80s80%2035.8%2080%2080c0%2047.2-36%2067.2-56%2074.5v3.8c0%2013.3-10.7%2024-24%2024s-24-10.7-24-24v-8.1c0-20.5%2014.8-35.2%2030.1-40.2%206.4-2.1%2013.2-5.5%2018.2-10.3%204.3-4.2%207.7-10%207.7-19.6%200-17.7-14.3-32-32-32zm-32%20192a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64zm256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M434.8%2070.1c14.3%2010.4%2017.5%2030.4%207.1%2044.7l-256%20352c-5.5%207.6-14%2012.3-23.4%2013.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200l101.5%20101.5%20234-321.7c10.4-14.3%2030.4-17.5%2044.7-7.1z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M461.2%2018.9C472.7%2024%20480%2035.4%20480%2048v416c0%2012.6-7.3%2024-18.8%2029.1s-24.8%203.2-34.3-5.1l-46.6-40.7c-43.6-38.1-98.7-60.3-156.4-63V480c0%2017.7-14.3%2032-32%2032h-32c-17.7%200-32-14.3-32-32v-96C57.3%20384%200%20326.7%200%20256s57.3-128%20128-128h84.5c61.8-.2%20121.4-22.7%20167.9-63.3L427%2024c9.4-8.3%2022.9-10.2%2034.3-5.1zM224%20320v.2c70.3%202.7%20137.8%2028.5%20192%2073.4V118.3c-54.2%2044.9-121.7%2070.7-192%2073.4z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%200c14.7%200%2028.2%208.1%2035.2%2021l216%20400c6.7%2012.4%206.4%2027.4-.8%2039.5S486.1%20480%20472%20480H40c-14.1%200-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9%2020.5-21%2035.2-21m0%20352a32%2032%200%201%200%200%2064%2032%2032%200%201%200%200-64m0-192c-18.2%200-32.7%2015.5-31.4%2033.7l7.4%20104c.9%2012.5%2011.4%2022.3%2023.9%2022.3%2012.6%200%2023-9.7%2023.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#enrutamiento-intervlan" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Enrutamiento intervlan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SecSwitches/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enrutamiento-basico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enrutamiento básico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#router-on-a-stick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Router on a stick
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Router on a stick">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-roas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de ROAS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de ROAS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurando-la-vlan-nativa-en-roas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurando la VLAN nativa en ROAS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-multicapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switch multicapa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch multicapa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enrutamiento-entre-vlan-mediante-svi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enrutamiento entre VLAN mediante SVI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-puertos-enrutados-para-conectividad-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de puertos enrutados para conectividad externa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_estandar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_extendida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enrutamiento-basico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enrutamiento básico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#router-on-a-stick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Router on a stick
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Router on a stick">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-roas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de ROAS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de ROAS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurando-la-vlan-nativa-en-roas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurando la VLAN nativa en ROAS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-multicapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switch multicapa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch multicapa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enrutamiento-entre-vlan-mediante-svi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enrutamiento entre VLAN mediante SVI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-puertos-enrutados-para-conectividad-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de puertos enrutados para conectividad externa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Enrutamiento
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="enrutamiento-intervlan">Enrutamiento intervlan</h1>
+<h2 id="enrutamiento-basico">Enrutamiento básico</h2>
+<p>Durante el curso ya hemos tratado en detalle el tema de las VLANS, así como su configuración. Demos ahora un paso más y aprendamos como enrutar paquetes entre ellas, estableciendo esta comunicación.</p>
+<p>Incluso después de segmentar una LAN en múltiples subredes y VLAN, generalmente se requiere que las subredes/VLAN puedan comunicarse entre sí (y con redes externas). Si bien el enrutamiento es un concepto de capa 3 y las VLAN son de capa 2, el término enrutamiento entre VLAN se utiliza para referirse al enrutamiento entre subredes en una LAN segmentada mediante VLAN.</p>
+<p>Hasta este punto, todos los diagramas de este capítulo (excepto la figura 12.1, que solo muestra una subred) han mostrado tres enlaces entre R1 y SW1: uno por subred/VLAN. Esta es una opción para el enrutamiento entre VLAN; las interfaces del enrutador se configuran de forma normal y los puertos del switch se configuran como puertos de acceso. La figura 12.9 muestra cómo PC3 (en la VLAN 20) puede comunicarse con PC10 (en la VLAN 10) en este caso.</p>
+<figure id="__figura_1">
+<p><img alt="" src="../img/intervlan9.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> PC3 (en VLAN 20) envía un paquete a PC10 (en VLAN 10). (1) PC3 envía el paquete en una trama dirigida a su puerta de enlace predeterminada (R1 G0/1). SW2 lo reenvía por su puerto G0/2 (sin etiquetar). (2) R1 enruta el paquete, reenviándolo por G0/0 en una nueva trama dirigida a PC10. La trama es reenviada a PC10 por SW1 y SW2. Se etiqueta solo al cruzar el enlace troncal de SW1 G0/0 a SW2 G0/0.</p>
+</figcaption>
+</figure>
+<p>Los siguientes ejemplos muestran cómo se pueden configurar R1 y SW1 para habilitar el enrutamiento entre VLAN de esta manera:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>R1(config)# 
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>interface g0/0                                
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>R1(config-if)# ip address 172.16.1.1 255.255.255.192      
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>R1(config-if)# no shutdown                                
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>R1(config-if)# interface g0/1                             
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>R1(config-if)# ip address 172.16.1.65 255.255.255.192     
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>R1(config-if)# no shutdown                                
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>R1(config-if)# interface g0/2                             
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>R1(config-if)# ip address 172.16.1.129 255.255.255.192    
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>R1(config-if)# no shutdown                                
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>SW1(config)# interface g0/1                               
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>SW1(config-if)# switchport mode access                    
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>SW1(config-if)# switchport access vlan 10                 
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>SW1(config-if)# interface g0/2                            
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>SW1(config-if)# switchport mode access                    
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>SW1(config-if)# switchport access vlan 20                 
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>SW1(config-if)# interface g0/3                            
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a>SW1(config-if)# switchport mode access                    
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>SW1(config-if)# switchport access vlan 30    
+</span></code></pre></div></td></tr></table></div>
+<p>Sin embargo, este método de enrutamiento entre VLAN no es común por la misma razón que no es común conectar switches mediante puertos de acceso: en una LAN con muchas VLAN, pronto se agotarán los puertos físicos disponibles en los dispositivos. En su lugar, generalmente se prefiere una de las siguientes opciones:</p>
+<ul>
+<li>Router on a stick (un enlace troncal entre el switch y el router)</li>
+<li>Switch multicapa (un switch que también puede enrutar paquetes)</li>
+</ul>
+<h2 id="router-on-a-stick">Router on a stick</h2>
+<p>Router on a stick (ROAS) es un método de enrutamiento entre VLAN que implica la creación de un enlace troncal entre un switch y un router; una única interfaz física del router se puede dividir en múltiples subinterfaces virtuales, cada una con su propia dirección IP. Estas subinterfaces envían y reciben tramas etiquetadas, como un puerto troncal en un switch. La siguiente imagen muestra cómo se puede enrutar el mismo paquete desde PC3 a PC10 mediante ROAS. </p>
+<figure id="__figura_2">
+<p><img alt="" src="../img/intervlan10.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> PC3 (en la VLAN 20) envía un paquete a PC10 (en la VLAN 10), y el paquete se enruta mediante el método de enrutamiento en paralelo (router on a stick). La interfaz G0/0 de R1 tiene tres subinterfaces: G0/0.10 (VLAN 10, 172.16.1.1), G0/0.20 (VLAN 20, 172.16.1.65) y G0/0.30 (VLAN 30, 172.16.1.129). La trama de PC3 a R1 se etiqueta en la VLAN 20 a través del enlace troncal entre SW1 G0/1 y R1 G0/0. La trama de R1 a PC10 se etiqueta en la VLAN 10 a través del enlace troncal entre R1 G0/0 y SW1 G0/1, y el enlace troncal entre SW1 G0/0 y SW2 G0/0.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La interfaz física y las subinterfaces virtuales de un router comparten la misma dirección MAC. Cuando llega una trama a la interfaz física, el router sabe a qué subinterfaz está destinada basándose en la etiqueta VLAN de la trama, en lugar de en su dirección MAC de destino.</p>
+</div>
+<h3 id="configuracion-de-roas">Configuración de ROAS</h3>
+<p>Veamos cómo configurar ROAS. El lado de la conexión de SW1 es un puerto troncal, tal como lo configuramos anteriormente. En el siguiente ejemplo, configuro SW1 G0/1 como puerto troncal, permito solo las VLAN necesarias y cambio la VLAN nativa a una VLAN no utilizada:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>SW1(config)# 
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>interface g0/1
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>SW1(config-if)# switchport trunk encapsulation dot1q      
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>SW1(config-if)# switchport mode trunk                     
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>SW1(config-if)# switchport trunk allowed vlan 10,20,30    
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>SW1(config-if)# switchport trunk native vlan 999          
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Como se mencionó anteriormente, los switches que solo admiten 802.1Q (y no ISL) no requieren el comando <code>switchport trunk encapsulation</code> antes del comando <code>switchport mode trunk</code>.</p>
+</div>
+<p>A continuación, configuraremos R1; aquí utilizaremos algunos comandos nuevos. Para configurar una subinterfaz, utilizad el comando <code>interface</code> seguido del nombre de la interfaz, un punto y un número que la identifique, como <code>interface g0/0.10</code>. Esto os llevará al modo de configuración de subinterfaz. En el siguiente ejemplo, habilito la interfaz G0/0 de R1 y luego ingreso al modo de configuración de subinterfaz para la subinterfaz G0/0.10. Observad que el indicador de comandos cambia a <code>R1(config-subif)#</code>.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>R1(config)# 
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>interface g0/0          
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>R1(config-if)# no shutdown          
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>R1(config-if)# interface g0/0.10    
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>R1(config-subif)#                   
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La interfaz G0/0 en sí no necesita ninguna configuración adicional; simplemente aseguraos de habilitarla sin apagar el sistema.</p>
+</div>
+<p>Una vez en el modo de configuración de subinterfaz, hay dos elementos que configurar en la subinterfaz: la VLAN asociada y la dirección IP. Para configurar el ID de VLAN, utilizad el comando <code>encapsulation dot1q vlan-id</code>. En el siguiente ejemplo, configuro el ID de VLAN y la dirección IP de la subinterfaz G0/0.10 de R1:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>R1(config-subif)# encapsulation dot1q 10                   
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>R1(config-subif)# ip address 172.16.1.1 255.255.255.192    
+</span></code></pre></div></td></tr></table></div>
+<p>Tras estas configuraciones, cualquier trama que R1 reciba en su interfaz G0/0 y que esté etiquetada con la VLAN 10 se enviará a la subinterfaz G0/0.10, y cualquier trama enviada por la subinterfaz G0/0.10 se etiquetará con la VLAN 10.
+Nota</p>
+<p>El número utilizado para identificar la subinterfaz (el .10 en G0/0.10) no tiene por qué coincidir con el ID de la VLAN; este número no tiene ninguna otra función que la de identificar la subinterfaz. Es el comando <code>encapsulation dot1q</code> el que indica al router qué VLAN asociar a esta subinterfaz. Sin embargo, recomiendo que estos dos números coincidan; no hay motivo para no hacerlo.</p>
+<p>En el siguiente ejemplo, configuro dos subinterfaces más: una para la VLAN 20 y otra para la VLAN 30. A continuación, lo confirmo con el comando <code>show ip interface brief</code>. Observe que la interfaz G0/0 en sí misma no tiene una dirección IP. Más bien, las tres subinterfaces virtuales tienen direcciones IP y envían y reciben tráfico a través de la interfaz física G0/0:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>R1(config-subif)# 
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>interface g0/0.20                                              
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>R1(config-subif)# encapsulation dot1q 20                                         
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>R1(config-subif)# ip address 172.16.1.65 255.255.255.192                         
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>R1(config-subif)# interface g0/0.30                                              
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>R1(config-subif)# encapsulation dot1q 30                                         
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>R1(config-subif)# ip address 172.16.1.129 255.255.255.192                        
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>R1(config-subif)# do show ip interface brief
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>Interface                  IP-Address      OK? Method Status                Protocol
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>GigabitEthernet0/0         unassigned      YES manual up                    up    
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>GigabitEthernet0/0.10      172.16.1.1      YES manual up                    up   
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>GigabitEthernet0/0.20      172.16.1.65     YES manual up                    up   
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a>GigabitEthernet0/0.30      172.16.1.129    YES manual up                    up   
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a>. . .
+</span></code></pre></div></td></tr></table></div>
+<p>La configuración de ROAS ya está completa; R1 puede enrutar el tráfico entre las tres subredes/VLAN de la LAN mediante la única conexión troncal física con SW1. Cabe destacar que no realicé ninguna configuración relacionada con la VLAN nativa en el lado de R1 de la conexión; si no se utiliza la VLAN nativa, no es necesario realizar ninguna configuración específica en el router.</p>
+<h4 id="configurando-la-vlan-nativa-en-roas">Configurando la VLAN nativa en ROAS</h4>
+<p>Si se decide usar la VLAN nativa sobre el enlace troncal ROAS, existen dos métodos para configurar la conexión en el router:</p>
+<p>Utilizad el comando <code>encapsulation dot1q vlan-id native</code> en la subinterfaz correspondiente.</p>
+<p>Configure la dirección IP de la VLAN nativa en la interfaz física, no en una subinterfaz.</p>
+<p>Veamos ambos métodos. En el siguiente ejemplo, se muestra nuevamente la configuración ROAS, esta vez configurando la VLAN 10 como VLAN nativa mediante la adición de la palabra clave <code>native</code> al comando <code>encapsulation dot1q</code>. Por lo demás, las configuraciones son idénticas a los ejemplos anteriores.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>R1(config)# 
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>interface g0/0                                   
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>R1(config-if)# no shutdown                                   
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>R1(config-if)# interface g0/0.10                             
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>R1(config-subif)# encapsulation dot1q 10 native              
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>R1(config-subif)# ip address 172.16.1.1 255.255.255.192      
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>R1(config-subif)# interface g0/0.20                          
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>R1(config-subif)# encapsulation dot1q 20                     
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>R1(config-subif)# ip address 172.16.1.65 255.255.255.192     
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>R1(config-subif)# interface g0/0.30                          
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a>R1(config-subif)# encapsulation dot1q 30                     
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a>R1(config-subif)# ip address 172.16.1.129 255.255.255.192  
+</span></code></pre></div></td></tr></table></div>
+<p>En el siguiente ejemplo, utilizo el segundo método para configurar la VLAN nativa en el enrutador. No configuro una subinterfaz para la VLAN 10, sino que configuro la dirección IP de la VLAN nativa en la propia interfaz G0/0; el comando encapsulation dot1q no es necesario para la VLAN 10 en este caso, aunque sigue siendo necesario en las subinterfaces de las VLAN no nativas (VLAN 20 y 30):</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>R1(config)# 
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>interface g0/0                                  
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>R1(config-if)# no shutdown                                  
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>R1(config-if)# ip address 172.16.1.1 255.255.255.192        
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>R1(config-if)# interface g0/0.20                            
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>R1(config-subif)# encapsulation dot1q 20                    
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>R1(config-subif)# ip address 172.16.1.65 255.255.255.192    
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>R1(config-subif)# interface g0/0.30                         
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>R1(config-subif)# encapsulation dot1q 30                    
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a>R1(config-subif)# ip address 172.16.1.129 255.255.255.192   
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En ambos métodos, la VLAN nativa se asocia con la interfaz física G0/0, no con una subinterfaz virtual. En el primer método, la VLAN nativa se especifica con la palabra clave <code>native</code> en el comando <code>encapsulation dot1q</code>. En el segundo método, la VLAN nativa se configura simplemente al configurar la dirección IP en la interfaz física sin usar el comando <code>encapsulation dot1q</code>.</p>
+<p>Independientemente del método que utilicéis para configurar la VLAN nativa en el router, aseguraos de que la VLAN nativa coincida con la del switch.</p>
+</div>
+<h2 id="switch-multicapa">Switch multicapa</h2>
+<p>La tercera opción para el enrutamiento entre VLAN, y quizás la más popular (aunque ROAS también es común), es usar un switch multicapa. Un switch multicapa (también llamado switch de capa 3) es un switch capaz de enrutar paquetes; es un switch con un enrutador integrado.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un switch estándar que solo reenvía tramas se denomina switch de capa 2. Sin embargo, hoy en día, casi todos los switches tienen cierto grado de capacidades de capa 3, por lo que la diferencia entre un switch multicapa y un switch de capa 2 suele depender de cómo se utilice el switch, más que del switch en sí.</p>
+</div>
+<h3 id="enrutamiento-entre-vlan-mediante-svi">Enrutamiento entre VLAN mediante SVI</h3>
+<p>Los switches multicapa realizan el enrutamiento entre VLAN mediante interfaces virtuales llamadas interfaces virtuales de switch (SVI). Cada SVI es una interfaz en el enrutador integrado del switch multicapa, y los hosts de cada VLAN utilizan la dirección IP de la SVI de su VLAN como puerta de enlace predeterminada.</p>
+<p>La figura de abajo muestra la lógica interna de cómo SW1 (ahora un conmutador multicapa) enruta un paquete de PC1 a PC5. PC1 envía el paquete en una trama dirigida a la interfaz SVI de la VLAN 10 de SW1; cada SVI tiene una dirección MAC única. El enrutador interno de SW1 enruta el paquete a través de la SVI de la VLAN 30 y lo reenvía por el puerto troncal G0/0 en una trama (etiquetada en la VLAN 30) dirigida a la dirección MAC de PC5, y SW2 reenvía la trama a PC5 (sin etiquetar).</p>
+<figure id="__figura_3">
+<p><img alt="" src="../img/intervlan11.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> Aquí se muestra cómo SW1, un conmutador multicapa, enruta un paquete de PC1 a PC5. SW1 tiene tres interfaces SVI: VLAN 10 (172.16.1.1), VLAN 20 (172.16.1.65) y VLAN 30 (172.16.1.129), lo que le permite enrutar paquetes internamente, sin depender de un enrutador externo.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>R1 ya no aparece en el diagrama de la figura; si configuramos las SVI en SW1, no es necesario depender de un enrutador externo para el enrutamiento entre VLAN.</p>
+</div>
+<p>El primer paso para configurar SW1, como se muestra arriba, es habilitar el enrutamiento IP con el comando <code>ip routing</code> en el modo de configuración global. Sin este comando, el switch no podrá reenviar paquetes entre subredes/VLAN.</p>
+<p>Tras habilitar el enrutamiento IP, el siguiente paso es configurar las SVI de SW1. El comando para configurar una SVI es <code>interface vlan vlan-id</code>; a continuación, simplemente configurad una dirección IP en la SVI como si fuera una interfaz de enrutador. A diferencia de la configuración de una subinterfaz de enrutador (donde el identificador de subinterfaz no es relevante), el <code>vlan-id</code> especificado en el comando <code>interface vlan</code> sí lo es; es lo que indica a qué VLAN está asociada la SVI. En el siguiente ejemplo, habilito el enrutamiento IP y luego configuro las SVI de SW1 para las VLAN 10, VLAN 20 y VLAN 30, con las direcciones IP configuradas en R1 en los ejemplos anteriores:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span>
+<span class="normal"><a href="#__codelineno-7-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>SW1(config)# 
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>ip routing                                   
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>SW1(config)# interface vlan 10                            
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>SW1(config-if)# ip address 172.16.1.1 255.255.255.192     
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>SW1(config-if)# interface vlan 20                         
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>SW1(config-if)# ip address 172.16.1.65 255.255.255.192    
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>SW1(config-if)# interface vlan 30                         
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>SW1(config-if)# ip address 172.16.1.129 255.255.255.192   
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En algunos switches, las interfaces virtuales de switch (SVI) pueden estar deshabilitadas administrativamente por defecto. En ese caso, utilizad el comando <code>no shutdown</code> para habilitar cada SVI.</p>
+</div>
+<p>SW1 ya está listo para enrutar paquetes en la LAN; al igual que un enrutador, SW1 inserta rutas conectadas y locales en su tabla de enrutamiento para cada SVI, por lo que no es necesario configurar rutas estáticas. En el siguiente ejemplo, verifico la tabla de enrutamiento de SW1 con el comando <code>show ip route</code>:</p>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>SW1# 
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>show ip route                                              
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>. . .
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>      172.16.0.0/16 is variably subnetted, 6 subnets, 2 masks
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>C        172.16.1.0/26 is directly connected, Vlan10            
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>L        172.16.1.1/32 is directly connected, Vlan10            
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>C        172.16.1.64/26 is directly connected, Vlan20           
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>L        172.16.1.65/32 is directly connected, Vlan20           
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>C        172.16.1.128/26 is directly connected, Vlan30          
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>L        172.16.1.129/32 is directly connected, Vlan30     
+</span></code></pre></div></td></tr></table></div>
+Para que una interfaz SVI funcione, debe estar en estado activo (consulte las columnas Estado y Protocolo en la salida del comando <code>show ip interface brief</code>), al igual que una interfaz física. Para que una interfaz SVI esté en estado activo, se requieren cuatro condiciones; consulte esta lista si necesita solucionar problemas con una interfaz SVI que no alcanza dicho estado:</p>
+<ol>
+<li>
+<p>La VLAN asociada a la interfaz SVI debe existir en el switch (es decir, creada con el comando <code>vlan vlan-id</code>).</p>
+</li>
+<li>
+<p>El switch debe tener al menos una de las siguientes condiciones:</p>
+<p>a. Un puerto de acceso asociado a la VLAN (mediante el comando <code>switchport access vlan</code>) en estado activo.</p>
+<p>b. Un puerto troncal que permita el paso de la VLAN (mediante el comando <code>switchport trunk allowed vlan</code>) en estado activo.</p>
+</li>
+<li>
+<p>La VLAN debe estar habilitada (no debe tener el comando <code>shutdown</code> aplicado).</p>
+</li>
+<li>
+<p>La interfaz SVI debe estar habilitada (no debe tener el comando <code>shutdown</code> aplicado). </p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Consejo</p>
+<p>Aseguraos de comprender la diferencia entre una VLAN y una SVI. Una VLAN es un concepto de capa 2: un dominio de difusión virtual que divide un switch. Una SVI es una interfaz virtual de capa 3 asociada a una VLAN. Para crear una VLAN, utilizad el comando <code>vlan</code>. Para crear una SVI, utilizad el comando <code>interface vlan</code>.</p>
+</div>
+<p>Como muestra el siguiente ejemplo, las SVI de SW1 se encuentran actualmente en estado activo/activo:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>SW1# 
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>show ip interface brief | include Vlan 
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>Vlan10                 172.16.1.1      YES manual up                    up  
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>Vlan20                 172.16.1.65     YES manual up                    up    
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>Vlan30                 172.16.1.129    YES manual up                    up  
+</span></code></pre></div></td></tr></table></div>
+<p>Para demostrar los requisitos, en el siguiente ejemplo, incumplí un requisito para cada una de las interfaces SVI de las VLAN 10, 20 y 30:</p>
+<ul>
+<li>
+<p>Eliminé la VLAN 10 del switch SW1 (requisito 1).</p>
+</li>
+<li>
+<p>Deshabilité el puerto G1/3 del switch SW1 (un puerto de acceso en la VLAN 30) y eliminé la VLAN 30 de la lista de VLAN permitidas del puerto G0/0 (requisito 2).</p>
+</li>
+<li>
+<p>Deshabilité la VLAN 20 con el comando <code>shutdown</code> (requisito 3).</p>
+</li>
+</ul>
+<p>Como resultado, las tres interfaces SVI pasan a un estado de estado activo/inactivo; ya no podrán enrutar paquetes.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>SW1(config)# 
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>no vlan 10                                                        
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>SW1(config)# interface g1/3                                                    
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>SW1(config-if)# shutdown                                                       
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>SW1(config-if)# interface g0/0                                                 
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>SW1(config-if)# switchport trunk allowed vlan remove 30                        
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>SW1(config-if)# vlan 20                                                        
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>SW1(config-vlan)# shutdown                                                     
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>SW1(config-vlan)# do show ip interface brief | include Vlan
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>Vlan10                 172.16.1.1      YES manual up                    down      
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a>Vlan20                 172.16.1.65     YES manual up                    down   
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a>Vlan30                 172.16.1.129    YES manual up                    down   
+</span></code></pre></div></td></tr></table></div>
+<h2 id="uso-de-puertos-enrutados-para-conectividad-externa">Uso de puertos enrutados para conectividad externa</h2>
+<p>El enrutamiento dentro de una LAN es importante, pero también es esencial para que los hosts de la LAN puedan acceder a redes externas, como internet u otra LAN de la red corporativa. Para proporcionar conectividad externa, es común usar un puerto enrutado en un switch multicapa. Un puerto enrutado es un puerto físico en un switch multicapa configurado para funcionar como la interfaz de un enrutador. En la imagen se muestra cómo el puerto G0/1 de SW1 puede usarse como puerto enrutado, proporcionando conectividad a redes externas a través de R1.</p>
+<figure id="__figura_4">
+<p><img alt="" src="../img/intervlan12.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> SW1, un switch multicapa, utiliza un puerto enrutado (G0/1) para proporcionar conectividad a redes externas (a través de R1, en este caso). Al igual que una interfaz de enrutador, el puerto G0/1 de SW1 está configurado con la dirección IP 172.16.1.193.
+///</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El icono de SW1 es nuevo. Los diagramas de red suelen usar un icono como este para representar conmutadores multicapa, diferenciándolos de los conmutadores de capa 2.</p>
+</div>
+<p>Para configurar un puerto enrutado, utilizad el comando <code>no switchport</code> en el modo de configuración de interfaz; luego, podréis configurar una dirección IP como en la interfaz de un enrutador. En el siguiente ejemplo, configuro SW1 G0/1 como un puerto enrutado con una dirección IP y luego verifico la tabla de enrutamiento de SW1:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>SW1(config)# 
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>interface g0/1                                         
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>SW1(config-if)# no switchport                                       
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>SW1(config-if)# ip address 172.16.1.193 255.255.255.252             
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>SW1(config-if)# do show ip route
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>. . .
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a>      172.16.0.0/16 is variably subnetted, 8 subnets, 3 masks
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a>C        172.16.1.0/26 is directly connected, Vlan10
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a>L        172.16.1.1/32 is directly connected, Vlan10
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a>C        172.16.1.64/26 is directly connected, Vlan20
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a>L        172.16.1.65/32 is directly connected, Vlan20
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a>C        172.16.1.128/26 is directly connected, Vlan30
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a>L        172.16.1.129/32 is directly connected, Vlan30
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14"></a>C        172.16.1.192/30 is directly connected, GigabitEthernet0/1  
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15"></a>L        172.16.1.193/32 is directly connected, GigabitEthernet0/1  
+</span></code></pre></div></td></tr></table></div>
+<p>SW1 G0/1 ahora es un puerto enrutado con una dirección IP, y SW1 ha agregado rutas conectadas y locales para él, pero SW1 aún no puede reenviar paquetes fuera de la LAN; necesita una o varias rutas hacia destinos externos. Al igual que en un enrutador, se pueden configurar rutas estáticas en un conmutador multicapa o usar un protocolo de enrutamiento dinámico (tema de la parte 4 de este volumen). En el siguiente ejemplo, configuro una ruta predeterminada estática en SW1, usando la dirección IP de R1 como siguiente salto:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>SW1(config)# 
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>ip route 0.0.0.0 0.0.0.0 172.16.1.194      
+</span></code></pre></div></td></tr></table></div>
+<p>Ahora que SW1 dispone de una ruta a redes externas, puede proporcionar conectividad entre la LAN y las redes externas, así como entre las subredes/VLAN de la LAN. La imagen muestra la lógica interna de cómo SW1 puede reenviar un paquete desde un host de la LAN hacia un destino externo; el puerto enrutado de SW1 (G0/1) proporciona conectividad desde el enrutador interno a R1.</p>
+<figure id="__figura_4_1">
+<p><img alt="" src="../img/intervlan13.png" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4.1. </span> Un host de la LAN envía un paquete a un destino externo, enrutado por SW1. G0/1 es un puerto enrutado que conecta el enrutador interno de SW1 con R1.</p>
+</figcaption>
+</figure>
+<h2 id="resumen">Resumen</h2>
+<ul>
+<li>
+<p>La segmentación de red es el proceso de dividir una red en partes más pequeñas y proporciona beneficios en cuanto a seguridad y rendimiento. Las subredes se pueden usar para segmentar una red en la capa 3, y las redes de área local virtuales (VLAN) se pueden usar para segmentar una red en la capa 2.</p>
+</li>
+<li>
+<p>Las VLAN dividen un dominio de difusión (LAN) en múltiples dominios de difusión al dividir un switch físico en múltiples switches virtuales. Las tramas enviadas por un host en una VLAN no se pueden reenviar a hosts en otra VLAN.</p>
+</li>
+<li>
+<p>Aunque puede haber varias subredes por VLAN, para el examen CCNA, se puede asumir una relación uno a uno (una subred por VLAN).</p>
+</li>
+<li>
+<p>Utilizad el comando <code>show vlan brief</code> para ver las VLAN existentes en el switch y qué puertos pertenecen a cada VLAN.</p>
+</li>
+<li>
+<p>Las VLAN 1 y 1002-1005 existen por defecto y no se pueden eliminar. La VLAN 1 es la VLAN predeterminada, es decir, la VLAN a la que pertenecen todos los puertos por defecto. Las VLAN 1002–1005 están reservadas para su uso por FDDI y Token Ring, dos tecnologías heredadas de la capa de enlace de datos.</p>
+</li>
+<li>
+<p>Utilizad el comando <code>vlan vlan-id</code> para crear una VLAN y, a continuación, el comando <code>name vlan-name</code> para asignarle un nombre opcional (el nombre predeterminado es VLANxxxx). Podéis usar el comando <code>shutdown</code> para deshabilitar temporalmente la VLAN o <code>no vlan vlan-id</code> para eliminarla.</p>
+</li>
+<li>
+<p>Un puerto de acceso es un puerto de switch que envía y recibe tráfico en una sola VLAN. Los puertos de acceso también se denominan puertos sin etiquetar porque envían y reciben tramas sin etiquetas VLAN.</p>
+</li>
+<li>
+<p>Utilizad el comando <code>switchport mode access</code> para configurar un puerto en modo de acceso. A continuación, utilizad el comando <code>switchport access vlan vlan-id</code> para configurar a qué VLAN pertenece el puerto. Si asignáis un puerto a una VLAN que aún no existe en el switch, este la creará automáticamente.</p>
+</li>
+<li>
+<p>Un puerto troncal es un puerto de switch que envía y recibe tráfico en varias VLAN. Los puertos troncales diferencian las VLAN añadiendo una etiqueta VLAN a cada trama mediante el protocolo IEEE 802.1Q.</p>
+</li>
+<li>
+<p>La etiqueta 802.1Q tiene una longitud de 4 bytes y se añade entre los campos Origen y Tipo de Ether del encabezado Ethernet. Los campos principales de la etiqueta 802.1Q son TPID y TCI.</p>
+</li>
+<li>
+<p>El campo Identificador de Protocolo de Etiqueta (TPID) siempre contiene el valor 0x8100; se utiliza para identificar las tramas etiquetadas con 802.1Q.</p>
+</li>
+<li>
+<p>El campo Información de Control de Etiqueta (TCI) consta de tres subcampos: Punto de Código de Prioridad (PCP) e Indicador de Elegibilidad para Descarte (DEI), que se utilizan para la Calidad de Servicio (QoS). El campo Identificador de VLAN (VID) se utiliza para indicar a qué VLAN pertenece la trama. El campo VID tiene una longitud de 12 bits, por lo que existen 4096 (2¹²) VLAN en total.</p>
+</li>
+<li>
+<p>Para configurar un puerto troncal, utilizad el comando switchport mode trunk. Si el switch admite 802.1Q e ISL, primero deberíais usar el comando <code>switchport trunk encapsulation dot1q</code>. Si el switch solo admite 802.1Q, este comando no es necesario.</p>
+</li>
+<li>
+<p>Utilizad el comando <code>show interfaces trunk</code> para verificar los puertos troncales, incluyendo información como las VLAN permitidas en cada puerto.</p>
+</li>
+<li>
+<p>De forma predeterminada, todas las VLAN están permitidas en un puerto troncal, lo que significa que puede reenviar y recibir tramas en todas las VLAN.</p>
+</li>
+<li>
+<p>Utilizad el comando <code>switchport trunk allowed vlan</code> para especificar las VLAN permitidas en un puerto troncal. Podéis especificar la lista de VLAN o usar las palabras clave <code>add</code>, <code>all</code>, <code>except</code>, <code>none</code> o <code>remove</code>.</p>
+</li>
+<li>
+<p>La VLAN nativa es la VLAN sin etiquetar en un puerto troncal. Las tramas sin etiquetar recibidas en un puerto troncal se asignan a la VLAN nativa, y las tramas en la VLAN nativa se reenvían sin etiquetar. La VLAN nativa de un puerto troncal es la VLAN 1 de forma predeterminada.</p>
+</li>
+<li>
+<p>La VLAN nativa se puede configurar con el comando <code>switchport trunk native vlan vlan-id</code>. El comando se configura por puerto, por lo que cada puerto de un switch puede tener una VLAN nativa diferente. Aseguraos de que la VLAN nativa coincida en ambos lados de una conexión troncal.</p>
+</li>
+<li>
+<p>Se recomienda configurar una VLAN no utilizada (que no sea la VLAN 1 predeterminada) como VLAN nativa, lo que equivale a deshabilitarla.</p>
+</li>
+<li>
+<p>El enrutamiento entre VLAN es el proceso de enrutamiento entre subredes en una LAN segmentada mediante VLAN. Este enrutamiento puede realizarse mediante un router externo o un switch multicapa (un switch con capacidades de enrutamiento).</p>
+</li>
+<li>
+<p>Un router puede realizar el enrutamiento entre VLAN utilizando una interfaz independiente por subred/VLAN o mediante ROAS (Router on a Stick), donde un enlace troncal conecta el router y el switch.</p>
+</li>
+<li>
+<p>ROAS utiliza subinterfaces virtuales. Para configurar una subinterfaz, utilizad el comando <code>interface</code> y añadid un punto y un número al final del nombre de la interfaz para identificarla (por ejemplo, <code>interface g0/0.10</code>). El identificador de la subinterfaz no tiene por qué coincidir con el ID de la VLAN.</p>
+</li>
+<li>
+<p>Configurad la VLAN de una subinterfaz con el comando <code>encapsulation dot1q vlan-id</code>. A continuación, configurad una dirección IP del mismo modo que en un router.</p>
+</li>
+<li>
+<p>Si utilizáis la VLAN nativa sobre el enlace troncal ROAS, utilizad el comando <code>encapsulation dot1q vlan-id native</code> en la subinterfaz de la VLAN nativa. O bien, configurad la dirección IP de la VLAN nativa en la interfaz física (el comando <code>encapsulation dot1q</code> no es necesario en la interfaz física).</p>
+</li>
+</ul>
+</figcaption>
+</figure>
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>
