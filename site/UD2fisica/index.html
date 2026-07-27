@@ -1,0 +1,1836 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/UD2fisica/">
+      
+      
+        <link rel="prev" href="../UD1dispositivos_de_red/">
+      
+      
+        <link rel="next" href="../UD3modeloTCPIP/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>Medios de transmisión - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M384%20512H96c-53%200-96-43-96-96V96C0%2043%2043%200%2096%200h304c26.5%200%2048%2021.5%2048%2048v288c0%2020.9-13.4%2038.7-32%2045.3V448c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032zM96%20384c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032h256v-64zm32-232c0%2013.3%2010.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24H152c-13.3%200-24%2010.7-24%2024m24%2072c-13.3%200-24%2010.7-24%2024s10.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24z%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M352%200c0-17.7-14.3-32-32-32s-32%2014.3-32%2032v64h-96c-53%200-96%2043-96%2096v224c0%2053%2043%2096%2096%2096h256c53%200%2096-43%2096-96V160c0-53-43-96-96-96h-96zM160%20368c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24M224%20176a48%2048%200%201%201%200%2096%2048%2048%200%201%201%200-96m144%2048a48%2048%200%201%201%2096%200%2048%2048%200%201%201-96%200m-304%200c0-17.7-14.3-32-32-32S0%20206.3%200%20224v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32zm544-32c-17.7%200-32%2014.3-32%2032v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32v-96c0-17.7-14.3-32-32-32%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M416%20427.4c58.5-44%2096-111.6%2096-187.4C512%20107.5%20397.4%200%20256%200S0%20107.5%200%20240c0%2075.8%2037.5%20143.4%2096%20187.4V464c0%2026.5%2021.5%2048%2048%2048h32v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h64v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h32c26.5%200%2048-21.5%2048-48zM96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v151.5L7.5%20426.3C2.6%20435%200%20444.7%200%20454.7%200%20486.4%2025.6%20512%2057.3%20512h333.4c31.6%200%2057.3-25.6%2057.3-57.3%200-10-2.6-19.8-7.5-28.4L320%20215.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20215.5V64h64v151.5c0%2011.1%202.9%2022.1%208.4%2031.8L306%20320H142l41.6-72.7c5.5-9.7%208.4-20.6%208.4-31.8%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20576%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M480-16c6.9%200%2013%204.4%2015.2%2010.9l13.5%2040.4%2040.4%2013.5C555.6%2051%20560%2057.1%20560%2064s-4.4%2013-10.9%2015.2l-40.4%2013.5-13.5%2040.4c-2.2%206.5-8.3%2010.9-15.2%2010.9s-13-4.4-15.2-10.9l-13.5-40.4-40.4-13.5C404.4%2077%20400%2070.9%20400%2064s4.4-13%2010.9-15.2l40.4-13.5%2013.5-40.4C467-11.6%20473.1-16%20480-16M321.4%2097.4c12.5-12.5%2032.8-12.5%2045.3%200l80%2080c12.5%2012.5%2012.5%2032.8%200%2045.3l-10.9%2010.9c7.9%2022%2012.2%2045.7%2012.2%2070.5%200%20114.9-93.1%20208-208%20208S32%20418.9%2032%20304%20125.1%2096%20240%2096c24.7%200%2048.5%204.3%2070.5%2012.3zM144%20304c0-53%2043-96%2096-96%2013.3%200%2024-10.7%2024-24s-10.7-24-24-24c-79.5%200-144%2064.5-144%20144%200%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-32-352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200m-8%2064h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M64%20480c-35.3%200-64-28.7-64-64V96c0-35.3%2028.7-64%2064-64h320c35.3%200%2064%2028.7%2064%2064v213.5c0%2017-6.7%2033.3-18.7%2045.3L322.7%20461.3c-12%2012-28.3%2018.7-45.3%2018.7zm325.5-176H296c-13.3%200-24%2010.7-24%2024v93.5z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m0-336c-17.7%200-32%2014.3-32%2032%200%2013.3-10.7%2024-24%2024s-24-10.7-24-24c0-44.2%2035.8-80%2080-80s80%2035.8%2080%2080c0%2047.2-36%2067.2-56%2074.5v3.8c0%2013.3-10.7%2024-24%2024s-24-10.7-24-24v-8.1c0-20.5%2014.8-35.2%2030.1-40.2%206.4-2.1%2013.2-5.5%2018.2-10.3%204.3-4.2%207.7-10%207.7-19.6%200-17.7-14.3-32-32-32zm-32%20192a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64zm256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M434.8%2070.1c14.3%2010.4%2017.5%2030.4%207.1%2044.7l-256%20352c-5.5%207.6-14%2012.3-23.4%2013.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200l101.5%20101.5%20234-321.7c10.4-14.3%2030.4-17.5%2044.7-7.1z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M461.2%2018.9C472.7%2024%20480%2035.4%20480%2048v416c0%2012.6-7.3%2024-18.8%2029.1s-24.8%203.2-34.3-5.1l-46.6-40.7c-43.6-38.1-98.7-60.3-156.4-63V480c0%2017.7-14.3%2032-32%2032h-32c-17.7%200-32-14.3-32-32v-96C57.3%20384%200%20326.7%200%20256s57.3-128%20128-128h84.5c61.8-.2%20121.4-22.7%20167.9-63.3L427%2024c9.4-8.3%2022.9-10.2%2034.3-5.1zM224%20320v.2c70.3%202.7%20137.8%2028.5%20192%2073.4V118.3c-54.2%2044.9-121.7%2070.7-192%2073.4z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%200c14.7%200%2028.2%208.1%2035.2%2021l216%20400c6.7%2012.4%206.4%2027.4-.8%2039.5S486.1%20480%20472%20480H40c-14.1%200-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9%2020.5-21%2035.2-21m0%20352a32%2032%200%201%200%200%2064%2032%2032%200%201%200%200-64m0-192c-18.2%200-32.7%2015.5-31.4%2033.7l7.4%20104c.9%2012.5%2011.4%2022.3%2023.9%2022.3%2012.6%200%2023-9.7%2023.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#medios-de-transmision" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Medios de transmisión
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../UD1dispositivos_de_red/" class="md-tabs__link">
+          
+  
+  Introduccion
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SecSwitches/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduccion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1dispositivos_de_red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispositivos de red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medios de transmisión
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medios de transmisión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-estandares-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Estándares de red
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-binario-bits-y-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Binario: bits y bytes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Binario: bits y bytes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1000-o-1024-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1,000 o 1,024 bits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-conexiones-de-cobre-utp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Conexiones de cobre UTP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Conexiones de cobre UTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-estandares-ieee-8023-cobre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1 Estándares IEEE 802.3 (cobre)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.1 Estándares IEEE 802.3 (cobre)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grupos-de-trabajo-y-subgrupos-del-ieee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupos de trabajo y subgrupos del IEEE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-cables-straight-through-y-crossover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2 Cables straight-through y crossover
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.2 Cables straight-through y crossover">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cables-straight-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cables straight-through
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cables-crossover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cables crossover
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-mdi-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto MDI-X
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1000base-t-y-10gbase-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1000BASE-T y 10GBASE-T
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-conexiones-de-fibra-optica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Conexiones de fibra óptica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Conexiones de fibra óptica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-la-anatomia-de-un-cable-de-fibra-optica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.1 La anatomía de un cable de fibra óptica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#342-utp-frente-a-fibra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.2 UTP frente a fibra
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3modeloTCPIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo TCP/IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_estandar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_extendida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-estandares-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Estándares de red
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-binario-bits-y-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Binario: bits y bytes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Binario: bits y bytes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1000-o-1024-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1,000 o 1,024 bits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-conexiones-de-cobre-utp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Conexiones de cobre UTP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Conexiones de cobre UTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-estandares-ieee-8023-cobre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1 Estándares IEEE 802.3 (cobre)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.1 Estándares IEEE 802.3 (cobre)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grupos-de-trabajo-y-subgrupos-del-ieee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupos de trabajo y subgrupos del IEEE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-cables-straight-through-y-crossover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2 Cables straight-through y crossover
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.2 Cables straight-through y crossover">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cables-straight-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cables straight-through
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cables-crossover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cables crossover
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-mdi-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto MDI-X
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1000base-t-y-10gbase-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1000BASE-T y 10GBASE-T
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-conexiones-de-fibra-optica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Conexiones de fibra óptica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Conexiones de fibra óptica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-la-anatomia-de-un-cable-de-fibra-optica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.1 La anatomía de un cable de fibra óptica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#342-utp-frente-a-fibra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.2 UTP frente a fibra
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../UD1dispositivos_de_red/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Introduccion
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="medios-de-transmision">Medios de transmisión</h1>
+<p>Este capítulo cubre:</p>
+<ul>
+<li>Las especificaciones y normas que permiten que los ordenadores se comuniquen.</li>
+<li>Los fundamentos del tráfico en una red.</li>
+<li>Los tipos de conexiones cableadas y las normas de cableado.</li>
+<li>Los usos del par trenzado sin apantallar y de las conexiones de fibra óptica en redes.</li>
+</ul>
+<p>En el capítulo anterior vimos varios diagramas que mostraban nodos de red conectados con cables. En este capítulo, vamos a ver los tipos concretos de cables, conectores y puertos que se utilizan para realizar esas conexiones. Estos temas forman parte de la sección 1.0, Fundamentos de red, del examen CCNA. En concreto, vamos a cubrir aspectos del tema de examen 1.3, que son los siguientes:</p>
+<ul>
+<li>1.3 Comparar los tipos de interfaces físicas y de cableado.</li>
+<li>1.3.a Fibra monomodo, fibra multimodo, cobre.</li>
+<li>1.3.b Conexiones (medio compartido Ethernet y punto a punto).</li>
+</ul>
+<p>En el pasado, ha habido muchas formas diferentes de conectar dispositivos, y todavía las hay. Sin embargo, en las redes modernas, Ethernet domina y es, con diferencia, el tipo de conexión más común. Quizá ya hayáis oído hablar de Ethernet en relación con los cables Ethernet. Ethernet no es una única cosa, sino una colección de normas para las conexiones físicas por cable y de reglas para comunicarse a través de esas conexiones. En este capítulo, vamos a ver dos tipos diferentes de conexiones físicas entre dispositivos: las que utilizan cables de cobre y las que utilizan cables de fibra óptica.</p>
+<h2 id="31-estandares-de-red">3.1 Estándares de red</h2>
+<p>En las redes modernas, alguien que trabaje en una oficina con un PC Dell conectado a un conmutador Cisco puede comunicarse con otra persona que use un MacBook de Apple conectado al Wi-Fi de Starbucks. Los datos se envían por Internet, posiblemente recorriendo la infraestructura de varios proveedores de servicios de Internet (ISP), que utilizan hardware completamente distinto. ¿Cómo es posible que todos estos dispositivos, fabricados por distintas empresas, puedan comunicarse entre sí? Para este milagro moderno, podemos dar las gracias a los estándares: conjuntos de requisitos y especificaciones técnicas que definen las reglas de comunicación en las redes.</p>
+<p>Para demostrar por qué estas reglas de comunicación son importantes, vamos a olvidar durante un momento los ordenadores y pensar en la comunicación directa entre personas. Si una persona que habla inglés se dirige a otra que solo entiende japonés, no va a producirse ninguna comunicación. Cada idioma, inglés y japonés, tiene un conjunto diferente de reglas sobre cómo debe comunicarse la información entre personas. A menos que ambos interlocutores estén de acuerdo en las reglas, la comunicación no se produce.</p>
+<p>Incluso si ambas partes entienden inglés, deben acordar el medio de comunicación. Si la persona A escribe un mensaje en un trozo de papel, pero la persona B cierra los ojos e intenta escuchar el mensaje, el resultado es el mismo que en el ejemplo anterior: la comunicación no se produce. Para que las personas puedan comunicarse entre sí, debemos acordar tanto las reglas de comunicación como el medio de comunicación.</p>
+<p>Lo mismo ocurre con los ordenadores. Para que dos ordenadores se comuniquen, deben cumplir las mismas reglas de comunicación; por ejemplo, cómo formatear los datos cuando se envían por la red. También deben existir reglas que rijan el medio de comunicación: especificaciones para cables físicos, conectores y puertos, así como las ondas de radio utilizadas en las comunicaciones inalámbricas.</p>
+<p>Existen varios organismos que definen los estándares utilizados en las redes de ordenadores, y vamos a mencionar a un par de ellos a lo largo de los dos volúmenes de este libro. El más importante para este capítulo es el Institute of Electrical and Electronics Engineers (IEEE, pronunciado «I-triple-E»). En 1983, el IEEE definió por primera vez el estándar IEEE 802.3, más conocido como Ethernet.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El IEEE también define el estándar IEEE 802.11, mejor conocido, aunque no oficialmente, como Wi-Fi. Las WLAN IEEE 802.11 son un tema importante del examen CCNA y se tratan en la parte 4 del volumen 2 de este libro.</p>
+</div>
+<p>Ethernet no es un estándar único, sino una familia de estándares que definen tanto los aspectos físicos de las conexiones de red como la forma de formatear los datos en mensajes para enviarlos por la red.</p>
+<h2 id="32-binario-bits-y-bytes">3.2 Binario: bits y bytes</h2>
+<p>Términos como bit, byte, megabit, megabyte, etc., os resultarán familiares, incluso si no estáis del todo seguros de lo que significan (yo tampoco lo estaba antes de empezar a estudiar redes). Incluso podéis usar vosotros mismos estos términos, refiriéndoos a una conexión de Internet de gigabit o a un archivo de X gigabytes. Dependiendo de vuestra edad, quizá incluso recordéis vuestra conexión de Internet de 56k (kilobit).</p>
+<p>Para entender lo que significan estos términos, debemos definir el término bit. Un bit es la unidad básica de información utilizada por los ordenadores. La palabra bit es simplemente una combinación de las palabras binary digit. El binario es un sistema numérico que expresa todos los valores utilizando solo dos dígitos: 0 y 1. Un byte, por su parte, es simplemente una unidad de 8 bits. Ocho bits equivalen a 1 byte.</p>
+<p>El binario es el lenguaje de los ordenadores. Calculan en binario y se comunican en binario. Todo lo que veis en la pantalla de un ordenador o oís por su altavoz es una serie de 0s y 1s interpretada por un ordenador y presentada en un formato comprensible para los humanos. Eso incluye aplicaciones, fotos, vídeos, canciones, este libro si lo estáis leyendo en formato electrónico, y todo lo demás que hace un ordenador.</p>
+<p>El CCNA, como certificación de redes, trata sobre cómo se comunican los ordenadores; eso es precisamente lo que es la red. Cuando dos ordenadores conectados por un cable se comunican entre sí, se envían largas series de bits (0s y 1s) a través de ese cable. En las redes modernas, suelen enviarlos a una velocidad de miles de millones por segundo. Exactamente cómo se transmiten esos 0s y 1s depende del medio. Por ejemplo, los 0s y 1s pueden comunicarse por cable de cobre modificando el voltaje de una señal eléctrica entre los dos dispositivos. El voltaje «x» representa un valor de 0, y el voltaje «y» representa un valor de 1. En la Figura 1 se ilustra este concepto; cuando el router envía 1 byte de datos al conmutador a través del cable que los une, los cambios de voltaje de la señal se utilizan para comunicar los valores 0 y 1.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Entender el sistema numérico binario es muy importante para el examen CCNA. En los próximos capítulos de este volumen, vamos a ver cómo contar en binario y cómo convertir entre binario y otros sistemas numéricos como el decimal o el hexadecimal.</p>
+</div>
+<figure id="__figura_1">
+<p><img alt="" justify="justify" src="../img/UD2_1.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> Un router envía 1 byte de datos a un conmutador. Los cambios de voltaje de la señal eléctrica indican valores de 0 o 1.</p>
+</figcaption>
+</figure>
+<p>Medimos la velocidad de las conexiones de red por cuántos bits pueden transmitirse por segundo. Sin embargo, debido a la enorme velocidad de las redes de ordenadores, expresamos estas tasas utilizando unidades mayores, como kilobits, megabits y gigabits. A continuación, se muestran algunas unidades habituales de medición de bits:</p>
+<ul>
+<li>1 kilobit (kb) = 1.000 bits.</li>
+<li>1 megabit (Mb) = 1.000.000 bits (1.000 kilobits).</li>
+<li>1 gigabit (Gb) = 1.000.000.000 bits (1.000 megabits).</li>
+<li>1 terabit (Tb) = 1.000.000.000.000 bits (1.000 gigabits).</li>
+</ul>
+<p>Las velocidades de red se expresan entonces como X bits por segundo (bps); por ejemplo, 56 kilobits por segundo (56 kbps), 100 megabits por segundo (100 Mbps), 10 gigabits por segundo (10 Gbps) o 1 terabit por segundo (1 Tbps).</p>
+<h3 id="1000-o-1024-bits">1,000 o 1,024 bits</h3>
+<p>Existe cierta confusión sobre si 1 kilobit son 1.000 bits o 1.024 bits, si 1 megabit son 1.000 kilobits o 1.024 kilobits, etc. Las definiciones que se han listado anteriormente son correctas, y son los términos que debéis conocer para el CCNA. Los valores de 1.024 son resultado del sistema numérico binario (base 2); 2^10 es igual a 1.024. Los términos correctos para los valores en base 2 son:</p>
+<ul>
+<li>1 kibibit (1.024 bits)</li>
+<li>1 mebibit (1.024 kibibits)</li>
+<li>1 gibibit (1.024 mebibits)</li>
+<li>1 tebibit (1.024 gibibits)</li>
+</ul>
+<h2 id="33-conexiones-de-cobre-utp">3.3 Conexiones de cobre UTP</h2>
+<p>El CCNA os exige conocer dos tipos de conexiones cableadas: las que usan cables de cobre y las que usan cables de fibra óptica. Primero, vamos a ver los cables de cobre. Este es el tipo de cable de red más comúnmente llamado cable Ethernet, aunque el estándar Ethernet utiliza tanto cables de cobre como de fibra óptica. Antes de examinar un cable Ethernet de cobre en sí, vamos a mirar el conector del extremo del cable y el puerto al que se conecta en un dispositivo de red, ambos representados en la Figura 2.</p>
+<figure id="__figura_2">
+<p><img alt="" justify="justify" src="../img/UD2_2.jpg" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> Dos puertos 8P8C en un conmutador Cisco (izquierda) y un conector 8P8C en un cable de red UTP de cobre (derecha).</p>
+</figcaption>
+</figure>
+<p>La Figura 2 muestra el conector de 8 posiciones y 8 contactos (8P8C) de un cable Ethernet en la derecha. El nombre se debe a que hay ocho pines en el conector: uno para cada uno de los ocho hilos del cable. Estos conectores permiten que el cable se conecte a puertos como los que se muestran a la izquierda de la Figura 2. Otro nombre para este tipo de conector es RJ45 (RJ significa Registered Jack); estrictamente hablando, este nombre no es del todo correcto, pero se usa habitualmente cuando se habla de cables Ethernet.</p>
+<p>El tipo de cables utilizados para estas conexiones se llama cables de par trenzado sin apantallar (UTP). También existen cables de par trenzado apantallado (STP), pero son menos comunes, así que vamos a referirnos a ellos como UTP a lo largo de este libro. Cada cable UTP contiene ocho hilos individuales en su interior, trenzados para formar cuatro pares. Vamos a analizar el significado de UTP:</p>
+<ul>
+<li>Unshielded: los hilos no tienen un blindaje metálico alrededor. Ese blindaje puede reducir las interferencias electromagnéticas (EMI), pero no está presente en los cables UTP.</li>
+<li>Twisted pair: los ocho hilos del cable están trenzados para formar cuatro pares de dos hilos cada uno. El trenzado de los hilos reduce la EMI entre los hilos de cada par.</li>
+</ul>
+<h3 id="331-estandares-ieee-8023-cobre">3.3.1 Estándares IEEE 802.3 (cobre)</h3>
+<p>El IEEE define varios estándares para las conexiones Ethernet que soportan diferentes velocidades, tipos de cable (cobre o fibra óptica) y distancias. Cada estándar se conoce por varios nombres distintos:</p>
+<ul>
+<li>Un nombre deriva de la velocidad máxima de transmisión soportada.</li>
+<li>También se usa el nombre del grupo de trabajo del IEEE que definió el estándar. Estos nombres comienzan con IEEE 802.3, seguido de una letra.</li>
+<li>El tercer nombre es un nombre informal dado por el IEEE que indica tanto la velocidad como el tipo de cable (los estándares de cableado de cobre terminan en T).</li>
+</ul>
+<h4 id="grupos-de-trabajo-y-subgrupos-del-ieee">Grupos de trabajo y subgrupos del IEEE</h4>
+<p>El IEEE asigna grupos de trabajo para desarrollar tecnologías concretas. Los dos grupos de trabajo principales relevantes para el CCNA son 802.3 (encargado de desarrollar el estándar Ethernet para redes cableadas) y 802.11 (redes LAN inalámbricas, también conocidas como Wi-Fi).</p>
+<p>Dentro de cada grupo de trabajo, se asignan subgrupos para revisar y seguir desarrollando los estándares originales. Cada vez que se forma un subgrupo, se le asigna una letra en orden secuencial (por ejemplo, 802.3a a 802.3z). Cuando se usan todas las letras, se añade otra más (por ejemplo, 802.3aa a 802.3az). En el momento de escribir esto, 802.3dk está en desarrollo.</p>
+<p>La Tabla 3.1 muestra algunos ejemplos de estándares Ethernet que usan cableado de cobre. Tened en cuenta los tres nombres de cada estándar, tal como se han descrito anteriormente.</p>
+<table>
+<thead>
+<tr>
+<th>Velocidad</th>
+<th>Nombre derivado de la velocidad</th>
+<th>Grupo de trabajo IEEE</th>
+<th>Nombre informal</th>
+<th>Longitud máxima del cable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 Mbps</td>
+<td>Ethernet</td>
+<td>IEEE 802.3i</td>
+<td>10BASE-T</td>
+<td>100 m</td>
+</tr>
+<tr>
+<td>100 Mbps</td>
+<td>Fast Ethernet</td>
+<td>IEEE 802.3u</td>
+<td>100BASE-T</td>
+<td>100 m</td>
+</tr>
+<tr>
+<td>1 Gbps</td>
+<td>Gigabit Ethernet</td>
+<td>IEEE 802.3ab</td>
+<td>1000BASE-T</td>
+<td>100 m</td>
+</tr>
+<tr>
+<td>10 Gbps</td>
+<td>10 Gig Ethernet</td>
+<td>IEEE 802.3an</td>
+<td>10GBASE-T</td>
+<td>100 m</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para el examen CCNA, no es necesario memorizar los nombres de los grupos de trabajo del IEEE asociados a cada estándar. Sin embargo, sí debéis conocer los nombres derivados de la velocidad y los nombres informales.</p>
+</div>
+<p>Cada uno de estos estándares admite una longitud máxima de cable de 100 metros. Intentar usar cables UTP más largos que el máximo indicado puede provocar atenuación de la señal y un rendimiento menor. La longitud máxima del cable puede ser un problema para las conexiones de cobre UTP. Como veremos en la sección 3.4, una mayor longitud máxima es una ventaja importante de la fibra óptica frente a los cables UTP de cobre.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los cables utilizados en los estándares Ethernet mencionados no están definidos realmente por el IEEE, sino por dos organizaciones adicionales: la Electronic Industries Alliance (EIA) y la Telecommunications Industry Association (TIA). Por eso, el nombre «cable Ethernet» no es muy exacto, porque los cables, aunque se usen en Ethernet, no están definidos por IEEE 802.3.</p>
+</div>
+<p>Los estándares de estos cables reciben nombres como Category 5, que a menudo se abrevia como Cat 5. La Tabla 3.2 muestra algunos estándares de cable que pueden utilizarse con los estándares Ethernet mencionados.</p>
+<table>
+<thead>
+<tr>
+<th>Velocidad</th>
+<th>Nombre informal Ethernet</th>
+<th>Nombre del cable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 Mbps</td>
+<td>10BASE-T</td>
+<td>Cat 3</td>
+</tr>
+<tr>
+<td>100 Mbps</td>
+<td>100BASE-T</td>
+<td>Cat 5</td>
+</tr>
+<tr>
+<td>1 Gbps</td>
+<td>1000BASE-T</td>
+<td>Cat 5e</td>
+</tr>
+<tr>
+<td>10 Gbps</td>
+<td>10GBASE-T</td>
+<td>Cat 6a</td>
+</tr>
+</tbody>
+</table>
+<h3 id="332-cables-straight-through-y-crossover">3.3.2 Cables straight-through y crossover</h3>
+<p>Aunque hoy en día todos los cables UTP usados para comunicaciones de red tienen cuatro pares de hilos (ocho hilos), no todos los estándares Ethernet utilizan los cuatro pares de hilos:</p>
+<ul>
+<li>10BASE-T usa dos pares (cuatro hilos).</li>
+<li>100BASE-T usa dos pares (cuatro hilos).</li>
+<li>1000BASE-T usa cuatro pares (ocho hilos).</li>
+<li>10GBASE-T usa cuatro pares (ocho hilos).</li>
+</ul>
+<p>Cada hilo del cable está conectado a uno de los ocho pines del conector 8P8C. Para que los dispositivos se comuniquen a través de estos pares de hilos, cada par forma un circuito eléctrico entre los dos dispositivos conectados. En las conexiones 10BASE-T y 100BASE-T, es muy importante usar el cable adecuado para asegurar que los hilos conectan los pines de un extremo de la conexión con los pines correctos del otro extremo. Para facilitar esto, existen dos tipos de cables que podemos utilizar: straight-through y crossover. Estos tipos de cable se diferencian en qué pines de un extremo del cable se conectan a qué pines del otro extremo.</p>
+<h4 id="cables-straight-through">Cables straight-through</h4>
+<p>10BASE-T y 100BASE-T usan dos pares de hilos, uno para cada sentido de la comunicación. Los dos pares de hilos son:</p>
+<ul>
+<li>El par conectado a los pines 1 y 2.</li>
+<li>El par conectado a los pines 3 y 6 (sí, es 3 y 6, no 3 y 4).</li>
+</ul>
+<p>Esto se muestra en la Figura 3, en la que un PC y un conmutador están conectados por un cable UTP. Los pines 1 y 2 del PC se conectan a los pines 1 y 2 del conmutador. Del mismo modo, los pines 3 y 6 del PC se conectan a los pines 3 y 6 del conmutador.</p>
+<figure id="__figura_3">
+<p><img alt="" justify="justify" src="../img/UD2_3.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> Un PC y un conmutador conectados mediante un cable straight-through.</p>
+</figcaption>
+</figure>
+<p>Cuando los dispositivos se conectan con un cable straight-through, un par de pines de un conector se conecta al mismo par de pines del otro conector. Esto funciona bien al conectar un PC a un conmutador. Como se muestra en la Figura 3, los PCs usan el par de pines 1–2 para transmitir datos (a menudo abreviado como Tx), y los conmutadores usan el par de pines 1–2 para recibir datos (a menudo abreviado como Rx). Del mismo modo, los conmutadores usan el par de pines 3–6 para transmitir datos, y los PCs usan el par de pines 3–6 para recibir datos.</p>
+<p>Sin embargo, ¿qué pasaría si conectáramos dos conmutadores? ¿O dos PCs? ¿O dos routers? En estos casos, usar un cable straight-through causaría problemas, como se muestra en la Figura 4.</p>
+<figure id="__figura_4">
+<p><img alt="" justify="justify" src="../img/UD2_4.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> Dos routers conectados mediante un cable straight-through. Como ambos routers transmiten datos usando el mismo par de pines, la comunicación falla.</p>
+</figcaption>
+</figure>
+<p>Cuando dos dispositivos que transmiten usando el mismo par de pines se conectan con un cable straight-through, no podrán comunicarse. Los pines Tx de un dispositivo se conectan a los pines Tx del otro. Para que dispositivos como estos puedan comunicarse, necesitan un cable con un cableado distinto: un cable crossover.</p>
+<h4 id="cables-crossover">Cables crossover</h4>
+<p>Un cable crossover conecta pares de pines opuestos; los pines 1 y 2 de un extremo del cable se conectan a los pines 3 y 6 del otro extremo. Esto permite que los dispositivos que transmiten datos en el mismo par de pines puedan comunicarse entre sí. Como muestra la Figura 5, los dispositivos que transmiten usando el mismo par de pines pueden comunicarse entre sí cuando se conectan con un cable crossover.</p>
+<figure id="__figura_5">
+<p><img alt="" justify="justify" src="../img/UD2_5.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 5. </span> Dos routers conectados mediante un cable crossover. El par de pines Tx de un router se conecta al par de pines Rx del otro router.</p>
+</figcaption>
+</figure>
+<p>La Tabla 3.3 enumera algunos tipos habituales de dispositivos de red y qué pines utilizan para transmitir y recibir datos. En pocas palabras, los conmutadores transmiten por los pines 3 y 6 y reciben por los pines 1 y 2. Todos los demás dispositivos hacen lo contrario.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo de dispositivo</th>
+<th>Pines de transmisión (Tx)</th>
+<th>Pines de recepción (Rx)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Router</td>
+<td>1 y 2</td>
+<td>3 y 6</td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>1 y 2</td>
+<td>3 y 6</td>
+</tr>
+<tr>
+<td>PC/Servidor</td>
+<td>1 y 2</td>
+<td>3 y 6</td>
+</tr>
+<tr>
+<td>Conmutador</td>
+<td>3 y 6</td>
+<td>1 y 2</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aunque 10BASE-T y 100BASE-T solo usan dos pares de hilos, siguen existiendo cuatro pares de hilos dentro del cable. Los otros dos pares de hilos quedan sin utilizar.</p>
+</div>
+<h4 id="auto-mdi-x">Auto MDI-X</h4>
+<p>Ahora que ya hemos cubierto los cables straight-through y crossover, queremos daros una buena noticia: en los equipos de red modernos, no tenéis que preocuparos por usar el tipo de cable correcto. Eso se debe a una función llamada Auto Medium-Dependent Interface Crossover (Auto MDI-X). Auto MDI-X permite que un dispositivo cambie qué pines usará para transmitir y recibir datos según el dispositivo al que esté conectado. Debéis conocer los cables straight-through y crossover como posible pregunta de examen, pero en el campo probablemente no tendréis que pensar si un cable es straight-through o crossover.</p>
+<p>La Figura 6 demuestra este concepto. Los dos routers están conectados mediante un cable straight-through. Normalmente, los routers transmiten datos en el par 1–2 y reciben en el par 3–6, pero gracias a Auto MDI-X, el router de la derecha invierte eso; transmite datos en el par 3–6 y recibe en el par 1–2.</p>
+<figure id="__figura_6">
+<p><img alt="" justify="justify" src="../img/UD2_6.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 6. </span> Dos routers conectados mediante un cable straight-through. El router de la derecha usa Auto MDI-X para ajustar qué pines usa para transmitir y recibir datos.</p>
+</figcaption>
+</figure>
+<h4 id="1000base-t-y-10gbase-t">1000BASE-T y 10GBASE-T</h4>
+<p>1000BASE-T y 10GBASE-T aprovechan los ocho hilos de un cable, por lo que se usan un total de cuatro pares de hilos. Se utilizan los mismos pares de pines/hilos 1–2 y 3–6 que en 10BASE-T y 100BASE-T. Los pares restantes son el par en las posiciones 4 y 5 y el par en las posiciones 7 y 8. Esto se muestra en la Figura 7.</p>
+<figure id="__figura_7">
+<p><img alt="" justify="justify" src="../img/UD2_7.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 7. </span> Pares de pines y hilos usados en las conexiones 1000BASE-T y 10GBASE-T. Se usan los ocho hilos del cable.</p>
+</figcaption>
+</figure>
+<p>Además, en lugar de que un dispositivo use cada par de hilos exclusivamente para transmitir o recibir datos, cada par de hilos puede usarse para ambos propósitos simultáneamente.</p>
+<p>Si se usa un cable crossover, los pares 1–2 y 3–6 se cruzan como en 10BASE-T y 100BASE-T, y también se cruzan los nuevos pares 4–5 y 7–8. Sin embargo, gracias a Auto MDI-X, ya no tenemos que preocuparnos por seleccionar el tipo de cable adecuado.</p>
+<h2 id="34-conexiones-de-fibra-optica">3.4 Conexiones de fibra óptica</h2>
+<p>Las conexiones de cobre UTP siguen siendo el tipo de conexión más común dentro de una LAN. Tanto los cables como los puertos de los conmutadores son relativamente baratos y están soportados por casi todos los dispositivos modernos que se conectan a una red. Sin embargo, existe una limitación importante que puede hacer que las conexiones de cobre no sean viables en algunos casos: la longitud máxima del cable de 100 metros. Para conexiones entre dispositivos del mismo piso de un edificio, 100 metros suelen ser más que suficientes, pero para algunas conexiones entre dispositivos de distintos pisos quizá no lo sean. Y, desde luego, para conexiones entre edificios y conexiones WAN, se prefiere el siguiente tipo de cableado: el cableado de fibra óptica.</p>
+<p>Los cables de fibra óptica, en lugar de transmitir señales eléctricas a lo largo de un cable de cobre, transmiten señales de luz a lo largo de una fibra de vidrio. La fibra de vidrio utilizada es más flexible de lo que quizá penséis al imaginar vidrio, pero aun así los cables de fibra óptica deben manipularse con cuidado; una curva cerrada en el cable puede dañar la fibra de vidrio y dejarlo inutilizable. Incluso si la fibra de vidrio no se rompe, doblar el cable puede hacer que la luz se escape del cable, debilitando la señal.</p>
+<h3 id="341-la-anatomia-de-un-cable-de-fibra-optica">3.4.1 La anatomía de un cable de fibra óptica</h3>
+<p>Una conexión típica de fibra óptica no usa un único cable, sino dos: uno para transmitir datos y otro para recibirlos. Estos cables se conectan a un transceptor Small Form-Factor Pluggable (SFP) insertado en un puerto SFP del dispositivo. Los transceptores SFP son modulares y deben comprarse por separado del propio dispositivo (y probablemente os sorprenderá lo caros que son estas cositas).</p>
+<p>La Figura 8 muestra un conmutador Cisco con un par de transceptores SFP: uno insertado en un puerto SFP y otro encima del conmutador. Observad que hay dos cables conectados al transceptor SFP, no uno. Al conectar dos dispositivos con cables de fibra óptica, es importante conectar los cables correctamente: el transmisor de un dispositivo debe conectarse al receptor del otro; de lo contrario, la comunicación no se producirá (algo parecido a seleccionar correctamente los cables straight-through/crossover cuando se conectan dispositivos que no admiten Auto MDI-X).</p>
+<figure id="__figura_8">
+<p><img alt="" justify="justify" src="../img/UD2_8.jpg" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 8. </span> Un conmutador Cisco con un transceptor SFP insertado en uno de sus puertos SFP. Se coloca un SFP adicional encima del conmutador.</p>
+</figcaption>
+</figure>
+<p>Como muestra la Figura 9, un cable de fibra óptica tiene varias capas. Una chaqueta exterior (4) y un buffer (3) sirven para proteger y contener los componentes internos. Una capa de revestimiento reflectante (2) ayuda a conducir la señal luminosa a lo largo del núcleo de vidrio (1). El núcleo es una fibra de vidrio muy fina, aunque su grosor depende del tipo de cable.</p>
+<figure id="__figura_9">
+<p><img alt="" justify="justify" src="../img/UD2_9.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 9. </span> La estructura típica de un cable de fibra óptica. Una chaqueta exterior (4) y un buffer (3) sirven para proteger y contener los componentes internos. Una capa de revestimiento reflectante (2) ayuda a conducir la señal luminosa a lo largo del núcleo de vidrio (1).</p>
+</figcaption>
+</figure>
+<p>Todo tipo de cableado de fibra óptica puede transportar una señal a mayor distancia que el cableado de cobre, pero incluso dentro de la categoría de fibra óptica, la longitud máxima admitida puede variar mucho. Existen dos tipos principales de cableado de fibra óptica: fibra multimodo (MMF) y fibra monomodo (SMF). La Figura 10 muestra cómo viaja la luz a lo largo de los cables MMF y SMF.</p>
+<figure id="__figura_10">
+<p><img alt="" justify="justify" src="../img/UD2_10.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 10. </span> La luz viaja por un cable MMF en múltiples ángulos (modos), mientras que la luz viaja por los cables SMF en un solo ángulo.</p>
+</figcaption>
+</figure>
+<p>Los cables MMF tienen un núcleo más ancho que los cables de fibra monomodo. Se utilizan junto con transmisores LED que envían luz por el cable en múltiples ángulos (modos), reflejándose en el revestimiento. Los cables MMF suelen soportar distancias máximas de varios cientos de metros.</p>
+<p>Los cables SMF usan un núcleo muy estrecho junto con transmisores láser que envían luz por el cable en un solo ángulo. Estos transmisores láser suelen ser más caros que los transmisores LED utilizados por los cables MMF. Sin embargo, los cables SMF también admiten distancias máximas mucho mayores: de hasta decenas de kilómetros.</p>
+<h3 id="342-utp-frente-a-fibra">3.4.2 UTP frente a fibra</h3>
+<p>Las conexiones de fibra óptica admiten distancias mucho mayores que los cables UTP de cobre, pero a un coste mayor (sobre todo por los caros transceptores SFP). Ambos tipos de conexión tienen un uso frecuente en las redes modernas. Las conexiones UTP son las más comunes para conexiones de conmutadores a hosts finales. En un entorno de oficina, normalmente hay conmutadores en cada planta, y la longitud máxima de 100 metros suele ser suficiente para que los hosts finales lleguen a un conmutador de su planta. Por otro lado, las conexiones de fibra óptica son más comunes para las conexiones entre infraestructura de red; por ejemplo, para conectar conmutadores y routers ubicados en plantas separadas o en edificios distintos.</p>
+<p>Sin embargo, el cableado de fibra tiene un par de ventajas adicionales frente al UTP de cobre: una es que los cables UTP de cobre son vulnerables a la EMI. En general, esto no suele ser un problema, pero en entornos con mucho equipo eléctrico, la EMI puede afectar negativamente a las señales que recorren un cable UTP. La segunda desventaja es que los cables UTP de cobre pueden filtrar (escapar) su señal fuera del cable. Esa señal filtrada es bastante débil, pero es posible que pueda detectarse y leerse, lo que supone un riesgo de seguridad.</p>
+<p>Las consideraciones más habituales para decidir entre usar cableado UTP de cobre o fibra son la distancia máxima, el coste y qué tipo de conexión admite el dispositivo que se va a conectar. La mayoría de los dispositivos cliente (como los PCs) no tienen puertos SFP que puedan usarse para conexiones de fibra óptica, por lo que la conexión UTP es la única opción.</p>
+<h2 id="resumen">Resumen</h2>
+<ul>
+<li>Los estándares proporcionan conjuntos de reglas acordadas para la comunicación en las redes.</li>
+<li>Ethernet es una familia de estándares definida por el grupo de trabajo 802.3 del Institute of Electrical and Electronics Engineers (IEEE). Define normas para la comunicación sobre conexiones físicas por cable.</li>
+<li>Los ordenadores calculan y se comunican utilizando binario: 0s y 1s. Cada dígito binario se llama bit, y un grupo de 8 bits se llama byte.</li>
+<li>Las velocidades de red se miden en bits por segundo usando unidades como kilobit (1.000 bits), megabit (1.000 kilobits), gigabit (1.000 megabits) y terabit (1.000 gigabits).</li>
+<li>El tipo de conexión más común en las LAN Ethernet usa cables de cobre de par trenzado sin apantallar (UTP). «Sin apantallar» significa que los hilos del cable no tienen un blindaje metálico alrededor para protegerlos frente a interferencias electromagnéticas (EMI). «Par trenzado» significa que los ocho hilos del cable están trenzados para formar cuatro pares de dos. El trenzado de los hilos reduce la EMI entre los hilos de cada par.</li>
+<li>Los cables UTP usan conectores de 8 posiciones y 8 contactos (8P8C), también conocidos como Registered Jack-45 (RJ45).</li>
+<li>Las conexiones 10BASE-T y 100BASE-T usan dos de los cuatro pares de hilos/pines en un cable UTP, y las conexiones 1000BASE-T y 10GBASE-T usan los cuatro pares. Todos los tipos de conexión admiten una longitud máxima de cable de 100 metros.</li>
+<li>En las conexiones 10BASE-T y 100BASE-T, los distintos tipos de dispositivos envían y reciben datos usando pines distintos del conector; sin embargo, Auto MDI-X permite a los dispositivos ajustar automáticamente qué pines usar para cada finalidad.</li>
+<li>Los cables de fibra óptica envían señales de luz a través de un núcleo de fibra de vidrio y admiten distancias máximas mucho mayores que los cables UTP.</li>
+<li>Los cables de fibra monomodo (SMF) admiten mayores distancias máximas (decenas de kilómetros) que los cables de fibra multimodo (MMF) (cientos de metros), pero los transceptores SFP basados en láser usados por las conexiones SMF son más caros que los transceptores basados en LED usados por las conexiones MMF.</li>
+<li>Las conexiones de fibra óptica son más caras que las de cobre UTP, sobre todo por el coste de los transceptores SFP.</li>
+<li>Las conexiones UTP son más comunes entre hosts finales y conmutadores debido a su menor coste y porque la longitud máxima de 100 metros suele ser suficiente. Además, la mayoría de los dispositivos cliente (como los PCs) solo admiten conexiones UTP.</li>
+<li>Las conexiones de fibra óptica son más comunes entre dispositivos de infraestructura de red debido a la mayor longitud máxima del cable. Los dispositivos de red suelen conectarse a otros dispositivos de red en plantas distintas y en edificios distintos.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>

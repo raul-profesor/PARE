@@ -6,6 +6,11 @@ extra_css = ["stylesheets/extra.css"]
 # Tema Material
 nav = [
     {Home = "index.md"},
+    {Introduccion = [
+        "UD1dispositivos_de_red.md",
+        "UD2fisica.md",
+        "UD3modeloTCPIP.md"
+    ]},
     {Switch = [
         "SecSwitches.md",
         "dtp.md",
