@@ -13,10 +13,25 @@
         <loc>https://raul-profesor.github.io/PARE/UD3modeloTCPIP/</loc>
       </url>
       <url>
+        <loc>https://raul-profesor.github.io/PARE/UD4CiscoCLI/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/UD5Switching/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/VLANS/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/spanning_tree/</loc>
+      </url>
+      <url>
         <loc>https://raul-profesor.github.io/PARE/SecSwitches/</loc>
       </url>
       <url>
         <loc>https://raul-profesor.github.io/PARE/dtp/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/direccionamientoIP/</loc>
       </url>
       <url>
         <loc>https://raul-profesor.github.io/PARE/cheatsheet_routers/</loc>
@@ -41,5 +56,8 @@
       </url>
       <url>
         <loc>https://raul-profesor.github.io/PARE/acl_extendida/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/nat/</loc>
       </url>
 </urlset>

@@ -1,0 +1,2462 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/spanning_tree/">
+      
+      
+        <link rel="prev" href="../VLANS/">
+      
+      
+        <link rel="next" href="../SecSwitches/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>Spanning tree - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M384%20512H96c-53%200-96-43-96-96V96C0%2043%2043%200%2096%200h304c26.5%200%2048%2021.5%2048%2048v288c0%2020.9-13.4%2038.7-32%2045.3V448c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032zM96%20384c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032h256v-64zm32-232c0%2013.3%2010.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24H152c-13.3%200-24%2010.7-24%2024m24%2072c-13.3%200-24%2010.7-24%2024s10.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24z%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M352%200c0-17.7-14.3-32-32-32s-32%2014.3-32%2032v64h-96c-53%200-96%2043-96%2096v224c0%2053%2043%2096%2096%2096h256c53%200%2096-43%2096-96V160c0-53-43-96-96-96h-96zM160%20368c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24M224%20176a48%2048%200%201%201%200%2096%2048%2048%200%201%201%200-96m144%2048a48%2048%200%201%201%2096%200%2048%2048%200%201%201-96%200m-304%200c0-17.7-14.3-32-32-32S0%20206.3%200%20224v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32zm544-32c-17.7%200-32%2014.3-32%2032v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32v-96c0-17.7-14.3-32-32-32%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M416%20427.4c58.5-44%2096-111.6%2096-187.4C512%20107.5%20397.4%200%20256%200S0%20107.5%200%20240c0%2075.8%2037.5%20143.4%2096%20187.4V464c0%2026.5%2021.5%2048%2048%2048h32v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h64v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h32c26.5%200%2048-21.5%2048-48zM96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v151.5L7.5%20426.3C2.6%20435%200%20444.7%200%20454.7%200%20486.4%2025.6%20512%2057.3%20512h333.4c31.6%200%2057.3-25.6%2057.3-57.3%200-10-2.6-19.8-7.5-28.4L320%20215.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20215.5V64h64v151.5c0%2011.1%202.9%2022.1%208.4%2031.8L306%20320H142l41.6-72.7c5.5-9.7%208.4-20.6%208.4-31.8%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20576%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M480-16c6.9%200%2013%204.4%2015.2%2010.9l13.5%2040.4%2040.4%2013.5C555.6%2051%20560%2057.1%20560%2064s-4.4%2013-10.9%2015.2l-40.4%2013.5-13.5%2040.4c-2.2%206.5-8.3%2010.9-15.2%2010.9s-13-4.4-15.2-10.9l-13.5-40.4-40.4-13.5C404.4%2077%20400%2070.9%20400%2064s4.4-13%2010.9-15.2l40.4-13.5%2013.5-40.4C467-11.6%20473.1-16%20480-16M321.4%2097.4c12.5-12.5%2032.8-12.5%2045.3%200l80%2080c12.5%2012.5%2012.5%2032.8%200%2045.3l-10.9%2010.9c7.9%2022%2012.2%2045.7%2012.2%2070.5%200%20114.9-93.1%20208-208%20208S32%20418.9%2032%20304%20125.1%2096%20240%2096c24.7%200%2048.5%204.3%2070.5%2012.3zM144%20304c0-53%2043-96%2096-96%2013.3%200%2024-10.7%2024-24s-10.7-24-24-24c-79.5%200-144%2064.5-144%20144%200%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-32-352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200m-8%2064h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M64%20480c-35.3%200-64-28.7-64-64V96c0-35.3%2028.7-64%2064-64h320c35.3%200%2064%2028.7%2064%2064v213.5c0%2017-6.7%2033.3-18.7%2045.3L322.7%20461.3c-12%2012-28.3%2018.7-45.3%2018.7zm325.5-176H296c-13.3%200-24%2010.7-24%2024v93.5z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m0-336c-17.7%200-32%2014.3-32%2032%200%2013.3-10.7%2024-24%2024s-24-10.7-24-24c0-44.2%2035.8-80%2080-80s80%2035.8%2080%2080c0%2047.2-36%2067.2-56%2074.5v3.8c0%2013.3-10.7%2024-24%2024s-24-10.7-24-24v-8.1c0-20.5%2014.8-35.2%2030.1-40.2%206.4-2.1%2013.2-5.5%2018.2-10.3%204.3-4.2%207.7-10%207.7-19.6%200-17.7-14.3-32-32-32zm-32%20192a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64zm256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M434.8%2070.1c14.3%2010.4%2017.5%2030.4%207.1%2044.7l-256%20352c-5.5%207.6-14%2012.3-23.4%2013.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200l101.5%20101.5%20234-321.7c10.4-14.3%2030.4-17.5%2044.7-7.1z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M461.2%2018.9C472.7%2024%20480%2035.4%20480%2048v416c0%2012.6-7.3%2024-18.8%2029.1s-24.8%203.2-34.3-5.1l-46.6-40.7c-43.6-38.1-98.7-60.3-156.4-63V480c0%2017.7-14.3%2032-32%2032h-32c-17.7%200-32-14.3-32-32v-96C57.3%20384%200%20326.7%200%20256s57.3-128%20128-128h84.5c61.8-.2%20121.4-22.7%20167.9-63.3L427%2024c9.4-8.3%2022.9-10.2%2034.3-5.1zM224%20320v.2c70.3%202.7%20137.8%2028.5%20192%2073.4V118.3c-54.2%2044.9-121.7%2070.7-192%2073.4z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%200c14.7%200%2028.2%208.1%2035.2%2021l216%20400c6.7%2012.4%206.4%2027.4-.8%2039.5S486.1%20480%20472%20480H40c-14.1%200-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9%2020.5-21%2035.2-21m0%20352a32%2032%200%201%200%200%2064%2032%2032%200%201%200%200-64m0-192c-18.2%200-32.7%2015.5-31.4%2033.7l7.4%20104c.9%2012.5%2011.4%2022.3%2023.9%2022.3%2012.6%200%2023-9.7%2023.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lang-es" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spanning tree
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../UD1dispositivos_de_red/" class="md-tabs__link">
+          
+  
+  Introduccion
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../VLANS/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduccion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1dispositivos_de_red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispositivos de red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2fisica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medios de transmisión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3modeloTCPIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo TCP/IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4CiscoCLI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco IOS CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD5Switching/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conmutación Ethernet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VLANS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning tree
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lang-es" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lang: es
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-la-necesidad-de-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 La necesidad de STP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-como-funciona-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Cómo funciona STP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Cómo funciona STP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-un-arbol-de-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es un árbol de expansión?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-el-algoritmo-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 El algoritmo STP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 El algoritmo STP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-eleccion-del-puente-raiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Elección del puente raíz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Elección del puente raíz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-bid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El BID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-incluir-el-id-de-vlan-en-el-bridge-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué incluir el ID de VLAN en el bridge priority?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparacion-de-bids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparación de BIDs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-la-prioridad-del-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de la prioridad del bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-seleccion-del-puerto-raiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Selección del puerto raíz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Selección del puerto raíz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coste-raiz-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coste raíz más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bid-del-vecino-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BID del vecino más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id-del-puerto-del-vecino-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ID del puerto del vecino más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-seleccion-del-puerto-designado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Selección del puerto designado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Selección del puerto designado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-un-segmento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es un segmento?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#puerto-del-switch-con-el-coste-raiz-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Puerto del switch con el coste raíz más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#puerto-del-switch-con-el-bid-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Puerto del switch con el BID más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-estados-y-temporizadores-de-los-puertos-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 Estados y temporizadores de los puertos STP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Estados y temporizadores de los puertos STP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-estados-de-los-puertos-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Estados de los puertos STP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-temporizadores-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Temporizadores STP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-portfast-y-bpdu-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 PortFast y BPDU Guard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 PortFast y BPDU Guard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-portfast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 PortFast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bpdu-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 BPDU Guard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../direccionamientoIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direccionamiento IPv4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_estandar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_extendida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT (traducción de direcciones de red)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lang-es" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lang: es
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-la-necesidad-de-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 La necesidad de STP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-como-funciona-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Cómo funciona STP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Cómo funciona STP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-un-arbol-de-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es un árbol de expansión?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-el-algoritmo-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 El algoritmo STP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 El algoritmo STP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-eleccion-del-puente-raiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Elección del puente raíz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Elección del puente raíz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-bid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El BID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-incluir-el-id-de-vlan-en-el-bridge-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué incluir el ID de VLAN en el bridge priority?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparacion-de-bids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparación de BIDs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-la-prioridad-del-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de la prioridad del bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-seleccion-del-puerto-raiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Selección del puerto raíz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Selección del puerto raíz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coste-raiz-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coste raíz más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bid-del-vecino-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BID del vecino más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id-del-puerto-del-vecino-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ID del puerto del vecino más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-seleccion-del-puerto-designado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Selección del puerto designado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Selección del puerto designado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-un-segmento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es un segmento?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#puerto-del-switch-con-el-coste-raiz-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Puerto del switch con el coste raíz más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#puerto-del-switch-con-el-bid-mas-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Puerto del switch con el BID más bajo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-estados-y-temporizadores-de-los-puertos-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 Estados y temporizadores de los puertos STP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Estados y temporizadores de los puertos STP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-estados-de-los-puertos-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Estados de los puertos STP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-temporizadores-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Temporizadores STP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-portfast-y-bpdu-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 PortFast y BPDU Guard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 PortFast y BPDU Guard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-portfast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 PortFast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bpdu-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 BPDU Guard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../VLANS/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Switch
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <h1>Spanning tree</h1>
+
+<hr />
+<h2 id="lang-es">lang: es</h2>
+<p>Este capítulo trata sobre</p>
+<ul>
+<li>Cómo los bucles de Capa 2 provocan tormentas de broadcast.</li>
+<li>Cómo el Protocolo de árbol de expansión (STP) detecta y evita los bucles de Capa 2.</li>
+<li>Los distintos roles, estados y temporizadores de los puertos STP.</li>
+<li>Cómo usar PortFast para acelerar la convergencia del STP.</li>
+</ul>
+<p>Este capítulo trata sobre Spanning Tree Protocol (STP), un protocolo que se ejecuta en todos los switches Cisco de forma predeterminada y resuelve un problema importante en las LAN: los bucles de Capa 2, que hacen que las tramas circulen indefinidamente por la red. STP aparece en el tema de examen 2.5: identificar las operaciones básicas de Rapid PVST+ Spanning Tree Protocol. Este tema se refiere a la versión rápida del protocolo, que se cubre en el capítulo siguiente. Sin embargo, para entender Rapid STP primero debemos estudiar el protocolo original, y eso es precisamente lo que haremos en este capítulo.</p>
+<h2 id="1-la-necesidad-de-stp">1 La necesidad de STP</h2>
+<p>En el capítulo 7 (direcciones IPv4), vimos brevemente los campos del encabezado IPv4; uno de ellos es el campo Time-to-Live (TTL), que se decrementa cada vez que un router reenvía un paquete. Cuando el valor del campo TTL llega a 0, el paquete se descarta, evitando que los paquetes circulen indefinidamente por la red como consecuencia de una mala configuración; esto se conoce como bucle de enrutamiento o bucle de Capa 3.</p>
+<p>El encabezado Ethernet no tiene un campo así; si se produce un bucle entre switches, es decir, un bucle de Capa 2, no hay ningún mecanismo para evitar que las tramas circulen indefinidamente por la LAN. Si hay demasiadas tramas circulando por la LAN, los switches pueden saturarse y provocar una pérdida de servicio para todos los hosts de la LAN.</p>
+<p>Entonces, ¿cómo se originan los bucles de Capa 2? Mientras que los bucles de Capa 3 son el resultado de una mala configuración en alguna parte de la red, los bucles de Capa 2 son inevitables en una LAN donde existen varios caminos entre dos nodos cualesquiera, como resultado del inundado de tráfico BUM (broadcast, unknown unicast y multicast).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Volveré a mencionar el tráfico multicast varias veces a lo largo de estos dos volúmenes. Por ahora, basta con saber que los switches inundan por defecto las tramas multicast.</p>
+</div>
+<p>Tener varios caminos entre hosts es un ejemplo de redundancia y es algo deseable en una red. La redundancia consiste en disponer de dispositivos y conexiones adicionales más allá del mínimo necesario para la comunicación. Gracias a la redundancia, el servicio de red no se pierde si falla un dispositivo o una conexión; no existe un único punto de fallo.</p>
+<p>Sin embargo, sin algo como STP para evitar bucles, las tramas circularán indefinidamente en una LAN con conexiones redundantes, como se muestra en la figura. Cualquiera de las conexiones entre switches de la figura podría eliminarse (por ejemplo, la conexión entre SW2 y SW3), y los PCs seguirían pudiendo comunicarse entre sí; este es un ejemplo de redundancia.</p>
+<figure id="__figura_1">
+<p><img alt="" justify="justify" src="../img/stp_1.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> Un PC1 envía una trama broadcast y SW1 la inunda. Cuando SW2 y SW3 reciben sus copias de la trama, también la inundan, originando dos bucles: uno en sentido antihorario (A) y otro en sentido horario (B). Estas tramas circularán indefinidamente entre SW1, SW2 y SW3.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Como indican las flechas que apuntan hacia los PCs, SW1, SW2 y SW3 también inundarán las tramas en bucle hacia los hosts finales conectados, pudiendo saturarlos al obligarles a procesarlas repetidamente.</p>
+</div>
+<p>Hay dos problemas principales causados por los bucles de Capa 2. Primero, si se acumulan suficientes tramas en bucle en la red, el resultado es una tormenta de broadcast que consume tantos recursos de red (recursos de CPU de los dispositivos o ancho de banda de los enlaces) que la red deja de ser usable. Los PCs y otros hosts finales conectados a los switches también reciben las mismas tramas repetidamente, lo que puede agotar sus recursos disponibles.</p>
+<p>El segundo problema es el MAC address flapping: cuando un switch aprende la misma dirección MAC repetidamente en puertos distintos. Usando el ejemplo anterior, cuando SW1 recibe por primera vez la trama broadcast de PC1, aprende la dirección MAC de PC1 en el puerto G0/2. Sin embargo, cuando llega la trama en bucle A de vuelta por G0/1, vuelve a aprender la dirección MAC de PC1 en ese puerto, y lo mismo ocurre cuando llega la trama en bucle B por G0/0. SW1 actualizará constantemente la entrada de la dirección MAC de PC1 en su tabla de direcciones MAC entre varios puertos, de modo que PC1 será incapaz de recibir tramas; SW1 no sabe qué puerto está realmente conectado PC1.</p>
+<p>Un bucle de Capa 2 puede derribar una LAN en cuestión de segundos (según la cantidad de tráfico BUM), por lo que es absolutamente esencial evitarlo. Esa es la función de STP.</p>
+<h2 id="2-como-funciona-stp">2 Cómo funciona STP</h2>
+<p>STP puede resumirse en una frase: evita los bucles de Capa 2 bloqueando conexiones redundantes, dejando un único camino activo entre cualquier par de nodos en una LAN. La figura muestra un ejemplo: el enlace entre SW2 y SW3 queda deshabilitado, evitando que se produzca un bucle de Capa 2.</p>
+<figure id="__figura_2">
+<p><img alt="" justify="justify" src="../img/stp_2.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> PC1 envía una trama broadcast y SW1 la inunda. Con STP, SW3 bloquea su puerto G0/1, deshabilitando efectivamente la conexión SW2-SW3; esto evita que se produzca un bucle de Capa 2.</p>
+</figcaption>
+</figure>
+<p>Aunque la topología física es la misma que en la figura anterior, gracias a STP ya no hay un bucle de Capa 2. El puerto G0/1 de SW3 está ahora en estado blocking; no reenvía tramas y no procesa las tramas recibidas (excepto los mensajes relacionados con STP). El resto de puertos están en estado forwarding; pueden reenviar y recibir tramas como de costumbre. El enlace SW2 G0/1 a SW3 G0/1 queda sin usar, pero está disponible para hacerse cargo si surge un problema en otro enlace.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El término topología se refiere a cómo están dispuestos y conectados los dispositivos en una red. En la figura, SW1, SW2 y SW3 están conectados físicamente en una topología en anillo, formando un círculo. El término topología STP puede utilizarse para referirse al arreglo lógico de switches y sus conexiones como resultado de STP: algunos transportan tráfico activo y otros quedan bloqueados por STP para evitar bucles de Capa 2.</p>
+</div>
+<p>Mientras que la figura anterior mostraba solo tres switches, la figura siguiente muestra una LAN con muchos más switches conectados en malla, una topología de red en la que cada nodo está conectado con cada otro nodo (malla completa) o con tantos otros nodos como sea posible pero no con todos (malla parcial). En una red así existen innumerables bucles de Capa 2. Sin embargo, con STP, los switches bloquearán automáticamente algunos puertos para crear una topología sin bucles. Aunque el tráfico no pasa por los enlaces deshabilitados, permanecen disponibles para hacerse cargo si falla uno de los enlaces activos.</p>
+<figure id="__figura_3">
+<p><img alt="" justify="justify" src="../img/stp_3.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> STP crea una topología sin bucles en una LAN con malla. En la topología física (izquierda), existen innumerables formas de que las tramas circulen por la red. Sin embargo, STP crea una topología lógica (derecha) sin bucles.</p>
+</figcaption>
+</figure>
+<h3 id="que-es-un-arbol-de-expansion">¿Qué es un árbol de expansión?</h3>
+<p>Un árbol de expansión es un concepto del campo de la teoría de grafos. En teoría de grafos, un grafo es una estructura que modela las relaciones entre objetos (también llamados nodos). Un árbol es un subgrafo en el que cualquier par de nodos están conectados por exactamente un camino, y spanning significa que el árbol incluye todos los nodos; el árbol abarca todos los nodos.</p>
+<p>Comparemos esto con una red que usa STP. Cada switch que ejecuta STP es un nodo del grafo, con diversas conexiones físicas entre ellos (la topología física de la figura anterior). STP deshabilita algunas conexiones, dejando solo un camino activo entre cualquier par de nodos; este es el subgrafo: el árbol de expansión (la topología lógica de la figura anterior).</p>
+<h2 id="3-el-algoritmo-stp">3 El algoritmo STP</h2>
+<p>El proceso que usa STP para crear una topología sin bucles se llama algoritmo STP. Hay tres pasos principales en el algoritmo:</p>
+<ul>
+<li>Elección del puente raíz.</li>
+<li>Selección del puerto raíz.</li>
+<li>Selección del puerto designado.</li>
+</ul>
+<p>La figura siguiente muestra un ejemplo de una LAN después de que STP ha creado una topología sin bucles. En esta sección, examinaremos esta LAN y recorreremos el algoritmo STP paso a paso. Tened en cuenta que se diseñó esta LAN para demostrar varios aspectos del algoritmo STP más que para representar una topología LAN realista; las mejores prácticas de arquitectura LAN se cubrirán en el capítulo siguiente del volumen 2.</p>
+<figure id="__figura_4">
+<p><img alt="" justify="justify" src="../img/stp_4.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> Una LAN después de que STP ha creado una topología sin bucles. SW3 es el puente raíz y cada otro switch tiene un puerto raíz que conduce a SW3. Los puertos restantes son puertos designados o no designados; los puertos no designados están bloqueados, deshabilitando sus conexiones.</p>
+</figcaption>
+</figure>
+<h3 id="1-eleccion-del-puente-raiz">1 Elección del puente raíz</h3>
+<p>El primer paso del algoritmo STP es elegir un único switch como puente raíz para la LAN. El puente raíz es el punto central de referencia para la topología STP, y en pasos posteriores todos los demás switches se asegurarán de tener exactamente un camino activo para llegar al puente raíz.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>STP se desarrolló para usarse con bridges Ethernet, predecesores de los switches. Como resultado, STP usa el término bridge en lugar de switch. Aunque las redes modernas usan switches en lugar de bridges, la terminología original (como root bridge) continúa. En el contexto de STP, bridge y switch pueden considerarse sinónimos.</p>
+</div>
+<p>La elección del puente raíz la llevan a cabo los switches compartiendo mensajes STP Bridge Protocol Data Unit (BPDU) entre sí. De hecho, la información compartida en los BPDUs se usa para tomar todas las decisiones del algoritmo STP, no solo para la elección del puente raíz. Los BPDUs se envían cada 2 segundos y contienen varios elementos relacionados con STP; las dos piezas de información relevantes para la elección del puente raíz son el bridge identifier (BID) del propio switch, un número que identifica al switch dentro de la LAN, y el BID del switch que cree que es el puente raíz.</p>
+<p>Cuando un switch arranca por primera vez, aún no conoce el puente raíz de la LAN, así que se declara a sí mismo como puente raíz. La figura siguiente lo demuestra: los cuatro switches han arrancado al mismo tiempo y cada uno envía BPDUs declarándose puente raíz (los campos My BID y Root BID coinciden).</p>
+<figure id="__figura_5">
+<p><img alt="" justify="justify" src="../img/stp_5.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 5. </span> SW1, SW2, SW3 y SW4 arrancan al mismo tiempo, y cada switch se declara a sí mismo como puente raíz. Los switches envían BPDUs por sus puertos con información como el BID propio y el BID del switch que creen que es el puente raíz (en este caso, ellos mismos).</p>
+</figcaption>
+</figure>
+<h4 id="el-bid">El BID</h4>
+<p>El switch que envíe el BPDU superior será elegido puente raíz de la LAN. El BPDU superior es el que tiene parámetros superiores según el algoritmo STP. Cuando se trata de elegir el puente raíz, eso significa el BPDU con el campo My BID numéricamente más bajo. Antes de determinar cuál de los cuatro switches tiene el BID más bajo, examinemos la estructura del BID, como se muestra en la figura. El BID es un número de 64 bits que consta de un bridge priority de 16 bits y una dirección MAC de 48 bits.</p>
+<figure id="__figura_6">
+<p><img alt="" justify="justify" src="../img/stp_6.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 6. </span> Contenido del BID STP. Se divide en dos partes: un bridge priority de 16 bits y una dirección MAC de 48 bits. El bridge priority consta, a su vez, de dos partes: un valor de prioridad configurable (predeterminado 32768) y el Extended System ID, que es igual al ID de VLAN en la implementación STP de Cisco.</p>
+</figcaption>
+</figure>
+<p>El bridge priority consta de dos partes: la primera es un valor de prioridad configurable. Por defecto, el bit más significativo está establecido en 1, lo que equivale a 32768 decimal. La segunda parte se llama Extended System ID y coincide con el ID de la VLAN; estos dos números se suman para formar el bridge priority (por ejemplo, 32768 + 1 = 32769). Antes de continuar con la elección del puente raíz, profundicemos un poco más en el Extended System ID.</p>
+<p>Los switches Cisco ejecutan una versión propietaria de STP llamada Per-VLAN Spanning Tree Plus (PVST+). En PVST+, los switches ejecutan una instancia STP separada para cada VLAN; crean un árbol de expansión distinto para cada VLAN. La ventaja es que distintos enlaces pueden bloquearse en VLAN distintas, dando como resultado tráfico equilibrado por todos los enlaces.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Antes de PVST+ existía PVST, que solo admitía encapsulación ISL sobre enlaces trunk. PVST+ admite tanto ISL como 802.1Q, y todos los switches Cisco modernos ejecutan PVST+, no PVST.</p>
+</div>
+<p>Si todas las VLAN comparten la misma instancia STP, los enlaces bloqueados quedan completamente sin usar hasta que falla un enlace activo, lo que puede provocar congestión en los enlaces activos. La figura siguiente muestra cómo puede crearse un árbol de expansión separado para cada VLAN. La LAN tiene dos VLAN (VLAN 1 y VLAN 2), y los switches han bloqueado enlaces distintos en cada VLAN.</p>
+<figure id="__figura_7">
+<p><img alt="" justify="justify" src="../img/stp_7.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 7. </span> Los switches de una LAN crean árboles de expansión separados para las VLAN 1 y 2 bloqueando enlaces distintos en cada VLAN, como indican las líneas punteadas. El tráfico de la VLAN 1 usará enlaces distintos del tráfico de la VLAN 2, evitando la congestión de la red.</p>
+</figcaption>
+</figure>
+<p>Como el ID de VLAN forma parte del BID, el switch tendrá un bridge priority único para cada instancia STP (para cada VLAN que ejecute STP). Por ejemplo, con la prioridad predeterminada de 32768, el bridge priority total será 32769 (32768 + 1) en la VLAN 1 y 32770 (32768 + 2) en la VLAN 2.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para el resto de este capítulo nos centraremos en una topología de una sola VLAN. No espero preguntas sobre la creación de un árbol de expansión único para cada VLAN en el examen CCNA.</p>
+</div>
+<h4 id="por-que-incluir-el-id-de-vlan-en-el-bridge-priority">¿Por qué incluir el ID de VLAN en el bridge priority?</h4>
+<p>El estándar STP (IEEE 802.1D) especifica que cada switch debe tener un BID único. Esto se consigue combinando el bridge priority con la dirección MAC del switch. Aunque todos los switches de la LAN tengan el mismo bridge priority, las direcciones MAC son únicas, por lo que el resultado es un BID único para cada switch.</p>
+<p>Sin embargo, los switches Cisco que ejecutan PVST+ ejecutan una instancia STP separada para cada VLAN. Como vimos en el capítulo 12, cada VLAN es como un switch virtual separado, por lo que, para cumplir con el estándar, cada instancia STP que ejecuta el switch debe tener un BID único. Ese es el papel del Extended System ID, que se establece en el ID de VLAN de la instancia STP. Al sumar el ID de VLAN al valor de prioridad, cada instancia STP tendrá un bridge priority único y, por tanto, un BID único.</p>
+<p>Por ejemplo, si un switch que ejecuta dos instancias STP (VLAN 1 y VLAN 2) tiene el valor de prioridad predeterminado 32768 y una dirección MAC 5254.000f.adab, el BID resultante sería 32769:5254.000f.adab para la VLAN 1 y 32770:5254.000f.adab para la VLAN 2. Observad que el bridge priority se escribe en decimal, mientras que la dirección MAC se escribe en hexadecimal (como es habitual), y a menudo se separan con dos puntos, como en 32769:5254.000f.adab.</p>
+<h4 id="comparacion-de-bids">Comparación de BIDs</h4>
+<p>Ahora que ya hemos visto el bridge priority (prioridad + ID de VLAN), ¿qué es la dirección MAC que forma la segunda parte del BID? No es la MAC de ninguno de los puertos del switch; es más bien una dirección MAC separada que identifica al switch como un todo. En esta sección compararemos BIDs y veremos cómo se usa la dirección MAC como desempate. A continuación se muestran los BIDs de los cuatro switches de la figura:</p>
+<ul>
+<li>SW1: 32769:5254.000f.adab</li>
+<li>SW2: 32769:5254.0013.cf9a</li>
+<li>SW3: 32769:5254.0016.5d5e</li>
+<li>SW4: 32769:5254.001d.d23a</li>
+</ul>
+<p>¿Cuál de estos BIDs es numéricamente menor y, por tanto, superior? Para compararlos, primero comparad los bridge priorities. En este caso, los cuatro switches tienen el mismo bridge priority de 32769, así que tenemos que comparar las direcciones MAC para desempatar.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aunque dividamos el BID en varias partes, recordad que es simplemente un número de 64 bits. Los bits escritos a la izquierda (los que forman el bridge priority) son los más significativos, por eso deben compararse primero al determinar qué BID es numéricamente menor.</p>
+</div>
+<p>Cuando comparéis direcciones MAC, recordad que son simplemente números escritos en formato hexadecimal, y compararlos es el mismo proceso que seguiríais con números decimales. Por ejemplo, al comparar los números decimales 1999 y 9111, ¿cómo sabéis que el segundo es mayor si solo tiene un 9, mientras que el primero tiene tres? La razón es que el 9 de 9111 es el dígito más significativo; el único 9 de 9111 tiene un valor mayor (9000) que todos los demás dígitos de 1999 combinados. Solo viendo que el dígito más significativo de 9111 es mayor que el de 1999, podéis declarar que 9111 es mayor que 1999; no hace falta comparar los otros tres dígitos.</p>
+<p>Lo mismo se aplica a la hora de hallar el mayor (o menor, en este caso) de dos o más direcciones MAC: comparad primero los dígitos más significativos. Los primeros seis dígitos de las cuatro direcciones MAC (OUI) son iguales: 5254.00. A continuación, el siguiente dígito es 1 en SW2, SW3 y SW4, pero 0 en SW1; por tanto, SW1 tiene el BID más bajo de los cuatro: ¡es el puente raíz! Podemos confirmarlo con el comando <code>show spanning-tree</code> en SW1, como en el ejemplo siguiente:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SW1#
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>show spanning-tree 
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>VLAN0001
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  Spanning tree enabled protocol ieee
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  Root ID    Priority    32769
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>             Address     5254.000f.adab
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>             This bridge is the root
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>. . .
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>             Address     5254.000f.adab
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>. . .
+</span></code></pre></div>
+<h4 id="configuracion-de-la-prioridad-del-bridge">Configuración de la prioridad del bridge</h4>
+<p>Como acabamos de confirmar, SW1 es el puente raíz de la LAN porque tiene la dirección MAC más baja. Sin embargo, es posible configurar la prioridad del bridge para cambiar qué switch será el puente raíz. Esto suele ser deseable porque el puente raíz desempeña un papel muy importante: sirve como punto de referencia central para el árbol de expansión y los demás switches se asegurarán de que el camino más eficiente para llegar al puente raíz esté habilitado. Si un switch está conectado al router que usan los hosts finales para acceder a redes externas, es buena idea que sea el puente raíz; debe existir un camino eficiente para llegar al router sin que las tramas tengan que pasar por demasiados switches.</p>
+<p>Siguiendo el ejemplo de la figura anterior, configuremos SW3 como puente raíz y reduzcamos la prioridad de SW4 para que funcione como puente raíz secundario, el bridge que tomará el relevo si falla el puente raíz (porque tiene el BID más bajo de los switches restantes). El comando para configurar la prioridad del root es <code>spanning-tree vlan vlan-id priority priority-value</code>. En el ejemplo siguiente, intento establecer la prioridad de SW3 en 20000, pero aparece un mensaje de error:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SW3(config)# spanning-tree vlan 1 priority 20000
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>% Bridge Priority must be in increments of 4096.
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>% Allowed values are:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  0     4096  8192  12288 16384 20480 24576 28672
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  32768 36864 40960 45056 49152 53248 57344 61440
+</span></code></pre></div>
+<p>Como indica el mensaje de error, la prioridad solo puede configurarse en incrementos de 4096. La razón es que, aunque el campo bridge priority en conjunto tiene 16 bits de longitud, solo los cuatro bits más significativos forman el valor de prioridad configurable: los bits con valores 32768, 16384, 8192 y 4096. Los 12 bits menos significativos quedan fijados como ID de VLAN (VLAN 1 en nuestros ejemplos). Por eso la prioridad del bridge debe configurarse en incrementos de 4096: es el valor del bit menos significativo que podemos cambiar. En el ejemplo siguiente, configuro la prioridad de SW3 como 24576 y la de SW4 como 28672 y luego la confirmo con <code>show spanning-tree</code> en SW4:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SW3(config)# spanning-tree vlan 1 priority 24576
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>SW4(config)# spanning-tree vlan 1 priority 28672
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>SW4(config)# do show spanning-tree
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>VLAN0001
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  Spanning tree enabled protocol ieee
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  Root ID    Priority    24577
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>             Address     5254.0016.5d5e
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>. . .
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  Bridge ID  Priority    28673  (priority 28672 sys-id-ext 1)
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>             Address     5254.001d.d23a
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>. . .
+</span></code></pre></div>
+<figure id="__figura_8">
+<p><img alt="" justify="justify" src="../img/stp_8.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 8. </span> Resultado después de configurar la prioridad de los bridges SW3 y SW4. Los cuatro switches coinciden en que SW3 es el puente raíz, porque tiene el BID más bajo. Todos los puertos del puente raíz son puertos designados (indicados con D). Si SW3 falla y se realiza una nueva elección, SW4 se convertirá en el nuevo puente raíz porque tiene el segundo BID más bajo.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Todos los puertos del puente raíz son puertos designados, lo que significa que están en estado forwarding (no en estado blocking). Examinaremos los puertos designados con más detalle en la siguiente sección.</p>
+</div>
+<p>Existe otro método para configurar la prioridad del bridge que debes conocer para el examen CCNA: el comando <code>spanning-tree vlan vlan-id root { primary | secondary }</code>. La palabra clave secondary es sencilla: establece la prioridad en 28672 (un incremento de 4096 por debajo del valor predeterminado 32768). La palabra clave primary funciona así:</p>
+<ul>
+<li>Establece la prioridad en 24576 (dos incrementos de 4096 por debajo del valor predeterminado).</li>
+<li>O, si 24576 no es suficiente para que el switch se convierta en puente raíz (es decir, la prioridad del puente raíz actual es 24576), establece la prioridad al múltiplo más alto de 4096 que permita que el switch se convierta en puente raíz.</li>
+</ul>
+<p>Estos comandos cumplirán su propósito si todos los demás switches de la LAN tienen la prioridad predeterminada de 32768; el switch configurado con la palabra clave primary será el puente raíz y el configurado con secondary estará a continuación si falla el puente raíz.</p>
+<p>Sin embargo, no se recomienda usar estos comandos. Hay varias razones: en primer lugar, no hay garantía de que configurar este comando con <code>secondary</code> haga que el switch sea el siguiente en la fila para convertirse en puente raíz si falla el actual; podría haber otro switch no raíz con una prioridad inferior a 28672. Del mismo modo, pueden producirse situaciones en las que este comando con <code>primary</code> falle: no puede establecer la prioridad del switch en 0. El ejemplo siguiente muestra qué sucede cuando el puente raíz actual (SW1) tiene una prioridad de 4096 y usas este comando con <code>primary</code> en otro switch (SW2):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SW1(config)# spanning-tree vlan 1 priority 4096
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>SW2(config)# spanning-tree vlan 1 root primary
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>% Failed to make the bridge root for vlan 1
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>% It may be possible to make the bridge root by setting the priority
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>% for some (or all) of these instances to zero.
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La mejor forma de asegurar que un switch será el puente raíz es usar el comando <code>spanning-tree vlan vlan-id priority 0</code>. Entonces, la única forma de arrebatarle el rol de raíz sería usar el mismo comando en otro switch que tenga una dirección MAC más baja y, por tanto, un BID más bajo. Recordad este punto para el examen.</p>
+</div>
+<h2 id="4-seleccion-del-puerto-raiz">4 Selección del puerto raíz</h2>
+<p>Después de elegir el puente raíz, cada switch no raíz seleccionará uno de sus puertos como puerto raíz: el puerto con la mejor ruta hacia el puente raíz. El switch calcula esto en función de la información en los BPDUs que recibe de sus vecinos. El puerto raíz se selecciona usando varios parámetros: el coste raíz (que mide la proximidad del puerto al puente raíz), el BID del vecino y el ID del puerto del vecino, en ese orden de prioridad:</p>
+<ul>
+<li>Menor coste raíz.</li>
+<li>Menor BID del vecino.</li>
+<li>Menor ID del puerto del vecino.</li>
+</ul>
+<p>El coste raíz es un valor que indica cuán eficiente es la ruta hacia el puente raíz a través de ese puerto; cuanto menor es, mejor. Cada puerto tiene asociado un coste determinado, como se muestra en la tabla siguiente.</p>
+<table>
+<thead>
+<tr>
+<th>Velocidad</th>
+<th style="text-align: right;">Coste</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 Mbps</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr>
+<td>100 Mbps</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr>
+<td>1 Gbps</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>10 Gbps</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<p>El coste raíz de un puerto es el coste total de los puertos que llevan hacia el puente raíz (no solo el coste del puerto individual), y el puerto con menor coste raíz será el puerto raíz. Si hay varios puertos en el switch con el mismo coste raíz, el puerto conectado al vecino con el BID más bajo será el puerto raíz. Si dos o más puertos tienen el mismo coste raíz y están conectados al mismo vecino, el puerto conectado al puerto del vecino con el ID más bajo será el puerto raíz. La figura siguiente muestra qué puerto selecciona cada switch no raíz como puerto raíz y cómo llega a esa decisión. En el resto de esta sección, analizaremos la decisión de cada switch paso a paso.</p>
+<figure id="__figura_9">
+<p><img alt="" justify="justify" src="../img/stp_9.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 9. </span> Los switches no raíz seleccionan un puerto raíz. SW4 elige G0/0 porque tiene el menor coste raíz de sus puertos. SW2 G0/0 y G0/1 tienen el mismo coste raíz, por lo que SW2 elige G0/1 porque tiene el BID del vecino más bajo. SW1 G0/0 y G0/1 tienen el mismo coste raíz y el mismo BID del vecino, por lo que SW1 elige G0/1 porque tiene el menor ID del puerto del vecino.</p>
+</figcaption>
+</figure>
+<h3 id="coste-raiz-mas-bajo">Coste raíz más bajo</h3>
+<p>Como ya se ha mencionado varias veces, las decisiones que forman parte del algoritmo STP se basan en la información de los BPDUs que los switches intercambian. Una vez que se ha decidido el puente raíz, es el único switch que genera BPDUs nuevos; los demás switches reciben esos BPDUs y los reenvían a sus vecinos, actualizando cierta información en ellos. Una de las piezas de información del BPDU es el coste raíz. Los BPDUs enviados por el puente raíz tienen un coste de 0 (el coste del puente raíz para alcanzarse a sí mismo es 0). Cuando los switches no raíz reenvían esos BPDUs, suman el coste del puerto por el que los recibieron.</p>
+<p>La figura siguiente muestra cómo los switches anuncian su coste raíz entre sí y la lógica que sigue cada switch para elegir su puerto raíz. Solo SW4 puede hacerlo en este punto. SW3 (el puente raíz) envía BPDUs con un coste raíz de 0. Cuando SW1 y SW4 reenvían esos BPDUs, suman el coste de los puertos por los que los recibieron; en este caso, todos los puertos son de GigabitEthernet, así que tienen un coste de 4. Cuando SW2 reenvía los BPDUs que recibe de SW1 y SW4, suma el coste de sus propios puertos (4) al coste de los BPDUs recibidos (4); anuncia un coste de 8.</p>
+<figure id="__figura_10">
+<p><img alt="" justify="justify" src="../img/stp_10.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 10. </span> Los switches anuncian su coste raíz entre sí en los BPDUs. SW3 (el puente raíz) anuncia un coste raíz de 0, SW1 y SW4 anuncian un coste raíz de 4 y SW2 anuncia un coste raíz de 8. SW4 selecciona G0/0 como puerto raíz porque tiene el menor coste raíz de sus tres puertos. SW1 y SW2 no pueden seleccionar todavía un puerto raíz basándose solo en el coste raíz; hace falta un desempate.</p>
+</figcaption>
+</figure>
+<p>Aunque SW4 puede determinar su puerto raíz basándose solo en el coste raíz, SW1 y SW2 no; SW1 tiene un coste raíz de 4 por sus puertos G0/0 y G0/1, y SW2 tiene un coste raíz de 8 por ambos puertos G0/0 y G0/1. Para que SW1 y SW2 seleccionen sus puertos raíz, deben pasar al siguiente paso del proceso de selección: el BID del vecino más bajo.</p>
+<h3 id="bid-del-vecino-mas-bajo">BID del vecino más bajo</h3>
+<p>Cuando un switch envía BPDUs, una de las piezas de información que incluye es su propio BID. Esto puede servir luego al switch receptor como desempate al decidir su puerto raíz. El puerto conectado al vecino con el BID más bajo será el puerto raíz del switch. La figura siguiente muestra cómo SW1 y SW2 comparan los BIDs de sus vecinos para decidir sus puertos raíz; SW2 puede seleccionar G0/1, pero SW1 aún no puede elegir un puerto raíz.</p>
+<figure id="__figura_11">
+<p><img alt="" justify="justify" src="../img/stp_11.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 11. </span> SW1 compara el BID del vecino de sus puertos G0/0 y G0/1, y SW2 compara el BID del vecino de sus puertos G0/0 y G0/1. El vecino de SW2 G0/1 (SW4) tiene un BID más bajo que el vecino de SW2 G0/0 (SW1), por lo que SW2 selecciona G0/1 como puerto raíz. Los puertos G0/0 y G0/1 de SW1 están conectados ambos a SW3, por lo que ambos tienen el mismo BID del vecino; SW1 todavía no puede seleccionar un puerto raíz.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El puerto conectado al puerto raíz de otro switch debe ser un puerto designado (forwarding). El puerto raíz proporciona el único camino del switch al puente raíz, así que su vecino no debe bloquear el enlace.</p>
+</div>
+<h3 id="id-del-puerto-del-vecino-mas-bajo">ID del puerto del vecino más bajo</h3>
+<p>Otra parte de la información incluida en un BPDU STP es el ID del puerto que envió el BPDU. Se usa como desempate final al seleccionar el puerto raíz. Es importante enfatizar que, al usar el ID del puerto como desempate, son los IDs de los puertos del vecino los que cuentan, no el ID del puerto del switch local. Al decidir el puerto raíz de SW1, tenemos que comparar los IDs de los puertos de SW3 conectados a SW1.</p>
+<p>El ID del puerto es un identificador único para cada puerto del switch; como el BID, consiste en un valor de prioridad configurable (128 por defecto) y un número secuencial (1 para el primer puerto, 2 para el segundo, etc.). En el siguiente ejemplo, uso <code>show spanning-tree</code> en SW3 para comprobar los IDs de sus puertos G0/0 y G0/1 (en la columna Prio.Nbr):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SW3#
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>show spanning-tree
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>. . .
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Interface           Role Sts Cost      Prio.Nbr Type
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>------------------- ---- --- --------- -------- --------------------------------
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>Gi0/0               Desg FWD 4         128.1    P2p
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Gi0/1               Desg FWD 4         128.2    P2p
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>Gi0/2               Desg FWD 4         128.3    P2p
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para influir en la selección del puerto raíz, puedes configurar el valor de prioridad del puerto (la primera parte del ID del puerto) con el comando <code>spanning-tree vlan vlan-id port-priority priority-value</code> en el modo de configuración de interfaz. Sin embargo, no esperaría preguntas sobre esto en el examen CCNA. En general, basta con comparar los nombres de los puertos para decidir cuál tiene un ID de puerto menor. G0/0 es menor que G0/1 (0 es menor que 1), por lo que tiene un ID de puerto inferior.</p>
+</div>
+<p>La figura siguiente muestra cómo SW1 selecciona su puerto raíz. SW1 G0/0 está conectado a SW3 G0/1 (ID de puerto 128.2), y SW1 G0/1 está conectado a SW3 G0/0 (ID de puerto 128.1). Como el ID del puerto vecino de G0/1 es menor, SW1 selecciona G0/1 como puerto raíz.</p>
+<figure id="__figura_12">
+<p><img alt="" justify="justify" src="../img/stp_12.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 12. </span> SW1 compara los ID de puerto vecinos de sus puertos G0/0 y G0/1. G0/1 está conectado a un ID de puerto menor (SW3 G0/0, ID 128.1) que G0/0 (SW3 G0/1, ID 128.2), por lo que G0/1 selecciona G0/1 como puerto raíz.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recuerda que compares los IDs del vecino, no los IDs del puerto local del switch; ese es un posible truco del examen.</p>
+</div>
+<h2 id="5-seleccion-del-puerto-designado">5 Selección del puerto designado</h2>
+<p>Ahora que cada switch no raíz ha seleccionado un puerto raíz, el último paso es seleccionar puertos designados. Mientras que un puerto raíz es un puerto en estado forwarding que apunta hacia el puente raíz, un puerto designado es un puerto en estado forwarding que apunta alejándose del puente raíz. Por eso todos los puertos del puente raíz son puertos designados: todos apuntan alejándose del puente raíz.</p>
+<p>Debe haber exactamente un puerto designado por cada segmento de la LAN. El significado exacto del término segmento puede variar, pero en este caso un segmento es un enlace entre switches. Los puertos designados se seleccionan usando los siguientes parámetros (en orden de prioridad):</p>
+<ul>
+<li>El puerto del switch con el coste raíz más bajo se convierte en designado.</li>
+<li>El puerto del switch con el BID más bajo se convierte en designado.</li>
+</ul>
+<h3 id="que-es-un-segmento">¿Qué es un segmento?</h3>
+<p>Un segmento es una división de una red, cuya extensión depende del contexto. Un segmento de Capa 1 puede definirse como una conexión eléctrica entre dispositivos y equivale a un dominio de colisión; este es el significado de segmento usado en este capítulo. Dos switches conectados son otro ejemplo de segmento de Capa 1. Otro ejemplo es un grupo de dispositivos conectados a un hub Ethernet; una señal eléctrica enviada por un dispositivo es recibida por todos los demás conectados al hub.</p>
+<p>Un segmento de Capa 2 es equivalente a una LAN o dominio de broadcast: un grupo de dispositivos que puede enviar tramas directamente entre sí. Si una LAN física se divide en varias VLANs, cada VLAN es su propio segmento de Capa 2. Un segmento de Capa 3 es equivalente a una subred. Como ya mencioné en el capítulo 12 (VLANs), los segmentos de Capa 2 y Capa 3 suelen tener una relación uno a uno (una subred por VLAN), pero es posible que una sola VLAN incluya varias subredes.</p>
+<p>Al elegir el puente raíz y seleccionar el puerto raíz de cada switch, ya pudimos identificar algunos puertos designados en la LAN: todos los puertos del puente raíz son designados, y todos los conectados a un puerto raíz también lo son. Para cada segmento restante debe haber un puerto designado, y los otros puertos deben ser no designados. Los puertos no designados están en estado blocking; así es como STP evita los bucles.</p>
+<p>Primero, SW1 G0/0 está conectado a SW3 G0/1 (un puerto designado) y, por tanto, es un puerto no designado; no puede haber más de un puerto designado por segmento. Esto deja dos segmentos restantes: el enlace SW1 G0/2 a SW4 G0/1 y el enlace SW1 G0/3 a SW2 G0/0. La figura siguiente muestra qué puertos serán designados y no designados, y cómo se tomaron esas decisiones. En el resto de esta sección, recorreremos el proceso paso a paso.</p>
+<figure id="__figura_13">
+<p><img alt="" justify="justify" src="../img/stp_13.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 13. </span> Cada segmento debe tener exactamente un puerto designado. Todos los puertos del puente raíz son designados, y también los conectados a un puerto raíz. Se selecciona un puerto designado en cada segmento restante y el resto son no designados.</p>
+</figcaption>
+</figure>
+<h3 id="puerto-del-switch-con-el-coste-raiz-mas-bajo">Puerto del switch con el coste raíz más bajo</h3>
+<p>El primer parámetro usado para decidir qué lado de los enlaces restantes se vuelve designado es el coste raíz: el puerto del switch con el menor coste raíz se vuelve designado, y el otro puerto pasa a ser no designado. Prestad atención a la redacción: es “el puerto del switch con el menor coste raíz se vuelve designado”, no “el puerto con el menor coste raíz se vuelve designado”. Estamos comparando el coste raíz de cada switch a través de su puerto raíz, no el coste de cada puerto cuyo rol se está decidiendo.</p>
+<p>La figura siguiente muestra cómo los switches comparan sus costes raíz para decidir qué puerto se convierte en designado. El coste raíz de SW1 (4) es menor que el de SW2 (8), así que el puerto de SW1 se convierte en designado y el de SW2 en no designado. SW1 y SW4 tienen el mismo coste raíz (4) y, por tanto, tendrán que usar un desempate para decidir qué puerto se vuelve designado.</p>
+<figure id="__figura_14">
+<p><img alt="" justify="justify" src="../img/stp_14.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 14. </span> Los switches comparan sus costes raíz para seleccionar puertos designados. El coste raíz de SW1 (4) es menor que el de SW2 (8), por lo que SW1 G0/3 se convierte en designado y SW2 G0/0 en no designado. SW1 y SW4 tienen el mismo coste raíz (4), así que hace falta un desempate para decidir qué puerto será designado.</p>
+</figcaption>
+</figure>
+<h3 id="puerto-del-switch-con-el-bid-mas-bajo">Puerto del switch con el BID más bajo</h3>
+<p>Como desempate para decidir qué puerto se vuelve designado, los switches compararán sus BIDs; el puerto del switch con el BID más bajo se convertirá en designado y el puerto del otro switch será no designado. La figura siguiente muestra cómo SW1 y SW4 comparan BIDs para decidir qué puerto del switch se convierte en designado; el BID de SW4 es menor que el de SW1, así que SW4 G0/1 se convierte en designado y SW1 G0/2 en no designado.</p>
+<figure id="__figura_15">
+<p><img alt="" justify="justify" src="../img/stp_15.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 15. </span> Los switches comparan sus BIDs como desempate al seleccionar puertos designados. El BID de SW4 (28673:5254.001d.d23a) es menor que el de SW1 (32769:5254.000f.adab), por lo que SW4 G0/1 se vuelve designado y SW1 G0/2 se vuelve no designado.</p>
+</figcaption>
+</figure>
+<p>Todos los roles de puerto ya han quedado decididos: raíz, designado y no designado. Observad que los BPDUs solo se envían desde puertos designados. Cuando un switch arranca, cree que es el puente raíz, por lo que todos sus puertos son designados; el switch envía BPDUs por todos ellos. Sin embargo, si luego se convierte en un switch no raíz y algunos de sus puertos pasan a otros roles (raíz o no designado), el switch ya no envía BPDUs por esos puertos. Los BPDUs se originan en el puente raíz y se reenvían por toda la LAN solo a través de puertos designados. Para resumir esta sección, aquí tenéis un resumen del algoritmo STP:</p>
+<ul>
+<li>Elección del puente raíz (uno por LAN): menor BID.</li>
+<li>Selección del puerto raíz (uno por switch, excluyendo el puente raíz): menor coste raíz, menor BID del vecino, menor ID del puerto del vecino.</li>
+<li>Selección del puerto designado (uno por segmento): puerto del switch con menor coste raíz, puerto del switch con menor BID.</li>
+</ul>
+<h2 id="6-estados-y-temporizadores-de-los-puertos-stp">6 Estados y temporizadores de los puertos STP</h2>
+<p>En la sección anterior cubrimos los puertos raíz, designados y no designados; estos son los roles de puerto STP. Además de los tres roles, existen varios estados de puerto. Ya mencioné dos de ellos: el estado forwarding y el estado blocking.</p>
+<p>En el estado forwarding, el puerto está activo y puede reenviar y recibir tramas. En una LAN estable, los puertos raíz y designados deben estar en estado forwarding. En el estado blocking, el puerto está deshabilitado y no puede reenviar ni recibir tramas; los puertos no designados deberían estar en estado blocking. Sin embargo, hay otros estados transitorios por los que pasa un puerto durante la preparación para reenviar tramas, así como temporizadores que regulan cuánto tiempo permanece cada puerto en cada estado.</p>
+<h3 id="1-estados-de-los-puertos-stp">1 Estados de los puertos STP</h3>
+<p>Hay cuatro estados principales de puertos STP: blocking, listening, learning y forwarding. También se puede hablar de un quinto estado: disabled. Este se refiere a un puerto que no está operativo, por ejemplo, si está deshabilitado con el comando <code>shutdown</code> o si no está conectado a otro dispositivo; STP no está activo en ese puerto, por lo que normalmente no se incluye como estado STP. La tabla siguiente resume los cuatro estados principales que vamos a estudiar en esta sección.</p>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Reenvía tramas?</th>
+<th>Aprende direcciones MAC?</th>
+<th>Estable o transitorio?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blocking (BLK)</td>
+<td>No</td>
+<td>No</td>
+<td>Estable</td>
+</tr>
+<tr>
+<td>Listening (LIS)</td>
+<td>No</td>
+<td>No</td>
+<td>Transitorio</td>
+</tr>
+<tr>
+<td>Learning (LRN)</td>
+<td>No</td>
+<td>Sí</td>
+<td>Transitorio</td>
+</tr>
+<tr>
+<td>Forwarding (FWD)</td>
+<td>Sí</td>
+<td>Sí</td>
+<td>Estable</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando un puerto se activa por primera vez (por ejemplo, cuando se conecta a otro dispositivo), entra en el estado listening. En este estado, el puerto solo puede enviar y recibir BPDUs; no reenvía tramas normales y el switch no aprende direcciones MAC si llegan tramas por ese puerto. El objetivo de este estado es decidir qué va a pasar con el puerto; el switch decide si será un puerto raíz, designado o no designado. El estado listening es transitorio; el puerto debe permanecer en ese estado durante un máximo de 15 segundos (veremos por qué 15 segundos es el máximo en la siguiente sección). En el ejemplo siguiente, deshabilito el puerto G0/1 de SW2, lo vuelvo a habilitar y confirmo su estado con <code>show spanning-tree</code>; en la columna Sts, LIS indica el estado listening:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SW2(config)#
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>interface g0/1
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>SW2(config-if)# shutdown
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>SW2(config-if)# no shutdown
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>SW2(config-if)# do show spanning-tree
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>. . .
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Interface           Role Sts Cost      Prio.Nbr Type
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>------------------- ---- --- --------- -------- --------------------------------
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Gi0/0               Altn BLK 4         128.1    P2p
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>Gi0/1               Root LIS 4         128.2    P2p
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En la salida anterior, G0/0 tiene el rol Altn, que significa alternate; equivale al rol no designado. Alternate es un rol de puerto introducido en Rapid STP, que veremos en el capítulo siguiente; ahora mismo el término se usa aunque el switch ejecute STP estándar.</p>
+</div>
+<p>Si se decide en el estado listening que el puerto será no designado, pasará inmediatamente al estado blocking. En ese estado, el puerto está efectivamente deshabilitado; no reenvía tramas. Su única función es escuchar BPDUs y reaccionar si hay un cambio en la red. Observad que su estado seguirá apareciendo como <code>up/up</code> en la salida de <code>show ip interface brief</code>; el puerto sigue operativo y preparado para volver al estado listening si hay un cambio en la red. Sin embargo, en la salida de <code>show spanning-tree</code>, su estado será BLK (como en el ejemplo anterior).</p>
+<p>Si en el estado listening se decide que el puerto será raíz o designado, tras 15 segundos pasará al estado learning. Este es similar al estado listening, con una diferencia: comenzará a aprender direcciones MAC cuando reciba tramas. La finalidad de este estado es preparar el puerto para comenzar a reenviar tráfico; como el estado listening, también es transitorio.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un puerto en estado learning sigue escuchando BPDUs. Si detecta un cambio en la red y cambia de rol para convertirse en no designado, pasará inmediatamente al estado blocking.</p>
+</div>
+<p>Tras estar en el estado learning durante 15 segundos, un puerto raíz o designado finalmente pasará al estado forwarding, un puerto de switch totalmente operativo capaz de reenviar tráfico. La figura siguiente muestra cómo un puerto pasa por los cuatro estados.</p>
+<figure id="__figura_16">
+<p><img alt="" justify="justify" src="../img/stp_16.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 16. </span> Cómo pasa un puerto de switch por los estados STP. Un puerto recién habilitado comienza en listening y luego pasa al blocking o al learning y, finalmente, al forwarding. Un puerto en cualquier estado puede pasar inmediatamente a blocking, pero para pasar a forwarding debe pasar antes por listening y learning.</p>
+</figcaption>
+</figure>
+<p>Cuando todos los switches de la red han decidido los roles de sus puertos y todos están en estado blocking o forwarding, STP ha convergido; la LAN es estable. Si hay cambios en la red (por ejemplo, fallos de puertos, puertos deshabilitados, nuevos switches añadidos, etc.), los switches usarán STP para recalcular la topología y la red volverá a converger en una nueva topología estable.</p>
+<h3 id="2-temporizadores-stp">2 Temporizadores STP</h3>
+<p>Hay tres temporizadores que regulan el funcionamiento de STP, como se resume en la tabla siguiente.</p>
+<table>
+<thead>
+<tr>
+<th>Temporizador</th>
+<th>Finalidad</th>
+<th style="text-align: right;">Duración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hello</td>
+<td>Frecuencia con la que se envían BPDUs</td>
+<td style="text-align: right;">2 segundos</td>
+</tr>
+<tr>
+<td>Forward delay</td>
+<td>Longitud de los estados listening y learning</td>
+<td style="text-align: right;">15 segundos por estado</td>
+</tr>
+<tr>
+<td>Max age</td>
+<td>Tiempo que un switch espera para cambiar la topología STP tras dejar de recibir BPDUs en un puerto</td>
+<td style="text-align: right;">20 segundos</td>
+</tr>
+</tbody>
+</table>
+<p>El temporizador hello es simple: determina la frecuencia con la que se envían BPDUs. Por defecto es 2 segundos, lo que significa que los BPDUs se envían cada 2 segundos. El temporizador hello del puente raíz dicta la frecuencia con la que se envían BPDUs en la LAN; todos los BPDUs se originan en el puente raíz y luego son reenviados por los demás switches por sus puertos designados. Esto también se aplica a los otros temporizadores: los temporizadores del puente raíz son los que usan todos los switches de la LAN.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El temporizador hello (y también el resto) puede modificarse, pero es poco frecuente y queda fuera del alcance del examen CCNA.</p>
+</div>
+<p>El temporizador forward delay determina la duración de los estados listening y learning. Por defecto es 15 segundos; el estado listening dura 15 segundos y el estado learning también 15 segundos. Esto significa que un puerto recién habilitado tardará un total de 30 segundos en poder reenviar tramas (excepto BPDUs).</p>
+<p>En una LAN con conexiones redundantes, es muy importante que no aparezcan bucles; un bucle puede derribar una LAN en cuestión de segundos, por lo que cada puerto de switch pasa un tiempo determinado en cada estado antes de pasar a otro. Esto permite que el switch esté absolutamente seguro de que no provocará un bucle al pasar un puerto al estado forwarding.</p>
+<p>El último temporizador es el max age; determina cuánto tiempo esperará un switch para cambiar la topología STP tras dejar de recibir BPDUs en un puerto. Por defecto, el temporizador max age es 20 segundos; con el temporizador hello predeterminado de 2 segundos, esto significa que un puerto puede perder 10 BPDUs antes de que el switch decida recalcular la topología STP (es decir, elegir un nuevo puente raíz, recalcular los roles de puerto, etc.).</p>
+<p>Esto significa que STP puede tardar hasta 50 segundos en pasar un puerto en blocking al estado forwarding: 20 segundos del temporizador max age, 15 segundos del estado listening y 15 segundos del estado learning. La figura siguiente muestra un ejemplo de cómo esto puede causar un problema: una avería de hardware (quizá en el puerto G0/0 de SW3) hace que SW1 deje de recibir BPDUs en G0/1, pero pasan 50 segundos antes de que SW1 G0/0 pueda hacerse cargo como puerto raíz y comenzar a reenviar tráfico.</p>
+<figure id="__figura_17">
+<p><img alt="" justify="justify" src="../img/stp_17.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 17. </span> Los temporizadores STP hacen que SW1 no pueda reenviar tráfico durante 50 segundos. (1) Una avería de hardware impide que SW1 reciba BPDUs por G0/1. (2) G0/1 sigue siendo el puerto raíz durante 20 segundos. (3) G0/0 se convierte en el nuevo puerto raíz pero debe esperar otros 30 segundos antes de entrar en estado forwarding.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si la avería de hardware hace que el puerto G0/1 de SW1 quede totalmente no operativo (estado down/down), SW1 reaccionará de inmediato: no hace falta esperar al temporizador max age. Sin embargo, el nuevo puerto raíz de SW1 (G0/0) seguirá teniendo que pasar por los estados listening y learning, lo que provocará 30 segundos de tiempo de inactividad.</p>
+</div>
+<p>Aunque los temporizadores de STP pueden ser lentos, lo hacen por una buena razón: para asegurarse de que un puerto no empieza a reenviar antes de tiempo y provoca un bucle de Capa 2. Sin embargo, existen varias funciones que mejoran la velocidad de STP, y cubriremos una en la siguiente sección, que trata de PortFast y BPDU Guard. Además, veremos Rapid STP, una evolución de STP que reduce mucho el tiempo necesario para la convergencia.</p>
+<h2 id="7-portfast-y-bpdu-guard">7 PortFast y BPDU Guard</h2>
+<p>Los switches Cisco incluyen un conjunto de funciones opcionales de STP (a veces llamadas STP toolkit) que aceleran la convergencia del STP y mejoran la estabilidad. Para el examen CCNA, debes conocer algunas de estas funciones opcionales de STP. En esta sección cubriremos dos: PortFast y BPDU Guard.</p>
+<p>Hasta ahora nos hemos centrado en conexiones entre switches, pero STP está activo en todos los puertos del switch, no solo en los conectados a otros switches. Los puertos de switch conectados a dispositivos que no usan STP (como PCs) serán siempre puertos designados; no existe riesgo de bucle de Capa 2. Sin embargo, debido al funcionamiento basado en temporizadores de STP, tardará 30 segundos desde la conexión del dispositivo en que realmente pueda acceder a la red, es decir, antes de que el puerto del switch entre en estado forwarding. Esto puede resultar frustrante para los usuarios que desconocen STP y, en cualquier caso, es un inconveniente.</p>
+<h3 id="1-portfast">1 PortFast</h3>
+<p>PortFast es una función opcional de STP que permite que un puerto del switch pase inmediatamente a estado forwarding, evitando los estados listening y learning. La figura siguiente muestra cómo PortFast permite que un dispositivo conectado tenga acceso inmediato a la red.</p>
+<figure id="__figura_18">
+<p><img alt="" justify="justify" src="../img/stp_18.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 18. </span> PortFast permite que un puerto de switch pase inmediatamente a estado forwarding. Sin PortFast, cuando se conecta un host final a un puerto del switch, debe esperar 30 segundos antes de poder acceder a la red. Con PortFast, el host final puede acceder a la red de inmediato, evitando los estados listening y learning.</p>
+</figcaption>
+</figure>
+<p>Para habilitar PortFast en un puerto concreto, se usa el comando <code>spanning-tree portfast</code> en el modo de configuración de interfaz. Otra opción es usar el comando <code>spanning-tree portfast default</code> en el modo de configuración global para habilitar PortFast en todos los puertos de acceso (no en los trunk). Como muestra el ejemplo siguiente, el switch muestra una advertencia extensa tras configurar PortFast:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>SW1(config)#
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>interface g1/0
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>SW1(config-if)# spanning-tree portfast
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>%Warning: portfast should only be enabled on ports connected to a single
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a> host. Connecting hubs, concentrators, switches, bridges, etc... to this
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a> interface when portfast is enabled, can cause temporary bridging loops.
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a> Use with CAUTION
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>%Portfast has been configured on GigabitEthernet1/0 but will only
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a> have effect when the interface is in a non-trunking mode.
+</span></code></pre></div>
+<p>Como PortFast coloca los puertos del switch en estado forwarding inmediatamente, evitando los estados listening y learning, es importante habilitarlo solo en puertos destinados a hosts finales. No conectéis switches a puertos con PortFast habilitado; de lo contrario, pueden producirse bucles de Capa 2, como indica el mensaje de advertencia del ejemplo anterior.</p>
+<h3 id="2-bpdu-guard">2 BPDU Guard</h3>
+<p>BPDU Guard es otra función opcional de STP que deshabilita un puerto del switch si recibe un BPDU; debe habilitarse en todos los puertos con PortFast. Recordad: los puertos con PortFast solo deben conectarse a hosts finales, que no envían BPDUs. Si un usuario conecta sin cuidado otro switch a un puerto destinado a hosts finales, BPDU Guard deshabilita el puerto y evita que el nuevo switch afecte a la topología STP (por ejemplo, convirtiéndose en el nuevo puente raíz).</p>
+<p>Para habilitar BPDU Guard en un puerto, usa el comando <code>spanning-tree bpduguard enable</code> en el modo de configuración de interfaz. Otra opción es usar el comando <code>spanning-tree portfast bpduguard default</code> en el modo de configuración global; esto habilita automáticamente BPDU Guard en todos los puertos con PortFast. En el ejemplo siguiente, habilito PortFast y BPDU Guard en un puerto del switch:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>SW4(config)#
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>interface g0/0
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>SW4(config-if)# spanning-tree portfast
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>SW4(config-if)# spanning-tree bpduguard enable
+</span></code></pre></div>
+<p>El puerto en el que habilité PortFast y BPDU Guard en el ejemplo está conectado a otro switch, así que podemos ver BPDU Guard en acción; ¡no hagáis esto en una red real! Si un puerto del switch con BPDU Guard habilitado recibe un BPDU de otro switch, entra en estado err-disabled. El ejemplo siguiente muestra los mensajes de error que aparecen cuando BPDU Guard deshabilita un puerto:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>%SPANTREE-2-BLOCK_BPDUGUARD: Received BPDU on port Gi0/0
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>with BPDU Guard enabled. Disabling port.
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>%PM-4-ERR_DISABLE: bpduguard error detected on Gi0/0,
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>putting Gi0/0 in err-disable state
+</span></code></pre></div>
+<p>Un puerto en estado err-disabled no es operativo; su estado será down/down en la salida de <code>show ip interface brief</code>. Este es un ejemplo del estado disabled de STP que mencioné en la sección anterior. Para volver a habilitar un puerto err-disabled, primero resuelve el problema que provocó el error (desconecta el switch del puerto con PortFast/BPDU Guard), y luego usa los comandos <code>shutdown</code> y <code>no shutdown</code> en el puerto para reiniciarlo.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recuerda estas buenas prácticas: habilita PortFast solo en puertos destinados a hosts finales, y habilita BPDU Guard en todos los puertos con PortFast. Es posible usar solo PortFast o solo BPDU Guard, pero la mejor práctica es usar ambas funciones a la vez.</p>
+</div>
+<h2 id="resumen">Resumen</h2>
+<ul>
+<li>La cabecera Ethernet no dispone de ningún mecanismo para descartar tramas en bucle, así que circulan indefinidamente.</li>
+<li>Si se acumulan suficientes tramas en bucle, puede producirse una tormenta de broadcast que consume tantos recursos que la red queda inutilizable.</li>
+<li>La redundancia consiste en disponer de dispositivos y conexiones adicionales más allá del mínimo necesario para la comunicación, con el fin de eliminar puntos únicos de fallo.</li>
+<li>Los bucles de Capa 2 aparecen como resultado del inundado de tráfico BUM (broadcast, unknown unicast y multicast) en una LAN con conexiones redundantes.</li>
+<li>Spanning Tree Protocol (STP) evita los bucles de Capa 2 en una LAN bloqueando conexiones redundantes, dejando solo un camino activo hacia cada destino de la LAN.</li>
+<li>El proceso que usa STP para crear una topología sin bucles se llama algoritmo STP. Consiste en tres pasos principales: (1) elección del puente raíz, (2) selección del puerto raíz y (3) selección del puerto designado.</li>
+<li>Todas las decisiones del algoritmo las toman los switches compartiendo mensajes STP Bridge Protocol Data Unit (BPDU), que se envían cada 2 segundos.</li>
+<li>El puente raíz es el punto de referencia central de la topología STP. Todos los switches de la LAN asegurarán que tienen exactamente un camino activo hacia el puente raíz.</li>
+<li>El switch con el BID más bajo se convierte en puente raíz. El BID es un número de 64 bits que identifica de forma única al switch. Está compuesto por una prioridad de bridge de 16 bits y una dirección MAC de 48 bits.</li>
+<li>La prioridad del bridge consiste en un valor de prioridad configurable (predeterminado 32768) y el Extended System ID, que es el ID de VLAN.</li>
+<li>La implementación de STP de Cisco se llama Per-VLAN Spanning Tree Plus (PVST+), que crea un árbol de expansión separado para cada VLAN.</li>
+<li>Cuando un switch arranca, anuncia que es el puente raíz y envía BPDUs por todos sus puertos. Si recibe BPDUs de un switch con BID más bajo, aceptará ese switch como puente raíz.</li>
+<li>Usa el comando <code>show spanning-tree</code> para ver información sobre el BID del puente raíz, el BID del switch local y los puertos del switch local.</li>
+<li>Usa el comando <code>spanning-tree vlan vlan-id priority priority-value</code> para configurar la prioridad del switch para la VLAN especificada (en incrementos de 4096).</li>
+<li>También puedes usar <code>spanning-tree vlan vlan-id root { primary | secondary }</code> para configurar la prioridad. La palabra clave secondary establece la prioridad en 28672, y primary la establece en 24576, o en el múltiplo más alto de 4096 que haga que el switch sea puente raíz (pero no la establece en 0).</li>
+<li>Después de elegir el puente raíz, todos los switches no raíz seleccionarán exactamente un puerto raíz, que proporciona el único camino activo del switch al puente raíz.</li>
+<li>El puerto raíz se selecciona usando los siguientes parámetros en orden de prioridad: (1) menor coste raíz, (2) menor BID del vecino y (3) menor ID del puerto del vecino.</li>
+<li>El coste raíz de un puerto indica cuán eficiente es la ruta hacia el puente raíz a través de ese puerto.</li>
+<li>Cuando el puente raíz envía BPDUs, tienen un coste raíz de 0. Cuando un switch no raíz reenvía BPDUs, añade el coste del puerto por el que recibió el BPDU.</li>
+<li>Los valores de coste de puerto STP son 10 Mbps = 100, 100 Mbps = 19, 1 Gbps = 4 y 10 Gbps = 2.</li>
+<li>Si un switch tiene el mismo coste raíz por dos o más puertos, el puerto conectado al vecino con el BID más bajo se convierte en puerto raíz. Si dos o más de esos puertos están conectados al mismo vecino, el puerto conectado al puerto del vecino con el menor ID de puerto se convierte en puerto raíz.</li>
+<li>El ID de puerto es un identificador único de cada puerto del switch. Consiste en un valor de prioridad (128 por defecto) y un número secuencial.</li>
+<li>Cada segmento (enlace) debe tener exactamente un puerto designado. Todos los puertos del puente raíz son designados, y el puerto conectado a un puerto raíz debe ser designado.</li>
+<li>Los enlaces restantes seleccionan luego un puerto designado y el resto serán no designados (blocking).</li>
+<li>Los puertos designados se seleccionan con los siguientes parámetros en orden de prioridad: (1) el puerto del switch con el menor coste raíz y (2) el puerto del switch con el menor BID.</li>
+<li>Los cuatro estados de puerto STP son blocking, listening, learning y forwarding. También existe el estado disabled, que se refiere a un puerto no operativo.</li>
+<li>Un puerto recién habilitado entrará en estado listening, donde el switch decide su rol.</li>
+<li>Si el puerto se vuelve no designado, pasará inmediatamente a blocking, donde queda prácticamente deshabilitado (así es como STP evita bucles).</li>
+<li>Si el puerto se vuelve raíz o designado, pasará a learning, donde empieza a aprender direcciones MAC para construir la tabla de direcciones MAC. Luego pasará a forwarding, donde ya puede reenviar tramas.</li>
+<li>El temporizador hello determina la frecuencia con la que se envían BPDUs. Tiene un valor predeterminado de 2 segundos.</li>
+<li>El temporizador forward delay determina la duración de los estados listening y learning. Por defecto es 15 segundos por estado.</li>
+<li>El temporizador max age determina cuánto tiempo esperará un switch para cambiar la topología STP tras dejar de recibir BPDUs en un puerto.</li>
+<li>Los temporizadores del puente raíz indican los temporizadores que se usarán en todos los switches de la LAN.</li>
+<li>Puede tardar hasta 50 segundos (temporizador max age + listening + learning) en que un puerto empiece a reenviar tras un cambio en la red.</li>
+<li>Puede tardar 30 segundos en que un puerto recién habilitado empiece a reenviar tramas.</li>
+<li>PortFast es una función opcional que puede configurarse en puertos conectados a hosts finales para permitirles pasar directamente al estado forwarding (sin listening/learning).</li>
+<li>Usa <code>spanning-tree portfast</code> en modo de configuración de interfaz para habilitar PortFast en un puerto concreto o <code>spanning-tree portfast default</code> en modo global para habilitarlo en todos los puertos de acceso.</li>
+<li>BPDU Guard debe configurarse en puertos con PortFast para deshabilitarlos si se conecta otro switch al puerto.</li>
+<li>Usa <code>spanning-tree bpduguard enable</code> en modo de configuración de interfaz para habilitar BPDU Guard en un puerto concreto o <code>spanning-tree portfast bpduguard default</code> en modo global para habilitarlo en todos los puertos con PortFast.</li>
+<li>Si un puerto con BPDU Guard habilitado recibe un BPDU, el puerto pasa a estado err-disabled, quedando no operativo. Para reactivarlo, desconecta el switch que provocó el error y usa <code>shutdown</code> y <code>no shutdown</code> en el puerto.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>

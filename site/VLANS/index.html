@@ -1,0 +1,2003 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/VLANS/">
+      
+      
+        <link rel="prev" href="../UD5Switching/">
+      
+      
+        <link rel="next" href="../spanning_tree/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>VLANS - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M384%20512H96c-53%200-96-43-96-96V96C0%2043%2043%200%2096%200h304c26.5%200%2048%2021.5%2048%2048v288c0%2020.9-13.4%2038.7-32%2045.3V448c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032zM96%20384c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032h256v-64zm32-232c0%2013.3%2010.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24H152c-13.3%200-24%2010.7-24%2024m24%2072c-13.3%200-24%2010.7-24%2024s10.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24z%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M352%200c0-17.7-14.3-32-32-32s-32%2014.3-32%2032v64h-96c-53%200-96%2043-96%2096v224c0%2053%2043%2096%2096%2096h256c53%200%2096-43%2096-96V160c0-53-43-96-96-96h-96zM160%20368c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24M224%20176a48%2048%200%201%201%200%2096%2048%2048%200%201%201%200-96m144%2048a48%2048%200%201%201%2096%200%2048%2048%200%201%201-96%200m-304%200c0-17.7-14.3-32-32-32S0%20206.3%200%20224v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32zm544-32c-17.7%200-32%2014.3-32%2032v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32v-96c0-17.7-14.3-32-32-32%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M416%20427.4c58.5-44%2096-111.6%2096-187.4C512%20107.5%20397.4%200%20256%200S0%20107.5%200%20240c0%2075.8%2037.5%20143.4%2096%20187.4V464c0%2026.5%2021.5%2048%2048%2048h32v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h64v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h32c26.5%200%2048-21.5%2048-48zM96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v151.5L7.5%20426.3C2.6%20435%200%20444.7%200%20454.7%200%20486.4%2025.6%20512%2057.3%20512h333.4c31.6%200%2057.3-25.6%2057.3-57.3%200-10-2.6-19.8-7.5-28.4L320%20215.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20215.5V64h64v151.5c0%2011.1%202.9%2022.1%208.4%2031.8L306%20320H142l41.6-72.7c5.5-9.7%208.4-20.6%208.4-31.8%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20576%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M480-16c6.9%200%2013%204.4%2015.2%2010.9l13.5%2040.4%2040.4%2013.5C555.6%2051%20560%2057.1%20560%2064s-4.4%2013-10.9%2015.2l-40.4%2013.5-13.5%2040.4c-2.2%206.5-8.3%2010.9-15.2%2010.9s-13-4.4-15.2-10.9l-13.5-40.4-40.4-13.5C404.4%2077%20400%2070.9%20400%2064s4.4-13%2010.9-15.2l40.4-13.5%2013.5-40.4C467-11.6%20473.1-16%20480-16M321.4%2097.4c12.5-12.5%2032.8-12.5%2045.3%200l80%2080c12.5%2012.5%2012.5%2032.8%200%2045.3l-10.9%2010.9c7.9%2022%2012.2%2045.7%2012.2%2070.5%200%20114.9-93.1%20208-208%20208S32%20418.9%2032%20304%20125.1%2096%20240%2096c24.7%200%2048.5%204.3%2070.5%2012.3zM144%20304c0-53%2043-96%2096-96%2013.3%200%2024-10.7%2024-24s-10.7-24-24-24c-79.5%200-144%2064.5-144%20144%200%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-32-352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200m-8%2064h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M64%20480c-35.3%200-64-28.7-64-64V96c0-35.3%2028.7-64%2064-64h320c35.3%200%2064%2028.7%2064%2064v213.5c0%2017-6.7%2033.3-18.7%2045.3L322.7%20461.3c-12%2012-28.3%2018.7-45.3%2018.7zm325.5-176H296c-13.3%200-24%2010.7-24%2024v93.5z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m0-336c-17.7%200-32%2014.3-32%2032%200%2013.3-10.7%2024-24%2024s-24-10.7-24-24c0-44.2%2035.8-80%2080-80s80%2035.8%2080%2080c0%2047.2-36%2067.2-56%2074.5v3.8c0%2013.3-10.7%2024-24%2024s-24-10.7-24-24v-8.1c0-20.5%2014.8-35.2%2030.1-40.2%206.4-2.1%2013.2-5.5%2018.2-10.3%204.3-4.2%207.7-10%207.7-19.6%200-17.7-14.3-32-32-32zm-32%20192a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64zm256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M434.8%2070.1c14.3%2010.4%2017.5%2030.4%207.1%2044.7l-256%20352c-5.5%207.6-14%2012.3-23.4%2013.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200l101.5%20101.5%20234-321.7c10.4-14.3%2030.4-17.5%2044.7-7.1z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M461.2%2018.9C472.7%2024%20480%2035.4%20480%2048v416c0%2012.6-7.3%2024-18.8%2029.1s-24.8%203.2-34.3-5.1l-46.6-40.7c-43.6-38.1-98.7-60.3-156.4-63V480c0%2017.7-14.3%2032-32%2032h-32c-17.7%200-32-14.3-32-32v-96C57.3%20384%200%20326.7%200%20256s57.3-128%20128-128h84.5c61.8-.2%20121.4-22.7%20167.9-63.3L427%2024c9.4-8.3%2022.9-10.2%2034.3-5.1zM224%20320v.2c70.3%202.7%20137.8%2028.5%20192%2073.4V118.3c-54.2%2044.9-121.7%2070.7-192%2073.4z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%200c14.7%200%2028.2%208.1%2035.2%2021l216%20400c6.7%2012.4%206.4%2027.4-.8%2039.5S486.1%20480%20472%20480H40c-14.1%200-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9%2020.5-21%2035.2-21m0%20352a32%2032%200%201%200%200%2064%2032%2032%200%201%200%200-64m0-192c-18.2%200-32.7%2015.5-31.4%2033.7l7.4%20104c.9%2012.5%2011.4%2022.3%2023.9%2022.3%2012.6%200%2023-9.7%2023.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#por-que-necesitamos-vlans" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VLANS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../UD1dispositivos_de_red/" class="md-tabs__link">
+          
+  
+  Introduccion
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduccion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1dispositivos_de_red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispositivos de red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2fisica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medios de transmisión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3modeloTCPIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo TCP/IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4CiscoCLI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco IOS CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD5Switching/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conmutación Ethernet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-necesitamos-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué necesitamos VLANs?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="¿Por qué necesitamos VLANs?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-segmentacion-en-la-capa-3-con-subredes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Segmentación en la Capa 3 con subredes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-segmentacion-en-la-capa-2-con-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Segmentación en la Capa 2 con VLANs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configuracion-de-vlans-y-puertos-de-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configuración de VLANs y puertos de acceso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Configuración de VLANs y puertos de acceso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-creacion-y-nombrado-de-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Creación y nombrado de VLANs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-asignacion-de-puertos-a-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Asignación de puertos a VLANs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-conexion-de-switches-con-puertos-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Conexión de switches con puertos trunk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Conexión de switches con puertos trunk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-la-etiqueta-ieee-8021q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. La etiqueta IEEE 802.1Q
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cisco-inter-switch-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cisco Inter-Switch Link
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuracion-de-puertos-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configuración de puertos trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-modificacion-de-la-lista-de-vlans-permitidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Modificación de la lista de VLANs permitidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-la-vlan-nativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. La VLAN nativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-desajuste-de-vlan-nativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Desajuste de VLAN nativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-desactivacion-de-la-vlan-nativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Desactivación de la VLAN nativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spanning_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../direccionamientoIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direccionamiento IPv4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_estandar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_extendida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT (traducción de direcciones de red)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-necesitamos-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué necesitamos VLANs?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="¿Por qué necesitamos VLANs?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-segmentacion-en-la-capa-3-con-subredes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Segmentación en la Capa 3 con subredes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-segmentacion-en-la-capa-2-con-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Segmentación en la Capa 2 con VLANs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configuracion-de-vlans-y-puertos-de-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configuración de VLANs y puertos de acceso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Configuración de VLANs y puertos de acceso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-creacion-y-nombrado-de-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Creación y nombrado de VLANs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-asignacion-de-puertos-a-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Asignación de puertos a VLANs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-conexion-de-switches-con-puertos-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Conexión de switches con puertos trunk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Conexión de switches con puertos trunk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-la-etiqueta-ieee-8021q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. La etiqueta IEEE 802.1Q
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cisco-inter-switch-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cisco Inter-Switch Link
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuracion-de-puertos-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configuración de puertos trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-modificacion-de-la-lista-de-vlans-permitidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Modificación de la lista de VLANs permitidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-la-vlan-nativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. La VLAN nativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-desajuste-de-vlan-nativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Desajuste de VLAN nativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-desactivacion-de-la-vlan-nativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Desactivación de la VLAN nativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Switch
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <h1>VLANS</h1>
+
+<p>Este capítulo trata sobre</p>
+<ul>
+<li>Cómo dividir un switch en varios switches virtuales con VLANs.</li>
+<li>Cómo configurar puertos trunk para transportar tráfico en varias VLANs.</li>
+<li>Enrutamiento entre VLANs con un router o un switch multicapa.</li>
+</ul>
+<p>En el capítulo 11 tratamos el subnetting, que permite dividir una red en subredes más pequeñas. Esto es un ejemplo de segmentación de red: la división de una red en partes más pequeñas. Las VLANs (Virtual LANs, pronunciadas “V-LANs”), tema de este capítulo, pueden compararse con las subredes porque también permiten dividir una red en partes más pequeñas. Con las VLANs, podemos dividir una LAN (un dominio de difusión) en redes locales más pequeñas, llamadas VLANs. Mientras que las subredes permiten segmentar la red en la Capa 3, las VLANs permiten segmentar la red en la Capa 2. En este capítulo se cubrirán tres temas del examen CCNA, todos relacionados con los switches y las VLANs:</p>
+<ul>
+<li>1.1.b Switches de Capa 2 y Capa 3</li>
+<li>2.1 Configurar y verificar VLANs (rango normal) que abarcan varios switches</li>
+<li>2.2 Configurar y verificar la conectividad entre switches</li>
+</ul>
+<h2 id="por-que-necesitamos-vlans">¿Por qué necesitamos VLANs?</h2>
+<p>Para entender una tecnología, es importante comprender por qué existe y qué problema resuelve. Para mostrar el papel que desempeñan las VLANs en la segmentación de redes, vamos a analizar una red sin segmentación, una red con segmentación en la Capa 3 y otra con segmentación tanto en la Capa 3 como en la Capa 2.</p>
+<h3 id="1-segmentacion-en-la-capa-3-con-subredes">1. Segmentación en la Capa 3 con subredes</h3>
+<figure id="__figura_1">
+<p><img alt="" justify="justify" src="../img/VLANs_1.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> Una LAN de oficina con tres departamentos distintos: ingeniería, recursos humanos y ventas. Todos los hosts pertenecen a la red 172.16.1.0/24, por lo que pueden comunicarse directamente sin usar el router como intermediario.</p>
+</figcaption>
+</figure>
+<p>Desde el punto de vista de la seguridad de la información, esto no es adecuado para las redes modernas. En lugar de tener todos los hosts dentro de una única red grande, debemos usar subnetting para segmentar la red en la Capa 3, asignando a cada departamento su propia subred. La figura 2 muestra cómo se comunican los hosts de distintos departamentos después de dividir la red en subredes separadas.</p>
+<figure id="__figura_2">
+<p><img alt="" justify="justify" src="../img/VLANs_2.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> Una LAN segmentada en tres subredes. El departamento de ingeniería usa la subred 172.16.1.0/26, el de recursos humanos usa 172.16.1.64/26 y el de ventas usa 172.16.1.128/26. R1 tiene una interfaz en cada subred. La comunicación entre hosts de departamentos distintos debe pasar por R1.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En una red ideal, cada subred tendría su propio switch para conectarse. Sin embargo, en la práctica, los switches suelen compartirse, tal como ocurre en la figura 2; los hosts de 172.16.1.0/26, 172.16.1.64/26 y 172.16.1.128/26 se conectan todos a SW1. La infraestructura de red cuesta dinero, por lo que reducir la cantidad de hardware necesaria es deseable.</p>
+</div>
+<p>Puede que os preguntéis cómo mejora la seguridad segmentar la LAN en subredes separadas. Al exigir que el tráfico entre departamentos pase por el router, podéis controlar qué tráfico se permite y cuál no; las políticas de seguridad pueden implementarse en el router para controlar el tráfico. La figura 2 muestra a un PC del departamento de ingeniería accediendo a un servidor utilizado por recursos humanos; este es un ejemplo de tráfico que quizá queráis restringir. Podéis elegir bloquear a todos los hosts fuera del departamento de RR. HH. el acceso al servidor o permitir solo tipos específicos de comunicación con él.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En este capítulo no vamos a explicar cómo usar un router para controlar qué tráfico se permite y qué tráfico se deniega. Por ahora, segmentaremos la red, pero no especificaremos qué tráfico se permite o se deniega. Cubriremos las listas de control de acceso (un método para controlar el tráfico) en la parte 6 del libro.</p>
+</div>
+<h3 id="2-segmentacion-en-la-capa-2-con-vlans">2. Segmentación en la Capa 2 con VLANs</h3>
+<p>Usando subnetting, hemos segmentado la LAN en la Capa 3. Sin embargo, los switches no son conscientes de la Capa 3. Desde la perspectiva de SW1, todos los hosts siguen formando parte de la misma LAN; están en el mismo dominio de difusión. Una trama broadcast enviada por cualquier host conectado a SW1 será recibida por todos los demás hosts conectados (lo mismo ocurre con los unknown unicast). La figura 3 lo demuestra: cuando un host del departamento de ingeniería envía una trama broadcast, SW1 la inunda a todos los demás hosts conectados, sin importar la subred.</p>
+<figure id="__figura_3">
+<p><img alt="" justify="justify" src="../img/VLANs_3.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> Aunque los hosts están divididos en tres subredes, en la Capa 2 siguen formando parte del mismo dominio de difusión (LAN). (1) SW1 recibe una trama broadcast desde un host del departamento de ingeniería. (2) SW1 inunda la trama por todos los puertos, excepto por el que la recibió. La LAN se ha segmentado en la Capa 3, pero no en la Capa 2.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Una definición de LAN es “un grupo de dispositivos interconectados en un área limitada”, pero como se vio en el capítulo 6, una definición más matizada considera cómo están conectados los dispositivos y cómo se reenvía el tráfico entre ellos, en lugar de limitarse solo a su ubicación física. Para este capítulo, una LAN es lo mismo que un dominio de broadcast: el grupo de dispositivos que recibirán una trama broadcast enviada por cualquier otro miembro del grupo.</p>
+</div>
+<p>Desde el punto de vista de la seguridad, esto sigue sin ser adecuado: el tráfico de hosts de una subred puede llegar a hosts de otras subredes. Además, que todos los hosts estén en el mismo dominio de difusión puede tener efectos negativos sobre el rendimiento de la red; el inundado innecesario de tramas por todos los puertos puede causar o empeorar la congestión. Para resolver estos problemas, debemos segmentar la red en la Capa 2 y podemos usar VLANs para hacerlo.</p>
+<p>Las VLANs permiten dividir un único switch físico en varios switches virtuales, con lo que se divide el dominio de broadcast en varios dominios de broadcast. La figura 4 demuestra este concepto, mostrando cómo SW1 se divide en varios switches virtuales. Al asignar cada uno de los puertos de SW1 a una VLAN específica, SW1 se divide en tres switches virtuales: uno para la VLAN 10, otro para la VLAN 20 y otro para la VLAN 30. Estos números de VLAN son arbitrarios; he elegido las VLANs 10, 20 y 30 para este ejemplo, pero pueden usarse cualquier número dentro del rango válido (más adelante se explicará en la sección 2).</p>
+<figure id="__figura_4">
+<p><img alt="" justify="justify" src="../img/VLANs_4.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> Al asignar las interfaces de SW1 a tres VLANs separadas, SW1 se divide en tres switches virtuales, cada uno en un dominio de difusión independiente. G0/0, G0/1, G0/2 y G0/3 forman parte de la VLAN 10. G1/0, G1/1, G1/2 y G1/3 forman parte de la VLAN 20. G2/0, G2/1, G2/2 y G2/3 forman parte de la VLAN 30. SW1 no reenviará ni inundará una trama por puertos en una VLAN distinta a la que recibió la trama.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La red física de la figura 4 es la misma que la de la figura 3; la única diferencia es que los puertos de SW1 ahora están en tres VLANs separadas. He mostrado SW1 como tres switches virtuales separados para ilustrar cómo funcionan las VLANs. Los diagramas de red normalmente no se representan así; en un diagrama típico, las VLANs aparecen etiquetadas, pero solo se muestra el switch físico.</p>
+</div>
+<p>Ahora ya hemos segmentado correctamente la LAN tanto en la Capa 3 (con subredes) como en la Capa 2 (con VLANs). SW1 no reenviará ni inundará tramas entre VLANs: los hosts de VLANs separadas solo pueden comunicarse entre sí a través de R1. Como regla general, debe existir una relación uno a uno entre subredes y VLANs, como se muestra en la figura 4: una subred por VLAN. Si continuáis vuestros estudios más allá del CCNA, encontraréis casos en los que hay varias subredes asociadas a una sola VLAN, pero para el CCNA podéis asumir que esta relación es uno a uno.</p>
+<h2 id="2-configuracion-de-vlans-y-puertos-de-acceso">2. Configuración de VLANs y puertos de acceso</h2>
+<p>Hasta este punto del libro no hemos configurado casi nada en los switches. Esto se debe a que un switch puede cumplir su función básica de reenvío de tramas sin ninguna configuración especial; crea automáticamente su tabla de direcciones MAC examinando la dirección MAC de origen de las tramas que recibe y luego puede reenviar tramas entre hosts de una LAN. Sin embargo, para usar VLANs debemos configurarlas en los puertos del switch.</p>
+<h3 id="1-creacion-y-nombrado-de-vlans">1. Creación y nombrado de VLANs</h3>
+<p>Primero, vamos a examinar el estado por defecto de las VLANs en SW1. El ejemplo siguiente muestra la salida del comando <code>show vlan brief</code> antes de configurar ninguna VLAN. Este comando muestra la lista de VLANs que existen en el switch (la base de datos de VLANs), así como qué puertos están en cada VLAN:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SW1#
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>show vlan brief
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>VLAN  Name                             Status    Ports
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>----  -------------------------------- --------- -------------------------------
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>1     default                          active    Gi0/0, Gi0/1, Gi0/2, Gi0/3
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                                             Gi1/0, Gi1/1, Gi1/2, Gi1/3
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                                             Gi2/0, Gi2/1, Gi2/2, Gi2/3
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>1002  fddi-default                     act/unsup
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>1003  token-ring-default               act/unsup
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>1004  fddinet-default                  act/unsup
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>1005  trnet-default                    act/unsup
+</span></code></pre></div>
+<p>Hay dos conclusiones principales de esa salida. En primer lugar, sin ninguna configuración, todos los puertos de SW1 están en la VLAN 1. La VLAN 1 es la VLAN predeterminada: la VLAN en la que todos los puertos se encuentran por defecto. También podemos confirmarlo mirando la tabla de direcciones MAC del switch; todas las direcciones MAC se aprenden en la VLAN 1, como se muestra en la columna izquierda del siguiente ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SW1#
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>show mac address-table
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>          Mac Address Table
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>-------------------------------------------
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Vlan    Mac Address       Type        Ports
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>----    -----------       --------    -----
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>   1    5254.0000.04c5    DYNAMIC     Gi2/0
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>   1    5254.000e.a694    DYNAMIC     Gi2/1
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>   1    5254.000f.d41a    DYNAMIC     Gi1/0
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   1    5254.0011.fbcf    DYNAMIC     Gi0/1
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>. . .
+</span></code></pre></div>
+<p>La segunda conclusión es que las VLANs 1002, 1003, 1004 y 1005 también existen en el switch por defecto. Estas VLANs están reservadas para FDDI y Token Ring, dos tecnologías antiguas de la Capa de enlace de datos. FDDI y Token Ring ya no se usan en redes modernas, pero incluso en versiones actuales de Cisco IOS, estas cuatro VLANs se reservan por compatibilidad con versiones anteriores; no se pueden eliminar ni usar para VLANs Ethernet.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Hay 4096 VLANs en total (del 0 al 4095), pero las VLANs 0 y 4095 están reservadas para fines especiales fuera del alcance del examen CCNA. Como las VLANs 1002-1005 están reservadas para FDDI y Token Ring, el rango de VLANs utilizables es del 1 al 1001 y del 1006 al 4094 (4.090 VLANs en total). Esto significa que una sola LAN (dominio de difusión) puede dividirse en un máximo de 4.090 VLANs, mucho más de lo que la mayoría de LANs necesitarán.</p>
+</div>
+<p>Para configurar una VLAN, usad el comando <code>vlan vlan-id</code> desde el modo de configuración global (<code>vlan-id</code> es un número). Eso os llevará al modo de configuración de VLAN, desde donde también podéis configurar el nombre de la VLAN con el comando <code>name vlan-name</code>. En el ejemplo siguiente, creo y nombro las VLANs 10, 20 y 30 en SW1 y luego las confirmo con <code>show vlan brief</code> (omitiendo las VLANs 1002-1005 en la salida para ahorrar espacio):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SW1(config)#
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>vlan 10
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>SW1(config-vlan)# name Engineering
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>SW1(config-vlan)# vlan 20
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>SW1(config-vlan)# name HR
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>SW1(config-vlan)# vlan 30
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>SW1(config-vlan)# name Sales
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>SW1(config-vlan)# end
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>SW1# show vlan brief
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>VLAN Name                             Status    Ports
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>---- -------------------------------- --------- -------------------------------
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>1    default                          active    Gi0/0, Gi0/1, Gi0/2, Gi0/3
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                                                Gi1/0, Gi1/1, Gi1/2, Gi1/3
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>                                                Gi2/0, Gi2/1, Gi2/2, Gi2/3
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>10   Engineering                      active
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>20   HR                               active
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>30   Sales                            active
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Nombrar una VLAN es opcional. Si no configuráis un nombre, el nombre predeterminado es VLANxxxx, donde xxxx es el ID de la VLAN en cuatro dígitos (por ejemplo, VLAN0010 para la VLAN 10).</p>
+</div>
+<p>En el ejemplo anterior, el estado de cada VLAN es active. Sin embargo, podéis deshabilitar temporalmente una VLAN usando el comando <code>shutdown</code> en el modo de configuración de VLAN. En el siguiente ejemplo, desactivo la VLAN 10 en SW1 y la confirmo con <code>show vlan brief</code>. Observad que el estado cambia a <code>act/lshut</code> (active/locally shutdown):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SW1(config)#
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>vlan 10
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>SW1(config-vlan)# shutdown
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>SW1(config-vlan)# end
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>SW1# show vlan brief
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>VLAN Name                             Status    Ports
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>---- -------------------------------- --------- -------------------------------
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>. . .
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>10   Engineering                      act/lshut
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si queréis eliminar una VLAN por completo, podéis negar el comando que usasteis para crearla añadiendo <code>no</code> delante, por ejemplo <code>no vlan 10</code>.</p>
+</div>
+<h3 id="2-asignacion-de-puertos-a-vlans">2. Asignación de puertos a VLANs</h3>
+<p>Ahora que ya hemos creado las VLANs 10, 20 y 30 en SW1, asignemos los puertos de SW1 a la VLAN adecuada. Hay dos pasos:</p>
+<ul>
+<li>Configurar los puertos de SW1 en modo access.</li>
+<li>Configurar la VLAN del modo access de los puertos.</li>
+</ul>
+<p>Un puerto access es un puerto de switch que pertenece a una sola VLAN, a diferencia de un puerto trunk, que transporta tráfico en varias VLANs (lo trataremos en la sección 3). Por defecto, los puertos de switch de Cisco usan un protocolo llamado Dynamic Trunking Protocol (DTP) para determinar automáticamente si cada puerto debe operar en modo access o en modo trunk. Lo cubriremos en el capítulo 13, pero por ahora basta con saber que es una buena práctica configurar manualmente el modo access o trunk en lugar de dejar que DTP determine automáticamente el estado de las interfaces.</p>
+<p>Podéis configurar manualmente un puerto de switch para que funcione en modo access con el comando <code>switchport mode access</code> en el modo de configuración de interfaz. Luego, usad <code>switchport access vlan vlan-id</code> para configurar a qué VLAN pertenece el puerto. En el ejemplo siguiente, configuro las interfaces G0/0, G0/1, G0/2 y G0/3 de SW1 como puertos access en la VLAN 10, las G1/0, G1/1, G1/2 y G1/3 como puertos access en la VLAN 20, y los puertos G2/0, G2/1, G2/2 y G2/3 como access en la VLAN 30:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SW1(config)#
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>interface range g0/0-3
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>SW1(config-if-range)# switchport mode access
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>SW1(config-if-range)# switchport access vlan 10
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>SW1(config-if-range)# interface range g1/0-3
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>SW1(config-if-range)# switchport mode access
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>SW1(config-if-range)# switchport access vlan 20
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>SW1(config-if-range)# interface range g2/0-3
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>SW1(config-if-range)# switchport mode access
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>SW1(config-if-range)# switchport access vlan 30
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si usáis el comando <code>switchport access vlan</code> para asignar un puerto a una VLAN que aún no existe en el switch, el switch creará automáticamente la VLAN. Esto significa que no es necesario crear VLANs con el comando <code>vlan</code> antes de asignar puertos a VLANs (aunque sí es necesario si queréis usar el comando <code>name</code> para nombrar las VLANs).</p>
+</div>
+<p>¡Ya hemos terminado de configurar SW1! Reenviará e inundará tramas entre hosts de cada VLAN, pero no entre VLANs; cada VLAN es un dominio de broadcast independiente. Tened en cuenta que las VLANs se configuran en los puertos del switch; aunque es habitual decir que un host final está en la VLAN X, ese host en realidad no conoce en qué VLAN está; las VLANs son un concepto usado por los switches, no por hosts finales como PCs.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Hay excepciones en las que los hosts finales sí son VLAN-aware; veremos un ejemplo cuando cubramos las máquinas virtuales más adelante.</p>
+</div>
+<h2 id="3-conexion-de-switches-con-puertos-trunk">3. Conexión de switches con puertos trunk</h2>
+<p>Los puertos access están asignados a una sola VLAN y solo reenviarán e inundarán tráfico entre puertos de la misma VLAN. Los puertos trunk, en cambio, no están asignados a una sola VLAN; en realidad, pueden reenviar tráfico en varias VLANs. La figura 5 muestra una situación en la que debe usarse un puerto trunk: la LAN consiste en dos switches (SW1 y SW2), y los hosts de las VLANs 10, 20 y 30 están conectados a cada switch. Para que los hosts de cada VLAN puedan comunicarse entre sí, el enlace entre SW1 y SW2 debe poder transportar tráfico en varias VLANs; para ello, las tramas enviadas entre SW1 y SW2 llevan una etiqueta que indica a qué VLAN pertenece cada trama.</p>
+<figure id="__figura_5">
+<p><img alt="" justify="justify" src="../img/VLANs_5.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 5. </span> SW1 y SW2 están conectados por un enlace trunk, que puede transportar tráfico en varias VLANs. SW1 y SW2 son dos switches físicos, cada uno de los cuales consta de tres switches virtuales: uno por cada VLAN. (1) PC1 (conectado a SW1) envía una trama dirigida a la MAC de PC10. (2) SW1 reenvía la trama por su puerto G0/0, que está en modo trunk. Añade una etiqueta a la trama indicando que la trama pertenece a la VLAN 10. (3) SW2 reenvía la trama por su puerto G0/1 (sin etiqueta).</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En lugar de conectar SW1 y SW2 con un único enlace trunk, otra opción es usar un enlace access separado entre los switches para cada VLAN (uno para la VLAN 10, uno para la VLAN 20 y otro para la VLAN 30). Aunque esto puede funcionar en redes pequeñas con pocas VLANs, no escala bien en redes con muchas VLANs; un enlace trunk es mejor opción.</p>
+</div>
+<p>Así funcionan los puertos trunk: el switch que reenvía una trama añade una etiqueta antes de enviarla por el puerto trunk. Por eso, otro nombre para un puerto trunk es puerto etiquetado. El switch que recibe la trama comprueba la etiqueta y asigna la trama a la VLAN indicada por la etiqueta. Si el destino de la trama está en una VLAN distinta a la especificada por la etiqueta, el switch no podrá reenviarla al destino correcto; recordad que los hosts de VLANs distintas no pueden comunicarse directamente entre sí.</p>
+<p>Del mismo modo, otro nombre para un puerto access es puerto sin etiquetar; las tramas reenviadas por un puerto access no llevan etiqueta para indicar la VLAN, y las tramas recibidas por un puerto access se asignan a la VLAN especificada en el comando <code>switchport access vlan</code>. Como los puertos access solo están asociados a una VLAN, no es necesaria una etiqueta para identificar a qué VLAN pertenecen las tramas enviadas y recibidas por ese puerto.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los puertos access suelen usarse para conectar hosts finales, como PCs. Los puertos trunk suelen usarse para conectar otros switches (y a veces routers, como veremos en la sección 4).</p>
+</div>
+<h3 id="1-la-etiqueta-ieee-8021q">1. La etiqueta IEEE 802.1Q</h3>
+<p>El protocolo usado para etiquetar tramas reenviadas por puertos trunk es IEEE 802.1Q (normalmente se pronuncia “dot one Q”). La etiqueta 802.1Q tiene 4 bytes y se añade entre los campos Source y EtherType del encabezado Ethernet. La figura 6 muestra la posición de la etiqueta 802.1Q dentro de una trama, así como los campos de la etiqueta.</p>
+<figure id="__figura_6">
+<p><img alt="" justify="justify" src="../img/VLANs_6.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 6. </span> La posición de la etiqueta 802.1Q dentro de una trama Ethernet y los campos de la etiqueta. Los campos son TPID (Tag Protocol Identifier) y TCI (Tag Control Information). TCI contiene tres subcampos: PCP (Priority Code Point), DEI (Drop Eligible Indicator) y VID (VLAN Identifier).</p>
+</figcaption>
+</figure>
+<p>El campo Tag Protocol Identifier (TPID) tiene 16 bits y siempre contiene el valor <code>0x8100</code>. Cuando una trama está etiquetada con 802.1Q, el campo TPID ocupa la posición que normalmente tendría el campo EtherType. Cuando el switch ve el valor <code>0x8100</code>, sabe que la trama está etiquetada mediante 802.1Q; ese es el propósito del campo TPID.</p>
+<p>La segunda parte de 802.1Q es Tag Control Information (TCI), que contiene tres subcampos: PCP, DEI y VID. El campo Priority Code Point (PCP) tiene 3 bits y puede usarse para marcar tramas como de mayor o menor prioridad; esto se usa para Quality of Service (QoS), un tema que trataremos en el capítulo 10 del volumen 2. El campo Drop Eligible Indicator (DEI) tiene 1 bit y también se usa para QoS; puede indicarse qué tramas pueden descartarse si la red está congestionada.</p>
+<p>El campo VLAN Identifier (VID) es quizá el más importante; es el que indica a qué VLAN pertenece la trama. Tiene 12 bits y por eso hay 4.096 VLANs en total (2^12 = 4096).</p>
+<h3 id="cisco-inter-switch-link">Cisco Inter-Switch Link</h3>
+<p>Antes de IEEE 802.1Q, Cisco desarrolló un protocolo llamado Inter-Switch Link (ISL) para etiquetar tramas sobre enlaces trunk. Como protocolo propietario de Cisco, ISL solo puede usarse en switches Cisco. Mientras que 802.1Q añade una etiqueta de 4 bytes al encabezado Ethernet, ISL encapsula la trama Ethernet con un encabezado de 26 bytes y un trailer de 4 bytes que contiene un FCS (separado del FCS del trailer Ethernet).</p>
+<p>ISL hoy se considera obsoleto y no es compatible con switches Cisco nuevos. Sin embargo, aún podéis encontrar switches Cisco que soportan tanto 802.1Q como ISL; en esos casos, se requiere un comando adicional al configurar puertos trunk, como veremos en la sección 2. Aunque no tenéis que conocer ISL para el examen CCNA, sí debéis entender cómo afecta a la configuración de trunk en switches que lo soportan (porque requiere un comando adicional).</p>
+<h3 id="2-configuracion-de-puertos-trunk">2. Configuración de puertos trunk</h3>
+<p>Para demostrar la configuración de puertos trunk, configuremos el puerto G0/0 de SW1 como vimos en la figura 5: un enlace trunk capaz de transportar tráfico en las VLANs 10, 20 y 30. Aunque solo voy a mostrar el lado de SW1 del enlace, si lo probáis en un entorno real, asegurad que el puerto G0/0 de SW2 esté configurado del mismo modo (con los mismos comandos que en SW1). En el ejemplo siguiente, intento configurar G0/0 de SW1 como trunk, pero el comando es rechazado.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SW1(config)#
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>interface g0/0
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>SW1(config-if)# switchport mode trunk
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Command rejected: An interface whose trunk encapsulation
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>is &quot;Auto&quot; can not be configured to &quot;trunk&quot; mode.
+</span></code></pre></div>
+<p>La razón por la que se rechaza el comando es que SW1 soporta tanto 802.1Q como ISL. Por defecto, los puertos de un switch que admite ambos protocolos usan DTP (mencionado antes en la sección 2) para determinar automáticamente cuál de los dos usar para el trunk. Sin embargo, para configurar manualmente el puerto en modo trunk, también debéis configurar manualmente el protocolo de encapsulación (802.1Q o ISL); no podéis configurar manualmente el modo trunk, pero sí podéis permitir que DTP determine automáticamente si debe usarse 802.1Q o ISL. El comando para configurar qué protocolo usar es <code>switchport trunk encapsulation { dot1q | isl }</code>. En el ejemplo siguiente, configuro G0/0 para usar 802.1Q y, entonces, sí puedo configurar G0/0 como puerto trunk:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>SW1(config-if)#
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>switchport trunk encapsulation dot1q
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>SW1(config-if)# switchport mode trunk
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>SW1(config-if)#
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si un switch solo soporta 802.1Q (no ISL), no hace falta usar el comando <code>switchport trunk encapsulation</code> antes de <code>switchport mode trunk</code>; de hecho, el switch ni siquiera soportará el comando <code>switchport trunk encapsulation</code>.</p>
+</div>
+<p>Después de configurar un puerto como trunk, ya no aparecerá en la salida de <code>show vlan brief</code>. El ejemplo siguiente lo demuestra; G0/0 no aparece en la salida. Observad que he configurado los puertos access de SW1 en sus VLANs adecuadas, según la figura 5:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>SW1#
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>show vlan brief
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>VLAN Name                             Status    Ports
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>---- -------------------------------- --------- -------------------------------
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>1    default                          active    Gi2/0, Gi2/1, Gi2/2, Gi2/3
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>10   Engineering                      active    Gi0/1, Gi1/0, Gi1/1
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>20   HR                               active    Gi0/2, Gi1/2
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>30   Sales                            active    Gi0/3, Gi1/3
+</span></code></pre></div>
+<p>Para verificar los puertos trunk, podéis usar el comando <code>show interfaces trunk</code>, como se muestra en el siguiente ejemplo. La salida está dividida en cuatro partes, pero nos centraremos en las tres primeras:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>SW1#
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>show interfaces trunk
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Port        Mode             Encapsulation  Status        Native vlan
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Gi0/0       on               802.1q         trunking      1
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>Port        Vlans allowed on trunk
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Gi0/0       1-4094
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>Port        Vlans allowed and active in management domain
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>Gi0/0       1,10,20,30
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>. . .
+</span></code></pre></div>
+<p>La primera sección (las dos primeras líneas) lista cada puerto trunk y alguna información básica. El valor <code>on</code> en la columna Mode significa que G0/0 está configurado manualmente como trunk (con el comando <code>switchport mode trunk</code>). La columna Encapsulation es evidente; el valor es <code>802.1q</code> porque configuré antes el comando <code>switchport trunk encapsulation dot1q</code>. La columna Status dice <code>trunking</code>; esto es lo esperado porque configuré manualmente G0/0 en modo trunk. La última columna es Native vlan; la VLAN nativa es un tema importante para entender en el CCNA, y lo cubriremos en esta sección.</p>
+<p>La segunda parte de la salida lista las VLANs permitidas en cada puerto trunk (<code>Vlans allowed on trunk</code>). Como indica <code>1-4094</code>, todas las VLANs están permitidas por defecto en un puerto trunk; esto significa que el tráfico de todas las VLANs puede ser reenviado y recibido por el puerto.</p>
+<p>Sin embargo, la siguiente parte lista las VLANs que están permitidas y existen en el switch (<code>Vlans allowed and active in management domain</code>). La VLAN 1 existe por defecto, y yo he creado las VLANs 10, 20 y 30, así que esas cuatro aparecen aquí. Si una VLAN no existe en un switch, no puede reenviar tráfico en esa VLAN; por eso, aunque todas las VLANs estén permitidas en el trunk, SW1 solo puede reenviar tráfico en las VLANs 1, 10, 20 y 30.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El dominio de gestión al que se refiere la línea <code>Vlans allowed and active in management domain</code> es el dominio de VLAN Trunking Protocol (VTP). VTP es uno de los temas del capítulo 13, así que no lo mencionaremos más en este capítulo.</p>
+</div>
+<h3 id="3-modificacion-de-la-lista-de-vlans-permitidas">3. Modificación de la lista de VLANs permitidas</h3>
+<p>Aunque todas las VLANs están permitidas en un puerto trunk por defecto, se considera buena práctica permitir solo las VLANs necesarias. Esto puede ayudar a limitar el tamaño de los dominios de broadcast; si una VLAN no está permitida en un trunk, las tramas broadcast y unknown unicast de esa VLAN no se inundarán por la interfaz. El comando para configurar la lista de VLANs permitidas en el trunk es <code>switchport trunk allowed vlan</code>, y luego hay varias palabras clave y argumentos posibles, como se muestra en el siguiente ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>SW1(config-if)#
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>switchport trunk allowed vlan
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>  WORD    VLAN IDs of the allowed VLANs when this port is
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    in trunking mode
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>  add     add VLANs to the current list
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  all     all VLANs
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>  except  all VLANs except the following
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>  none    no VLANs
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>  remove  remove VLANs from the current list
+</span></code></pre></div>
+<p><code>WORD</code> permite especificar la lista de VLANs permitidas en el trunk como argumento, por ejemplo <code>switchport trunk allowed vlan 10,20,30</code>; esto permitirá solo las VLANs 10, 20 y 30 en el trunk. Este es el estado deseado para la red que vimos en la figura 5, que usa solo las VLANs 10, 20 y 30. Demuestro esta configuración en el siguiente ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>SW1(config-if)#
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>switchport trunk allowed vlan 10,20,30
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>SW1(config-if)# do show interfaces trunk
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>. . .
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Port        Vlans allowed on trunk
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Gi0/0       10,20,30
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>. . .
+</span></code></pre></div>
+<p>Las otras opciones son palabras clave, y para el examen CCNA es importante comprender cómo funciona cada una. <code>add</code> y <code>remove</code> se usan para modificar la lista actual de VLANs permitidas. En el siguiente ejemplo, añado la VLAN 1 y elimino la VLAN 30 de la lista de VLANs permitidas; la lista de VLANs permitidas pasa a ser 1, 10 y 20:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>SW1(config-if)#
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>switchport trunk allowed vlan add 1
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>SW1(config-if)# switchport trunk allowed vlan remove 30
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>SW1(config-if)# do show interfaces trunk
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>. . .
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>Port        Vlans allowed on trunk
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Gi0/0       1,10,20
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>. . .
+</span></code></pre></div>
+<p>Las palabras clave <code>all</code> y <code>none</code> son autoexplicativas; <code>all</code> permite todas las VLANs (configuración predeterminada), y <code>none</code> permite ninguna VLAN, impidiendo que el puerto reenvíe o reciba tráfico. En el siguiente ejemplo demuestro ambas:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>SW1(config-if)#
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>switchport trunk allowed vlan all
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>SW1(config-if)# do show interfaces trunk
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>. . .
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Port        Vlans allowed on trunk
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>Gi0/0       1-4094
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>. . .
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>SW1(config-if)# switchport trunk allowed vlan none
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>SW1(config-if)# do show interfaces trunk
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>. . .
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>Port        Vlans allowed on trunk
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>Gi0/0       none
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>. . .
+</span></code></pre></div>
+<p>La palabra clave final es <code>except</code>, que permite todas las VLANs excepto la(s) que se especifican como argumento. En el siguiente ejemplo, vuelvo a dejar la lista de VLANs permitidas en el estado deseado (permitiendo solo las VLANs 10, 20 y 30) usando la palabra clave <code>except</code> y especificando todas las VLANs excepto 10, 20 y 30 (un poco poco convencional, pero esto es solo una demostración):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>SW1(config-if)#
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>switchport trunk allowed vlan except
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a> 1-9,11-19,21-29,31-4094
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>SW1(config-if)# do show interfaces trunk
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>. . .
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>Port        Vlans allowed on trunk
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>Gi0/0       10,20,30
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>. . .
+</span></code></pre></div>
+<p>¡No olvidéis <code>add</code>!</p>
+<p>Un error típico de principiantes (y el motivo de muchos memes de redes: sí, existe) es olvidar la palabra clave <code>add</code> al modificar la lista de VLANs permitidas en un trunk. Por ejemplo, si queréis añadir la VLAN 40 a la lista de VLANs permitidas, pero usáis el comando <code>switchport trunk allowed vlan 40</code>, no habéis añadido la VLAN 40 a la lista de VLANs permitidas; habéis reemplazado la lista de VLANs permitidas por solo la VLAN 40.</p>
+<p>Es un error simple, pero sus consecuencias pueden ser desastrosas: bloquear todas las comunicaciones por el trunk salvo las de un único host en una sola VLAN. Esto puede ser una “pregunta trampa” en el examen, así que aseguraos de conocer la diferencia entre especificar la lista de VLANs permitidas (<code>switchport trunk allowed vlan vlans</code>) y añadir a la lista de VLANs permitidas (<code>switchport trunk allowed vlan add vlans</code>).</p>
+<h3 id="4-la-vlan-nativa">4. La VLAN nativa</h3>
+<p>Como se mencionó en la sección 2, los puertos access (sin etiquetar) envían y reciben tramas sin etiquetas 802.1Q. Los puertos trunk (etiquetados), por otro lado, envían y reciben tramas con etiquetas 802.1Q para indicar a qué VLAN pertenece cada trama, pero ¿qué ocurre si un switch recibe una trama sin etiqueta en un puerto trunk? La respuesta es la VLAN nativa.</p>
+<p>La VLAN nativa es la VLAN a la que se asigna el tráfico sin etiquetar recibido en un puerto trunk. Además, cualquier tráfico de la VLAN nativa reenviado por un puerto trunk se reenvía sin etiqueta. Por defecto, la VLAN nativa es la VLAN 1, como se muestra en la salida de <code>show interfaces trunk</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>SW1#
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>show interfaces trunk
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Port        Mode             Encapsulation  Status        Native vlan
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Gi0/0       on               802.1q         trunking      1
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>. . .
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La VLAN predeterminada y la VLAN nativa suelen confundirse. La VLAN predeterminada es la VLAN a la que se asignan los puertos access por defecto: VLAN 1 (esto no se puede cambiar). La VLAN nativa es la VLAN a la que se asignan las tramas sin etiquetar cuando se reciben en un puerto trunk, y las tramas de la VLAN nativa se reenvían sin etiquetar por ese puerto. La VLAN nativa también es la VLAN 1 por defecto, pero esto puede cambiarse por puerto.</p>
+</div>
+<p>Para configurar la VLAN nativa de un puerto trunk, usad el comando <code>switchport trunk native vlan vlan-id</code>. En el ejemplo siguiente, configuro la VLAN 30 como VLAN nativa en la interfaz G0/0 de SW1 y luego la confirmo con <code>show interfaces trunk</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>SW1(config-if)#
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>switchport trunk native vlan 30
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>SW1(config-if)# show interfaces trunk
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>Port        Mode             Encapsulation  Status        Native vlan
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>Gi0/0       on               802.1q         trunking      30
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>. . .
+</span></code></pre></div>
+<p>La figura 7 muestra cómo se reenvía el tráfico de la VLAN nativa por un enlace trunk. La trama de PC1 a PC10 (ambos en la VLAN 10) se etiqueta cuando SW1 la reenvía a SW2. La trama de PC4 a PC5 (ambos en la VLAN 30), sin embargo, no se etiqueta al reenviarse de SW1 a SW2; la VLAN 30 es la VLAN nativa en el puerto G0/0 de SW1. Del mismo modo, la VLAN 30 es la VLAN nativa en el puerto G0/0 de SW2, así que cuando la trama llega a SW2, SW2 la asigna a la VLAN 30 y la reenvía al destino (que también está en la VLAN 30).</p>
+<figure id="__figura_7">
+<p><img alt="" justify="justify" src="../img/VLANs_7.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 7. </span> Tramas reenviadas por un enlace trunk en la VLAN nativa y en una VLAN no nativa. (1) La trama de PC1 a PC10 se etiqueta por el enlace trunk porque la VLAN 10 no es la VLAN nativa. (2) La trama de PC4 a PC5 no se etiqueta por el enlace trunk porque la VLAN 30 sí es la VLAN nativa.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La VLAN nativa se configura por puerto. Si un switch tiene varios puertos trunk, es posible configurar una VLAN nativa distinta en cada uno.</p>
+</div>
+<h3 id="5-desajuste-de-vlan-nativa">5. Desajuste de VLAN nativa</h3>
+<p>Como la VLAN nativa se configura en los puertos de cada switch, es posible configurar una VLAN nativa diferente en cada extremo del enlace. Sin embargo, esto es una mala configuración y no debe hacerse. ¡Aseguraos de que la VLAN nativa coincida en ambos extremos del enlace! La figura 8 muestra un ejemplo de lo que puede ocurrir cuando hay un desajuste de VLAN nativa.</p>
+<figure id="__figura_8">
+<p><img alt="" justify="justify" src="../img/VLANs_8.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 8. </span> Un desajuste de VLAN nativa provoca que las tramas no lleguen a su destino. La VLAN nativa de G0/0 en SW1 es la VLAN 10, y la de G0/0 en SW2 es la VLAN 30. (1) La trama de PC1 a PC10 llega sin etiqueta por el enlace trunk porque la VLAN 10 es la VLAN nativa de G0/0 en SW1. (2) Cuando SW2 recibe la trama, la asigna a la VLAN 30 (la VLAN nativa de G0/0 en SW2) y, por tanto, no puede reenviarla a su destino (en la VLAN 10).</p>
+</figcaption>
+</figure>
+<p>La VLAN nativa de G0/0 en SW1 es 10, pero la VLAN nativa de G0/0 en SW2 es 30. Cuando PC1 envía una trama a PC10, SW1 reenvía la trama sin etiqueta a SW2. Sin embargo, cuando SW2 recibe la trama sin etiqueta, la asigna a la VLAN 30 (la VLAN nativa de G0/0 en SW2). Como el destino está conectado a G0/1 de SW2 (un puerto access en la VLAN 10), SW2 no puede reenviar la trama a su destino correcto. Cuando el tráfico cruza de una VLAN a otra de esta forma, se denomina VLAN hopping.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los switches Cisco suelen ejecutar Per-VLAN Spanning Tree Plus (PVST+) o Rapid Per-VLAN Spanning Tree Plus (Rapid-PVST+). Si hay un desajuste de VLAN nativa, estos protocolos impiden que el tráfico se reenvíe por el trunk en las VLANs desalineadas y muestran un mensaje indicando este hecho. Cubriremos PVST+ y Rapid-PVST+ en los capítulos 14 y 15, respectivamente. Cisco Discovery Protocol (CDP) también puede detectar desajustes de VLAN nativa, pero no bloqueará el tráfico en las VLANs desalineadas; solo mostrará mensajes que indiquen el problema. Cubriremos CDP en el capítulo 1 del volumen 2.</p>
+</div>
+<h3 id="6-desactivacion-de-la-vlan-nativa">6. Desactivación de la VLAN nativa</h3>
+<p>La VLAN nativa se desarrolló para acomodar dispositivos que no soportan etiquetado 802.1Q, como los hubs. Sin embargo, hoy en día normalmente no hace falta usar la VLAN nativa, y su uso puede dejar la red vulnerable a exploits de seguridad. Por tanto, es buena práctica desactivar la VLAN nativa en los puertos trunk.</p>
+<p>Sin embargo, la función de VLAN nativa no puede desactivarse realmente; en su lugar, se debe configurar una VLAN no usada (que no sea la predeterminada VLAN 1) como VLAN nativa, lo que equivale a desactivarla. La red que he usado para las demostraciones de este capítulo usa las VLANs 10, 20 y 30, así que podría configurar <code>switchport trunk native vlan 999</code> en los puertos G0/0 de SW1 y SW2 para establecer la VLAN 999, una VLAN sin usar, como VLAN nativa.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recordad que, como medida de seguridad recomendada, configurad una VLAN no usada (que no sea la predeterminada VLAN 1) como VLAN nativa en vuestros puertos trunk.</p>
+</div>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>

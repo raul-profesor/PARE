@@ -9,11 +9,16 @@ nav = [
     {Introduccion = [
         "UD1dispositivos_de_red.md",
         "UD2fisica.md",
-        "UD3modeloTCPIP.md"
+        "UD3modeloTCPIP.md",
+        "UD4CiscoCLI.md",
+        "UD5Switching.md"
     ]},
     {Switch = [
+        "VLANS.md",
+        "spanning_tree.md",
         "SecSwitches.md",
         "dtp.md",
+        "direccionamientoIP.md",
         "cheatsheet_routers.md"
     ]},
     {Enrutamiento = [
@@ -23,7 +28,8 @@ nav = [
         "ospf.md",
         "intervlan.md",
         "acl_estandar.md",
-        "acl_extendida.md"
+        "acl_extendida.md",
+        "nat.md"
     ]}
 ]
 

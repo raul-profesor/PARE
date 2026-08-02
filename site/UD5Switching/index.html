@@ -1,0 +1,2093 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/UD5Switching/">
+      
+      
+        <link rel="prev" href="../UD4CiscoCLI/">
+      
+      
+        <link rel="next" href="../VLANS/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>Conmutación Ethernet - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M384%20512H96c-53%200-96-43-96-96V96C0%2043%2043%200%2096%200h304c26.5%200%2048%2021.5%2048%2048v288c0%2020.9-13.4%2038.7-32%2045.3V448c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032zM96%20384c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032h256v-64zm32-232c0%2013.3%2010.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24H152c-13.3%200-24%2010.7-24%2024m24%2072c-13.3%200-24%2010.7-24%2024s10.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24z%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M352%200c0-17.7-14.3-32-32-32s-32%2014.3-32%2032v64h-96c-53%200-96%2043-96%2096v224c0%2053%2043%2096%2096%2096h256c53%200%2096-43%2096-96V160c0-53-43-96-96-96h-96zM160%20368c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24M224%20176a48%2048%200%201%201%200%2096%2048%2048%200%201%201%200-96m144%2048a48%2048%200%201%201%2096%200%2048%2048%200%201%201-96%200m-304%200c0-17.7-14.3-32-32-32S0%20206.3%200%20224v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32zm544-32c-17.7%200-32%2014.3-32%2032v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32v-96c0-17.7-14.3-32-32-32%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M416%20427.4c58.5-44%2096-111.6%2096-187.4C512%20107.5%20397.4%200%20256%200S0%20107.5%200%20240c0%2075.8%2037.5%20143.4%2096%20187.4V464c0%2026.5%2021.5%2048%2048%2048h32v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h64v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h32c26.5%200%2048-21.5%2048-48zM96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v151.5L7.5%20426.3C2.6%20435%200%20444.7%200%20454.7%200%20486.4%2025.6%20512%2057.3%20512h333.4c31.6%200%2057.3-25.6%2057.3-57.3%200-10-2.6-19.8-7.5-28.4L320%20215.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20215.5V64h64v151.5c0%2011.1%202.9%2022.1%208.4%2031.8L306%20320H142l41.6-72.7c5.5-9.7%208.4-20.6%208.4-31.8%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20576%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M480-16c6.9%200%2013%204.4%2015.2%2010.9l13.5%2040.4%2040.4%2013.5C555.6%2051%20560%2057.1%20560%2064s-4.4%2013-10.9%2015.2l-40.4%2013.5-13.5%2040.4c-2.2%206.5-8.3%2010.9-15.2%2010.9s-13-4.4-15.2-10.9l-13.5-40.4-40.4-13.5C404.4%2077%20400%2070.9%20400%2064s4.4-13%2010.9-15.2l40.4-13.5%2013.5-40.4C467-11.6%20473.1-16%20480-16M321.4%2097.4c12.5-12.5%2032.8-12.5%2045.3%200l80%2080c12.5%2012.5%2012.5%2032.8%200%2045.3l-10.9%2010.9c7.9%2022%2012.2%2045.7%2012.2%2070.5%200%20114.9-93.1%20208-208%20208S32%20418.9%2032%20304%20125.1%2096%20240%2096c24.7%200%2048.5%204.3%2070.5%2012.3zM144%20304c0-53%2043-96%2096-96%2013.3%200%2024-10.7%2024-24s-10.7-24-24-24c-79.5%200-144%2064.5-144%20144%200%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-32-352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200m-8%2064h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M64%20480c-35.3%200-64-28.7-64-64V96c0-35.3%2028.7-64%2064-64h320c35.3%200%2064%2028.7%2064%2064v213.5c0%2017-6.7%2033.3-18.7%2045.3L322.7%20461.3c-12%2012-28.3%2018.7-45.3%2018.7zm325.5-176H296c-13.3%200-24%2010.7-24%2024v93.5z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m0-336c-17.7%200-32%2014.3-32%2032%200%2013.3-10.7%2024-24%2024s-24-10.7-24-24c0-44.2%2035.8-80%2080-80s80%2035.8%2080%2080c0%2047.2-36%2067.2-56%2074.5v3.8c0%2013.3-10.7%2024-24%2024s-24-10.7-24-24v-8.1c0-20.5%2014.8-35.2%2030.1-40.2%206.4-2.1%2013.2-5.5%2018.2-10.3%204.3-4.2%207.7-10%207.7-19.6%200-17.7-14.3-32-32-32zm-32%20192a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64zm256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M434.8%2070.1c14.3%2010.4%2017.5%2030.4%207.1%2044.7l-256%20352c-5.5%207.6-14%2012.3-23.4%2013.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200l101.5%20101.5%20234-321.7c10.4-14.3%2030.4-17.5%2044.7-7.1z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M461.2%2018.9C472.7%2024%20480%2035.4%20480%2048v416c0%2012.6-7.3%2024-18.8%2029.1s-24.8%203.2-34.3-5.1l-46.6-40.7c-43.6-38.1-98.7-60.3-156.4-63V480c0%2017.7-14.3%2032-32%2032h-32c-17.7%200-32-14.3-32-32v-96C57.3%20384%200%20326.7%200%20256s57.3-128%20128-128h84.5c61.8-.2%20121.4-22.7%20167.9-63.3L427%2024c9.4-8.3%2022.9-10.2%2034.3-5.1zM224%20320v.2c70.3%202.7%20137.8%2028.5%20192%2073.4V118.3c-54.2%2044.9-121.7%2070.7-192%2073.4z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%200c14.7%200%2028.2%208.1%2035.2%2021l216%20400c6.7%2012.4%206.4%2027.4-.8%2039.5S486.1%20480%20472%20480H40c-14.1%200-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9%2020.5-21%2035.2-21m0%20352a32%2032%200%201%200%200%2064%2032%2032%200%201%200%200-64m0-192c-18.2%200-32.7%2015.5-31.4%2033.7l7.4%20104c.9%2012.5%2011.4%2022.3%2023.9%2022.3%2012.6%200%2023-9.7%2023.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conmutacion-ethernet" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Conmutación Ethernet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../UD1dispositivos_de_red/" class="md-tabs__link">
+          
+  
+  Introduccion
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../VLANS/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../routers_y_rutas_estaticas/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduccion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1dispositivos_de_red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispositivos de red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2fisica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medios de transmisión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3modeloTCPIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo TCP/IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4CiscoCLI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco IOS CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conmutación Ethernet
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conmutación Ethernet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-redes-de-area-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Redes de área local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-la-cabecera-y-el-trailer-de-ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 La cabecera y el trailer de Ethernet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 La cabecera y el trailer de Ethernet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-preamble-y-sfd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.1 Preamble y SFD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-destination-y-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.2 Destination y Source
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2.2 Destination y Source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-sistema-numerico-hexadecimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El sistema numérico hexadecimal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-de-las-direcciones-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Características de las direcciones MAC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523-typelength" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.3 Type/Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-frame-check-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.4 Frame Check Sequence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-conmutacion-de-tramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Conmutación de tramas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 Conmutación de tramas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-aprendizaje-de-direcciones-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1 Aprendizaje de direcciones MAC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3.1 Aprendizaje de direcciones MAC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nombres-de-puertos-en-dispositivos-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nombres de puertos en dispositivos Cisco
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#532-inundacion-y-reenvio-de-tramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.2 Inundación y reenvío de tramas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#533-la-tabla-de-direcciones-mac-en-cisco-ios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.3 La tabla de direcciones MAC en Cisco IOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-protocolo-de-resolucion-de-direcciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Protocolo de resolución de direcciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Ping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VLANS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spanning_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../direccionamientoIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direccionamiento IPv4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_estandar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_extendida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT (traducción de direcciones de red)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-redes-de-area-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Redes de área local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-la-cabecera-y-el-trailer-de-ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 La cabecera y el trailer de Ethernet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 La cabecera y el trailer de Ethernet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-preamble-y-sfd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.1 Preamble y SFD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-destination-y-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.2 Destination y Source
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2.2 Destination y Source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-sistema-numerico-hexadecimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El sistema numérico hexadecimal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-de-las-direcciones-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Características de las direcciones MAC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523-typelength" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.3 Type/Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-frame-check-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.4 Frame Check Sequence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-conmutacion-de-tramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Conmutación de tramas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 Conmutación de tramas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-aprendizaje-de-direcciones-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1 Aprendizaje de direcciones MAC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3.1 Aprendizaje de direcciones MAC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nombres-de-puertos-en-dispositivos-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nombres de puertos en dispositivos Cisco
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#532-inundacion-y-reenvio-de-tramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.2 Inundación y reenvío de tramas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#533-la-tabla-de-direcciones-mac-en-cisco-ios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.3 La tabla de direcciones MAC en Cisco IOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-protocolo-de-resolucion-de-direcciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Protocolo de resolución de direcciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Ping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../UD1dispositivos_de_red/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Introduccion
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="conmutacion-ethernet">Conmutación Ethernet</h1>
+<p>Este capítulo cubre:</p>
+<ul>
+<li>La definición de una LAN.</li>
+<li>El contenido de la cabecera y del trailer de Ethernet.</li>
+<li>Cómo aprenden los switches las direcciones MAC de los dispositivos de la red.</li>
+<li>Cómo reenviarán los switches las tramas a su destino adecuado.</li>
+<li>Cómo usan los hosts de red ARP para conocer la dirección MAC de otros hosts.</li>
+<li>La utilidad ping.</li>
+</ul>
+<p>En este capítulo, veremos la conmutación Ethernet en LAN, que es el proceso que usan los switches para reenviar tramas a sus destinos correctos dentro de una LAN. Una trama es un PDU de Capa 2, que incluye la cabecera, el trailer y la carga útil de la Capa 2; ya tratamos los PDU en el capítulo 4. Cuando un host de red envía una trama por uno de sus puertos, es tarea del switch asegurarse de que la trama llegue a su destino correcto.</p>
+<p>Este capítulo cubre material del dominio 1.0 de los temas del examen CCNA: Fundamentos de red. En concreto, veremos los siguientes temas:</p>
+<ul>
+<li>1.13 Describir conceptos de conmutación</li>
+<li>1.13a Aprendizaje y envejecimiento de MAC</li>
+<li>1.13b Conmutación de tramas</li>
+<li>1.13c Inundación de tramas</li>
+<li>1.13d Tabla de direcciones MAC</li>
+</ul>
+<p>A menudo se dice que los switches son dispositivos de Capa 2 o que operan en la Capa 2. La razón es que usan la información de la cabecera de la Capa 2 (la cabecera Ethernet) para tomar decisiones de reenvío. Esto contrasta con los routers, que usan la información de la cabecera de la Capa 3 (la cabecera IP) para tomar decisiones de reenvío. Veremos cómo reenvían los routers el tráfico de red entre LANs en la parte 2 de este libro, pero por ahora, nos centraremos en cómo reenvían los switches el tráfico dentro de una LAN.</p>
+<h2 id="51-redes-de-area-local">5.1 Redes de área local</h2>
+<p>En el capítulo 2, definí una red de área local (LAN) como un grupo de dispositivos interconectados en un área limitada, como una oficina, y afirmé que la función de un switch es conectar dispositivos dentro de una LAN. La definición exacta de una LAN puede variar según el contexto, pero, para este tema, la forma en que están conectados los dispositivos es más importante que la distancia física real entre ellos. La Figura 1 demuestra este concepto.</p>
+<figure id="__figura_1">
+<p><img alt="" justify="justify" src="../img/UD5_1.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> Dos oficinas con dos switches en cada una. En la Oficina A, cada switch es una LAN separada porque los switches están conectados a través de un router. En la Oficina B, ambos switches están en la misma LAN porque están conectados directamente entre sí.</p>
+</figcaption>
+</figure>
+<p>Hay dos oficinas en el diagrama, así que podríais decir que hay dos LANs, lo cual no sería incorrecto si definimos una LAN solo por la ubicación física. Sin embargo, en la Oficina A, los dos switches no están conectados directamente entre sí; cada uno está conectado a un puerto distinto de R1, y la función de un router es proporcionar conectividad entre LANs. Por tanto, cada switch de la Oficina A puede considerarse su propia LAN. Para que los hosts finales conectados a SW1 puedan comunicarse con los hosts finales conectados a SW2, sus mensajes deben pasar por R1 porque separa las dos LANs.</p>
+<p>En la Oficina B, sin embargo, SW3 y SW4 están conectados directamente entre sí. Los hosts finales conectados a un switch pueden comunicarse con los hosts finales conectados al otro switch sin que los mensajes tengan que pasar por un router. SW3, SW4 y todos los hosts finales conectados a ellos forman una sola LAN.</p>
+<p>Otro nombre para una LAN es dominio de Capa 2: una parte de una red donde se conmuta tráfico de tramas y los hosts conectados al switch o switches pueden comunicarse entre sí sin usar un router. Manteneos esta definición en mente durante todo este capítulo; examinaremos cómo reenvían los switches las tramas dentro de un dominio de Capa 2.</p>
+<h2 id="52-la-cabecera-y-el-trailer-de-ethernet">5.2 La cabecera y el trailer de Ethernet</h2>
+<p>Los switches toman decisiones de reenvío usando la información de la cabecera Ethernet, así que para entender la conmutación, es importante comprender el contenido de esa cabecera (y del trailer). La Figura 2 muestra la estructura de una trama Ethernet. Fijaos que el Preamble y el Start Frame Delimiter (SFD) aparecen en el diagrama, pero no se consideran parte de una trama Ethernet. Lo veremos enseguida.</p>
+<figure id="__figura_2">
+<p><img alt="" justify="justify" src="../img/UD5_2.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> El contenido de la cabecera y del trailer de Ethernet. Se dividen en varios campos, cada uno con una función distinta. Los campos de la cabecera son Destination, Source y Type/Length. El trailer consta de un único campo: Frame Check Sequence (FCS). Aunque no se consideran parte de la trama Ethernet, el Preamble y el SFD se envían con cada trama.</p>
+</figcaption>
+</figure>
+<h3 id="521-preamble-y-sfd">5.2.1 Preamble y SFD</h3>
+<p>El Preamble y el SFD se envían con cada trama Ethernet para permitir que el dispositivo receptor sincronice su reloj y se prepare para recibir la trama entrante. Este reloj no tiene nada que ver con la fecha y la hora, sino con cómo interpreta el dispositivo receptor las señales eléctricas entrantes: necesita determinar la longitud exacta de 1 bit.</p>
+<p>El dispositivo que envía una trama Ethernet facilita esto enviando el Preamble y el SFD. El Preamble tiene 7 bytes (56 bits; recordad que 1 byte son 8 bits) y es simplemente una serie de 1s y 0s alternados, como este: 10101010. Luego, el SFD tiene 1 byte y señala que el Preamble ha terminado y que la trama va a comenzar. El patrón de bits del SFD es 10101011.</p>
+<p>La razón por la que el Preamble y el SFD no se consideran parte de la trama Ethernet, aunque se envían con cada trama, es que son una función exclusiva de la Capa 1, la Capa física. No contienen información que influya en la decisión que toma el dispositivo receptor sobre la trama. Como se mencionó en capítulos anteriores, Ethernet incluye especificaciones tanto en la Capa 1 como en la Capa 2, pero los aspectos de la Capa 1 de Ethernet no se consideran parte de una trama, que es un concepto de Capa 2.</p>
+<h3 id="522-destination-y-source">5.2.2 Destination y Source</h3>
+<p>Los campos Destination y Source son probablemente los más importantes de la cabecera y el trailer Ethernet; el campo Destination es la dirección MAC de destino de la trama, y el campo Source es la dirección MAC de origen de la trama.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Una dirección de control de acceso al medio (MAC) es un tipo de dirección utilizada por protocolos de Capa 2 como Ethernet y Wi‑Fi. Las direcciones MAC tienen 6 bytes (48 bits) y suelen escribirse como una serie de 12 caracteres hexadecimales. Las asigna el fabricante del dispositivo y deben ser globalmente únicas.</p>
+</div>
+<p>La Capa 2 proporciona entrega de salto a salto de mensajes, y las direcciones MAC lo permiten. En la Capa 3, el mensaje se direcciona a la dirección IP del host final de destino, pero en la Capa 2 se direcciona a la dirección MAC del siguiente salto. Dentro de una LAN, la tarea del switch es mirar la dirección MAC de destino de la trama y reenviarla al destino adecuado. El campo de dirección MAC de origen también es importante porque ayuda al switch a aprender qué puerto está conectado a cada host (más sobre esto enseguida).</p>
+<p>Como indica la Figura 2, cada uno de estos campos tiene 6 bytes (48 bits), porque 6 bytes es la longitud de una dirección MAC. Sin embargo, cuando representamos direcciones MAC, normalmente no las escribimos en binario; una cadena larga de 1s y 0s no es muy legible ni fácil de recordar. En su lugar, escribimos las direcciones MAC en hexadecimal.</p>
+<h4 id="el-sistema-numerico-hexadecimal">El sistema numérico hexadecimal</h4>
+<p>El sistema numérico que normalmente usamos en nuestra vida diaria es el sistema decimal, que usa 10 dígitos para representar todos los valores: 0, 1, 2, 3, 4, 5, 6, 7, 8 y 9. El hexadecimal es un sistema numérico que usa 16 dígitos; usa los mismos 10 dígitos del sistema decimal y toma 6 letras del alfabeto: A, B, C, D, E y F.</p>
+<p>Como hay más dígitos disponibles, el hexadecimal puede expresar valores grandes con menos caracteres. En decimal, para expresar el valor que sigue al 9, tenemos que añadir otro carácter: se convierte en 10, un 1 y un 0. El hexadecimal puede expresar ese mismo valor con un solo carácter: A. La eficiencia del hexadecimal frente al decimal es más significativa a medida que los valores aumentan. La Tabla 1 enumera algunos números decimales y sus equivalentes hexadecimales.</p>
+<table>
+<thead>
+<tr>
+<th>Decimal</th>
+<th>Hexadecimal</th>
+<th>Decimal</th>
+<th>Hexadecimal</th>
+<th>Decimal</th>
+<th>Hexadecimal</th>
+<th>Decimal</th>
+<th>Hexadecimal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>8</td>
+<td>16</td>
+<td>10</td>
+<td>24</td>
+<td>18</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>9</td>
+<td>9</td>
+<td>17</td>
+<td>11</td>
+<td>25</td>
+<td>19</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+<td>A</td>
+<td>18</td>
+<td>12</td>
+<td>26</td>
+<td>1A</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>11</td>
+<td>B</td>
+<td>19</td>
+<td>13</td>
+<td>27</td>
+<td>1B</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>12</td>
+<td>C</td>
+<td>20</td>
+<td>14</td>
+<td>28</td>
+<td>1C</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>13</td>
+<td>D</td>
+<td>21</td>
+<td>15</td>
+<td>29</td>
+<td>1D</td>
+</tr>
+<tr>
+<td>6</td>
+<td>6</td>
+<td>14</td>
+<td>E</td>
+<td>22</td>
+<td>16</td>
+<td>30</td>
+<td>1E</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>15</td>
+<td>F</td>
+<td>23</td>
+<td>17</td>
+<td>31</td>
+<td>1F</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Podéis usar un prefijo para indicar si un número es decimal o hexadecimal: 0d para decimal y 0x para hexadecimal. Esto puede ser útil en redes porque usamos varios sistemas: binario, decimal y hexadecimal. Diez en decimal es 10, pero 10 en hexadecimal equivale a 16 en decimal. Para diferenciarlos claramente, podéis escribir 0d10 o 0x10.</p>
+</div>
+<p>En la parte 5 de este libro (IPv6), practicaremos la conversión entre decimal, hexadecimal y binario. Por ahora, no es necesario; basta con entender que las direcciones MAC suelen escribirse en hexadecimal.</p>
+<h4 id="caracteristicas-de-las-direcciones-mac">Características de las direcciones MAC</h4>
+<p>Ya hemos visto dos características de las direcciones MAC: tienen 6 bytes de longitud y normalmente se escriben en hexadecimal. Al escribirlas en hexadecimal, podemos expresar la dirección con menos caracteres; las direcciones MAC se escriben como 12 caracteres hexadecimales en lugar de 48 bits (1s y 0s). Los detalles sobre la notación de esos 12 caracteres pueden variar. A continuación, tenéis una sola dirección MAC escrita con tres convenciones de notación distintas. Por supuesto, como es un libro del CCNA, seguiré la convención de Cisco para escribir direcciones MAC, pero merece la pena saber que se pueden escribir de otras formas. Para compararlas, también he incluido la dirección escrita en binario; estoy seguro de que estaréis de acuerdo en que las representaciones hexadecimales son más fáciles de leer:</p>
+<ul>
+<li>0cf5.a452.b101 (usado por Cisco IOS)</li>
+<li>0C-F5-A4-52-B1-01 (usado por Windows)</li>
+<li>0c:f5:a4:52:b1:01 (usado por macOS)</li>
+<li>000011001111010110100100010100101011000100000001 (binario)</li>
+</ul>
+<p>A diferencia de las direcciones IP (que trataremos en el capítulo 7), las direcciones MAC no las asigna el administrador o ingeniero de red que configura el dispositivo. En su lugar, cada puerto de un dispositivo de red tiene una dirección MAC asignada por el fabricante. Por esta razón, otro nombre para una dirección MAC es burned-in address (BIA): está "grabada" en el puerto físico. Una dirección MAC es globalmente única: no debería compartirse con ningún otro puerto de ningún otro dispositivo del mundo.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Es posible sobrescribir una dirección MAC asignada por el fabricante configurándola manualmente, pero es extremadamente raro hacerlo.</p>
+</div>
+<p>Para que las direcciones MAC sigan siendo globalmente únicas, la primera mitad de cada dirección MAC (los primeros 3 bytes) es un identificador único de la organización (OUI) asignado al fabricante por la IEEE. Luego, el fabricante puede usar la segunda mitad para asignar direcciones MAC únicas a cada dispositivo que fabrica. Por ejemplo, las direcciones MAC de los primeros tres puertos del switch Cisco de mi red doméstica son:</p>
+<ul>
+<li>0cf5.a452.b101</li>
+<li>0cf5.a452.b102</li>
+<li>0cf5.a452.b103</li>
+</ul>
+<p>0cf5.a4 es el OUI de Cisco (de hecho, Cisco tiene varios OUI), y la segunda mitad es un identificador único para cada puerto del switch. Como probablemente habréis observado, esas tres direcciones MAC son bastante parecidas: solo difiere el último dígito. Esto se debe a que las direcciones MAC en el mismo dispositivo suelen asignarse de forma secuencial.</p>
+<p>Resumamos las direcciones MAC antes de seguir adelante:</p>
+<ul>
+<li>Las direcciones MAC son direcciones de 6 bytes (48 bits) asignadas a los puertos por el fabricante del dispositivo. Otro nombre para una dirección MAC es burned-in address (BIA).</li>
+<li>Las direcciones MAC son globalmente únicas.</li>
+<li>Los primeros 3 bytes son un identificador único de la organización (OUI), asignado al fabricante por la IEEE.</li>
+<li>Los últimos 3 bytes son exclusivos del propio puerto.</li>
+<li>Las direcciones MAC se escriben como 12 caracteres hexadecimales.</li>
+</ul>
+<h3 id="523-typelength">5.2.3 Type/Length</h3>
+<p>El campo Type/Length es un campo de 2 bytes que puede usarse bien para indicar el tipo del paquete encapsulado (por ejemplo, un paquete IPv4 o IPv6) o para indicar la longitud del paquete encapsulado (en bytes). Hay razones históricas por las que este campo puede usarse para dos propósitos, pero ambos usos forman parte oficialmente del estándar Ethernet. En la actualidad, en casi todos los casos, este campo se usa para indicar el tipo del paquete encapsulado: en lugar de indicar la longitud, el final de la trama se indica mediante una señal especial después de la trama.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El estándar original IEEE 802.3 usaba el campo Type/Length exclusivamente para indicar la longitud del paquete encapsulado, y se usaba una cabecera adicional para indicar el tipo de protocolo encapsulado: la cabecera Logical Link Control (LLC), a veces con una extensión adicional de Subnetwork Access Protocol (SNAP). Sin embargo, esto queda fuera del alcance del examen CCNA.</p>
+</div>
+<p>Un valor de 1500 (decimal) o menos en este campo significa que indica la longitud del paquete encapsulado en bytes. Por ejemplo, si el valor es 1500, significa que el paquete encapsulado tiene 1500 bytes de longitud.</p>
+<p>Un valor de 1536 o superior en este campo indica el tipo del paquete encapsulado, que normalmente es IPv4 o IPv6. Cuando se usa para indicar el tipo del paquete encapsulado, este campo se llama EtherType. Para referencia, aquí tenéis los valores de este campo para IPv4 e IPv6, que son temas importantes en el examen CCNA (normalmente se usa la notación hexadecimal; incluyo los números decimales para compararlos):</p>
+<ul>
+<li>IPv4: 0x0800 (0d2048)</li>
+<li>IPv6: 0x86DD (0d34525)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los valores entre 1500 y 1536 no deben usarse en este campo.</p>
+</div>
+<h3 id="524-frame-check-sequence">5.2.4 Frame Check Sequence</h3>
+<p>La Frame Check Sequence (FCS) es el único campo del trailer Ethernet. Tiene 4 bytes de longitud y se usa para detectar datos corruptos en la trama. Antes de que un dispositivo envíe una trama, usa un algoritmo para calcular una suma de comprobación, un bloque pequeño de datos que se añade al final de la trama como campo FCS.</p>
+<p>Luego, cuando el host de destino de la trama recibe la trama, calcula su propia suma de comprobación para la trama (con el mismo algoritmo) y la compara con la calculada por el emisor. Si las dos sumas coinciden, el receptor puede asumir con seguridad que los datos no se han corrompido en tránsito. Sin embargo, si las sumas calculadas por el emisor y el receptor son distintas, el receptor descartará la trama: los datos se han corrompido en tránsito (quizá por interferencias electromagnéticas).</p>
+<p>FCS es el nombre del campo, pero el nombre de este tipo de suma de comprobación es cyclic redundancy check (CRC). El término cyclic se refiere al tipo de algoritmo usado para calcular la suma de comprobación. Redundancy significa que el campo es redundante: amplía el tamaño del mensaje pero no añade información adicional. Check es autoexplicativo: se usa para comprobar si la trama viajó del origen al destino sin que los datos se corrompieran.</p>
+<h2 id="53-conmutacion-de-tramas">5.3 Conmutación de tramas</h2>
+<p>Ahora que ya hemos visto la información de la cabecera y el trailer Ethernet, veamos cómo usan los switches los campos Source y Destination para construir una tabla de direcciones MAC y reenviar tramas al destino o destinos adecuados dentro de una LAN.</p>
+<h3 id="531-aprendizaje-de-direcciones-mac">5.3.1 Aprendizaje de direcciones MAC</h3>
+<p>Cuando un switch tiene que tomar una decisión sobre cómo reenviar una trama, busca la dirección MAC de destino de la trama en su tabla de direcciones MAC, que es una lista de las direcciones MAC de la LAN y del puerto al que está conectada cada una. Examinaremos el proceso de reenvío de tramas más adelante, pero primero, ¿cómo construye un switch su tabla de direcciones MAC?</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Otro nombre para la tabla de direcciones MAC es tabla CAM, en referencia al tipo de memoria en la que se almacena la tabla (content addressable memory).</p>
+</div>
+<p>Este es el papel del campo Source de la cabecera Ethernet. Cuando un switch recibe una trama en uno de sus puertos, examina el campo Source y crea una entrada para esa dirección MAC en su tabla de direcciones MAC, asociando esa dirección MAC con el puerto por el que se recibió la trama. Esa entrada dice: "Para llegar a esta dirección MAC, reenvía la trama por este puerto." Esto tiene sentido: si un switch recibe una trama desde la dirección MAC X en el puerto Y, sabe que puede llegar al host con la dirección MAC X por el puerto Y. Este proceso se llama aprendizaje de direcciones MAC. La Figura 3 muestra una red simple con dos switches, cada uno con dos PCs conectados. Al examinar el campo Source de las tramas que llegan a sus puertos, cada switch ha construido una tabla de direcciones MAC que indica qué puerto está conectado a cada dirección MAC (directamente o a través de otro switch).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las direcciones MAC aprendidas por un switch de esta manera se conocen como direcciones MAC dinámicas: se aprenden automáticamente (dinámicamente). Esto contrasta con las direcciones MAC estáticas, que se configuran manualmente (estáticamente), aunque eso es bastante raro. Un switch eliminará una dirección MAC dinámica de su tabla de direcciones MAC después de 5 minutos de inactividad (si no recibe una trama desde esa dirección MAC durante 5 minutos); esto se llama envejecimiento de MAC.</p>
+</div>
+<figure id="__figura_3">
+<p><img alt="" justify="justify" src="../img/UD5_3.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> Una red con dos switches, cada uno con dos PCs conectados. SW1 y SW2 han aprendido la dirección MAC de cada PC al examinar el campo Source de las tramas recibidas en sus puertos mientras los PCs se comunican entre sí. SW1 sabe que puede llegar a PC1 a través de su puerto G0/1, a PC2 a través de G0/2 y a PC3/PC4 a través de G0/0. SW2 sabe que puede llegar a PC1/PC2 a través de G0/0, a PC3 a través de G0/1 y a PC4 a través de G0/2.</p>
+</figcaption>
+</figure>
+<p>La Figura 3 muestra el estado de la red después de que los switches han aprendido las direcciones MAC de los dispositivos de la LAN. Sin embargo, aún faltan algunos elementos del puzzle, como cómo reenvían los switches el tráfico antes de haber construido sus tablas de direcciones MAC y cómo aprenden los PCs las direcciones MAC entre sí.</p>
+<h4 id="nombres-de-puertos-en-dispositivos-cisco">Nombres de puertos en dispositivos Cisco</h4>
+<p>Los puertos de los dispositivos Cisco tienen un nombre que indica su velocidad máxima soportada (Ethernet = 10 Mbps, FastEthernet = 100 Mbps, GigabitEthernet = 1 Gbps, TenGigabitEthernet = 10 Gbps), seguido de uno a tres números. El número de números que se usan depende del modelo del dispositivo.</p>
+<p>En este libro, usaré un sistema de dos números (X/Y), donde el primer número es la ranura del dispositivo y el segundo es el número de puerto dentro de esa ranura. Una ranura es un grupo de puertos de un dispositivo de red. En muchos casos, los puertos de una ranura son modulares, es decir, puedes insertar módulos con distintos tipos de puertos según tus necesidades. Además, acortaré los nombres para usar solo la primera letra: E = Ethernet, F = FastEthernet, G = GigabitEthernet, T = TenGigabitEthernet.</p>
+<p>Además, los números de puerto en los switches físicos de Cisco comienzan en 1 (G0/1, G0/2, G0/3, etc.). Sin embargo, en la mayoría de ejemplos de este libro usaré dispositivos virtuales ejecutados en el software de emulación de Cisco CML (Cisco Modeling Labs), en el que los números de puerto comienzan en 0 (G0/0, G0/1, G0/2, etc.).</p>
+<h3 id="532-inundacion-y-reenvio-de-tramas">5.3.2 Inundación y reenvío de tramas</h3>
+<p>Una vez que los switches han aprendido la dirección MAC de cada host de la LAN, como en la Figura 3, el reenvío del tráfico es sencillo: cuando un switch recibe una trama, busca la dirección MAC de destino en su tabla de direcciones MAC y reenvía la trama por el puerto adecuado. Por ejemplo, si PC1 envía una trama a la dirección MAC de PC2, SW1 comprobará su tabla de direcciones MAC y verá que debe reenviar la trama por su puerto G0/2. Esta trama enviada por PC1 es una unicast conocida.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Una trama dirigida a un único host de destino se llama unicast. Si el switch ya tiene una entrada para la dirección MAC de destino de la trama en su tabla de direcciones MAC, se llama unicast conocida.</p>
+</div>
+<p>La acción que realiza un switch al recibir una trama unicast conocida es reenviarla por el puerto adecuado. Ahora, veamos qué ocurre cuando un switch recibe una trama unicast y no tiene una entrada para la dirección MAC de destino en su tabla de direcciones MAC: una unicast desconocida. La Figura 4 muestra lo que ocurre cuando PC1 envía un mensaje a PC3 y ambos switches tienen una tabla de direcciones MAC vacía.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Una unicast desconocida es una trama dirigida a un único host de destino, pero el switch no tiene una entrada para la dirección MAC de destino en su tabla de direcciones MAC.</p>
+</div>
+<figure id="__figura_4">
+<p><img alt="" justify="justify" src="../img/UD5_4.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> PC1 envía una trama unicast a PC3, pero ni SW1 ni SW2 tienen una entrada para la dirección MAC de destino en su tabla de direcciones MAC. (1) PC1 envía la trama y SW1 aprende la dirección MAC de PC1. (2) SW1 inunda la trama. SW2 aprende la dirección MAC de PC1. PC2 descarta la trama. (3) SW2 inunda la trama. PC4 descarta la trama. PC3 la recibe y la procesa.</p>
+</figcaption>
+</figure>
+<p>PC1 envía una trama unicast dirigida a la dirección MAC de PC3. SW1 usa el campo Source de la trama para aprender la dirección MAC de PC1 y luego inunda la trama: envía la trama por todos los puertos excepto el que la recibió (G0/1). SW1 no tiene una entrada para la dirección MAC de PC3 en su tabla de direcciones MAC, así que, inundando la trama, espera que esta pueda llegar a PC3 y entonces aprender la dirección MAC de PC3 cuando PC3 responda.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Inundar una trama consiste en enviarla por todos los puertos excepto el que la recibió. Los switches hacen esto al recibir una unicast desconocida.</p>
+</div>
+<p>Cuando SW1 inunda la trama, ambos PC2 y SW2 la reciben. Como la dirección MAC de destino de la trama no es la de PC2, este descarta la trama. SW2, por otra parte, tratará la trama como hizo SW1; aprenderá la dirección MAC de PC1 y luego inundará la trama por sus puertos G0/1 y G0/2.</p>
+<p>Cuando SW2 inunda la trama, ambos PC3 y PC4 la reciben. Como PC2, PC4 descartará la trama porque la dirección MAC de destino no es la suya. Sin embargo, PC3 ve que la trama está dirigida a su propia dirección MAC, así que PC3 recibirá y procesará el mensaje. La Figura 5 muestra qué ocurre entonces cuando PC3 envía una respuesta a PC1.</p>
+<figure id="__figura_5">
+<p><img alt="" justify="justify" src="../img/UD5_5.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 5. </span> PC3 responde al mensaje de PC1. (1) PC3 envía la trama y SW2 aprende la dirección MAC de PC3. (2) SW2 reenvía la trama por su puerto G0/0, y SW1 aprende la dirección MAC de PC3. (3) SW1 reenvía la trama por su puerto G0/1, y PC1 la recibe y la procesa.</p>
+</figcaption>
+</figure>
+<p>La respuesta de PC3 a PC1 también es una trama unicast, pero esta vez tanto SW1 como SW2 tienen una entrada para el destino de la trama (la dirección MAC de PC1) en sus tablas de direcciones MAC, así que en lugar de inundar la trama, cada switch simplemente la reenvía por el puerto especificado por la entrada de su tabla de direcciones MAC. Primero, PC3 envía la trama y SW2 aprende la dirección MAC de PC3 en su puerto G0/1. Luego SW2 reenvía la trama por su puerto G0/0, y SW1 aprende la dirección MAC de PC3 en su puerto G0/0. Finalmente, SW1 reenvía la trama por su puerto G0/1, y PC1 la recibe y la procesa. Recordad qué acción toma un switch para cada tipo de trama unicast:</p>
+<ul>
+<li>Unicast conocida (reenviar): el switch enviará la trama por el puerto especificado por la entrada de la dirección MAC en la tabla de direcciones MAC.</li>
+<li>Unicast desconocida (inundar): el switch enviará la trama por todos los puertos excepto por el que la recibió.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un switch es transparente para sus hosts conectados; PC1 y PC3 dirigen sus mensajes directamente entre sí, no a SW1 ni a SW2, exactamente igual que si estuvieran conectados directamente por un único cable. Por eso, un mensaje que pasa a través de un switch no se considera un salto, como se dijo en el capítulo 4. Además, los switches no modifican las tramas que conmutan de ninguna manera; simplemente las reenvían o las inundan según corresponda.</p>
+</div>
+<h3 id="533-la-tabla-de-direcciones-mac-en-cisco-ios">5.3.3 La tabla de direcciones MAC en Cisco IOS</h3>
+<p>El comando para ver la tabla de direcciones MAC de un switch Cisco es show mac address-table (en modo EXEC de usuario o EXEC privilegiado). Como muestra el ejemplo siguiente, hay algunas columnas más además de la dirección MAC y el puerto. La columna Type indica si la dirección MAC se aprendió dinámicamente (DYNAMIC) o se configuró estáticamente (STATIC). La columna Vlan indica en qué VLAN virtual se aprendió cada dirección MAC. Veremos VLANs en el capítulo 12. Por ahora, solo tened en cuenta que todas las direcciones MAC están en la VLAN 1 por defecto:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SW1# show mac address-table                      
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>          Mac Address Table
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>-------------------------------------------
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Vlan    Mac Address       Type        Ports
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>----    -----------       --------    -----
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   1    5254.0017.7cd2    DYNAMIC     Gi0/0      
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   1    d8bb.c1cc.ff01    DYNAMIC     Gi0/1      
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   1    d8bb.c1cc.ff02    DYNAMIC     Gi0/2      
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   1    d8bb.c1cc.ff03    DYNAMIC     Gi0/0      
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   1    d8bb.c1cc.ff04    DYNAMIC     Gi0/0      
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>#1 Ver la tabla de direcciones MAC de SW1
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>#2 Lista de direcciones MAC y del puerto en el que cada una se aprendió
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Cisco abrevia los puertos GigabitEthernet como “GiX/X”, no como “GX/X”.</p>
+</div>
+<p>Por encima de las direcciones MAC de PC1, PC2, PC3 y PC4 del ejemplo anterior, hay una dirección MAC adicional en la tabla de direcciones MAC de SW1 (5254.0017.7cd2). Es la dirección MAC del puerto G0/0 de SW2. Aunque las direcciones MAC de los puertos de un switch no desempeñan un papel cuando reenvía tráfico entre hosts, los switches intercambian mensajes entre sí y aprenden las direcciones MAC de cada uno en el proceso. Veremos algunos de estos mensajes intercambiados entre switches en este libro.</p>
+<p>Aunque normalmente podéis dejar que un switch aprenda solo las direcciones MAC y que las borre según sea necesario (tras 5 minutos de inactividad), también podéis borrar manualmente las direcciones MAC dinámicas de la tabla de un switch con el comando clear mac address-table dynamic. El ejemplo siguiente lo muestra; borro la tabla de direcciones MAC de SW1 y luego la vuelvo a ver, pero está vacía:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SW1# clear mac address-table dynamic           
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>SW1# show mac address-table
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>          Mac Address Table
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>-------------------------------------------
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Vlan    Mac Address       Type        Ports    
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>----    -----------       --------    -----    
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>#1 Borra las direcciones MAC dinámicas aprendidas por SW1
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>#2 La tabla de direcciones MAC de SW1 está vacía.
+</span></code></pre></div>
+<p>También podéis especificar una dirección concreta para eliminarla de la tabla de direcciones MAC o indicar al switch que elimine todas las direcciones MAC aprendidas en un puerto concreto. Para borrar una dirección MAC dinámica concreta de la tabla, podéis usar el comando clear mac address-table dynamic address mac-address. Para borrar todas las direcciones MAC dinámicas aprendidas en una interfaz concreta, usad clear mac address-table dynamic interface interface-name.</p>
+<p>Sin embargo, como se dijo antes, normalmente no tendréis que interferir manualmente en los procesos de aprendizaje y envejecimiento de MAC de un switch. Fijaos que este comando usa el término interface en lugar de port. Como veréis cuando cubramos más configuraciones, esto es cierto para la mayoría de los comandos dentro de Cisco IOS.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Cuando uso negrita y cursiva en un comando, las palabras en negrita indican el comando y sus palabras clave que debéis escribir. Las palabras en cursiva indican argumentos para los que debéis proporcionar un valor. Por ejemplo, en clear mac address-table dynamic address mac-address, debéis escribir clear mac address-table dynamic address y luego especificar la dirección MAC que queréis borrar.</p>
+</div>
+<h2 id="54-protocolo-de-resolucion-de-direcciones">5.4 Protocolo de resolución de direcciones</h2>
+<p>Ahora ya hemos visto cómo reenvían los switches las tramas y aprenden las direcciones MAC de los dispositivos de su LAN. A continuación, daremos un paso atrás para completar otra pieza del puzzle: cómo saben los PCs la dirección MAC entre sí. Para que PC1 y PC3 se envíen mensajes entre sí, primero necesitan aprender la dirección MAC del otro. Para ello, usan el Protocolo de resolución de direcciones (ARP).</p>
+<p>ARP permite a un host aprender la dirección MAC de otro host de la LAN. ARP implica dos mensajes: una solicitud ARP (usada para preguntar a otro host cuál es su dirección MAC) y una respuesta ARP (usada para informar a otro host de la dirección MAC de este). El mensaje de solicitud ARP se envía en un tipo nuevo de trama: no unicast, sino broadcast. La respuesta ARP es una trama unicast enviada a la dirección MAC del host que envió la solicitud ARP.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Una trama broadcast es una trama dirigida a la dirección MAC de broadcast: ffff.ffff.ffff. Un switch inundará las tramas broadcast, como hace con las unicast desconocidas. Las tramas broadcast se usan para enviar mensajes a todos los hosts de la LAN.</p>
+</div>
+<p>Si una solicitud ARP es broadcast (dirigida a todos los demás hosts de la LAN), ¿cómo especifica el emisor a qué host quiere aprender su dirección MAC? Lo hace especificando la dirección IP del host del que quiere conocer la dirección MAC. La Figura 6 demuestra esto. PC1 quiere enviar un mensaje a PC3, pero no conoce la dirección MAC de PC3. Por tanto, PC1 usa ARP para aprender la dirección MAC de PC3.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las direcciones IP de PC1, PC2, PC3 y PC4 se muestran en la Figura 6, pero no es necesario entender todavía la estructura de las direcciones IP. Veremos las direcciones IP en el siguiente capítulo.</p>
+</div>
+<figure id="__figura_6">
+<p><img alt="" justify="justify" src="../img/UD5_6.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 6. </span> Un intercambio de solicitud y respuesta ARP entre PC1 y PC3. PC1 quiere enviar un mensaje a PC3 pero no conoce su dirección MAC, así que usa ARP para aprenderla.</p>
+</figcaption>
+</figure>
+<p>Este es el proceso que se muestra en la Figura 6:</p>
+<ul>
+<li>PC1 envía una solicitud ARP dirigida a la MAC de broadcast (ffff.ffff.ffff).</li>
+<li>SW1 inunda la trama. PC2 ve que la solicitud ARP no es para su propia dirección IP, así que descarta el mensaje.</li>
+<li>SW2 inunda la trama. PC4 ve que la solicitud ARP no es para su propia dirección IP, así que descarta el mensaje. PC3 ve que la solicitud ARP es para su propia dirección IP.</li>
+<li>PC3 envía una respuesta ARP a PC1.</li>
+<li>SW2 reenvía la respuesta ARP por su puerto G0/0.</li>
+<li>SW1 reenvía la respuesta ARP por su puerto G0/1. PC1 ya conoce la dirección MAC de PC3 y podrá enviar el mensaje original a PC3.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El grupo de dispositivos que recibirán una trama broadcast enviada por uno de los miembros del grupo está en el mismo dominio de broadcast. Un dominio de broadcast puede entenderse como equivalente a una LAN o a un dominio de Capa 2. Todos los dispositivos de la Figura 6 están en el mismo dominio de broadcast porque reciben los broadcasts entre sí.</p>
+</div>
+<p>Cuando finaliza el intercambio ARP, PC1 conoce la dirección MAC de PC3; almacenará la dirección MAC de PC3 en su tabla ARP, que es una lista de direcciones IP y sus direcciones MAC asociadas. ARP puede entenderse como el puente entre las capas 2 y 3 del modelo TCP/IP. ARP se usa para mapear una dirección de Capa 3 conocida (IP) con una dirección de Capa 2 desconocida (MAC).</p>
+<p>Ahora PC1 podrá enviar su mensaje en una trama dirigida a la dirección MAC de PC3. También merece la pena mencionar que, al recibir el mensaje de solicitud ARP de PC1, PC3 también almacena la dirección MAC de PC1 en su propia tabla ARP.</p>
+<p>Fijaos que, gracias al intercambio de solicitud y respuesta ARP, SW1 y SW2 ya han aprendido las direcciones MAC de PC1 y PC3 (el proceso de aprendizaje de MAC no se muestra en la Figura 6 para centrar la atención en el proceso ARP). Por tanto, cuando PC1 envía su mensaje a PC3, los switches no lo inundarán: simplemente lo reenviarán por el puerto apropiado porque es un mensaje unicast conocido.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los mensajes unicast pueden entenderse como uno a uno y los broadcast como uno a todos. Además, existe otro tipo de mensaje llamado multicast, que es uno a varios (pero no necesariamente a todos). Veremos los mensajes multicast en capítulos posteriores de este volumen y del volumen 2.</p>
+</div>
+<p>Ya hemos visto cómo aprenden los switches las direcciones MAC, cómo inundan y reenvían las tramas, y cómo los hosts aprenden la dirección MAC de otro host de la LAN enviando una solicitud ARP a la dirección IP del host, pero aún falta una pieza más. ¿Cómo sabe un host la dirección IP del host al que quiere enviar un mensaje? La respuesta es: “depende.” Veremos algunas posibilidades en este libro; por ejemplo, el Sistema de nombres de dominio (DNS), que se usa para convertir nombres de host (por ejemplo, manning.com) en direcciones IP. Como otra opción, el usuario del dispositivo podría especificar manualmente la dirección IP a la que quiere enviar un mensaje, como al usar ping para probar la conectividad.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un dispositivo no tiene que usar ARP cada vez que envía un mensaje. Después de usar ARP para aprender la dirección MAC de otro dispositivo, almacena esa información en su tabla ARP para usos futuros.</p>
+</div>
+<h2 id="55-ping">5.5 Ping</h2>
+<p>Ping es una utilidad de software que prueba la alcanzabilidad de hosts a través de una red. No está directamente relacionada con el tema de la conmutación Ethernet, pero es una herramienta a la que me referiré a lo largo del libro, y además sirve para completar la pieza final del puzzle de este capítulo: cómo sabe un host origen la dirección IP del host destino al que quiere enviar un mensaje.</p>
+<p>Para enviar un mensaje ping a otro host de la red, el comando es ping ip-address (esto es válido en Cisco IOS, Windows, Linux, macOS, etc.). La dirección IP del host de destino se especifica directamente en el comando; así es como el host origen conoce la dirección IP del host destino.</p>
+<p>Ping es un componente del Protocolo de mensajes de control de Internet (ICMP), que desempeña un papel de apoyo para el Protocolo de Internet (IP). En vuestra carrera de redes (o en casi cualquier otra área de TI), usaréis ping con mucha frecuencia como forma sencilla de comprobar si dos hosts pueden llegar el uno al otro a través de la red; es una herramienta muy común de diagnóstico y resolución de problemas. Como ARP, ping consta de dos mensajes: una solicitud echo ICMP y una respuesta echo ICMP. Sin embargo, a diferencia de ARP, los dos mensajes que usa ping son unicast.</p>
+<p>Ping también puede usarse para medir el tiempo de ida y vuelta (RTT) entre dos hosts: el tiempo que tarda un mensaje en viajar de un host a otro y volver. El ejemplo siguiente muestra un ping desde un router Cisco (R1) a otro host de su red local. En Cisco IOS, un único comando ping envía cinco solicitudes echo ICMP. Como se resalta, la salida muestra el RTT mínimo, medio y máximo de esas cinco solicitudes:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>PC1# ping 10.0.0.12                                                    
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Type escape sequence to abort.
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Sending 5, 100-byte ICMP Echos to 10.0.0.12, timeout is 2 seconds:
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>!!!!!                                                                  
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Success rate is 100 percent (5/5), round-trip min/avg/max = 3/3/4 ms   
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>#1 Envía cinco solicitudes echo ICMP (pings) a la dirección IP especificada
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>#2 Cada signo de exclamación indica un ping correcto.
+</span></code></pre></div>
+<p>Los cinco signos de exclamación (!!!!!) en la salida indican pings correctos: solicitudes ICMP echo que recibieron una respuesta ICMP echo. Si alguna de las solicitudes no recibe respuesta, se muestra un punto (.) en su lugar. Por ejemplo, si la primera solicitud no recibió respuesta, la salida sería .!!!!.</p>
+<h2 id="resumen">Resumen</h2>
+<ul>
+<li>Una red de área local (LAN) puede definirse como una parte de una red en la que los hosts pueden comunicarse entre sí sin usar un router. Esto también se llama dominio de Capa 2.</li>
+<li>La cabecera Ethernet tiene tres campos: Destination, Source y Type/Length. El trailer Ethernet tiene un campo: Frame Check Sequence (FCS).</li>
+<li>Aunque no se consideran parte de la trama Ethernet, el Preamble y el Start Frame Delimiter (SFD) se envían con cada trama.</li>
+<li>El Preamble es una serie de 7 bytes de 1s y 0s binarios alternados. El SFD tiene un byte de longitud y usa el patrón de bits 10101011 para indicar el final del Preamble y el comienzo de la trama.</li>
+<li>Los campos Destination y Source tienen cada uno 6 bytes y contienen la dirección MAC del emisor de la trama (Source) y la dirección MAC del destinatario previsto (Destination). Las direcciones MAC las asigna el fabricante y deben ser globalmente únicas.</li>
+<li>Las direcciones MAC suelen escribirse en hexadecimal, un sistema numérico que usa 16 caracteres: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E y F. Cuando se escriben en hexadecimal, las direcciones MAC tienen 12 caracteres de longitud.</li>
+<li>La primera mitad de una dirección MAC es el identificador único de la organización (OUI), que el IEEE asigna al fabricante del dispositivo. La segunda mitad de la dirección MAC puede usarse libremente para asignar una dirección MAC única a cada puerto de los dispositivos que fabrica.</li>
+<li>El campo Type/Length indica bien el tipo del paquete encapsulado (por ejemplo, IPv4 o IPv6) o la longitud del paquete encapsulado en bytes. Si el valor es 1500 o menos, indica la longitud del paquete. Si el valor es 1536 o más, indica el tipo (en este caso, el nombre es EtherType).</li>
+<li>El campo FCS usa una cyclic redundancy check (CRC) para permitir que el host receptor compruebe si la trama tiene errores que podrían haberse producido en tránsito.</li>
+<li>Un switch toma decisiones sobre cómo reenviar tramas consultando la dirección MAC de destino de cada trama en la tabla de direcciones MAC del switch.</li>
+<li>Un switch construye su tabla de direcciones MAC observando el campo de dirección MAC de origen de las tramas que recibe y creando una entrada en la tabla de direcciones MAC, asociando la dirección MAC con el puerto por el que se recibió la trama. Esto se llama aprendizaje de direcciones MAC.</li>
+<li>Las direcciones MAC aprendidas así se llaman direcciones MAC dinámicas.</li>
+<li>Si un switch no recibe una trama desde una dirección MAC dinámica durante 5 minutos, eliminará la entrada de la tabla de direcciones MAC. Esto se llama envejecimiento de direcciones MAC.</li>
+<li>Una trama dirigida a un único host se llama unicast. Si el switch ya tiene una entrada para la dirección MAC de destino de la trama en su tabla de direcciones MAC, es una unicast conocida y el switch la reenviará por el puerto adecuado. Si el switch no tiene una entrada para la dirección MAC de destino en su tabla de direcciones MAC, es una unicast desconocida y el switch inundará la trama enviándola por todos los puertos excepto el que la recibió.</li>
+<li>El comando show mac address-table permite ver la tabla de direcciones MAC de un switch Cisco. Las direcciones MAC dinámicas pueden borrarse con clear mac address-table dynamic, clear mac address-table dynamic address mac-address o clear mac address-table dynamic interface interface-name.</li>
+<li>El Protocolo de resolución de direcciones (ARP) permite a un host aprender la dirección MAC de otro host de la red. Usa dos mensajes: una solicitud ARP y una respuesta ARP.</li>
+<li>La solicitud ARP se envía a la dirección MAC de broadcast (ffff.ffff.ffff), por lo que los switches la inundan. La respuesta ARP es un mensaje unicast.</li>
+<li>Un dominio de broadcast es un grupo de dispositivos que reciben mensajes broadcast entre sí. Los dispositivos conectados al mismo switch (o a switches distintos pero conectados) están en el mismo dominio de broadcast.</li>
+<li>La tabla ARP se usa para almacenar mapeos de dirección IP a dirección MAC, por lo que no es necesario enviar una solicitud ARP antes de cada paquete.</li>
+<li>Ping es una utilidad que prueba la conectividad entre dos hosts de red. Es un componente del Protocolo de mensajes de control de Internet (ICMP) y es una herramienta muy común de diagnóstico y resolución de problemas. Para enviar un ping, usad el comando ping ip-address.</li>
+<li>Ping usa dos mensajes: una solicitud echo ICMP y una respuesta echo ICMP. Los dos son mensajes unicast.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>
