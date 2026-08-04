@@ -1,6 +1,6 @@
 # Listas de control de acceso (ACL)
 
-## Introducción
+## 1. Introducción
 
 En la mayoría de casos,por defecto, un router reenvía cualquier paquete que tenga una ruta coincidente en su tabla de enrutamiento. Sin embargo, este comportamiento predeterminado puede no ajustarse a las necesidades de seguridad de una organización. En muchos casos, el acceso a recursos específicos, como servidores que contienen información confidencial, debe restringirse a personas o dispositivos autorizados.
 
@@ -8,7 +8,7 @@ En un puesto de administración de redes, normalmente no es responsabilidad defi
 
 Las ACL funcionan como filtros de paquetes, examinando cada paquete al entrar o salir de la interfaz de un router y determinando si debe permitirse o bloquearse según un conjunto de reglas predefinidas. En esta unidad, cubriremos las ACL estándar, que filtran los paquetes según su dirección IP de origen. Tras ello, cubriremos las ACL extendidas, que permiten al router filtrar paquetes según otros parámetros, como el protocolo de capa 4 y los números de puerto.
 
-### Cómo funcionan las ACL
+### 1.1. Cómo funcionan las ACL
 
 Una ACL es una lista ordenada de reglas que filtra los paquetes al ser recibidos o enviados a través de una interfaz. Sigue una lógica muy parecida a la estructuras de control en programación; son muy similares a las estructuras condicionales *if-then-else*, que evalúan condiciones y realizan diferentes acciones según el resultado. Las ACL examinan ciertos criterios dentro de un paquete (como la dirección IP de origen) y luego realizan acciones específicas. Por ejemplo:
 
@@ -18,7 +18,7 @@ Una ACL es una lista ordenada de reglas que filtra los paquetes al ser recibidos
 
 En esta sección explicaremos la lógica de las ACL paso a paso. Exploraremos el funcionamiento de las ACL: el proceso de coincidencia de paquetes, la función de la denegación implícita, cómo se aplican las ACL a las interfaces y los distintos tipos de ACL disponibles.
 
-### Coincidencia y procesamiento de paquetes
+### 1.2. Coincidencia y procesamiento de paquetes
 
 Cada ACL consta de una serie de reglas llamadas entradas de control de acceso (ACE). Cada ACE especifica una condición de coincidencia (una dirección IP o un rango de direcciones IP) y una acción (permitir o denegar). Los paquetes permitidos se reenvían y los denegados se descartan.
 
@@ -66,7 +66,7 @@ Aunque la segunda ACE especifica que se deben denegar los paquetes con una direc
 !!!note "Nota"
     La segunda ACE es un ejemplo de regla oculta: una regla (ACE) que nunca se ejecutará porque está precedida por una regla menos específica que cubre su condición coincidente (192.168.0.0/16 incluye 192.168.1.0/24). Esto no debería ocurrir en una ACL configurada correctamente; siempre se deben configurar primero las reglas más específicas.
 
-### Denegación implícita
+### 1.3. Denegación implícita
 
 Como decíamos al inicio de este capítulo, un router reenvía por defecto cualquier paquete con una ruta válida. Sin embargo, al usar listas de control de acceso (ACL), el comportamiento cambia: cualquier paquete no permitido explícitamente por la ACL se deniega por defecto.
 
@@ -84,7 +84,7 @@ La figura de abajo muestra un ejemplo de un paquete denegado por la regla de den
 Un paquete es rechazado por la denegación implícita. La IP de origen del paquete (172.16.1.1) no coincide con la primera ACE (192.168.1.0/24) ni con la segunda ACE (192.168.0.0/16), por lo que es rechazado por la denegación implícita; el router lo descartará.
 ///
 
-### Aplicando ACLs
+### 1.4. Aplicando ACLs
 
 La creación de una ACL no afecta el comportamiento del router por sí sola; la ACL debe aplicarse a una o más interfaces del router para que surta efecto. Puede aplicar ACL tanto en la dirección de entrada como en la de salida (o en ambas), según el resultado deseado.
 
@@ -120,7 +120,7 @@ Normalmente, las ACL estándar deben aplicarse de salida en la interfaz conectad
 !!!note "Nota"
     Cada interfaz puede tener un máximo de una ACL aplicada en cada dirección: una de entrada y una de salida. La misma ACL puede aplicarse a varias interfaces. 
     
-### Tipos de ACL
+### 1.5. Tipos de ACL
 
 Las ACL se pueden clasificar según dos características; sus parámetros de coincidencia y su método de identificación:
 
@@ -138,7 +138,7 @@ Las ACL numeradas se identifican mediante un número, y las ACL con nombre media
 | ACL extendida  | ACL extendida numerada    | ACL extendida con nombre |
 
 
-## Configuración de ACL estándar
+## 2. Configuración de ACL estándar
 
 La configuración de ACL, ya sean estándar o extendidas, numeradas o con nombre, consta de dos pasos:
 
@@ -156,7 +156,7 @@ En esta sección, veremos cómo crear ACL estándar numeradas y con nombre, y c�
 Configuración y aplicación de ACL numeradas y con nombre estándar para controlar el tráfico en la red
 ///
 
-### ACL numeradas
+### 2.1. ACL numeradas
 
 Las ACL numeradas, como su nombre indica, se identifican con números. Sin embargo, no puede elegir cualquier número para identificar una ACL; existen rangos reservados que solo se pueden usar para tipos específicos de ACL. Por ejemplo:
 
@@ -165,7 +165,7 @@ Las ACL numeradas, como su nombre indica, se identifican con números. Sin embar
 
 Los rangos originales para las ACL estándar y extendidas son 1–99 y 100–199, respectivamente. Sin embargo, posteriormente se ampliaron para admitir un mayor número de ACL, lo que dio lugar a los rangos 1300–1999 y 2000–2699. Dado que en este capítulo nos centraremos en las ACL estándar, debemos seleccionar los números de ACL dentro de los rangos correspondientes.
 
-#### Creando la ACL
+#### 2.1.1. Creando la ACL
 
 En nuestra red de ejemplo, R1 y R2 están conectados mediante un enlace punto a punto, y cada router está conectado a dos LAN: R1 está conectado a 192.168.1.0/24 (departamento de ingeniería) y 192.168.2.0/24 (departamento de contabilidad), y R2 está conectado a 192.168.3.0/24 (LAN de servidores A) y 192.168.4.0/24 (LAN de servidores B), que contienen los servidores utilizados por la organización. Para demostrar la configuración de una ACL numerada, crearemos una ACL que limite el acceso a la LAN de servidores A, impidiendo que el departamento de ingeniería acceda a ella.
 
@@ -200,7 +200,7 @@ Standard IP access list 1
 
 Observad los números de secuencia que se han agregado automáticamente al inicio de cada ACE: 10 y 20. Al configurar las ACL, a la primera ACE se le asigna el número de secuencia 10, y el incremento predeterminado es 10. Esto deja suficiente espacio entre cada ACE, lo que permite configurar nuevas ACE entre las existentes si es necesario. Sin embargo, esto solo es posible en el modo de configuración de ACL con nombre.
 
-#### Aplicación de la ACL
+#### 2.1.2. Aplicación de la ACL
 
 Para que una ACL surta efecto, debe aplicarse a una interfaz. El comando para hacerlo es `ip access-group number {in | out}`. En el siguiente ejemplo, se aplica la ACL 1 de salida en la interfaz G0/0 de R2 y lo verificamos con `show ip interface g0/0`:
 
@@ -226,7 +226,7 @@ Paquetes filtrados por la ACL 1 de R2, aplicada en el tráfico saliente de G0/0.
 
 La regla general al aplicar ACL estándar es aplicarlas lo más cerca posible del destino; el destino es la LAN que se desea proteger con la ACL. En este caso, el destino es la LAN del servidor A; queremos filtrar el tráfico destinado a esa LAN. Al colocar la ACL estándar de salida en R2 G0/0, se garantiza que solo el tráfico destinado a la LAN conectada a G0/0 sea filtrado por la ACL; el resto del tráfico no se ve afectado.
 
-### ACL con nombre
+### 2.2. ACL con nombre
 
 Las ACL numeradas y las ACL con nombre difieren no solo en cómo las identifican (con un número o un nombre), sino también en cómo se configuran. Mientras que las ACL numeradas se configuran completamente desde el modo de configuración global, las ACL con nombre se crean primero en el modo de configuración global, pero cada ACE se configura en un modo de configuración independiente. Se puede acceder al modo de configuración estándar de ACL con nombre y configurar cada ACE con los siguientes comandos:
 
@@ -292,7 +292,7 @@ El modo de configuración de ACL con nombre ofrece algunas ventajas, como la pos
 
 Si solo necesitamos configurar una ACL simple con algunas ACE, una ACL numerada configurada en el modo de configuración global es un método sencillo. No obstante, en algunos casos, puede que necesitemos aprovechar las ventajas del modo de configuración de ACL con nombre, por ejemplo, al editar ACL.
 
-## Escenario de ejemplo
+## 3. Escenario de ejemplo
 
 Se necesita práctica para familiarizarse con las ACL. En esta sección, practicaremos con un escenario que utiliza la misma red que en los ejemplos anteriores. Partiremos de cero, sin ninguna ACL configurada. 
 

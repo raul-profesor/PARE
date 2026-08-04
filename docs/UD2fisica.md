@@ -19,7 +19,7 @@ En el capítulo anterior vimos varios diagramas que mostraban nodos de red conec
 
 En el pasado, ha habido muchas formas diferentes de conectar dispositivos, y todavía las hay. Sin embargo, en las redes modernas, Ethernet domina y es, con diferencia, el tipo de conexión más común. Quizá ya hayáis oído hablar de Ethernet en relación con los cables Ethernet. Ethernet no es una única cosa, sino una colección de normas para las conexiones físicas por cable y de reglas para comunicarse a través de esas conexiones. En este capítulo, vamos a ver dos tipos diferentes de conexiones físicas entre dispositivos: las que utilizan cables de cobre y las que utilizan cables de fibra óptica.
 
-## 3.1 Estándares de red
+## 1. Estándares de red
 
 En las redes modernas, alguien que trabaje en una oficina con un PC Dell conectado a un conmutador Cisco puede comunicarse con otra persona que use un MacBook de Apple conectado al Wi-Fi de Starbucks. Los datos se envían por Internet, posiblemente recorriendo la infraestructura de varios proveedores de servicios de Internet (ISP), que utilizan hardware completamente distinto. ¿Cómo es posible que todos estos dispositivos, fabricados por distintas empresas, puedan comunicarse entre sí? Para este milagro moderno, podemos dar las gracias a los estándares: conjuntos de requisitos y especificaciones técnicas que definen las reglas de comunicación en las redes.
 
@@ -36,7 +36,7 @@ Existen varios organismos que definen los estándares utilizados en las redes de
 
 Ethernet no es un estándar único, sino una familia de estándares que definen tanto los aspectos físicos de las conexiones de red como la forma de formatear los datos en mensajes para enviarlos por la red.
 
-## 3.2 Binario: bits y bytes
+## 2. Binario: bits y bytes
 
 Términos como bit, byte, megabit, megabyte, etc., os resultarán familiares, incluso si no estáis del todo seguros de lo que significan (yo tampoco lo estaba antes de empezar a estudiar redes). Incluso podéis usar vosotros mismos estos términos, refiriéndoos a una conexión de Internet de gigabit o a un archivo de X gigabytes. Dependiendo de vuestra edad, quizá incluso recordéis vuestra conexión de Internet de 56k (kilobit).
 
@@ -63,7 +63,7 @@ Medimos la velocidad de las conexiones de red por cuántos bits pueden transmiti
 
 Las velocidades de red se expresan entonces como X bits por segundo (bps); por ejemplo, 56 kilobits por segundo (56 kbps), 100 megabits por segundo (100 Mbps), 10 gigabits por segundo (10 Gbps) o 1 terabit por segundo (1 Tbps).
 
-### 1,000 o 1,024 bits
+### 2.1. 1,000 o 1,024 bits
 
 Existe cierta confusión sobre si 1 kilobit son 1.000 bits o 1.024 bits, si 1 megabit son 1.000 kilobits o 1.024 kilobits, etc. Las definiciones que se han listado anteriormente son correctas, y son los términos que debéis conocer para el CCNA. Los valores de 1.024 son resultado del sistema numérico binario (base 2); 2^10 es igual a 1.024. Los términos correctos para los valores en base 2 son:
 
@@ -72,7 +72,7 @@ Existe cierta confusión sobre si 1 kilobit son 1.000 bits o 1.024 bits, si 1 me
 - 1 gibibit (1.024 mebibits)
 - 1 tebibit (1.024 gibibits)
 
-## 3.3 Conexiones de cobre UTP
+## 3. Conexiones de cobre UTP
 
 El CCNA os exige conocer dos tipos de conexiones cableadas: las que usan cables de cobre y las que usan cables de fibra óptica. Primero, vamos a ver los cables de cobre. Este es el tipo de cable de red más comúnmente llamado cable Ethernet, aunque el estándar Ethernet utiliza tanto cables de cobre como de fibra óptica. Antes de examinar un cable Ethernet de cobre en sí, vamos a mirar el conector del extremo del cable y el puerto al que se conecta en un dispositivo de red, ambos representados en la Figura 2.
 
@@ -88,7 +88,7 @@ El tipo de cables utilizados para estas conexiones se llama cables de par trenza
 - Unshielded: los hilos no tienen un blindaje metálico alrededor. Ese blindaje puede reducir las interferencias electromagnéticas (EMI), pero no está presente en los cables UTP.
 - Twisted pair: los ocho hilos del cable están trenzados para formar cuatro pares de dos hilos cada uno. El trenzado de los hilos reduce la EMI entre los hilos de cada par.
 
-### 3.3.1 Estándares IEEE 802.3 (cobre)
+### 3.1. Estándares IEEE 802.3 (cobre)
 
 El IEEE define varios estándares para las conexiones Ethernet que soportan diferentes velocidades, tipos de cable (cobre o fibra óptica) y distancias. Cada estándar se conoce por varios nombres distintos:
 
@@ -96,7 +96,7 @@ El IEEE define varios estándares para las conexiones Ethernet que soportan dife
 - También se usa el nombre del grupo de trabajo del IEEE que definió el estándar. Estos nombres comienzan con IEEE 802.3, seguido de una letra.
 - El tercer nombre es un nombre informal dado por el IEEE que indica tanto la velocidad como el tipo de cable (los estándares de cableado de cobre terminan en T).
 
-#### Grupos de trabajo y subgrupos del IEEE
+#### 3.1.1. Grupos de trabajo y subgrupos del IEEE
 
 El IEEE asigna grupos de trabajo para desarrollar tecnologías concretas. Los dos grupos de trabajo principales relevantes para el CCNA son 802.3 (encargado de desarrollar el estándar Ethernet para redes cableadas) y 802.11 (redes LAN inalámbricas, también conocidas como Wi-Fi).
 
@@ -128,7 +128,7 @@ Los estándares de estos cables reciben nombres como Category 5, que a menudo se
 | 1 Gbps | 1000BASE-T | Cat 5e |
 | 10 Gbps | 10GBASE-T | Cat 6a |
 
-### 3.3.2 Cables straight-through y crossover
+### 3.2. Cables straight-through y crossover
 
 Aunque hoy en día todos los cables UTP usados para comunicaciones de red tienen cuatro pares de hilos (ocho hilos), no todos los estándares Ethernet utilizan los cuatro pares de hilos:
 
@@ -139,7 +139,7 @@ Aunque hoy en día todos los cables UTP usados para comunicaciones de red tienen
 
 Cada hilo del cable está conectado a uno de los ocho pines del conector 8P8C. Para que los dispositivos se comuniquen a través de estos pares de hilos, cada par forma un circuito eléctrico entre los dos dispositivos conectados. En las conexiones 10BASE-T y 100BASE-T, es muy importante usar el cable adecuado para asegurar que los hilos conectan los pines de un extremo de la conexión con los pines correctos del otro extremo. Para facilitar esto, existen dos tipos de cables que podemos utilizar: straight-through y crossover. Estos tipos de cable se diferencian en qué pines de un extremo del cable se conectan a qué pines del otro extremo.
 
-#### Cables straight-through
+#### 3.2.1. Cables straight-through
 
 10BASE-T y 100BASE-T usan dos pares de hilos, uno para cada sentido de la comunicación. Los dos pares de hilos son:
 
@@ -164,7 +164,7 @@ Dos routers conectados mediante un cable straight-through. Como ambos routers tr
 
 Cuando dos dispositivos que transmiten usando el mismo par de pines se conectan con un cable straight-through, no podrán comunicarse. Los pines Tx de un dispositivo se conectan a los pines Tx del otro. Para que dispositivos como estos puedan comunicarse, necesitan un cable con un cableado distinto: un cable crossover.
 
-#### Cables crossover
+#### 3.2.2. Cables crossover
 
 Un cable crossover conecta pares de pines opuestos; los pines 1 y 2 de un extremo del cable se conectan a los pines 3 y 6 del otro extremo. Esto permite que los dispositivos que transmiten datos en el mismo par de pines puedan comunicarse entre sí. Como muestra la Figura 5, los dispositivos que transmiten usando el mismo par de pines pueden comunicarse entre sí cuando se conectan con un cable crossover.
 
@@ -185,7 +185,7 @@ La Tabla 3.3 enumera algunos tipos habituales de dispositivos de red y qué pine
 !!!note "Nota"
     Aunque 10BASE-T y 100BASE-T solo usan dos pares de hilos, siguen existiendo cuatro pares de hilos dentro del cable. Los otros dos pares de hilos quedan sin utilizar.
 
-#### Auto MDI-X
+#### 3.2.3. Auto MDI-X
 
 Ahora que ya hemos cubierto los cables straight-through y crossover, queremos daros una buena noticia: en los equipos de red modernos, no tenéis que preocuparos por usar el tipo de cable correcto. Eso se debe a una función llamada Auto Medium-Dependent Interface Crossover (Auto MDI-X). Auto MDI-X permite que un dispositivo cambie qué pines usará para transmitir y recibir datos según el dispositivo al que esté conectado. Debéis conocer los cables straight-through y crossover como posible pregunta de examen, pero en el campo probablemente no tendréis que pensar si un cable es straight-through o crossover.
 
@@ -196,7 +196,7 @@ La Figura 6 demuestra este concepto. Los dos routers están conectados mediante 
 Dos routers conectados mediante un cable straight-through. El router de la derecha usa Auto MDI-X para ajustar qué pines usa para transmitir y recibir datos.
 ///
 
-#### 1000BASE-T y 10GBASE-T
+#### 3.2.4. 1000BASE-T y 10GBASE-T
 
 1000BASE-T y 10GBASE-T aprovechan los ocho hilos de un cable, por lo que se usan un total de cuatro pares de hilos. Se utilizan los mismos pares de pines/hilos 1–2 y 3–6 que en 10BASE-T y 100BASE-T. Los pares restantes son el par en las posiciones 4 y 5 y el par en las posiciones 7 y 8. Esto se muestra en la Figura 7.
 
@@ -209,13 +209,13 @@ Además, en lugar de que un dispositivo use cada par de hilos exclusivamente par
 
 Si se usa un cable crossover, los pares 1–2 y 3–6 se cruzan como en 10BASE-T y 100BASE-T, y también se cruzan los nuevos pares 4–5 y 7–8. Sin embargo, gracias a Auto MDI-X, ya no tenemos que preocuparnos por seleccionar el tipo de cable adecuado.
 
-## 3.4 Conexiones de fibra óptica
+## 4. Conexiones de fibra óptica
 
 Las conexiones de cobre UTP siguen siendo el tipo de conexión más común dentro de una LAN. Tanto los cables como los puertos de los conmutadores son relativamente baratos y están soportados por casi todos los dispositivos modernos que se conectan a una red. Sin embargo, existe una limitación importante que puede hacer que las conexiones de cobre no sean viables en algunos casos: la longitud máxima del cable de 100 metros. Para conexiones entre dispositivos del mismo piso de un edificio, 100 metros suelen ser más que suficientes, pero para algunas conexiones entre dispositivos de distintos pisos quizá no lo sean. Y, desde luego, para conexiones entre edificios y conexiones WAN, se prefiere el siguiente tipo de cableado: el cableado de fibra óptica.
 
 Los cables de fibra óptica, en lugar de transmitir señales eléctricas a lo largo de un cable de cobre, transmiten señales de luz a lo largo de una fibra de vidrio. La fibra de vidrio utilizada es más flexible de lo que quizá penséis al imaginar vidrio, pero aun así los cables de fibra óptica deben manipularse con cuidado; una curva cerrada en el cable puede dañar la fibra de vidrio y dejarlo inutilizable. Incluso si la fibra de vidrio no se rompe, doblar el cable puede hacer que la luz se escape del cable, debilitando la señal.
 
-### 3.4.1 La anatomía de un cable de fibra óptica
+### 4.1. La anatomía de un cable de fibra óptica
 
 Una conexión típica de fibra óptica no usa un único cable, sino dos: uno para transmitir datos y otro para recibirlos. Estos cables se conectan a un transceptor Small Form-Factor Pluggable (SFP) insertado en un puerto SFP del dispositivo. Los transceptores SFP son modulares y deben comprarse por separado del propio dispositivo (y probablemente os sorprenderá lo caros que son estas cositas).
 
@@ -244,7 +244,7 @@ Los cables MMF tienen un núcleo más ancho que los cables de fibra monomodo. Se
 
 Los cables SMF usan un núcleo muy estrecho junto con transmisores láser que envían luz por el cable en un solo ángulo. Estos transmisores láser suelen ser más caros que los transmisores LED utilizados por los cables MMF. Sin embargo, los cables SMF también admiten distancias máximas mucho mayores: de hasta decenas de kilómetros.
 
-### 3.4.2 UTP frente a fibra
+### 4.2. UTP frente a fibra
 
 Las conexiones de fibra óptica admiten distancias mucho mayores que los cables UTP de cobre, pero a un coste mayor (sobre todo por los caros transceptores SFP). Ambos tipos de conexión tienen un uso frecuente en las redes modernas. Las conexiones UTP son las más comunes para conexiones de conmutadores a hosts finales. En un entorno de oficina, normalmente hay conmutadores en cada planta, y la longitud máxima de 100 metros suele ser suficiente para que los hosts finales lleguen a un conmutador de su planta. Por otro lado, las conexiones de fibra óptica son más comunes para las conexiones entre infraestructura de red; por ejemplo, para conectar conmutadores y routers ubicados en plantas separadas o en edificios distintos.
 
@@ -252,7 +252,7 @@ Sin embargo, el cableado de fibra tiene un par de ventajas adicionales frente al
 
 Las consideraciones más habituales para decidir entre usar cableado UTP de cobre o fibra son la distancia máxima, el coste y qué tipo de conexión admite el dispositivo que se va a conectar. La mayoría de los dispositivos cliente (como los PCs) no tienen puertos SFP que puedan usarse para conexiones de fibra óptica, por lo que la conexión UTP es la única opción.
 
-## Resumen
+## 5. Resumen
 
 - Los estándares proporcionan conjuntos de reglas acordadas para la comunicación en las redes.
 - Ethernet es una familia de estándares definida por el grupo de trabajo 802.3 del Institute of Electrical and Electronics Engineers (IEEE). Define normas para la comunicación sobre conexiones físicas por cable.

@@ -7,13 +7,13 @@ Este capítulo abarca:
 + Los diferentes tipos de NAT
 + Configuración de NAT 
 
-## Introducción
+## 1. Introducción
 
 El agotamiento de las direcciones IPv4 es un problema importante desde hace mucho tiempo. La solución a largo plazo es conocida: IPv6. Sin embargo, IPv4 sigue siendo dominante hoy en día gracias a algunas soluciones que han sido muy efectivas para extender su vida útil. Analizamos una de estas soluciones en el capítulo 11 del volumen 1 sobre el subneteo con enrutamiento entre dominios sin clases (CIDR), que ofrece mayor flexibilidad que el rígido sistema de direccionamiento con clases que lo precedió.
 
 En esta unidad abordaremos dos soluciones importantes que, en conjunto, han demostrado ser esenciales para preservar el espacio de direcciones IPv4: el direccionamiento IPv4 privado (que ya hemos visto anteriormente en el curso) y la traducción de direcciones de red (NAT). Se han reservado tres rangos de direcciones IPv4 para su uso gratuito en redes privadas sin necesidad de que sean globalmente únicas, y NAT proporciona una forma de traducir esas direcciones privadas a direcciones públicas para la comunicación a través de internet.
 
-## Direcciones IPv4 privadas
+## 2. Direcciones IPv4 privadas
 
 Las direcciones IPv4 privadas son direcciones IPv4 que cualquier organización o individuo puede utilizar libremente para sus redes internas; no es necesario que sean únicas a nivel global. En el RFC 1918, Asignación de direcciones para redes privadas de Internet, se definen tres rangos de direcciones IPv4 privadas:
 
@@ -37,11 +37,11 @@ Las direcciones IPv4 que no se encuentran en los rangos de la RFC 1918 (o en otr
 
 Las direcciones IPv4 privadas no son enrutables a través de internet; los paquetes originados o destinados a direcciones privadas serán descartados por el proveedor de servicios de internet (ISP). Si tenéis un PC con Windows, usad `ipconfig` para comprobar su dirección IPv4 (`ifconfig` si usáis macOS/Linux); casi con toda seguridad se trata de una dirección privada. Entonces, ¿cómo puede vuestro PC comunicarse a través de internet a pesar de tener una dirección privada? La respuesta es NAT.
 
-## Conceptos NAT
+## 3. Conceptos NAT
 
 La *traducción de direcciones de red* (NAT) es el proceso de modificar las direcciones IP de origen y/o destino de un paquete y, por lo general, la realiza un enrutador (o cortafuegos) en el perímetro de la red, es decir, un enrutador que conecta la red interna con internet. Al traducir las direcciones IP privadas a direcciones IP públicas, NAT permite que los hosts con direcciones IP privadas se comuniquen a través de internet.
 
-### El proceso NAT
+### 3.1. El proceso NAT
 
 En la imagen de abajo se muestra el proceso NAT. PC1, un host con una dirección IP privada, envía un paquete al servidor en 8.8.8.8. R1 utiliza NAT para traducir entre la dirección IP privada de PC1 (que no es enrutable a través de Internet) y una dirección IP pública.
 
@@ -56,7 +56,7 @@ En el paso 1, PC1 envía un paquete desde su dirección IP privada (la direcció
 !!!note "Nota"
     NAT se diseñó para traducir direcciones IP privadas y públicas, pero también es posible realizar traducciones entre direcciones privadas y públicas. Sin embargo, los casos de uso de NAT entre direcciones privadas y públicas son más limitados que los de NAT entre direcciones privadas. Para el examen CCNA, se puede asumir que NAT es entre direcciones privadas y públicas.
 
-### Terminología NAT de Cisco
+### 3.2. Terminología NAT de Cisco
 
 Cuando un host en una red interna se comunica con un host en una red externa a través de un enrutador con NAT habilitado, hay cuatro direcciones involucradas desde el punto de vista del enrutador:
 
@@ -67,7 +67,7 @@ Cuando un host en una red interna se comunica con un host en una red externa a t
 
 Cisco utiliza cuatro términos para describir cada una de estas direcciones: local interna, global interna, local externa y global externa. En esta sección, analizaremos la distinción entre interna y externa, así como entre local y global, y luego definiremos estos cuatro términos, fundamentales para el examen CCNA.
 
-#### Inside y Outside
+#### 3.2.1. Inside y Outside
 
 Cisco utiliza los términos «interior» y «exterior» para referirse a las redes internas y externas, respectivamente. Una dirección interna es la dirección IP de un host ubicado en la red interna del router, y una dirección externa es la dirección IP de un host ubicado en la red externa. De forma similar, los hosts de la red interna se denominan hosts internos, y los hosts de la red externa se denominan hosts externos. La figura 3 ilustra estos conceptos. La interfaz G0/0 del router R1 se conecta a la red interna, y la interfaz G0/1 se conecta a la red externa (Internet).
 
@@ -85,7 +85,7 @@ La distinción entre interior y exterior desde la perspectiva de R1. La red inte
 
 Más adelante se abordará la configuración de NAT, pero la figura muestra un paso importante del proceso: especificar las interfaces interna y externa del router con el comando ip nat {inside | outside}. Dado que R1 G0/0 está configurado con el comando ip nat inside, PC1 es un host interno. Y dado que R1 G0/1 está configurado con ip nat outside, 8.8.8.8 es un host externo.
 
-#### Local y global
+#### 3.2.2. Local y global
 
 Cuando PC1 (un host interno) envía un paquete a un destino en la red externa, la dirección IP de origen de ese paquete es la dirección IP configurada en PC1: una dirección IP privada. Pero, ¿qué sucede después de que R1 utiliza NAT para traducir la dirección IP de origen del paquete de PC1 a una dirección IP pública? La dirección después de la traducción sigue representando a PC1, por lo que continúa siendo una dirección interna, pero es necesario otro criterio para diferenciar entre las direcciones antes y después de NAT: la distinción entre local y global.
 
@@ -127,7 +127,7 @@ Como se indicó en la nota anterior, las direcciones IP externas locales y globa
 !!!note "Nota"
     Como ya se comentó anteriormente, estos términos dependen de la perspectiva; son relativos a R1, el enrutador que realiza la traducción de direcciones de red (NAT) en nuestro ejemplo. Para R1, 8.8.8.8 es tanto una dirección local externa como una dirección global externa. Sin embargo, es probable que el servidor en 8.8.8.8 esté conectado a su propio enrutador que también realiza NAT, con su propia perspectiva sobre lo que está dentro y fuera, lo que es local y lo que es global. Desde la perspectiva de ese enrutador, 8.8.8.8 es la dirección global interna del servidor, y su dirección local interna es una dirección IP privada desconocida para R1, PC1 o cualquier otro host fuera de esa red.
 
-## Tipos de NAT
+## 4. Tipos de NAT
 
 Existen varios tipos de NAT. Para el examen CCNA, debéis conocer los siguientes tres:
 
@@ -137,7 +137,7 @@ Existen varios tipos de NAT. Para el examen CCNA, debéis conocer los siguientes
 
 Cada tipo tiene sus propias aplicaciones, pero la PAT dinámica es, con diferencia, la más utilizada, ya que permite que miles de hosts compartan una única dirección IP pública. En esta sección, analizaremos cada tipo y cómo configurarlo en un router Cisco.
 
-### NAT estático
+### 4.1. NAT estático
 
 El primer tipo de NAT que veremos es el NAT estático, que consiste en configurar de forma estática asignaciones uno a uno de direcciones locales internas (privadas) a direcciones globales internas (públicas). En la imagen se muestra el NAT estático y cómo configurarlo en Cisco IOS.
 
@@ -207,7 +207,7 @@ Mientras que las entradas estáticas son permanentes, las dinámicas se eliminan
 !!!note "Nota"
     No confundáis las entradas estáticas/dinámicas de la tabla de traducción con NAT estática/dinámica; todas las entradas que acabamos de examinar son el resultado de traducciones NAT estáticas.
 
-### NAT dinámico
+### 4.2. NAT dinámico
 
 El siguiente tipo de NAT que veremos es el NAT dinámico. El NAT estático y el dinámico son similares en que ambos implican la asignación uno a uno de direcciones locales internas a direcciones globales internas. La diferencia radica en cómo se asignan estas direcciones. En el NAT estático, cada dirección se configura de forma estática, una por una. En el NAT dinámico, el enrutador crea dinámicamente las direcciones a partir de un conjunto de direcciones disponibles. La figura 8 muestra el NAT dinámico; aparte de los comandos de configuración, el proceso NAT es similar al del NAT estático.
 
@@ -281,7 +281,7 @@ tcp 192.0.2.1:32980    10.0.0.13:32980    34.107.221.82:80   34.107.221.82:80
 
 De los tipos de NAT que vamos a ver, el NAT dinámico es el que menos casos de uso reales tiene. Al igual que el NAT estático, solo proporciona traducciones uno a uno. Sin embargo, a diferencia del NAT estático, no permite controlar las traducciones. Si el número de hosts internos supera el conjunto disponible de direcciones IP globales internas, no hay una forma sencilla de controlar qué hosts acceden a internet y cuáles deben esperar. Obtener suficientes direcciones IP públicas para dar soporte a todos los hosts internos simplemente no es factible para la mayoría de las empresas hoy en día, dado el problema del agotamiento de las direcciones IPv4.
 
-### PAT dinámico
+### 4.3. PAT dinámico
 
 La traducción dinámica de direcciones de puerto (PAT) es un tipo de NAT que traduce tanto las direcciones IP como los números de puerto TCP/UDP (si es necesario) para establecer asignaciones de muchos a uno entre las direcciones locales internas y las direcciones globales internas. Al utilizar un número de puerto único para cada sesión de comunicación, una única dirección IP pública puede ser compartida por varios hosts internos simultáneamente; el enrutador con NAT habilitado utiliza los números de puerto para realizar un seguimiento de cada sesión individual.
 
@@ -289,7 +289,7 @@ En total existen 65.536 (2¹⁶) números de puerto, lo que significa que una ú
 !!!note "Nota"  
     ICMP no utiliza números de puerto como TCP y UDP, pero muchos tipos de mensajes ICMP usan un campo de identificador de 16 bits con un propósito similar. Al traducir paquetes ICMP (por ejemplo, ping), el identificador cumple la función que desempeñan los números de puerto TCP/UDP.
 
-#### PAT dinámico mediante un pool
+#### 4.3.1. PAT dinámico mediante un pool
 
 Una forma de configurar PAT dinámico es simplemente añadir la palabra clave `overload` al final de una instrucción NAT dinámica; de hecho, otro nombre para PAT es sobrecarga de NAT. El siguiente ejemplo muestra cómo configurar PAT dinámico de esta manera:
 
@@ -325,7 +325,7 @@ Cuando el enrutador recibe los paquetes de respuesta, puede identificar a qué s
 El enrutador rastrea cada sesión y traduce la dirección de destino de cada respuesta a la dirección local interna apropiada.
 ///
 
-#### PAT dinámico mediante la dirección IP de una interfaz
+#### 4.3.2. PAT dinámico mediante la dirección IP de una interfaz
 
 Aunque la traducción de direcciones IP dinámica (PAT) se puede configurar con un grupo de direcciones, sus capacidades de traducción de muchos a uno implican que muchas organizaciones solo necesitan una única dirección IP pública, no un grupo de ellas. Además, si un enrutador está conectado a internet, ya tiene asignada una dirección IP pública: la dirección IP de la interfaz conectada a internet. Con PAT, el enrutador puede traducir las direcciones IP de los hosts internos a la dirección IP de su propia interfaz.
 

@@ -1,6 +1,6 @@
-## 🚀 **Cheatsheet: Configuración Básica Router Cisco**
+## 1. 🚀 **Cheatsheet: Configuración Básica Router Cisco**
 
-### **1. Modos de Operación**
+### 1.1. **Modos de Operación**
 ```bash
 User EXEC Mode        > 
 Privileged EXEC Mode  # enable
@@ -11,7 +11,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **2. Comandos Básicos de Navegación**
+### 1.2. **Comandos Básicos de Navegación**
 ```bash
 # Entrar a modo privilegiado
 > enable
@@ -28,14 +28,14 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **3. Configuración de Passwords**
+### 1.3. **Configuración de Passwords**
 
-#### **Password para Modo Privilegiado (Enable)**
+#### 1.3.1. **Password para Modo Privilegiado (Enable)**
 ```bash
 (config)# enable secret miPasswordSeguro
 ```
 
-#### **Password para Consola**
+#### 1.3.2. **Password para Consola**
 ```bash
 (config)# line console 0
 (config-line)# password consolePass
@@ -43,7 +43,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 (config-line)# exit
 ```
 
-#### **Password para Líneas VTY (Telnet/SSH)**
+#### 1.3.3. **Password para Líneas VTY (Telnet/SSH)**
 ```bash
 (config)# line vty 0 4
 (config-line)# password vtyPass
@@ -53,7 +53,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **4. Cifrado de Passwords**
+### 1.4. **Cifrado de Passwords**
 ```bash
 # Cifrar todas las passwords en texto claro
 (config)# service password-encryption
@@ -64,7 +64,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **5. Configuración de Banners**
+### 1.5. **Configuración de Banners**
 ```bash
 # Banner de aviso (MOTD)
 (config)# banner motd #
@@ -79,9 +79,9 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **6. Configuración de Interfaces**
+### 1.6. **Configuración de Interfaces**
 
-#### **Interfaz FastEthernet**
+#### 1.6.1. **Interfaz FastEthernet**
 ```bash
 (config)# interface fastethernet 0/0
 (config-if)# ip address 192.168.1.1 255.255.255.0
@@ -90,7 +90,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 (config-if)# exit
 ```
 
-#### **Interfaz Serial (WAN)**
+#### 1.6.2. **Interfaz Serial (WAN)**
 ```bash
 (config)# interface serial 0/0/0
 (config-if)# ip address 10.0.0.1 255.255.255.252
@@ -101,26 +101,26 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **7. Configuración Básica de Seguridad**
+### 1.7. **Configuración Básica de Seguridad**
 
-#### **Deshabilitar DNS Lookup**
+#### 1.7.1. **Deshabilitar DNS Lookup**
 ```bash
 (config)# no ip domain-lookup
 ```
 
-#### **Configurar Nombre de Host**
+#### 1.7.2. **Configurar Nombre de Host**
 ```bash
 (config)# hostname R1-Madrid
 ```
 
-#### **Configurar Domain Name**
+#### 1.7.3. **Configurar Domain Name**
 ```bash
 (config)# ip domain-name empresa.com
 ```
 
 ---
 
-### **8. Configuración SSH (Recomendado sobre Telnet)**
+### 1.8. **Configuración SSH (Recomendado sobre Telnet)**
 ```bash
 # Generar claves RSA
 (config)# crypto key generate rsa modulus 2048
@@ -138,7 +138,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **9. Comandos de Verificación Útiles**
+### 1.9. **Comandos de Verificación Útiles**
 ```bash
 # Ver configuración actual
 # show running-config
@@ -158,7 +158,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **10. Configuración Básica de Routing Estático**
+### 1.10. **Configuración Básica de Routing Estático**
 ```bash
 # Ruta estática hacia red remota
 (config)# ip route 192.168.2.0 255.255.255.0 10.0.0.2
@@ -169,7 +169,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **11. Comandos de Administración**
+### 1.11. **Comandos de Administración**
 ```bash
 # Guardar configuración
 # copy running-config startup-config
@@ -186,7 +186,7 @@ Line Config Mode      (config-line)# line <tipo> <núm>
 
 ---
 
-### **🌐 Ejemplo de Configuración Completa Básica**
+### 1.12. **🌐 Ejemplo de Configuración Completa Básica**
 
 ```bash
 enable

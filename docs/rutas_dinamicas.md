@@ -21,7 +21,7 @@ Lo que aquí trataremos tiene, de alguna forma, una correspondencia con algunos 
 + 3.3 Configurar y verificar el enrutamiento estático IPv4
 + 3.4 Configurar y verificar OSPFv2
 
-## Enrutamiento dinámico vs. enrutamiento estático
+## 1. Enrutamiento dinámico vs. enrutamiento estático
 
 El enrutamiento dinámico es un proceso mediante el cual los routers comparten información sobre la red, lo que les permite crear sus tablas de enrutamiento sin necesidad de que un administrador configure manualmente cada ruta. Esto se logra mediante un protocolo de enrutamiento, que define cómo se comunican los routers para compartir información de enrutamiento y cómo la utilizan para crear sus tablas de enrutamiento. 
 
@@ -40,7 +40,7 @@ R1, R2 y R3 utilizan un protocolo de enrutamiento para compartir información de
 
 El enrutamiento dinámico ofrece varias ventajas sobre el enrutamiento estático, como la adaptabilidad y la escalabilidad. Analicemos estas dos ventajas con más detalle.
 
-### Adaptabilidad
+### 1.1. Adaptabilidad
 
 Las rutas estáticas, como su nombre indica, son estáticas e inmutables; no pueden reaccionar a los cambios en la red. Si una ruta deja de ser válida debido a un fallo de hardware en uno de los routers de la ruta, la ruta estática no se ajustará automáticamente para encontrar una ruta alternativa. La imagen de más abajo muestra un ejemplo: el enlace R2-R3 se cae debido a un fallo de hardware. Esto hace que R3 elimine su ruta a 192.168.30.0/24 de su tabla de enrutamiento; ya no puede acceder a la dirección IP del siguiente salto. Sin embargo, R1 desconoce el fallo del enlace. Como resultado, R1 mantiene su ruta a 192.168.30.0/24 a través de R2 en su tabla de enrutamiento, aunque ya no sea una ruta válida para llegar al destino.
 
@@ -64,7 +64,7 @@ El enrutamiento dinámico permite que los routers se adapten a los cambios en la
 
 En cuestión de segundos tras el fallo, todos los routers de la red detectarán el cambio y tendrán nuevas rutas en sus tablas de enrutamiento. Una vez restaurado el enlace fallido (quizás reemplazando un cable defectuoso), los routers se adaptarán de nuevo a ese cambio, restaurando sus tablas de enrutamiento a su estado anterior. La adaptabilidad del enrutamiento dinámico mejora la resiliencia de la red; es capaz de recuperarse automáticamente de los fallos con un tiempo de inactividad mínimo. Esto no es posible en una red que utiliza exclusivamente enrutamiento estático.
 
-### Escalabilidad
+### 1.2. Escalabilidad
 
 Otra ventaja importante del enrutamiento dinámico es la escalabilidad. Si bien el enrutamiento estático puede ser práctico para redes pequeñas, se vuelve cada vez más complejo e inmanejable a medida que la red crece. Por otro lado, los protocolos de enrutamiento dinámico se escalan fácilmente para admitir redes muy grandes y complejas. En la imagen se muestra una red de seis routers, cada uno conectado a una LAN que contiene varias subredes. Además, dos routers tienen conexiones a un ISP. Esta es una red bastante simple, pero incluso en una red de este tamaño, configurar manualmente rutas estáticas a cada destino en cada router no es muy práctico. Una opción más sencilla es habilitar un protocolo de enrutamiento en cada router y permitir que compartan la información de enrutamiento entre ellos.
 
@@ -75,7 +75,7 @@ Configurar rutas estáticas a cada destino en cada router, incluso en una red ba
 
 Antes de examinar los diferentes tipos de protocolos de enrutamiento, cabe mencionar que las rutas estáticas tienen sus propias ventajas, como la previsibilidad y el control. Dado que el enrutamiento estático implica la configuración manual de rutas (especificando el siguiente salto para cada destino), son útiles cuando se desea controlar la ruta exacta que siguen los paquetes. Afortunadamente, no es necesario elegir entre enrutamiento estático y dinámico; se puede usar una combinación de ambos en un solo router.
 
-## Tipos de protocolos de enrutamiento
+## 2. Tipos de protocolos de enrutamiento
 
 Los protocolos de enrutamiento se dividen en dos categorías principales: **Protocolos de Puerta de Enlace Interior (IGP - Interior Gateway Protocol)** y **Protocolos de Puerta de Enlace Exterior (EGP - Exterior Gateway Protocols)**. Los IGP se utilizan para intercambiar información de enrutamiento dentro de un único sistema autónomo (AS), es decir, la red de una organización. Los EGP, por otro lado, se utilizan para intercambiar información de enrutamiento entre diferentes sistemas autónomos, como entre una empresa y un ISP o entre dos ISP.
 
@@ -96,7 +96,7 @@ La siguiente imagen enumera los protocolos de enrutamiento más utilizados en la
 Los cinco protocolos de enrutamiento de uso común en la actualidad. Los IGP se pueden clasificar como de vector-distancia o de estado de enlace. Los dos IGP de vector-distancia son RIP y EIGRP. Los dos IGP de estado de enlace son OSPF e IS-IS. El único protocolo de puerta de enlace exterior en uso actualmente, el Protocolo de Puerta de Enlace Fronterizo (Border Gateway Protocol), utiliza un algoritmo de vector-ruta.
 ///
 
-### Protocolos de puerta de enlace interior
+### 2.1. Protocolos de puerta de enlace interior
 
 Los IGP utilizan uno de dos tipos de algoritmos: vector-distancia y estado-enlace. En esta sección, analizaremos las características básicas de cada uno.
 Protocolos de vector de distancia
@@ -126,7 +126,7 @@ R1 obtiene información de la LAN A a través de R2 y R5 y selecciona una ruta b
 !!!note "Nota"
     El enrutamiento por vector de distancia a veces se denomina enrutamiento por rumor. Los routers no tienen un mapa completo de la red; solo conocen lo que les dicen sus vecinos.
 
-### Protocolos de estado de enlace
+### 2.2. Protocolos de estado de enlace
 
 Al igual que los protocolos de enrutamiento por vector de distancia, existen dos protocolos principales de enrutamiento de estado de enlace en uso actualmente: Sistema Intermedio a Sistema Intermedio (IS-IS) y Open Shortest Path First (OSPF), ambos protocolos estándar de la industria. IS-IS se utiliza con mayor frecuencia en redes de proveedores de servicios (como las redes de ISP) y no lo abordaremos en detalle aquí. OSPF sí lo abordaremos con detalle más adelante.
 
@@ -142,7 +142,7 @@ R1 construye un mapa de conectividad de la red y lo utiliza para calcular una ru
 
 Construir este mapa de la red y usarlo para calcular rutas requiere más recursos de CPU y memoria en el router que los requeridos por los protocolos de enrutamiento por vector de distancia, lo cual puede ser un problema en redes muy grandes. El mapa se almacena en memoria mediante una estructura llamada base de datos de estado de enlace (LSDB), y calcular rutas a partir de la LSDB puede consumir muchos recursos de la CPU. Sin embargo, existen métodos para superar esta limitación, como dividir la red en áreas.
 
-### Protocolos de puerta de enlace exterior
+### 2.3. Protocolos de puerta de enlace exterior
 
 En las redes modernas, solo se utiliza ampliamente un único EGP: el Protocolo de Puerta de Enlace de Frontera (BGP). BGP utiliza un algoritmo de vector de ruta para calcular rutas. Al igual que los dos tipos de algoritmos IGP, el nombre de vector de ruta nos da una pista sobre cómo funciona BGP. La ruta es la serie de sistemas autónomos que un paquete recorrerá a lo largo de su ruta hacia su destino; por ejemplo, podría pasar por dos ISP diferentes antes de llegar al Sistema Autónomo de destino.
 
@@ -157,7 +157,7 @@ La ruta de R1 a la Empresa B pasa por el ISP A y el ISP B y luego llega a la Emp
 !!!note "Nota"
     La Figura  simplifica el funcionamiento de BGP. BGP considera múltiples atributos de la ruta, no solo el número de sistemas autónomos.
 
-## Selección de ruta
+## 3. Selección de ruta
 
 La selección de ruta es algo que ya hemos visto anteriormente. Esa definición de selección de ruta se refería al reenvío de paquetes; cuando un router reenvía un paquete, seleccionará la ruta coincidente más específica en la tabla de enrutamiento.
 
@@ -168,7 +168,7 @@ Sin embargo, la selección de ruta también puede referirse al proceso de selecc
 
 Si un router aprende varias rutas al mismo destino, solo insertará la mejor ruta a ese destino en su tabla de enrutamiento. Para determinar cuál es la mejor ruta, comparará dos parámetros: distancia métrica y administrativa.
 
-### El parámetro de la métrica
+### 3.1. El parámetro de la métrica
 
 Ya vimos un ejemplo del funcionamiento de las métricas en la figura anterior. R1 aprendió dos rutas para llegar a la LAN A: una con una métrica de 2 y otra con una métrica de 1. ¿Cuál de las dos rutas insertó R1 en su tabla de enrutamiento? R1 seleccionó la última debido a su métrica más baja.
 
@@ -205,7 +205,7 @@ R1(config-if)# do show ip route
 O     192.168.3.0/24 [110/4] via 192.168.1.2, 00:00:04, GigabitEthernet0/1
 ```
 
-### El parámetro de distancia administrativa
+### 3.2. El parámetro de distancia administrativa
 
 Aunque la mayoría de los routers solo ejecutan un protocolo de enrutamiento, hay casos en los que un router ejecuta varios protocolos; por ejemplo, si dos empresas (que ejecutan diferentes protocolos de enrutamiento) conectan sus redes para permitir la comunicación entre ellas. Al ejecutar varios protocolos de enrutamiento, un router puede obtener información sobre la misma red de destino a partir de diferentes protocolos de enrutamiento. En tales casos, el router necesita una forma de comparar las rutas para determinar cuál debe ingresar en la tabla de enrutamiento.
 
@@ -250,7 +250,7 @@ D        10.0.0.0 [90/3584] via 192.168.12.2, 00:33:30, GigabitEthernet0/0
 !!!note "Nota"
     Las métricas y el AD solo se utilizan para comparar rutas al mismo destino: la misma dirección de red de destino con la misma longitud de prefijo. Si dos rutas tienen la misma dirección de red de destino, pero diferente longitud de prefijo (por ejemplo, 192.168.0.0/24 y 192.168.0.0/25), se consideran destinos diferentes; ambas rutas se insertarán en la tabla de enrutamiento.
 
-### ECMP
+### 3.3. ECMP
 
 Las métricas se utilizan para seleccionar rutas con el mismo destino, aprendidas mediante el mismo protocolo de enrutamiento, y el AD se utiliza para seleccionar rutas con el mismo destino, aprendidas mediante diferentes protocolos de enrutamiento. Pero ¿qué sucede si un router aprende varias rutas con el mismo destino mediante el mismo protocolo de enrutamiento y estas tienen la misma métrica? En ese caso, todas las rutas se añadirán a la tabla de enrutamiento y el tráfico se distribuirá entre ellas; la mitad del tráfico se enviará por una ruta y la otra por la otra. Esto se denomina enrutamiento multirruta de igual coste (ECMP).
 
@@ -264,7 +264,7 @@ Un ejemplo de enrutamiento ECMP. (1) R1 aprende dos rutas a 10.0.0.0/24 a travé
 ///
 
 
-### Rutas estáticas flotantes
+### 3.4. Rutas estáticas flotantes
 
 De forma predeterminada, las rutas estáticas tienen un AD de 1 y, por lo tanto, se prefieren a las rutas aprendidas mediante un protocolo de enrutamiento dinámico. Sin embargo, en algunos casos, podría ser conveniente configurar una ruta estática como respaldo, que solo se incluya en la tabla de enrutamiento si se pierde la ruta principal (aprendida mediante un protocolo de enrutamiento). Esta es la función de las rutas estáticas flotantes.
 
@@ -299,11 +299,11 @@ S        10.0.0.0 [111/0] via 192.168.1.2
 !!!note "Nota"
     Las rutas estáticas no utilizan el concepto de métricas; su métrica siempre es 0.
 
-### Ejemplos de selección de ruta
+### 3.5. Ejemplos de selección de ruta
 
 La selección de rutas, en sus dos acepciones (población de la tabla de enrutamiento y reenvío de paquetes), es un tema muy importante para el examen CCNA. En esta sección, analizaremos algunos ejemplos de cada una y aclararemos los conceptos que hemos cubierto hasta ahora.
 
-#### Población de la tabla de enrutamiento
+#### 3.5.1. Población de la tabla de enrutamiento
 
 Considere el siguiente ejemplo. R1 aprende las siguientes rutas mediante configuración manual y protocolos de enrutamiento dinámico:
 
@@ -345,7 +345,7 @@ Veamos otro ejemplo. R1 aprende las siguientes rutas mediante protocolos de enru
 
 ¿Y cuál de las dos rutas a 10.0.0.0/16 preferirá R1? En este caso, ambas rutas se aprenden mediante el mismo protocolo de enrutamiento, por lo que R1 comparará sus valores métricos para determinar cuál es la ruta preferible. La ruta D tiene la métrica más baja de las dos, por lo que será la seleccionada.
 
-#### Reenvío de paquetes
+#### 3.5.2. Reenvío de paquetes
 
 El segundo aspecto de la selección de ruta es el reenvío de paquetes: seleccionar la ruta de la tabla de enrutamiento que se utilizará para reenviar un paquete en particular. Este proceso es más sencillo, ya que solo se considera una cosa: la ruta más específica. Al reenviar un paquete, no se consideran los valores de AD ni de métricas de las rutas.
 
@@ -383,7 +383,7 @@ De las dos rutas coincidentes, la ruta a 203.0.113.0/25 es más específica; tie
     + Se selecciona la ruta coincidente más específica.
 
 
-## El comando `network`
+## 4. El comando `network`
 
 RIP, EIGRP y OSPF se configuran activando el protocolo en una o más interfaces del router. El router anuncia el prefijo de red (dirección y máscara de red) de la interfaz. En esta sección, analizaremos un comando compartido por los tres protocolos: el comando `network`. Este comando le indica al router que:
 
@@ -458,7 +458,7 @@ En la Tabla  se enumeran algunas máscaras de red y sus máscaras comodín equiv
 
 
 
-### ¿Por qué mascaras comodín o *wildcards*?
+### 4.1. ¿Por qué mascaras comodín o *wildcards*?
 
 Quizás os preguntáis por qué usamos máscaras comodín en lugar de máscaras de red. La clave está en recordar para qué sirven las máscaras de red: identifican el tamaño de un prefijo de red, distinguiendo entre la parte de red y la parte de host de una dirección IP. Por ejemplo, al configurar `ip address 192.168.1.1 255.255.255.0` en la interfaz de un router, este indica que su dirección IP es 192.168.1.1: los primeros tres octetos corresponden a la parte de red y el último a la parte de host. El prefijo es 192.168.1.0/24.
 
@@ -522,7 +522,7 @@ R1(config-router)# network 192.168.2.1 0.0.0.0 area 0
 
 Este comando no le indica a R1 que anuncie 192.168.2.1/32, sino que active OSPF en la interfaz con una dirección IP de 192.168.2.1 (G0/2) y anuncie el prefijo de red de esa interfaz, que es 192.168.2.0/24.
 
-## Resumen
+## 5. Resumen
 
 + El enrutamiento dinámico es un proceso mediante el cual los routers comparten información sobre la red, lo que les permite crear sus tablas de enrutamiento automáticamente. Esto se logra mediante un protocolo de enrutamiento.
 + El enrutamiento dinámico ofrece varias ventajas sobre el enrutamiento estático, como adaptabilidad y escalabilidad.

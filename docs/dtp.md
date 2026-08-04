@@ -1,18 +1,18 @@
 # DTP (Dynamic Trunking Protocol)
 
-## ¿Qué es DTP?
+## 1. ¿Qué es DTP?
 
 **DTP (Dynamic Trunking Protocol)** es un protocolo propietario de Cisco que **negocia automáticamente** la formación de enlaces trunk entre switches Cisco. Opera en la capa 2 del modelo OSI.
 
-## Propósito Principal
+## 2. Propósito Principal
 
 DTP elimina la necesidad de configurar manualmente los enlaces trunk, permitiendo que los switches negocien automáticamente si un puerto debe operar como:
 - **Access** (puerto de acceso)
 - **Trunk** (puerto troncal)
 
-## Modos de Operación DTP
+## 3. Modos de Operación DTP
 
-### 1. **Dynamic Auto**
+### 3.1. **Dynamic Auto**
 ```
 Switch(config-if)# switchport mode dynamic auto
 ```
@@ -43,7 +43,7 @@ Switch(config-if)# switchport mode dynamic auto
 
     ✅ Bajo overhead - No envía DTP activamente
 
-### 2. **Dynamic Desirable**
+### 3.2. **Dynamic Desirable**
 
 ```
 Switch(config-if)# switchport mode dynamic desirable
@@ -72,7 +72,7 @@ Switch(config-if)# switchport mode dynamic desirable
 
     ✅ Compatibilidad - Funciona con "auto" y "trunk"
 
-### 3. **Trunk**
+### 3.3. **Trunk**
 
 ```
 Switch(config-if)# switchport mode trunk
@@ -101,7 +101,7 @@ Switch(config-if)# switchport mode trunk
 
     ✅ Rendimiento - Sin overhead de negociación constante
 
-### 4. **Access**
+### 3.4. **Access**
 ```
 Switch(config-if)# switchport mode access
 ```
@@ -129,7 +129,7 @@ Switch(config-if)# switchport mode access
 
     ✅ Simplicidad - Fácil troubleshooting
 
-### 5. **Nonegotiate**
+### 3.5. **Nonegotiate**
 ```
 Switch(config-if)# switchport nonegotiate
 ```
@@ -156,7 +156,7 @@ Switch(config-if)# switchport nonegotiate
 
     ✅ Control - Configuración manual explícita
 
-## Tabla de Compatibilidad de Modos
+## 4. Tabla de Compatibilidad de Modos
 
 | Lado A | Lado B | Resultado |
 |--------|--------|-----------|
@@ -167,9 +167,9 @@ Switch(config-if)# switchport nonegotiate
 | Trunk | Dynamic Desirable | **Trunk** |
 | Access | Cualquier modo | **Access** |
 
-## Comandos de Configuración
+## 5. Comandos de Configuración
 
-### Configuración Básica:
+### 5.1. Configuración Básica:
 ```bash
 # Ver estado DTP
 Switch# show dtp interface [interface]
@@ -185,28 +185,28 @@ Switch(config-if)# switchport mode access
 Switch(config-if)# switchport nonegotiate
 ```
 
-### Configuración de VLAN Nativa:
+### 5.2. Configuración de VLAN Nativa:
 ```bash
 Switch(config-if)# switchport trunk native vlan [vlan-id]
 ```
 
-## Ventajas de DTP
+## 6. Ventajas de DTP
 
 ✅ **Configuración automática**  
 ✅ **Reduce errores manuales**  
 ✅ **Facilita la administración**  
 ✅ **Compatibilidad entre dispositivos Cisco**  
 
-## Desventajas y Consideraciones
+## 7. Desventajas y Consideraciones
 
 ❌ **Solo funciona entre equipos Cisco**  
 ❌ **Puede crear problemas de seguridad**  
 ❌ **Overhead en la red**  
 ❌ **En entornos seguros, se recomienda deshabilitar**
 
-## Mejores Prácticas
+## 8. Mejores Prácticas
 
-### Para Seguridad:
+### 8.1. Para Seguridad:
 ```bash
 # En puertos de acceso
 Switch(config-if)# switchport mode access
@@ -218,7 +218,7 @@ Switch(config-if)# switchport nonegotiate
 Switch(config-if)# switchport trunk allowed vlan [vlan-list]
 ```
 
-### Verificación:
+### 8.2. Verificación:
 ```bash
 # Ver estado DTP
 Switch# show dtp interface gigabitethernet 0/1
@@ -230,9 +230,9 @@ Switch# show interfaces trunk
 Switch# show interfaces [interface] switchport
 ```
 
-## Ejemplo Práctico
+## 9. Ejemplo Práctico
 
-### Escenario: Dos switches interconectados
+### 9.1. Escenario: Dos switches interconectados
 ```bash
 # Switch 1
 Switch1(config)# interface gigabitethernet 0/1
@@ -244,7 +244,7 @@ Switch2(config-if)# switchport mode dynamic auto
 ```
 **Resultado:** Se formará un enlace trunk automáticamente.
 
-## Seguridad con DTP
+## 10. Seguridad con DTP
 
 En entornos de producción, se recomienda:
 - **Deshabilitar DTP** en puertos de acceso

@@ -1,6 +1,6 @@
 # Listas de control de acceso extendidas (ACL)
 
-## Introducción
+## 1. Introducción
 
 Con anterioridad ya vimos las ACL estándar, que filtran paquetes según un único parámetro: la dirección IP de origen. Si bien las ACL estándar tienen su utilidad, son una herramienta poco precisa; no proporcionan un control exacto sobre qué tipos de tráfico se permiten y cuáles se deniegan. Las ACL extendidas, tema de este capítulo, son una herramienta más precisa: permiten filtrar paquetes según muchos más parámetros, lo que proporciona un control más granular del tráfico.
 
@@ -8,7 +8,7 @@ Aunque las ACL extendidas pueden ser más complejas que las estándar, la buena 
 
 Dadas estas similitudes, en esta sección veremos cómo configurar las ACL extendidas: cómo configurar las ACE que filtren paquetes según su protocolo, direcciones IP de origen/destino y puertos de origen/destino. 
 
-## Configuración de ACL extendidas
+## 2. Configuración de ACL extendidas
 
 Las ACL extendidas pueden filtrar paquetes según diversos parámetros, como:
 
@@ -18,7 +18,7 @@ Las ACL extendidas pueden filtrar paquetes según diversos parámetros, como:
 
 La configuración de las ACL extendidas es muy similar a la de las ACL estándar: se pueden configurar ACL numeradas en el modo de configuración global con el comando `access-list` o crear y configurar ACL con nombre mediante el comando `ip access-list`. Sin embargo, debido a los parámetros adicionales que las ACL extendidas pueden usar para hacer coincidir los paquetes, existen palabras clave y argumentos adicionales con los que conviene familiarizarse.
 
-### Coincidencia de protocolo, origen y destino
+### 2.1. Coincidencia de protocolo, origen y destino
 
 Comencemos configurando listas de control de acceso (ACL) que identifiquen los paquetes según el protocolo encapsulado, la dirección IP de origen y la dirección IP de destino. El siguiente ejemplo muestra la sintaxis del comando para configurar una ACL numerada con estos parámetros:
 
@@ -81,7 +81,7 @@ Las ACL extendidas, sin embargo, ofrecen un mayor control sobre qué tipos de pa
 
 En este ejemplo, filtramos los paquetes de las LAN de los departamentos de ingeniería y contabilidad hacia las LAN del servidor A y del servidor B. Al aplicar la regla TEST1 de salida en R1 G0/2, los paquetes de ambas LAN de origen se filtran al inicio de su ruta hacia cualquiera de las LAN de destino.
 
-### Coincidencia de números de puerto TCP/UDP
+### 2.2. Coincidencia de números de puerto TCP/UDP
 
 La coincidencia de paquetes según el protocolo, el origen y el destino proporciona un control mucho más preciso que las ACL estándar. Sin embargo, al añadir los números de puerto TCP y UDP, podemos lograr un control aún mayor sobre qué paquetes se permiten o se deniegan. La figura muestra cómo configurar una ACE que incluya puertos en sus parámetros de coincidencia; prestad especial atención a los valores de las palabras clave que se pueden proporcionar para los argumentos del operador.
 
@@ -157,7 +157,7 @@ A veces, en vez del número de puerto se utiliza la palabra clave o protocolo as
 + TCP 80 (HTTP) = www
 
 
-## Ejemplo de requisitos de seguridad
+## 3. Ejemplo de requisitos de seguridad
 
 Ahora que hemos examinado las ACL extendidas y sus componentes, practiquemos su configuración para cumplir con un conjunto de requisitos definidos por el equipo de seguridad de nuestra organización ficticia. Las ACL extendidas añaden cierta complejidad a las ACL estándar, por lo que esta práctica es especialmente importante.
 
@@ -238,14 +238,14 @@ Ahora hemos cumplido los tres requisitos. Para repasar, la figura de abajo muest
 Cuatro ACL configuradas en R1 y R2 cumplen los requisitos. Las ACL ICMP_1 e ICMP_2 cumplen el requisito 1, la ACL NO_HTTP cumple el requisito 2 y la ACL 100 cumple el requisito 3.
 ///
 
-## Edición de ACL
+## 4. Edición de ACL
 
 El orden en que se configuran las ACE de una ACL es muy importante, ya que determina el orden en que el router las procesará al evaluar un paquete con respecto a la ACL. Sin embargo, incluso si se configuran las ACE en el orden correcto, en algunos casos puede ser necesario editar la ACL posteriormente. Por ejemplo, puede ser necesario eliminar una ACE o insertar una nueva entre las existentes. En esta sección, veremos cómo hacerlo.
 
 !!!note "Nota"
     Todo lo que se describe en esta sección se aplica tanto a las ACL estándar como a las extendidas. Para simplificar las ACL, se usan ACL estándar.
 
-### Eliminación de ACE
+### 4.1. Eliminación de ACE
 
 Negar un comando en Cisco IOS es tan sencillo como insertar la palabra clave `no` delante. Sin embargo, veamos qué sucede cuando usamos este método para eliminar una ACE de una ACL numerada:
 
@@ -292,7 +292,7 @@ Standard IP access list 1
     30 deny   192.168.4.0, wildcard bits 0.0.0.255
     40 permit any
 ```
-### Reordenamiento de ACE
+### 4.2. Reordenamiento de ACE
 
 El modo de configuración de ACL con nombre permite configurar nuevas ACE entre las existentes especificando el número de secuencia de cada ACE. Pero, ¿qué ocurre si no hay espacio entre las ACE? Por defecto, los números de secuencia comienzan en 10 y se incrementan de 10 en 10, por lo que este problema es poco frecuente. Sin embargo, si se agota el espacio entre las ACE, Cisco IOS proporciona un comando útil que ajusta automáticamente los números de secuencia. La sintaxis del comando es `ip access-list resequence {name|number} starting-seq-num increment`. Aquí muestra un ejemplo del comando y explica los dos últimos argumentos (`starting-seq-num increment` e `increment`):
 

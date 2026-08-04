@@ -25,7 +25,7 @@ Este capítulo cubre material del dominio 1.0 de los temas del examen CCNA: Fund
 
 A menudo se dice que los switches son dispositivos de Capa 2 o que operan en la Capa 2. La razón es que usan la información de la cabecera de la Capa 2 (la cabecera Ethernet) para tomar decisiones de reenvío. Esto contrasta con los routers, que usan la información de la cabecera de la Capa 3 (la cabecera IP) para tomar decisiones de reenvío. Veremos cómo reenvían los routers el tráfico de red entre LANs en la parte 2 de este libro, pero por ahora, nos centraremos en cómo reenvían los switches el tráfico dentro de una LAN.
 
-## 5.1 Redes de área local
+## 1. Redes de área local
 
 En el capítulo 2, definí una red de área local (LAN) como un grupo de dispositivos interconectados en un área limitada, como una oficina, y afirmé que la función de un switch es conectar dispositivos dentro de una LAN. La definición exacta de una LAN puede variar según el contexto, pero, para este tema, la forma en que están conectados los dispositivos es más importante que la distancia física real entre ellos. La Figura 1 demuestra este concepto.
 
@@ -40,7 +40,7 @@ En la Oficina B, sin embargo, SW3 y SW4 están conectados directamente entre sí
 
 Otro nombre para una LAN es dominio de Capa 2: una parte de una red donde se conmuta tráfico de tramas y los hosts conectados al switch o switches pueden comunicarse entre sí sin usar un router. Manteneos esta definición en mente durante todo este capítulo; examinaremos cómo reenvían los switches las tramas dentro de un dominio de Capa 2.
 
-## 5.2 La cabecera y el trailer de Ethernet
+## 2. La cabecera y el trailer de Ethernet
 
 Los switches toman decisiones de reenvío usando la información de la cabecera Ethernet, así que para entender la conmutación, es importante comprender el contenido de esa cabecera (y del trailer). La Figura 2 muestra la estructura de una trama Ethernet. Fijaos que el Preamble y el Start Frame Delimiter (SFD) aparecen en el diagrama, pero no se consideran parte de una trama Ethernet. Lo veremos enseguida.
 
@@ -49,7 +49,7 @@ Los switches toman decisiones de reenvío usando la información de la cabecera 
 El contenido de la cabecera y del trailer de Ethernet. Se dividen en varios campos, cada uno con una función distinta. Los campos de la cabecera son Destination, Source y Type/Length. El trailer consta de un único campo: Frame Check Sequence (FCS). Aunque no se consideran parte de la trama Ethernet, el Preamble y el SFD se envían con cada trama.
 ///
 
-### 5.2.1 Preamble y SFD
+### 2.1. Preamble y SFD
 
 El Preamble y el SFD se envían con cada trama Ethernet para permitir que el dispositivo receptor sincronice su reloj y se prepare para recibir la trama entrante. Este reloj no tiene nada que ver con la fecha y la hora, sino con cómo interpreta el dispositivo receptor las señales eléctricas entrantes: necesita determinar la longitud exacta de 1 bit.
 
@@ -57,7 +57,7 @@ El dispositivo que envía una trama Ethernet facilita esto enviando el Preamble 
 
 La razón por la que el Preamble y el SFD no se consideran parte de la trama Ethernet, aunque se envían con cada trama, es que son una función exclusiva de la Capa 1, la Capa física. No contienen información que influya en la decisión que toma el dispositivo receptor sobre la trama. Como se mencionó en capítulos anteriores, Ethernet incluye especificaciones tanto en la Capa 1 como en la Capa 2, pero los aspectos de la Capa 1 de Ethernet no se consideran parte de una trama, que es un concepto de Capa 2.
 
-### 5.2.2 Destination y Source
+### 2.2. Destination y Source
 
 Los campos Destination y Source son probablemente los más importantes de la cabecera y el trailer Ethernet; el campo Destination es la dirección MAC de destino de la trama, y el campo Source es la dirección MAC de origen de la trama.
 
@@ -68,7 +68,7 @@ La Capa 2 proporciona entrega de salto a salto de mensajes, y las direcciones MA
 
 Como indica la Figura 2, cada uno de estos campos tiene 6 bytes (48 bits), porque 6 bytes es la longitud de una dirección MAC. Sin embargo, cuando representamos direcciones MAC, normalmente no las escribimos en binario; una cadena larga de 1s y 0s no es muy legible ni fácil de recordar. En su lugar, escribimos las direcciones MAC en hexadecimal.
 
-#### El sistema numérico hexadecimal
+#### 2.2.1. El sistema numérico hexadecimal
 
 El sistema numérico que normalmente usamos en nuestra vida diaria es el sistema decimal, que usa 10 dígitos para representar todos los valores: 0, 1, 2, 3, 4, 5, 6, 7, 8 y 9. El hexadecimal es un sistema numérico que usa 16 dígitos; usa los mismos 10 dígitos del sistema decimal y toma 6 letras del alfabeto: A, B, C, D, E y F.
 
@@ -90,7 +90,7 @@ Como hay más dígitos disponibles, el hexadecimal puede expresar valores grande
 
 En la parte 5 de este libro (IPv6), practicaremos la conversión entre decimal, hexadecimal y binario. Por ahora, no es necesario; basta con entender que las direcciones MAC suelen escribirse en hexadecimal.
 
-#### Características de las direcciones MAC
+#### 2.2.2. Características de las direcciones MAC
 
 Ya hemos visto dos características de las direcciones MAC: tienen 6 bytes de longitud y normalmente se escriben en hexadecimal. Al escribirlas en hexadecimal, podemos expresar la dirección con menos caracteres; las direcciones MAC se escriben como 12 caracteres hexadecimales en lugar de 48 bits (1s y 0s). Los detalles sobre la notación de esos 12 caracteres pueden variar. A continuación, tenéis una sola dirección MAC escrita con tres convenciones de notación distintas. Por supuesto, como es un libro del CCNA, seguiré la convención de Cisco para escribir direcciones MAC, pero merece la pena saber que se pueden escribir de otras formas. Para compararlas, también he incluido la dirección escrita en binario; estoy seguro de que estaréis de acuerdo en que las representaciones hexadecimales son más fáciles de leer:
 
@@ -120,7 +120,7 @@ Resumamos las direcciones MAC antes de seguir adelante:
 - Los últimos 3 bytes son exclusivos del propio puerto.
 - Las direcciones MAC se escriben como 12 caracteres hexadecimales.
 
-### 5.2.3 Type/Length
+### 2.3. Type/Length
 
 El campo Type/Length es un campo de 2 bytes que puede usarse bien para indicar el tipo del paquete encapsulado (por ejemplo, un paquete IPv4 o IPv6) o para indicar la longitud del paquete encapsulado (en bytes). Hay razones históricas por las que este campo puede usarse para dos propósitos, pero ambos usos forman parte oficialmente del estándar Ethernet. En la actualidad, en casi todos los casos, este campo se usa para indicar el tipo del paquete encapsulado: en lugar de indicar la longitud, el final de la trama se indica mediante una señal especial después de la trama.
 
@@ -137,7 +137,7 @@ Un valor de 1536 o superior en este campo indica el tipo del paquete encapsulado
 !!!note "Nota"
     Los valores entre 1500 y 1536 no deben usarse en este campo.
 
-### 5.2.4 Frame Check Sequence
+### 2.4. Frame Check Sequence
 
 La Frame Check Sequence (FCS) es el único campo del trailer Ethernet. Tiene 4 bytes de longitud y se usa para detectar datos corruptos en la trama. Antes de que un dispositivo envíe una trama, usa un algoritmo para calcular una suma de comprobación, un bloque pequeño de datos que se añade al final de la trama como campo FCS.
 
@@ -145,11 +145,11 @@ Luego, cuando el host de destino de la trama recibe la trama, calcula su propia 
 
 FCS es el nombre del campo, pero el nombre de este tipo de suma de comprobación es cyclic redundancy check (CRC). El término cyclic se refiere al tipo de algoritmo usado para calcular la suma de comprobación. Redundancy significa que el campo es redundante: amplía el tamaño del mensaje pero no añade información adicional. Check es autoexplicativo: se usa para comprobar si la trama viajó del origen al destino sin que los datos se corrompieran.
 
-## 5.3 Conmutación de tramas
+## 3. Conmutación de tramas
 
 Ahora que ya hemos visto la información de la cabecera y el trailer Ethernet, veamos cómo usan los switches los campos Source y Destination para construir una tabla de direcciones MAC y reenviar tramas al destino o destinos adecuados dentro de una LAN.
 
-### 5.3.1 Aprendizaje de direcciones MAC
+### 3.1. Aprendizaje de direcciones MAC
 
 Cuando un switch tiene que tomar una decisión sobre cómo reenviar una trama, busca la dirección MAC de destino de la trama en su tabla de direcciones MAC, que es una lista de las direcciones MAC de la LAN y del puerto al que está conectada cada una. Examinaremos el proceso de reenvío de tramas más adelante, pero primero, ¿cómo construye un switch su tabla de direcciones MAC?
 
@@ -168,7 +168,7 @@ Una red con dos switches, cada uno con dos PCs conectados. SW1 y SW2 han aprendi
 
 La Figura 3 muestra el estado de la red después de que los switches han aprendido las direcciones MAC de los dispositivos de la LAN. Sin embargo, aún faltan algunos elementos del puzzle, como cómo reenvían los switches el tráfico antes de haber construido sus tablas de direcciones MAC y cómo aprenden los PCs las direcciones MAC entre sí.
 
-#### Nombres de puertos en dispositivos Cisco
+#### 3.1.1. Nombres de puertos en dispositivos Cisco
 
 Los puertos de los dispositivos Cisco tienen un nombre que indica su velocidad máxima soportada (Ethernet = 10 Mbps, FastEthernet = 100 Mbps, GigabitEthernet = 1 Gbps, TenGigabitEthernet = 10 Gbps), seguido de uno a tres números. El número de números que se usan depende del modelo del dispositivo.
 
@@ -176,7 +176,7 @@ En este libro, usaré un sistema de dos números (X/Y), donde el primer número 
 
 Además, los números de puerto en los switches físicos de Cisco comienzan en 1 (G0/1, G0/2, G0/3, etc.). Sin embargo, en la mayoría de ejemplos de este libro usaré dispositivos virtuales ejecutados en el software de emulación de Cisco CML (Cisco Modeling Labs), en el que los números de puerto comienzan en 0 (G0/0, G0/1, G0/2, etc.).
 
-### 5.3.2 Inundación y reenvío de tramas
+### 3.2. Inundación y reenvío de tramas
 
 Una vez que los switches han aprendido la dirección MAC de cada host de la LAN, como en la Figura 3, el reenvío del tráfico es sencillo: cuando un switch recibe una trama, busca la dirección MAC de destino en su tabla de direcciones MAC y reenvía la trama por el puerto adecuado. Por ejemplo, si PC1 envía una trama a la dirección MAC de PC2, SW1 comprobará su tabla de direcciones MAC y verá que debe reenviar la trama por su puerto G0/2. Esta trama enviada por PC1 es una unicast conocida.
 
@@ -215,7 +215,7 @@ La respuesta de PC3 a PC1 también es una trama unicast, pero esta vez tanto SW1
 !!!note "Nota"
     Un switch es transparente para sus hosts conectados; PC1 y PC3 dirigen sus mensajes directamente entre sí, no a SW1 ni a SW2, exactamente igual que si estuvieran conectados directamente por un único cable. Por eso, un mensaje que pasa a través de un switch no se considera un salto, como se dijo en el capítulo 4. Además, los switches no modifican las tramas que conmutan de ninguna manera; simplemente las reenvían o las inundan según corresponda.
 
-### 5.3.3 La tabla de direcciones MAC en Cisco IOS
+### 3.3. La tabla de direcciones MAC en Cisco IOS
 
 El comando para ver la tabla de direcciones MAC de un switch Cisco es show mac address-table (en modo EXEC de usuario o EXEC privilegiado). Como muestra el ejemplo siguiente, hay algunas columnas más además de la dirección MAC y el puerto. La columna Type indica si la dirección MAC se aprendió dinámicamente (DYNAMIC) o se configuró estáticamente (STATIC). La columna Vlan indica en qué VLAN virtual se aprendió cada dirección MAC. Veremos VLANs en el capítulo 12. Por ahora, solo tened en cuenta que todas las direcciones MAC están en la VLAN 1 por defecto:
 
@@ -261,7 +261,7 @@ Sin embargo, como se dijo antes, normalmente no tendréis que interferir manualm
 !!!note "Nota"
     Cuando uso negrita y cursiva en un comando, las palabras en negrita indican el comando y sus palabras clave que debéis escribir. Las palabras en cursiva indican argumentos para los que debéis proporcionar un valor. Por ejemplo, en clear mac address-table dynamic address mac-address, debéis escribir clear mac address-table dynamic address y luego especificar la dirección MAC que queréis borrar.
 
-## 5.4 Protocolo de resolución de direcciones
+## 4. Protocolo de resolución de direcciones
 
 Ahora ya hemos visto cómo reenvían los switches las tramas y aprenden las direcciones MAC de los dispositivos de su LAN. A continuación, daremos un paso atrás para completar otra pieza del puzzle: cómo saben los PCs la dirección MAC entre sí. Para que PC1 y PC3 se envíen mensajes entre sí, primero necesitan aprender la dirección MAC del otro. Para ello, usan el Protocolo de resolución de direcciones (ARP).
 
@@ -306,7 +306,7 @@ Ya hemos visto cómo aprenden los switches las direcciones MAC, cómo inundan y 
 !!!note "Nota"
     Un dispositivo no tiene que usar ARP cada vez que envía un mensaje. Después de usar ARP para aprender la dirección MAC de otro dispositivo, almacena esa información en su tabla ARP para usos futuros.
 
-## 5.5 Ping
+## 5. Ping
 
 Ping es una utilidad de software que prueba la alcanzabilidad de hosts a través de una red. No está directamente relacionada con el tema de la conmutación Ethernet, pero es una herramienta a la que me referiré a lo largo del libro, y además sirve para completar la pieza final del puzzle de este capítulo: cómo sabe un host origen la dirección IP del host destino al que quiere enviar un mensaje.
 
@@ -328,7 +328,7 @@ Success rate is 100 percent (5/5), round-trip min/avg/max = 3/3/4 ms
 
 Los cinco signos de exclamación (!!!!!) en la salida indican pings correctos: solicitudes ICMP echo que recibieron una respuesta ICMP echo. Si alguna de las solicitudes no recibe respuesta, se muestra un punto (.) en su lugar. Por ejemplo, si la primera solicitud no recibió respuesta, la salida sería .!!!!.
 
-## Resumen
+## 6. Resumen
 
 - Una red de área local (LAN) puede definirse como una parte de una red en la que los hosts pueden comunicarse entre sí sin usar un router. Esto también se llama dominio de Capa 2.
 - La cabecera Ethernet tiene tres campos: Destination, Source y Type/Length. El trailer Ethernet tiene un campo: Frame Check Sequence (FCS).

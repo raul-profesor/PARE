@@ -1,0 +1,2409 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://raul-profesor.github.io/PARE/subnetting/">
+      
+      
+        <link rel="prev" href="../direccionamientoIP/">
+      
+      
+        <link rel="next" href="../routing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>Subnetting - PARE - Planificación y Administración de Redes y Equipos</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M384%20512H96c-53%200-96-43-96-96V96C0%2043%2043%200%2096%200h304c26.5%200%2048%2021.5%2048%2048v288c0%2020.9-13.4%2038.7-32%2045.3V448c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032zM96%20384c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032h256v-64zm32-232c0%2013.3%2010.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24H152c-13.3%200-24%2010.7-24%2024m24%2072c-13.3%200-24%2010.7-24%2024s10.7%2024%2024%2024h176c13.3%200%2024-10.7%2024-24s-10.7-24-24-24z%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M352%200c0-17.7-14.3-32-32-32s-32%2014.3-32%2032v64h-96c-53%200-96%2043-96%2096v224c0%2053%2043%2096%2096%2096h256c53%200%2096-43%2096-96V160c0-53-43-96-96-96h-96zM160%20368c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24m120%200c0-13.3%2010.7-24%2024-24h32c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-32c-13.3%200-24-10.7-24-24M224%20176a48%2048%200%201%201%200%2096%2048%2048%200%201%201%200-96m144%2048a48%2048%200%201%201%2096%200%2048%2048%200%201%201-96%200m-304%200c0-17.7-14.3-32-32-32S0%20206.3%200%20224v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32zm544-32c-17.7%200-32%2014.3-32%2032v96c0%2017.7%2014.3%2032%2032%2032s32-14.3%2032-32v-96c0-17.7-14.3-32-32-32%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M416%20427.4c58.5-44%2096-111.6%2096-187.4C512%20107.5%20397.4%200%20256%200S0%20107.5%200%20240c0%2075.8%2037.5%20143.4%2096%20187.4V464c0%2026.5%2021.5%2048%2048%2048h32v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h64v-40c0-13.3%2010.7-24%2024-24s24%2010.7%2024%2024v40h32c26.5%200%2048-21.5%2048-48zM96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v151.5L7.5%20426.3C2.6%20435%200%20444.7%200%20454.7%200%20486.4%2025.6%20512%2057.3%20512h333.4c31.6%200%2057.3-25.6%2057.3-57.3%200-10-2.6-19.8-7.5-28.4L320%20215.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20215.5V64h64v151.5c0%2011.1%202.9%2022.1%208.4%2031.8L306%20320H142l41.6-72.7c5.5-9.7%208.4-20.6%208.4-31.8%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20576%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M480-16c6.9%200%2013%204.4%2015.2%2010.9l13.5%2040.4%2040.4%2013.5C555.6%2051%20560%2057.1%20560%2064s-4.4%2013-10.9%2015.2l-40.4%2013.5-13.5%2040.4c-2.2%206.5-8.3%2010.9-15.2%2010.9s-13-4.4-15.2-10.9l-13.5-40.4-40.4-13.5C404.4%2077%20400%2070.9%20400%2064s4.4-13%2010.9-15.2l40.4-13.5%2013.5-40.4C467-11.6%20473.1-16%20480-16M321.4%2097.4c12.5-12.5%2032.8-12.5%2045.3%200l80%2080c12.5%2012.5%2012.5%2032.8%200%2045.3l-10.9%2010.9c7.9%2022%2012.2%2045.7%2012.2%2070.5%200%20114.9-93.1%20208-208%20208S32%20418.9%2032%20304%20125.1%2096%20240%2096c24.7%200%2048.5%204.3%2070.5%2012.3zM144%20304c0-53%2043-96%2096-96%2013.3%200%2024-10.7%2024-24s-10.7-24-24-24c-79.5%200-144%2064.5-144%20144%200%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-32-352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200m-8%2064h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24%22/%3E%3C/svg%3E');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M64%20480c-35.3%200-64-28.7-64-64V96c0-35.3%2028.7-64%2064-64h320c35.3%200%2064%2028.7%2064%2064v213.5c0%2017-6.7%2033.3-18.7%2045.3L322.7%20461.3c-12%2012-28.3%2018.7-45.3%2018.7zm325.5-176H296c-13.3%200-24%2010.7-24%2024v93.5z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m0-336c-17.7%200-32%2014.3-32%2032%200%2013.3-10.7%2024-24%2024s-24-10.7-24-24c0-44.2%2035.8-80%2080-80s80%2035.8%2080%2080c0%2047.2-36%2067.2-56%2074.5v3.8c0%2013.3-10.7%2024-24%2024s-24-10.7-24-24v-8.1c0-20.5%2014.8-35.2%2030.1-40.2%206.4-2.1%2013.2-5.5%2018.2-10.3%204.3-4.2%207.7-10%207.7-19.6%200-17.7-14.3-32-32-32zm-32%20192a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64zm256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M434.8%2070.1c14.3%2010.4%2017.5%2030.4%207.1%2044.7l-256%20352c-5.5%207.6-14%2012.3-23.4%2013.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200l101.5%20101.5%20234-321.7c10.4-14.3%2030.4-17.5%2044.7-7.1z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M461.2%2018.9C472.7%2024%20480%2035.4%20480%2048v416c0%2012.6-7.3%2024-18.8%2029.1s-24.8%203.2-34.3-5.1l-46.6-40.7c-43.6-38.1-98.7-60.3-156.4-63V480c0%2017.7-14.3%2032-32%2032h-32c-17.7%200-32-14.3-32-32v-96C57.3%20384%200%20326.7%200%20256s57.3-128%20128-128h84.5c61.8-.2%20121.4-22.7%20167.9-63.3L427%2024c9.4-8.3%2022.9-10.2%2034.3-5.1zM224%20320v.2c70.3%202.7%20137.8%2028.5%20192%2073.4V118.3c-54.2%2044.9-121.7%2070.7-192%2073.4z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M256%200c14.7%200%2028.2%208.1%2035.2%2021l216%20400c6.7%2012.4%206.4%2027.4-.8%2039.5S486.1%20480%20472%20480H40c-14.1%200-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9%2020.5-21%2035.2-21m0%20352a32%2032%200%201%200%200%2064%2032%2032%200%201%200%200-64m0-192c-18.2%200-32.7%2015.5-31.4%2033.7l7.4%20104c.9%2012.5%2011.4%2022.3%2023.9%2022.3%2012.6%200%2023-9.7%2023.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#subnetting" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-header__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PARE - Planificación y Administración de Redes y Equipos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Subnetting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Buscar">
+  <button type="button" class="md-search__button">
+    Buscar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../UD1dispositivos_de_red/" class="md-tabs__link">
+          
+  
+  Introduccion
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../VLANS/" class="md-tabs__link">
+          
+  
+  Switch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../direccionamientoIP/" class="md-tabs__link">
+          
+  
+  Enrutamiento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PARE - Planificación y Administración de Redes y Equipos" class="md-nav__button md-logo" aria-label="PARE - Planificación y Administración de Redes y Equipos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    PARE - Planificación y Administración de Redes y Equipos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduccion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1dispositivos_de_red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispositivos de red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2fisica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medios de transmisión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3modeloTCPIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo TCP/IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4CiscoCLI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco IOS CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD5Switching/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conmutación Ethernet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Switch
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VLANS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spanning_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SecSwitches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía Completa de Seguridad en Switches Cisco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTP (Dynamic Trunking Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet_routers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet routers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enrutamiento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../direccionamientoIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direccionamiento IPv4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subnetting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subnetting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es-el-subnetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Qué es el subnetting?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-subnetting-flsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Subnetting FLSM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Subnetting FLSM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-subnetting-de-bloques-de-direcciones-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Subnetting de bloques de direcciones /24
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1. Subnetting de bloques de direcciones &#x2f;24">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-calculo-de-los-cinco-atributos-de-una-subred-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1. Cálculo de los cinco atributos de una subred /24+
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-mascaras-de-subred-para-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2. Máscaras de subred para /24+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-subnetting-de-bloques-de-direcciones-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Subnetting de bloques de direcciones /16
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-subnetting-de-bloques-de-direcciones-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Subnetting de bloques de direcciones /8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-escenarios-flsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Escenarios FLSM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-subnetting-vlsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Subnetting VLSM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Subnetting VLSM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-asignacion-de-la-subred-de-la-lan-a-de-toronto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Asignación de la subred de la LAN A de Toronto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-asignacion-de-la-subred-de-la-lan-a-de-tokio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Asignación de la subred de la LAN A de Tokio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-asignacion-de-la-subred-de-la-lan-b-de-toronto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Asignación de la subred de la LAN B de Toronto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-asignacion-de-la-subred-de-la-lan-b-de-tokio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Asignación de la subred de la LAN B de Tokio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-asignacion-de-la-subred-de-la-conexion-wan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Asignación de la subred de la conexión WAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-escenarios-de-examen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Escenarios de examen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-practica-adicional-de-subnetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Práctica adicional de subnetting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Práctica adicional de subnetting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-el-metodo-del-numero-magico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. El método del "número mágico"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vida_paquete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vida del paquete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routers_y_rutas_estaticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento estático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rutas_dinamicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento dinámico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIP_RIPv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RIP (Routing Information Protocol)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSPF (Open Shortest Path First)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrutamiento intervlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_estandar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl_extendida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de control de acceso extendidas (ACL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT (traducción de direcciones de red)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es-el-subnetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Qué es el subnetting?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-subnetting-flsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Subnetting FLSM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Subnetting FLSM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-subnetting-de-bloques-de-direcciones-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Subnetting de bloques de direcciones /24
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1. Subnetting de bloques de direcciones &#x2f;24">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-calculo-de-los-cinco-atributos-de-una-subred-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1. Cálculo de los cinco atributos de una subred /24+
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-mascaras-de-subred-para-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2. Máscaras de subred para /24+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-subnetting-de-bloques-de-direcciones-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Subnetting de bloques de direcciones /16
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-subnetting-de-bloques-de-direcciones-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Subnetting de bloques de direcciones /8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-escenarios-flsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Escenarios FLSM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-subnetting-vlsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Subnetting VLSM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Subnetting VLSM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-asignacion-de-la-subred-de-la-lan-a-de-toronto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Asignación de la subred de la LAN A de Toronto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-asignacion-de-la-subred-de-la-lan-a-de-tokio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Asignación de la subred de la LAN A de Tokio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-asignacion-de-la-subred-de-la-lan-b-de-toronto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Asignación de la subred de la LAN B de Toronto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-asignacion-de-la-subred-de-la-lan-b-de-tokio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Asignación de la subred de la LAN B de Tokio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-asignacion-de-la-subred-de-la-conexion-wan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Asignación de la subred de la conexión WAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-escenarios-de-examen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Escenarios de examen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-practica-adicional-de-subnetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Práctica adicional de subnetting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Práctica adicional de subnetting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-el-metodo-del-numero-magico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. El método del "número mágico"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../direccionamientoIP/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Enrutamiento
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="subnetting">Subnetting</h1>
+<p>Este capítulo cubre</p>
+<ul>
+<li>Qué es el subnetting y por qué es necesario</li>
+<li>Cómo tomar bits de la parte de host de una red para ampliar la parte de red y crear subredes</li>
+<li>Cómo identificar los cinco atributos de una subred</li>
+<li>Cómo dividir una red en subredes de tamaño igual y variable</li>
+</ul>
+<p>En el capítulo 7 tratamos las clases de direcciones IPv4, centrándonos en las clases A, B y C, las tres clases de direcciones que se pueden asignar a hosts. Cada clase se define por el primer bit (o los primeros bits) de la dirección y también se define la longitud de prefijo de las direcciones en cada rango:</p>
+<ul>
+<li>Las direcciones de clase A comienzan por 0b0 y utilizan una longitud de prefijo /8.</li>
+<li>Las direcciones de clase B comienzan por 0b10 y utilizan una longitud de prefijo /16.</li>
+<li>Las direcciones de clase C comienzan por 0b110 y utilizan una longitud de prefijo /24.</li>
+</ul>
+<p>Esta arquitectura de direccionamiento, llamada direccionamiento con clases, se definió en el estándar original del Protocolo de Internet en 1981 (RFC 791). Sin embargo, con el rápido crecimiento de internet, el direccionamiento con clases demostró ser pronto demasiado rígido, dando lugar a un uso ineficiente de las direcciones; el conjunto de direcciones IPv4 disponibles se estaba agotando. El subnetting, que consiste en dividir una red grande en redes más pequeñas, es una de las respuestas a este problema y es una habilidad fundamental para los ingenieros de redes. El subnetting es la segunda mitad del tema 1.6 del examen CCNA: Configurar y verificar el direccionamiento y el subnetting IPv4.</p>
+<p>Antes de empezar, quiero insistir en que el subnetting es una habilidad y que requiere práctica para llegar a dominarlo. Con sólo leer este capítulo no vais a ser buenos en subnetting; tenéis que dedicar algo de tiempo a hacerlo en la práctica. Sin embargo, si leéis este capítulo con atención y hacéis las prácticas recomendadas, en poco tiempo seréis unos "subnetters" seguros.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El método de notación de la longitud de prefijo de una dirección con /X también se conoce como notación CIDR, porque se introdujo con CIDR. Antes de la notación CIDR, la longitud del prefijo se indicaba siempre con una máscara de red, como 255.255.255.0. Otro término para máscara de red es máscara de subred; utilizaré este último término en este capítulo porque nos vamos a centrar en el subnetting, pero los términos son intercambiables.</p>
+</div>
+<h2 id="1-que-es-el-subnetting">1. ¿Qué es el subnetting?</h2>
+<p>El problema del direccionamiento con clases es que no nos permite crear redes de tamaños adecuados. El tamaño de red más pequeño, una red de clase C, contiene 254 direcciones utilizables (28 – 2 para las direcciones de red y de difusión). Eso es muy superior a las direcciones necesarias para una red doméstica o para muchas oficinas pequeñas. Asignar una red de clase C a una oficina pequeña que sólo tiene unas pocas docenas de dispositivos dejaría sin utilizar más de 200 direcciones IP.</p>
+<p>Sin embargo, una red de clase C es demasiado pequeña para la mayoría de las redes empresariales, lo que significa que se necesitaría una red de clase B. Una red de clase B contiene 65.534 (216 – 2) direcciones utilizables, muy por encima de lo que necesita incluso una red muy grande, lo que se traduce en miles de direcciones desperdiciadas. Y una red de clase A contiene 16.777.214 direcciones utilizables, un número absurdo de direcciones para una sola red. Estas reglas con clases se diseñaron pensando en la simplicidad, no en la eficiencia, pero con la popularidad explosiva de internet se necesitaba una solución mejor.</p>
+<p>Para dar soporte al internet en rápido crecimiento y utilizar el espacio de direcciones IPv4 disponible de forma más eficiente, en 1993 se introdujo un nuevo sistema: el Enrutamiento entre dominios sin clases (CIDR, pronunciado como "cider"). CIDR elimina las reglas del direccionamiento con clases y las sustituye por un sistema más flexible. Con CIDR, las longitudes de prefijo no tienen que ser /8, /16 o /24. En su lugar, la frontera entre la parte de red y la parte de host de una dirección IP puede estar en mitad de un octeto, dando lugar a longitudes de prefijo como /23, /26, /28, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un bloque de direcciones es un rango de direcciones IP. Se puede utilizar para referirse a una red antes de haber sido dividida en subredes. Por ejemplo, 192.168.1.0/24 es un bloque de direcciones (incluye las direcciones IP 192.168.1.0 a 192.168.1.255), que se puede dividir en varias redes más pequeñas (subredes).</p>
+</div>
+<p>La figura 1 muestra cómo se puede dividir un bloque de direcciones /24 en subredes. El rango de direcciones 192.168.1.0/24 permite una única subred con una longitud de prefijo /24, que incluye todas las direcciones desde 192.168.1.0 hasta 192.168.1.255. Si se divide el bloque /24 por la mitad se obtienen dos subredes /25, cada una con 128 direcciones. O se puede dividir en cuatro subredes /26, cada una con 64 direcciones. Por cada bit que se amplíe la longitud de prefijo, el número de subredes posibles se duplica, pero el número de direcciones en cada subred se reduce a la mitad.</p>
+<figure id="__figura_1">
+<p><img alt="" justify="justify" src="../img/subnetting_1.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 1. </span> El bloque de direcciones 192.168.1.0/24 (red) dividido en subredes más pequeñas. Con una longitud de prefijo /24, es una subred de 256 direcciones. Con una longitud de prefijo /25, el bloque se puede dividir en dos subredes de 128 direcciones cada una. Con /26 se obtienen 4 subredes de 64 direcciones cada una. Con /27 se obtienen 8 subredes de 32 direcciones cada una. Con /28 se obtienen 16 subredes de 16 direcciones cada una.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La figura 1 sólo muestra longitudes de prefijo hasta /28, pero las longitudes de prefijo mayores siguen el mismo patrón: aumentar la longitud del prefijo en 1 bit duplica el número de subredes posibles, pero reduce a la mitad el número de direcciones contenidas en cada subred.</p>
+</div>
+<h2 id="2-subnetting-flsm">2. Subnetting FLSM</h2>
+<p>El subnetting es el proceso de dividir un bloque de direcciones en subredes más pequeñas. Ese proceso se puede hacer de un par de maneras diferentes: el Enmascaramiento de subred de longitud fija (FLSM) divide el bloque en subredes del mismo tamaño. Por otro lado, el Enmascaramiento de subred de longitud variable (VLSM) divide el bloque en subredes de tamaños variables en función de cuántas direcciones se necesiten realmente en cada subred.</p>
+<p>En el mundo real, vais a utilizar VLSM; os permite utilizar de forma más eficiente un bloque de direcciones, ya que podéis hacer cada subred sólo del tamaño que necesita, lo que desperdicia menos direcciones. Sin embargo, FLSM sirve como un paso intermedio útil cuando se aprende a hacer subnetting y debéis conocerlo para el examen CCNA, por lo que en esta sección nos centraremos en FLSM.</p>
+<h3 id="21-subnetting-de-bloques-de-direcciones-24">2.1. Subnetting de bloques de direcciones /24</h3>
+<p>En primer lugar, veremos cómo hacer subnetting con bloques de direcciones con una longitud de prefijo /24 o superior. El motivo es que nos permite centrarnos sólo en el último octeto de la dirección, simplificando un poco el proceso.</p>
+<p>La parte de red de un bloque de direcciones no se puede cambiar; si os dan el bloque de direcciones 192.168.1.0/24, no podéis asignar 192.168.2.1 (ni ninguna otra dirección IP que no esté incluida en el rango 192.168.1.0/24) a un host. Sin embargo, la parte de host es terreno libre: podéis utilizar los últimos 8 bits para crear varias direcciones IP para asignar a los hosts. Ésta es la clave del subnetting: para crear subredes, "tomáis" bits de la parte de host y los añadís a la parte de red. Después sois libres de cambiar el valor binario de esos bits tomados entre 0 y 1 para crear distintas subredes. La figura 2 muestra cómo se puede tomar 1 bit de la parte de host de 192.168.1.0/24 para crear dos subredes diferentes: 192.168.1.0/25 y 192.168.1.128/25.</p>
+<figure id="__figura_2">
+<p><img alt="" justify="justify" src="../img/subnetting_2.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 2. </span> Tomar 1 bit de la parte de host de 192.168.1.0/24 nos permite crear dos subredes: 192.168.1.0/25 y 192.168.1.128/25. El bit tomado formaba parte de la parte de host del bloque de direcciones original, pero ahora forma parte de la parte de red de cada subred (como indica la longitud de prefijo /25).</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En ejemplos anteriores, la dirección de red siempre terminaba en .0. Sin embargo, al hacer subnetting, como la frontera entre la parte de red y la parte de host puede estar en mitad de un octeto, la dirección de red no tiene por qué terminar en .0. 192.168.1.0 es la dirección de red de la subred 192.168.1.0/25, y 192.168.1.128 es la dirección de red de la subred 192.168.1.128/25.</p>
+</div>
+<p>Con el bit tomado puesto a 0, obtenemos la primera subred: 192.168.1.0/25. Si cambiamos el bit tomado a 1, obtenemos la segunda subred: 192.168.1.128/25. Así es como se crean las subredes: cambiando el valor binario del bit o bits tomados.</p>
+<p>Tomando un único bit de la parte de host podemos hacer dos subredes, entonces, ¿cuántas subredes podemos hacer si tomamos 2 bits? Lo vimos en la sección 1: cada bit que se añade a la longitud de prefijo (cada bit tomado de la parte de host) duplica el número de subredes. La fórmula es 2x, donde x es el número de bits tomados, por lo que tomando 2 bits podemos hacer 4 (22) subredes. La figura 3 muestra las cuatro subredes que se pueden crear tomando 2 bits de la parte de host del bloque 192.168.1.0/24.</p>
+<figure id="__figura_3">
+<p><img alt="" justify="justify" src="../img/subnetting_3.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 3. </span> Tomar 2 bits de 192.168.1.0/24 permite crear cuatro subredes: 192.168.1.0/26, 192.168.1.64/26, 192.168.1.128/26 y 192.168.1.192/26.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En la primera subred, los bits tomados son 00. ¿Cómo se puede saber cuál es la siguiente subred? Basta con contar en binario: el número después de 00 es 01, luego 10 y luego 11. Como vimos en el capítulo 7, contar en binario es el mismo proceso que contar en decimal, sólo que aquí sólo hay dos dígitos: 0 y 1.</p>
+</div>
+<h4 id="211-calculo-de-los-cinco-atributos-de-una-subred-24">2.1.1. Cálculo de los cinco atributos de una subred /24+</h4>
+<p>En el capítulo 7 vimos cinco atributos de una red IPv4: dirección de red, dirección de difusión, primera dirección utilizable, última dirección utilizable y número máximo de hosts. Esos mismos atributos se aplican al dividir las redes en subredes. A continuación se hace un repaso rápido de cada atributo:</p>
+<ul>
+<li><strong>Dirección de red</strong> — la primera dirección de una subred, con la parte de host toda a 0.</li>
+<li><strong>Dirección de difusión</strong> — la última dirección de una subred, con la parte de host toda a 1.</li>
+<li><strong>Primera dirección utilizable</strong> — la primera dirección de la subred que se puede asignar a un host. Se calcula sumando 1 a la dirección de red (cambiando el último bit a 1).</li>
+<li><strong>Última dirección utilizable</strong> — la última dirección de la subred que se puede asignar a un host. Se calcula restando 1 a la dirección de difusión (cambiando el último bit a 0).</li>
+<li><strong>Número máximo de hosts</strong> — el número de direcciones IP disponibles para asignar a hosts. La fórmula es 2y – 2, donde y es el número de bits de la parte de host. Se restan 2 porque las direcciones de red y de difusión no se pueden asignar a hosts.</li>
+</ul>
+<p>La figura 4 muestra los cinco atributos de una de las subredes de la figura 3: la subred 192.168.1.64/26. Los cálculos son los mismos que vimos en el capítulo 7; sólo hay que tener en cuenta que los bits tomados pasan a formar parte de la parte de red. Como la longitud de prefijo en este ejemplo es /26, sólo los últimos 6 bits son la parte de host.</p>
+<figure id="__figura_4">
+<p><img alt="" justify="justify" src="../img/subnetting_4.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 4. </span> Los cinco atributos de la subred 192.168.1.64/26. Los primeros 26 bits son la parte de red y los 6 últimos bits son la parte de host. La dirección de red es 192.168.1.64 (parte de host toda a 0s). La dirección de difusión es 192.168.1.127 (parte de host toda a 1s). La primera dirección utilizable es 192.168.1.65 (dirección de red + 1). La última dirección utilizable es 192.168.1.126 (dirección de difusión – 1). El número máximo de hosts en la subred es 62 (26 – 2).</p>
+</figcaption>
+</figure>
+<p>Un problema habitual de subnetting es algo así: "PC1 tiene la dirección IP 172.16.20.27/28. ¿Cuál es la dirección de red de la subred a la que pertenece?". Para resolver una pregunta como ésta, podéis seguir estos tres pasos:</p>
+<ul>
+<li>Escribir la dirección en binario: 10101100.00010000.00010100.00011011</li>
+<li>Cambiar la parte de host a todo 0s: 10101100.00010000.00010100.00010000</li>
+<li>Convertir de nuevo a decimal con puntos: 172.16.20.16. ¡Esa es la respuesta!</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Consejo de examen</p>
+<p>Debéis ser capaces de identificar cualquiera de los cinco atributos de una subred concreta, no sólo la dirección de red. Este tipo de problemas pueden aparecer en el examen CCNA como preguntas independientes o como parte de preguntas más complejas.</p>
+</div>
+<h4 id="212-mascaras-de-subred-para-24">2.1.2. Máscaras de subred para /24+</h4>
+<p>Lo ideal sería poder escribir las longitudes de prefijo directamente en notación CIDR, sin tener que preocuparnos por las máscaras de subred. Sin embargo, como tenéis que utilizar máscaras de subred al configurar direcciones IP y rutas estáticas en Cisco IOS, es necesario aprenderlas.</p>
+<p>Para repasar, una máscara de subred es una serie de 32 bits que indica qué bits de una dirección IP forman parte de la parte de red y cuáles forman parte de la parte de host. Un bit puesto a 1 en la máscara de subred significa que el bit en la misma posición de la dirección IP forma parte de la parte de red, y un bit puesto a 0 en la máscara de subred significa que el bit en la misma posición de la dirección IP forma parte de la parte de host. Y como una dirección IP está formada por la parte de red seguida de la parte de host, una máscara de subred es una serie de 1s seguida de una serie de 0s (salvo que sean todos 0s, como en /0, o todos 1s, como en /32).</p>
+<p>Cuando sólo se trabaja con longitudes de prefijo /8, /16 y /24, las máscaras de subred son sencillas: 255.0.0.0, 255.255.0.0 o 255.255.255.0, respectivamente. Sin embargo, al usar CIDR, la frontera entre la parte de red y la de host puede estar en mitad de un octeto, lo que da lugar a otras máscaras de subred posibles. La tabla 1 enumera las longitudes de prefijo de /24 a /32 y sus máscaras de subred equivalentes escritas en binario y en decimal con puntos. Debéis familiarizaros con estas máscaras de subred; las necesitaréis al configurar routers Cisco. Como referencia, la tabla 1 también indica el número máximo de hosts en una subred de cada tamaño.</p>
+<p>Tabla 1 Longitudes de prefijo y máscaras de subred para /24+ (ver figura de tabla)</p>
+<table>
+<thead>
+<tr>
+<th>Longitud de prefijo</th>
+<th>Máscara de subred (binario)</th>
+<th>Máscara de subred (decimal)</th>
+<th>Número máximo de hosts (2y-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/24</td>
+<td>11111111.11111111.11111111.00000000</td>
+<td>255.255.255.0</td>
+<td>254</td>
+</tr>
+<tr>
+<td>/25</td>
+<td>11111111.11111111.11111111.10000000</td>
+<td>255.255.255.128</td>
+<td>126</td>
+</tr>
+<tr>
+<td>/26</td>
+<td>11111111.11111111.11111111.11000000</td>
+<td>255.255.255.192</td>
+<td>62</td>
+</tr>
+<tr>
+<td>/27</td>
+<td>11111111.11111111.11111111.11100000</td>
+<td>255.255.255.224</td>
+<td>30</td>
+</tr>
+<tr>
+<td>/28</td>
+<td>11111111.11111111.11111111.11110000</td>
+<td>255.255.255.240</td>
+<td>14</td>
+</tr>
+<tr>
+<td>/29</td>
+<td>11111111.11111111.11111111.11111000</td>
+<td>255.255.255.248</td>
+<td>6</td>
+</tr>
+<tr>
+<td>/30</td>
+<td>11111111.11111111.11111111.11111100</td>
+<td>255.255.255.252</td>
+<td>2</td>
+</tr>
+<tr>
+<td>/31</td>
+<td>11111111.11111111.11111111.11111110</td>
+<td>255.255.255.254</td>
+<td>2 (ver más adelante)</td>
+</tr>
+<tr>
+<td>/32</td>
+<td>11111111.11111111.11111111.11111111</td>
+<td>255.255.255.255</td>
+<td>1 (ver más adelante)</td>
+</tr>
+</tbody>
+</table>
+<p>Las longitudes de prefijo /31 y /32 son casos especiales a la hora de calcular el número máximo de hosts de una subred. Una longitud de prefijo /31, por ejemplo, deja un único bit de host. Si utilizamos la fórmula 2y – 2 para calcular el número máximo de hosts en la subred, el resultado es 0; un único bit de host sólo permite dos direcciones, que están ocupadas por la dirección de red y la dirección de difusión, por lo que no quedan direcciones utilizables. Por este motivo, las longitudes de prefijo /31 estuvieron sin usarse durante mucho tiempo.</p>
+<p>Sin embargo, con el fin de preservar aún más el espacio de direcciones IPv4, se hizo una excepción a las reglas normales para las longitudes de prefijo /31: se pueden utilizar para enlaces punto a punto, conexiones entre dos routers que sólo requieren dos direcciones IP. En este caso, la subred no tiene dirección de red ni dirección de difusión. Antes de que se hiciera esta excepción, los enlaces punto a punto utilizaban longitudes de prefijo /30, que dejaban dos bits de host y, por tanto, dos direcciones utilizables (22 – 2 = 2). Esto funciona bien, y las longitudes de prefijo /30 siguen siendo hoy en día una opción habitual para los enlaces punto a punto, pero las longitudes de prefijo /31 son más eficientes: sólo consumen dos direcciones IP, en lugar de cuatro.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aunque las subredes /31 son más eficientes, las subredes /30 siguen siendo la opción más habitual, ya que /31 rompe técnicamente la regla de la dirección de red/difusión.</p>
+</div>
+<p>La figura 5 muestra un enlace punto a punto entre dos routers, con dos opciones para la subred utilizada en la conexión: se puede usar 203.0.113.0/30, que consume un total de cuatro direcciones, o 203.0.113.0/31, que consume sólo dos direcciones.</p>
+<figure id="__figura_5">
+<p><img alt="" justify="justify" src="../img/subnetting_5.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 5. </span> Un enlace punto a punto que conecta R1 con R2. Tradicionalmente, para una conexión como ésta se utilizaba una subred /30, como en la opción 1. En las redes modernas, una subred /31, como en la opción 2, también es válida (y más eficiente).</p>
+</figcaption>
+</figure>
+<p>En el siguiente ejemplo, configuro la dirección IP de la G0/0 de R1 con una longitud de prefijo /31 (máscara de subred 255.255.255.254). El router muestra entonces un mensaje de aviso indicando que las longitudes de prefijo /31 deben usarse con precaución:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>R1(config-if)# ip address 203.0.113.0 255.255.255.254               #1
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>% Warning: use /31 mask on non point-to-point interface cautiously  #2
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>#1 Configures a /31 prefix length
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>#2 A warning message is displayed.
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Una máscara de subred /32 se puede utilizar para especificar una única dirección IP en una ruta, como vimos en el capítulo 9. Sin embargo, rara vez se configura una máscara de subred /32 en una interfaz (aunque veremos una excepción en el capítulo 18, sobre OSPF).</p>
+</div>
+<h3 id="22-subnetting-de-bloques-de-direcciones-16">2.2. Subnetting de bloques de direcciones /16</h3>
+<p>Hacer subnetting con un bloque de direcciones cuya longitud de prefijo sea menor que /24 puede parecer intimidante al principio; ya no os podéis centrar sólo en el último octeto de la dirección. Sin embargo, os aseguro que el proceso de subnetting no cambia en absoluto:</p>
+<ul>
+<li>El número de subredes que podéis crear sigue siendo 2x, donde x es el número de bits tomados.</li>
+<li>El número máximo de hosts por subred sigue siendo 2y – 2, donde y es el número de bits de host.</li>
+<li>La dirección de red de la subred sigue siendo la dirección con la parte de host toda a 0s.</li>
+</ul>
+<p>¡Creo que vais captando la idea! La única diferencia es que la conversión entre decimal y binario requiere algo más de cuidado. Como no es necesario introducir conceptos nuevos, en esta sección mostraré cómo se aplican los conceptos anteriores a los bloques de direcciones con una longitud de prefijo /16+. La tabla 2 resume algunas de las formas en que se puede hacer subnetting de un bloque de direcciones /16. Como antes, cada bit tomado duplica la cantidad de subredes que se pueden crear, pero reduce a la mitad el número total de direcciones por subred (la tabla 2 muestra el número máximo de hosts por subred, en lugar del número total de direcciones).</p>
+<p>Tabla 2 Subnetting de un bloque de direcciones /16 (ver figura de tabla)</p>
+<table>
+<thead>
+<tr>
+<th>Longitud de prefijo</th>
+<th>Máscara de subred (decimal)</th>
+<th>Bits tomados</th>
+<th>Número de subredes</th>
+<th>Número máximo de hosts por subred (2y-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/16</td>
+<td>255.255.0.0</td>
+<td>0</td>
+<td>1</td>
+<td>65.534</td>
+</tr>
+<tr>
+<td>/17</td>
+<td>255.255.128.0</td>
+<td>1</td>
+<td>2</td>
+<td>32.766</td>
+</tr>
+<tr>
+<td>/18</td>
+<td>255.255.192.0</td>
+<td>2</td>
+<td>4</td>
+<td>16.382</td>
+</tr>
+<tr>
+<td>/19</td>
+<td>255.255.224.0</td>
+<td>3</td>
+<td>8</td>
+<td>8190</td>
+</tr>
+<tr>
+<td>/20</td>
+<td>255.255.240.0</td>
+<td>4</td>
+<td>16</td>
+<td>4094</td>
+</tr>
+<tr>
+<td>/21</td>
+<td>255.255.248.0</td>
+<td>5</td>
+<td>32</td>
+<td>2046</td>
+</tr>
+<tr>
+<td>/22</td>
+<td>255.255.252.0</td>
+<td>6</td>
+<td>64</td>
+<td>1022</td>
+</tr>
+<tr>
+<td>/23</td>
+<td>255.255.254.0</td>
+<td>7</td>
+<td>128</td>
+<td>510</td>
+</tr>
+<tr>
+<td>/24</td>
+<td>255.255.255.0</td>
+<td>8</td>
+<td>256</td>
+<td>254</td>
+</tr>
+<tr>
+<td>/25</td>
+<td>255.255.255.128</td>
+<td>9</td>
+<td>512</td>
+<td>126</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La tabla 2 sólo muestra longitudes de prefijo hasta /25, pero los bloques de direcciones /16 también se pueden dividir en subredes hasta /32.</p>
+</div>
+<p>En la figura 3 vimos cómo tomar dos bits del bloque de direcciones 192.168.1.0/24 permite crear cuatro subredes. La figura 6 muestra lo mismo, pero esta vez usando el bloque de direcciones 192.168.0.0/16.</p>
+<figure id="__figura_6">
+<p><img alt="" justify="justify" src="../img/subnetting_6.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 6. </span> Tomar dos bits de 192.168.0.0/16 permite crear cuatro subredes: 192.168.0.0/18, 192.168.64.0/18, 192.168.128.0/18 y 192.168.192.0/18.</p>
+</figcaption>
+</figure>
+<p>El cálculo de los cinco atributos es el mismo proceso de antes. La figura 7 toma una de las subredes de la figura 6 (192.168.128.0/18) y muestra los cinco atributos de esa subred.</p>
+<figure id="__figura_7">
+<p><img alt="" justify="justify" src="../img/subnetting_7.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 7. </span> Los cinco atributos de la subred 192.168.128.0/18. Los primeros 18 bits son la parte de red y los últimos 14 bits son la parte de host. La dirección de red es 192.168.128.0 (parte de host toda a 0s). La dirección de difusión es 192.168.191.255 (parte de host toda a 1s). La primera dirección utilizable es 192.168.128.1 (dirección de red + 1). La última dirección utilizable es 192.168.191.254 (dirección de difusión – 1). El número máximo de hosts en la subred es 16.382 (214 – 2).</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>/18 es un tamaño de subred muy grande, con 16.382 direcciones de host por subred. Probablemente nunca configuraréis una subred /18 en una interfaz, pero para el examen CCNA debéis ser capaces de crear subredes de cualquier tamaño.</p>
+</div>
+<h3 id="23-subnetting-de-bloques-de-direcciones-8">2.3. Subnetting de bloques de direcciones /8</h3>
+<p>Hacer subnetting con un bloque de direcciones /8 es, una vez más, el mismo proceso que hemos visto hasta ahora. Sin embargo, un bloque de direcciones /8 significa que hay 24 bits de host: muchos bits para tomar y crear un montón de subredes, o para usar y crear unas pocas subredes muy grandes. La tabla 3 resume algunas de las formas en que se puede hacer subnetting de un bloque de direcciones /8.</p>
+<p>Tabla 3 Subnetting de un bloque de direcciones /8 (ver figura de tabla)</p>
+<table>
+<thead>
+<tr>
+<th>Longitud de prefijo</th>
+<th>Máscara de subred (decimal)</th>
+<th>Bits tomados</th>
+<th>Número de subredes</th>
+<th>Número máximo de hosts por subred (2y-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/8</td>
+<td>255.0.0.0</td>
+<td>0</td>
+<td>1</td>
+<td>16.777.214</td>
+</tr>
+<tr>
+<td>/9</td>
+<td>255.128.0.0</td>
+<td>1</td>
+<td>2</td>
+<td>8.388.606</td>
+</tr>
+<tr>
+<td>/10</td>
+<td>255.192.0.0</td>
+<td>2</td>
+<td>4</td>
+<td>4.194.302</td>
+</tr>
+<tr>
+<td>/11</td>
+<td>255.224.0.0</td>
+<td>3</td>
+<td>8</td>
+<td>2.097.150</td>
+</tr>
+<tr>
+<td>/12</td>
+<td>255.240.0.0</td>
+<td>4</td>
+<td>16</td>
+<td>1.048.574</td>
+</tr>
+<tr>
+<td>/13</td>
+<td>255.248.0.0</td>
+<td>5</td>
+<td>32</td>
+<td>524.286</td>
+</tr>
+<tr>
+<td>/14</td>
+<td>255.252.0.0</td>
+<td>6</td>
+<td>64</td>
+<td>262.142</td>
+</tr>
+<tr>
+<td>/15</td>
+<td>255.254.0.0</td>
+<td>7</td>
+<td>128</td>
+<td>131.070</td>
+</tr>
+<tr>
+<td>/16</td>
+<td>255.255.0.0</td>
+<td>8</td>
+<td>256</td>
+<td>65.534</td>
+</tr>
+<tr>
+<td>/17</td>
+<td>255.255.128.0</td>
+<td>9</td>
+<td>512</td>
+<td>32.766</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Debido al número de bits de host en un bloque de direcciones /8, el número de hosts por subred para cada longitud de prefijo de la tabla 3 es extremadamente grande. Cuando hagáis subnetting de un bloque /8 en la práctica, probablemente tomaréis muchos bits para crear subredes más pequeñas; una subred con millones de direcciones nunca es necesaria.</p>
+</div>
+<p>En la figura 8 tomo 12 bits del bloque de direcciones 10.0.0.0/8, lo que permite crear 4.096 subredes distintas. Por supuesto, no voy a escribir las 4.096 subredes, así que la figura 8 muestra sólo la primera subred y las dos últimas.</p>
+<figure id="__figura_8">
+<p><img alt="" justify="justify" src="../img/subnetting_8.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 8. </span> Tomar 12 bits de 10.0.0.0/8 permite crear 4.096 subredes. 10.0.0.0/20 es la primera subred, y 10.255.224.0/20 y 10.255.240.0/20 son las dos últimas.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La figura 8 se diferencia de los ejemplos anteriores en que los bits tomados cruzan entre octetos (todo el segundo octeto y los cuatro primeros bits del tercer octeto). ¡Esto no cambia nada en cómo funciona el subnetting! Tened en cuenta que las divisiones entre octetos sólo existen para hacer las direcciones más legibles; para un ordenador, una dirección IP es simplemente una serie de 32 bits, sin divisiones entre octetos.</p>
+</div>
+<p>El cálculo de los cinco atributos de una subred no cambia, independientemente del tamaño del bloque de direcciones original o de cuántos bits toméis, así que no vamos a hacer un tercer ejemplo aquí. Para practicar un poco más, os recomiendo coger una de las subredes de la figura 8 y calcular sus cinco atributos: dirección de red, dirección de difusión, primera dirección utilizable, última dirección utilizable y número máximo de hosts.</p>
+<h3 id="24-escenarios-flsm">2.4. Escenarios FLSM</h3>
+<p>Como mencioné al principio de este capítulo, el subnetting es una habilidad que requiere práctica para llegar a dominarla. Al final de este capítulo daré algunas recomendaciones de sitios web gratuitos donde podréis encontrar preguntas para practicar subnetting. Antes de eso, vamos a ver un par de escenarios parecidos a los que podríais encontrar en esos sitios (y en el propio examen CCNA).</p>
+<p>La figura 9 plantea un escenario de práctica en el que usaremos FLSM para dividir el bloque de direcciones 172.25.190.0/23 en cuatro subredes del mismo tamaño, calcular el número máximo de hosts en cada subred y configurar la primera dirección utilizable de cada subred en las interfaces de R1.</p>
+<figure id="__figura_9">
+<p><img alt="" justify="justify" src="../img/subnetting_9.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 9. </span> Un escenario FLSM en el que debéis dividir el bloque de direcciones 172.25.190.0/23 en cuatro subredes del mismo tamaño, identificar el número de direcciones de host por subred y configurar la primera dirección utilizable de cada subred en las interfaces de R1.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El ejemplo de la figura 9 es la primera vez que empezamos con un bloque de direcciones que no es /8, /16 o /24, pero el proceso de subnetting sigue siendo el mismo.</p>
+</div>
+<p>Para empezar, identifiquemos las cuatro subredes. ¿Cuántos bits necesitamos tomar para dividir un bloque de direcciones en cuatro subredes? Como hemos visto en un par de ejemplos anteriores, necesitamos tomar 2 bits para crear cuatro subredes, ya que 22 = 4. Después basta con contar con esos 2 bits tomados para crear las cuatro subredes. La figura 10 muestra las cuatro subredes que se pueden crear tomando 2 bits del bloque de direcciones 172.25.190.0/23. Como tomamos 2 bits de la parte de host, la longitud de prefijo de cada subred es /25 (/23 + 2).</p>
+<figure id="__figura_10">
+<p><img alt="" justify="justify" src="../img/subnetting_10.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 10. </span> Subredes que se pueden crear al dividir 172.25.190.0/23 en cuatro partes iguales: 172.25.190.0/25, 172.25.190.128/25, 172.25.191.0/25 y 172.25.191.128/25. Tomar 2 bits de la parte de host del bloque de direcciones /23 da como resultado cuatro subredes /25.</p>
+</figcaption>
+</figure>
+<p>Ya hemos resuelto la primera parte del escenario: identificar las cuatro subredes. La segunda parte pregunta cuántas direcciones de host hay disponibles en cada subred. Para resolverlo, basta con usar la misma fórmula de siempre: 2y – 2 (siendo y el número de bits de host). El bloque de direcciones original era /23, lo que significa que había 9 bits de host. Sin embargo, después de tomar 2 bits de host para crear las subredes, quedan 7 bits de host. Por lo tanto, hay 126 (27 – 2) direcciones de host disponibles en cada subred.</p>
+<p>La parte final del escenario pide configurar la primera dirección utilizable de cada subred en las interfaces de R1. La primera dirección utilizable se calcula con el método habitual: se suma 1 a la dirección de red de cada subred. En el siguiente ejemplo, configuro las interfaces de R1 con la primera dirección utilizable de cada subred:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>R1(config)# interface g0/0                                   #1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>R1(config-if)# ip address 172.25.190.1 255.255.255.128       #1
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>R1(config-if)# interface g0/1                                #2
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>R1(config-if)# ip address 172.25.190.129 255.255.255.128     #2
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>R1(config-if)# interface g0/2                                #3
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>R1(config-if)# ip address 172.25.191.1 255.255.255.128       #3
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>R1(config-if)# interface g0/3                                #4
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>R1(config-if)# ip address 172.25.191.129 255.255.255.128     #4
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>#1 Configure 172.25.190.1/25 on G0/0.
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>#2 Configure 172.25.190.129/25 on G0/1.
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>#3 Configure 172.25.191.1/25 on G0/2.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>#4 Configure 172.25.191.129/25 on G0/3.
+</span></code></pre></div>
+<p>¡Ya hemos resuelto el escenario! Veamos un escenario más, esta vez sólo con texto: se os ha dado el bloque de direcciones 10.224.0.0/11. Debéis crear 2.000 subredes, que se asignarán a varias oficinas y departamentos dentro de una empresa grande. ¿Qué longitud de prefijo debéis usar para crear un número suficiente de subredes? ¿Cuántas direcciones de host tiene cada subred?</p>
+<p>Para resolver este escenario, primero tenemos que determinar cuántos bits debemos tomar para crear 2.000 subredes. Si habéis aprendido las potencias de 2, esto no debería ser muy difícil: 1 bit da 2 subredes, 2 bits dan 4 subredes, 3 bits dan 8 subredes, y así sucesivamente; 11 bits dan 2.048 subredes. Son 48 más de las que necesitamos en el escenario, pero tomar 10 bits sólo daría 1.024 subredes (insuficiente), por lo que la respuesta es 11 bits. Tomar 11 bits de la parte de host da como resultado una longitud de prefijo /22, que es la respuesta a la primera parte del escenario. La figura 11 lo ilustra y muestra la primera subred y la última (la 2.048ª).</p>
+<figure id="__figura_11">
+<p><img alt="" justify="justify" src="../img/subnetting_11.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 11. </span> Tomar 11 bits de la parte de host del bloque de direcciones 10.224.0.0/11 permite crear 2.048 subredes. La primera subred es 10.224.0.0/22 (todos los bits tomados a 0), y la última (la 2.048ª) es 10.255.252.0/22 (todos los bits tomados a 1).</p>
+</figcaption>
+</figure>
+<p>Una longitud de prefijo /22 significa que quedan 10 bits de host, por lo que ahora podemos calcular el número de direcciones de host en cada subred: 1.022 (210 – 2). ¡Y con esto ya tenemos resuelto el escenario!</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Como el número de subredes aumenta en una potencia de 2 por cada bit tomado, a menudo no podréis crear exactamente el número de subredes que necesitáis; probablemente os quedarán algunas subredes de sobra, lo cual no es malo, ya que se pueden usar para absorber ampliaciones de la red en el futuro. Del mismo modo, a menudo no podréis crear subredes del tamaño exacto que necesitáis; normalmente os quedarán algunas direcciones de sobra en cada subred.</p>
+</div>
+<h2 id="3-subnetting-vlsm">3. Subnetting VLSM</h2>
+<p>El Enmascaramiento de subred de longitud variable (VLSM) nos permite hacer subnetting de un bloque de direcciones de forma aún más eficiente que FLSM, creando subredes de tamaños variables. Aunque FLSM es una introducción útil al subnetting, cuando hagáis subnetting de redes en el mundo real, lo más probable es que estéis haciendo VLSM. La figura 12 muestra el escenario que utilizaré para demostrar VLSM.</p>
+<figure id="__figura_12">
+<p><img alt="" justify="justify" src="../img/subnetting_12.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 12. </span> Un escenario VLSM en el que debéis asignar subredes del bloque de direcciones 10.89.100.0/24 a cada LAN y a la conexión WAN, e identificar los cinco atributos de cada subred.</p>
+</figcaption>
+</figure>
+<p>Un bloque de direcciones /24 incluye 254 direcciones de host, y el número total de direcciones de host necesarias en el escenario de la figura 12 es 226, por lo que el espacio de direcciones es suficiente. Si se usa FLSM para crear subredes del mismo tamaño, algunas subredes se quedarían con muy pocas direcciones (la LAN A de Toronto necesita 122 direcciones de host) y otras tendrían demasiadas (la conexión WAN sólo necesita 2 direcciones de host, una para R1 y otra para R2). Sin embargo, si usamos VLSM, podemos hacer unas subredes más pequeñas y otras más grandes, lo que nos permite utilizar de forma eficiente el bloque de direcciones disponible. El proceso de VLSM, a grandes rasgos, es el siguiente:</p>
+<ul>
+<li>Asignar la subred más grande al principio del bloque de direcciones.</li>
+<li>Asignar la segunda subred más grande justo después.</li>
+<li>Repetir el proceso hasta que se hayan asignado todas las subredes.</li>
+</ul>
+<p>Las cinco subredes de la figura 12, ordenadas de mayor a menor, son: LAN A de Toronto (122 hosts), LAN A de Tokio (59 hosts), LAN B de Toronto (30 hosts), LAN B de Tokio (11 hosts) y la conexión WAN (2 hosts). Empecemos, pues, asignando la LAN A de Toronto.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las direcciones IP de los routers se incluyen en el cómputo de "hosts"; cualquier dispositivo con una dirección IP puede considerarse un host. El término host final se suele usar para referirse a PCs, servidores, etc. para distinguirlos de los dispositivos de infraestructura de red como los routers.</p>
+</div>
+<p>La figura 13 representa visualmente las cinco subredes que resultarán de este proceso: una subred /25 (128 direcciones), una subred /26 (64 direcciones), una subred /27 (32 direcciones), una subred /28 (16 direcciones) y una subred /30 (4 direcciones). En las siguientes secciones veremos cómo realizar subnetting VLSM y crear estas cinco subredes.</p>
+<figure id="__figura_13">
+<p><img alt="" justify="justify" src="../img/subnetting_13.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 13. </span> El bloque de direcciones 10.89.100.0/24, dividido en cinco subredes de tamaños variables. (1) La LAN A de Toronto es 10.89.100.0/25, con 128 direcciones. (2) La LAN A de Tokio es 10.89.100.128/26, con 64 direcciones. (3) La LAN B de Toronto es 10.89.100.192/27, con 32 direcciones. (4) La LAN B de Tokio es 10.89.100.224/28, con 16 direcciones. (5) La conexión WAN es 10.89.100.240/30, con 4 direcciones. Tras el subnetting, quedan 12 direcciones sin usar: de 10.89.100.244 a 10.89.100.255.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Por motivos prácticos, la figura 13 no muestra el número de direcciones en las subredes /30 (4 direcciones cada una) y no incluye columnas para las subredes /31 (2 direcciones cada una) ni para las subredes /32 (1 dirección cada una).</p>
+</div>
+<h3 id="31-asignacion-de-la-subred-de-la-lan-a-de-toronto">3.1. Asignación de la subred de la LAN A de Toronto</h3>
+<p>La LAN A de Toronto necesita 122 direcciones de host, por lo que la pregunta es: ¿cuál es el número mínimo de bits de host necesario para proporcionar al menos 122 direcciones de host? Consultando la fórmula que usamos para calcular el número máximo de bits de host en una subred (2y – 2), ¿cuál es el valor mínimo de y que nos serviría? La respuesta es 7, porque 27 – 2 = 126, sólo unas pocas direcciones más de las que necesitamos. Con 6 bits de host sólo tendríamos 62 direcciones de host (26 – 2), insuficientes para los 122 hosts de la LAN A de Toronto. Para dejar 7 bits de host, tenemos que tomar 1 bit del bloque de direcciones /24. La figura 14 muestra la subred resultante cuando tomamos un único bit de host del bloque de direcciones 10.89.100.0/24: 10.89.100.0/25, ¡la subred de la LAN A de Toronto! La figura 14 también enumera los cinco atributos de la subred.</p>
+<figure id="__figura_14">
+<p><img alt="" justify="justify" src="../img/subnetting_14.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 14. </span> Subred de la LAN A de Toronto. Tomar 1 bit del bloque de direcciones 10.89.100.0/24 da como resultado la subred 10.89.100.0/25, que admite hasta 126 direcciones de host, suficientes para los 122 hosts de la LAN.</p>
+</figcaption>
+</figure>
+<p>Al asignar la subred 10.89.100.0/25 a la LAN A de Toronto, ya hemos utilizado la mitad del espacio de direcciones disponible: de 10.89.100.0 a 10.89.100.127. Todo el bloque de direcciones 10.89.100.0/24 incluye 256 direcciones, y una única subred /25 ocupa 128 de esas direcciones (recordad que sólo 126 de esas 128 direcciones se pueden asignar a hosts). Asignaremos el resto de las subredes del rango de direcciones restante: de 10.89.100.128 a 10.89.100.255.</p>
+<h3 id="32-asignacion-de-la-subred-de-la-lan-a-de-tokio">3.2. Asignación de la subred de la LAN A de Tokio</h3>
+<p>Tras asignar la subred de la LAN A de Toronto e identificar sus cinco atributos, podemos identificar fácilmente un dato más: la dirección de red de la LAN A de Tokio. La última dirección (no la última dirección utilizable) de la LAN A de Toronto es 10.89.100.127, la dirección de difusión. Sin necesidad de conocer ningún otro dato sobre la LAN A de Tokio, podemos identificar su primera dirección IP (la primera dirección inmediatamente posterior a la dirección de difusión de la LAN A de Toronto), que es 10.89.100.128. Ésta es la dirección de red de la LAN A de Tokio, porque la primera dirección IP de una subred es la dirección de red.</p>
+<p>Ahora que conocemos la dirección de red de la LAN A de Tokio, sólo nos queda averiguar cuántos bits de host se necesitan (lo que determina la longitud del prefijo) y, a partir de ahí, podremos calcular los demás atributos. La LAN A de Tokio necesita suficientes direcciones para 59 hosts, por lo que se requieren 6 bits de host, lo que da 62 (26 – 2) direcciones utilizables, es decir, una longitud de prefijo /26. Por lo tanto, la subred que debemos asignar a la LAN A de Tokio es 10.89.100.128/26. La figura 15 muestra la subred y sus cinco atributos.</p>
+<figure id="__figura_15">
+<p><img alt="" justify="justify" src="../img/subnetting_15.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 15. </span> Subred de la LAN A de Tokio. La dirección de red es 10.89.100.128, la primera dirección después de la LAN A de Toronto. Se usa una longitud de prefijo /26 para permitir hasta 62 direcciones de host, suficientes para los 59 hosts de la LAN.</p>
+</figcaption>
+</figure>
+<p>Ya hemos asignado tres cuartas partes del bloque de direcciones 10.89.100.0/24: una subred /25 (la mitad) y una subred /26 (la cuarta parte). El rango de direcciones restante es 10.89.100.192 a 10.89.100.255, y asignaremos las tres subredes restantes dentro de ese rango.</p>
+<h3 id="33-asignacion-de-la-subred-de-la-lan-b-de-toronto">3.3. Asignación de la subred de la LAN B de Toronto</h3>
+<p>La dirección IP inmediatamente posterior a la dirección final de la LAN A de Tokio (su dirección de difusión) es 10.89.100.192, y ésa es la dirección de red de la LAN B de Toronto. ¿Y la longitud de prefijo? La LAN B de Toronto necesita direcciones IP para al menos 30 hosts, por lo que se requieren 5 bits de host, lo que da exactamente 30 (25 – 2) direcciones de host. Por lo tanto, la subred de la LAN B de Toronto debe usar una longitud de prefijo /27, dando lugar a la subred 10.89.100.192/27. La figura 16 muestra la subred y sus cinco atributos.</p>
+<figure id="__figura_16">
+<p><img alt="" justify="justify" src="../img/subnetting_16.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 16. </span> Subred de la LAN B de Toronto. La dirección de red es 10.89.100.192, la primera dirección después de la LAN A de Tokio. Se usa una longitud de prefijo /27 para permitir hasta 30 direcciones de host, exactamente la cantidad necesaria.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En una situación real, deberíais dejar algo de margen en cada subred para permitir el crecimiento futuro; puede que en algún momento necesitéis añadir más hosts a la subred. Sin embargo, al hacer ejercicios de subnetting como éste (y en el examen CCNA), usad la longitud de prefijo más eficiente, dejando el menor número posible de direcciones sin usar en la subred.</p>
+</div>
+<p>Ya hemos asignado siete octavos del bloque de direcciones 10.89.100.0/24: una subred /25 (la mitad), una subred /26 (la cuarta parte) y una subred /27 (la octava parte). El rango de direcciones restante es 10.89.100.224 a 10.89.100.255, y usaremos ese rango para asignar las subredes restantes: la LAN B de Tokio y la conexión WAN entre R1 y R2.</p>
+<h3 id="34-asignacion-de-la-subred-de-la-lan-b-de-tokio">3.4. Asignación de la subred de la LAN B de Tokio</h3>
+<p>Podemos usar el mismo proceso para asignar la subred de la LAN B de Tokio. Su dirección de red es la primera dirección después de la dirección de difusión de la LAN anterior (la LAN B de Toronto), por lo que la dirección de red de la LAN B de Tokio es 10.89.100.224. La LAN B de Tokio es una LAN pequeña, que sólo necesita 11 direcciones de host. Por lo tanto, sólo se requieren 4 bits de host, lo que permite hasta 14 (24 – 2) direcciones de host, así que la subred de la LAN B de Tokio es 10.89.100.224/28. La figura 17 muestra la subred y sus cinco atributos.</p>
+<figure id="__figura_17">
+<p><img alt="" justify="justify" src="../img/subnetting_17.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 17. </span> Subred de la LAN B de Tokio. La dirección de red es 10.89.100.224, la primera dirección después de la LAN B de Toronto. Se usa una longitud de prefijo /28 para permitir hasta 14 direcciones de host, suficientes para los 11 hosts de la LAN.</p>
+</figcaption>
+</figure>
+<p>Sólo queda un dieciseisavo del bloque de direcciones 10.89.100.0/24, las direcciones 10.89.100.240 a 10.89.100.255. Por suerte, eso es más que suficiente para la última subred: la conexión WAN entre R1 y R2.</p>
+<h3 id="35-asignacion-de-la-subred-de-la-conexion-wan">3.5. Asignación de la subred de la conexión WAN</h3>
+<p>La conexión WAN entre R1 y R2 es un enlace punto a punto que sólo necesita dos direcciones de host. La dirección de red es 10.89.100.240 (la primera dirección después de la dirección de difusión de la LAN B de Tokio), pero ¿qué longitud de prefijo debe tener? Como vimos en la sección 3, hay dos opciones: una longitud de prefijo /30 (dos direcciones utilizables, cuatro direcciones en total) o una longitud de prefijo /31 (dos direcciones utilizables, sin direcciones de red ni de difusión). Cualquiera de las dos longitudes de prefijo es una opción válida, pero para este ejemplo usaré una longitud de prefijo /30, por lo que la subred de la conexión WAN es 10.89.100.240/30. La figura 18 muestra la subred y sus cinco atributos.</p>
+<figure id="__figura_18">
+<p><img alt="" justify="justify" src="../img/subnetting_18.png" text-align:="text-align:" /></p>
+<figcaption>
+<p><span class="caption-prefix">Figura 18. </span> Subred de la conexión WAN. La dirección de red es 10.89.100.240, la primera dirección después de la LAN B de Tokio. Se usa una longitud de prefijo /30 para permitir dos direcciones de host: una para R1 y otra para R2.</p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Cuando representé visualmente estas cinco subredes en la figura 13, elegí una longitud de prefijo /30 para la subred de la conexión WAN. La razón principal de esa elección fue práctica; las cajas que representan las subredes /31 en el diagrama serían demasiado pequeñas. Por mantener la coherencia, utilicé aquí una longitud de prefijo /30, pero tened en cuenta que una longitud de prefijo /31 también es válida y, de hecho, es superior porque consume menos direcciones.</p>
+</div>
+<p>¡Y ya hemos terminado! Hemos asignado las cinco subredes, con sólo unas pocas direcciones IP de sobra (de 10.89.100.244 a 10.89.100.255); estas direcciones quedan libres para ser utilizadas según sea necesario en el futuro a medida que esta hipotética empresa se expanda. Con FLSM, esto no habría sido posible, pero VLSM nos da la flexibilidad de crear subredes de tamaños variables.</p>
+<h3 id="36-escenarios-de-examen">3.6. Escenarios de examen</h3>
+<p>Sentirse cómodo con el subnetting es un elemento clave del éxito en el examen CCNA. Aquí tenéis un par de ejemplos de cómo se podrían poner a prueba vuestros conocimientos de subnetting en el examen CCNA:</p>
+<ol>
+<li>(opción múltiple, varias respuestas)</li>
+</ol>
+<p>¿Cuál de los siguientes pares de longitud de prefijo y máscara de subred son correctos? (Seleccionad dos.)</p>
+<p>A. /25 = 255.255.255.192</p>
+<p>B. /15 = 255.252.0.0</p>
+<p>C. /29 = 255.255.255.248</p>
+<p>D. /27 = 255.255.255.240</p>
+<p>E. /18 = 255.255.192.0</p>
+<p>E. /10 = 255.224.0.0</p>
+<p>Las máscaras de subred son necesarias para configurar direcciones IP y rutas estáticas en Cisco IOS, por lo que es importante que seáis capaces de identificar la máscara de subred correcta para una longitud de prefijo dada. Por suerte, las máscaras de subred son bastante sencillas: una serie de 1s binarios seguida de una serie de 0s binarios. En este caso, (C) es la primera opción correcta; /29 equivale a 255.255.255.248 (29 unos binarios seguidos de 3 ceros binarios, escritos en decimal con puntos). (E) es la segunda opción correcta; /18 equivale a 255.255.192.0. Como he dicho antes, ¡sentirse cómodo con la conversión entre binario y decimal con puntos es clave!</p>
+<ol>
+<li>(arrastrar y soltar)</li>
+</ol>
+<p>Arrastrad cada subred de la izquierda a su correspondiente rango de direcciones de host utilizables de la derecha. Hay más rangos de direcciones utilizables que subredes, por lo que no se utilizarán todos los rangos de direcciones.</p>
+<p>Identificar el rango de direcciones utilizables de una subred requiere identificar la primera y la última dirección utilizable de la subred; marcan el inicio y el final del rango de direcciones utilizables. En esta pregunta, el rango de direcciones utilizables de (A) es 10.23.24.129 a 10.23.24.254, el de (B) es 10.23.24.129 a 10.23.24.158, el de (C) es 10.23.24.65 a 10.23.24.126 y el de (D) es 10.23.24.65 a 10.23.24.78. Para resolver esta pregunta, fijaos sólo en el último octeto de cada dirección; los tres primeros octetos son iguales en todas ellas.</p>
+<h2 id="4-practica-adicional-de-subnetting">4. Práctica adicional de subnetting</h2>
+<p>Para dominar el subnetting, tenéis que practicar. Por suerte, hay algunos sitios web gratuitos que generan problemas de subnetting que podéis resolver. Un ejemplo es https://www.subnetting.net/, pero podréis encontrar otros con una búsqueda rápida en Google. Os recomiendo dedicar un poco de tiempo cada día a practicar subnetting durante al menos una o dos semanas, o hasta que os sintáis seguros resolviendo las preguntas de los sitios de práctica.</p>
+<p>Antes de mandaros a probar las preguntas de práctica, quiero mencionar dos cosas. Primero, algunas preguntas de práctica que encontréis pueden no indicar explícitamente el tamaño del bloque de direcciones que debéis dividir en subredes. Aquí va un ejemplo: "¿Cuál es el número máximo de subredes válidas y de hosts utilizables por subred que se pueden obtener de la red 172.26.0.0 255.255.252.0?". En estos casos, asumid que el bloque de direcciones original es una red con clase. En este ejemplo, la dirección IP es 172.26.0.0, que es una dirección de clase B (porque empieza por 0b10), por lo que podéis asumir que el bloque de direcciones es /16 (172.26.0.0/16).</p>
+<p>El segundo punto es que algunas preguntas tratarán sobre máscaras comodín, que son parecidas a las máscaras de subred, pero en realidad no están relacionadas con el tema del subnetting. Trataremos las máscaras comodín en el capítulo 17 (Enrutamiento dinámico), así como en los capítulos 23 y 24 (Listas de control de acceso). Por ahora, podéis saltarlas en cualquier pregunta de un sitio de práctica que mencione máscaras comodín.</p>
+<h3 id="41-el-metodo-del-numero-magico">4.1. El método del "número mágico"</h3>
+<p>Algunos instructores enseñan atajos que os pueden ayudar a resolver escenarios de subnetting sin tener que pensar en el binario subyacente; un ejemplo famoso es el llamado método del "número mágico". No estoy de acuerdo con estos métodos para los candidatos al CCNA porque creo que sólo sirven como muleta, ayudándoos a resolver problemas de subnetting sin entender cómo funciona realmente el subnetting. Puede parecer engorroso pensar siempre en binario, pero con la práctica se vuelve algo natural. Y seréis mejores no sólo en subnetting, sino en todas las demás habilidades que requieren soltura con el binario (enumeré algunas en el capítulo 7).</p>
+<h2 id="5-resumen">5. Resumen</h2>
+<ul>
+<li>El Enrutamiento entre dominios sin clases (CIDR) sustituyó al direccionamiento con clases, permitiendo longitudes de prefijo fuera de las tradicionales /8, /16 y /24.</li>
+<li>Con CIDR, un bloque de direcciones se puede dividir en redes más pequeñas llamadas subredes. Este proceso se llama subnetting.</li>
+<li>El subnetting con Enmascaramiento de subred de longitud fija (FLSM) divide un bloque de direcciones en subredes del mismo tamaño.</li>
+<li>El subnetting con Enmascaramiento de subred de longitud variable (VLSM) divide un bloque de direcciones en subredes de tamaños variables.</li>
+<li>Para hacer subnetting de un bloque de direcciones, se "toman" bits de la parte de host del bloque de direcciones y se añaden a la parte de red. Mientras que la parte de red del bloque de direcciones original no se puede cambiar, los bits tomados sí se pueden cambiar para crear distintas subredes.</li>
+<li>Cada bit adicional tomado duplica el número de subredes que se pueden crear: 1 bit tomado = 2 subredes, 2 bits tomados = 4 subredes, 3 bits tomados = 8 subredes, etc. Sin embargo, cada bit adicional tomado reduce a la mitad el número de direcciones en cada subred, ya que hay menos bits en la parte de host.</li>
+<li>Los cinco atributos de una red IPv4 se calculan de la misma forma para las subredes: la dirección de red es la primera dirección de una subred (parte de host toda a 0s), la dirección de difusión es la última dirección de una subred (parte de host toda a 1s), la primera dirección utilizable es la primera dirección después de la dirección de red, la última dirección utilizable es la última dirección antes de la dirección de difusión, y el número máximo de hosts es 2y – 2, donde y es el número de bits de host.</li>
+<li>Para los enlaces punto a punto (conexiones entre dos routers), se puede usar una longitud de prefijo /30 o /31. /30 consume cuatro direcciones (dirección de red, dirección de difusión y dos direcciones de host), mientras que /31 consume sólo dos direcciones (dos direcciones de host, sin dirección de red ni de difusión).</li>
+<li>Para hacer subnetting de un bloque de direcciones usando VLSM, se asigna la subred más grande al principio del bloque de direcciones, la segunda subred más grande justo después, y se repite el proceso hasta que se hayan asignado todas las subredes.</li>
+<li>La dirección de red de la siguiente subred es la dirección inmediatamente posterior a la dirección de difusión de la subred actual.</li>
+<li>En una situación real, deberíais dejar algo de espacio en cada subred para el crecimiento futuro. Al hacer escenarios de subnetting para practicar (o para el examen CCNA), sed lo más eficientes posible (dejad el menor número posible de direcciones sin usar).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant","navigation.instant.progress","navigation.tabs","navigation.expand","navigation.path","toc.follow","navigation.top","content.footnote.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copiado al portapapeles","clipboard.copy":"Copiar al portapapeles","search.result.more.one":"1 más en esta página","search.result.more.other":"# más en esta página","search.result.none":"No se encontraron documentos","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Teclee para comenzar búsqueda","search.result.term.missing":"Falta","select.version":"Seleccionar versión"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+    
+  </body>
+</html>

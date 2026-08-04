@@ -5,7 +5,7 @@ hide:
 
 # Enrutamiento intervlan
 
-## Enrutamiento básico
+## 1. Enrutamiento básico
 
 Durante el curso ya hemos tratado en detalle el tema de las VLANS, así como su configuración. Demos ahora un paso más y aprendamos como enrutar paquetes entre ellas, estableciendo esta comunicación.
 
@@ -49,7 +49,7 @@ Sin embargo, este método de enrutamiento entre VLAN no es común por la misma r
 + Router on a stick (un enlace troncal entre el switch y el router)
 + Switch multicapa (un switch que también puede enrutar paquetes)
 
-## Router on a stick
+## 2. Router on a stick
 
 Router on a stick (ROAS) es un método de enrutamiento entre VLAN que implica la creación de un enlace troncal entre un switch y un router; una única interfaz física del router se puede dividir en múltiples subinterfaces virtuales, cada una con su propia dirección IP. Estas subinterfaces envían y reciben tramas etiquetadas, como un puerto troncal en un switch. La siguiente imagen muestra cómo se puede enrutar el mismo paquete desde PC3 a PC10 mediante ROAS. 
 
@@ -62,7 +62,7 @@ PC3 (en la VLAN 20) envía un paquete a PC10 (en la VLAN 10), y el paquete se en
 !!!note "Nota"
     La interfaz física y las subinterfaces virtuales de un router comparten la misma dirección MAC. Cuando llega una trama a la interfaz física, el router sabe a qué subinterfaz está destinada basándose en la etiqueta VLAN de la trama, en lugar de en su dirección MAC de destino.
 
-### Configuración de ROAS
+### 2.1. Configuración de ROAS
 
 Veamos cómo configurar ROAS. El lado de la conexión de SW1 es un puerto troncal, tal como lo configuramos anteriormente. En el siguiente ejemplo, configuro SW1 G0/1 como puerto troncal, permito solo las VLAN necesarias y cambio la VLAN nativa a una VLAN no utilizada:
 
@@ -124,7 +124,7 @@ GigabitEthernet0/0.30      172.16.1.129    YES manual up                    up
 
 La configuración de ROAS ya está completa; R1 puede enrutar el tráfico entre las tres subredes/VLAN de la LAN mediante la única conexión troncal física con SW1. Cabe destacar que no realicé ninguna configuración relacionada con la VLAN nativa en el lado de R1 de la conexión; si no se utiliza la VLAN nativa, no es necesario realizar ninguna configuración específica en el router.
 
-#### Configurando la VLAN nativa en ROAS
+#### 2.1.1. Configurando la VLAN nativa en ROAS
 
 Si se decide usar la VLAN nativa sobre el enlace troncal ROAS, existen dos métodos para configurar la conexión en el router:
 
@@ -169,14 +169,14 @@ R1(config-subif)# ip address 172.16.1.129 255.255.255.192
 
     Independientemente del método que utilicéis para configurar la VLAN nativa en el router, aseguraos de que la VLAN nativa coincida con la del switch.
 
-## Switch multicapa
+## 3. Switch multicapa
 
 La tercera opción para el enrutamiento entre VLAN, y quizás la más popular (aunque ROAS también es común), es usar un switch multicapa. Un switch multicapa (también llamado switch de capa 3) es un switch capaz de enrutar paquetes; es un switch con un enrutador integrado.
 
 !!!note "Nota"
     Un switch estándar que solo reenvía tramas se denomina switch de capa 2. Sin embargo, hoy en día, casi todos los switches tienen cierto grado de capacidades de capa 3, por lo que la diferencia entre un switch multicapa y un switch de capa 2 suele depender de cómo se utilice el switch, más que del switch en sí.
 
-### Enrutamiento entre VLAN mediante SVI
+### 3.1. Enrutamiento entre VLAN mediante SVI
 
 Los switches multicapa realizan el enrutamiento entre VLAN mediante interfaces virtuales llamadas interfaces virtuales de switch (SVI). Cada SVI es una interfaz en el enrutador integrado del switch multicapa, y los hosts de cada VLAN utilizan la dirección IP de la SVI de su VLAN como puerta de enlace predeterminada.
 
@@ -275,7 +275,7 @@ Vlan20                 172.16.1.65     YES manual up                    down
 Vlan30                 172.16.1.129    YES manual up                    down   
 ```
 
-## Uso de puertos enrutados para conectividad externa
+## 4. Uso de puertos enrutados para conectividad externa
 
 El enrutamiento dentro de una LAN es importante, pero también es esencial para que los hosts de la LAN puedan acceder a redes externas, como internet u otra LAN de la red corporativa. Para proporcionar conectividad externa, es común usar un puerto enrutado en un switch multicapa. Un puerto enrutado es un puerto físico en un switch multicapa configurado para funcionar como la interfaz de un enrutador. En la imagen se muestra cómo el puerto G0/1 de SW1 puede usarse como puerto enrutado, proporcionando conectividad a redes externas a través de R1.
 
@@ -323,7 +323,7 @@ Ahora que SW1 dispone de una ruta a redes externas, puede proporcionar conectivi
 Un host de la LAN envía un paquete a un destino externo, enrutado por SW1. G0/1 es un puerto enrutado que conecta el enrutador interno de SW1 con R1.
 ///
 
-## Resumen
+## 5. Resumen
 
 + La segmentación de red es el proceso de dividir una red en partes más pequeñas y proporciona beneficios en cuanto a seguridad y rendimiento. Las subredes se pueden usar para segmentar una red en la capa 3, y las redes de área local virtuales (VLAN) se pueden usar para segmentar una red en la capa 2.
 

@@ -1,8 +1,8 @@
 #  Guía Completa de Seguridad en Switches Cisco
 
-##  **1. VLANs (Virtual Local Area Networks)**
+## 1. **VLANs (Virtual Local Area Networks)**
 
-### **Concepto Teórico Detallado**
+### 1.1. **Concepto Teórico Detallado**
 
 **¿Qué es una VLAN?**
 Una VLAN es una **red lógica independiente** dentro de una red física. Imagina un edificio de oficinas donde cada departamento tiene su propio espacio privado aunque compartan el mismo edificio físico.
@@ -25,11 +25,11 @@ Una VLAN es una **red lógica independiente** dentro de una red física. Imagina
 ![](img/extending-vlans-without-trunk-link.gif)
 
 
-### ¿Qué es un trunk?
+### 1.2. ¿Qué es un trunk?
 
 *Un trunk es un enlace de red que transporta múltiples VLANs simultáneamente entre switches o entre un switch y un router.**
 
-### **Analogía para Entenderlo**
+### 1.3. **Analogía para Entenderlo**
 
 ```bash
 # SIN TRUNK (Access Ports):
@@ -41,7 +41,7 @@ Trunk = Autopista con MÚLTIPLES carriles (cada carril = una VLAN)
 Cada frame lleva "etiqueta" que dice a qué carril (VLAN) pertenece
 ```
 
-### **Problema que Resuelve**
+### 1.4. **Problema que Resuelve**
 
 ```bash
 # ESCENARIO SIN TRUNK:
@@ -55,21 +55,21 @@ Switch A (VLAN 10,20,30) ---[UN CABLE]--- Switch B (VLAN 10,20,30)
 ✅ Eficiente ✅ Escalable ✅ Flexible
 ```
 
-## 🏗️ **Cómo Funciona el Trunking Técnicamente**
+## 2. 🏗️ **Cómo Funciona el Trunking Técnicamente**
 
-### **Protocolo 802.1Q (Dot1Q)**
+### 2.1. **Protocolo 802.1Q (Dot1Q)**
 
 ![](img/trunking.webp)
 
-### **Ejemplo de Etiquetado**
+### 2.2. **Ejemplo de Etiquetado**
 
 ![](img/tagging1.jpg)
 
 ![](img/tagging_gif.gif)
 
-## ⚙️ **Configuración de Trunks en Cisco**
+## 3. ⚙️ **Configuración de Trunks en Cisco**
 
-### **Comandos Básicos**
+### 3.1. **Comandos Básicos**
 
 ```bash
 ! CONFIGURAR PUERTO COMO TRUNK
@@ -90,7 +90,7 @@ Port        Vlans allowed on trunk
 Gi0/1       10,20,30
 ```
 
-### **Modos de Operación de Puertos**
+### 3.2. **Modos de Operación de Puertos**
 
 ```bash
 # SWITCHPORT MODE TRUNK → Forza trunk, negocia DTP
@@ -101,13 +101,13 @@ Gi0/1       10,20,30
 
 
 
-## 🏷️ **¿Qué es la VLAN NATIVA?**
+## 4. 🏷️ **¿Qué es la VLAN NATIVA?**
 
-### **Concepto Fundamental**
+### 4.1. **Concepto Fundamental**
 
 **La VLAN nativa es la única VLAN cuyos frames viajan SIN etiqueta 802.1Q a través de un trunk.**
 
-### **Propósito de la VLAN Nativa**
+### 4.2. **Propósito de la VLAN Nativa**
 
 ```bash
 # COMUNICACIÓN CON DISPOSITIVOS QUE NO ENTIENDEN 802.1Q
@@ -117,7 +117,7 @@ Gi0/1       10,20,30
 - Dispositivos que no soportan VLAN tagging
 ```
 
-### **Comportamiento**
+### 4.3. **Comportamiento**
 
 ```bash
 # PARA TRÁFICO DE VLAN NATIVA:
@@ -129,9 +129,9 @@ Frame entra al trunk → SE AÑADE etiqueta 802.1Q con VLAN ID
 Frame sale del trunk → SE REMUEVE etiqueta, se envía a VLAN correcta
 ```
 
-## ⚠️ **IMPORTANTE: Consideraciones de Seguridad**
+## 5. ⚠️ **IMPORTANTE: Consideraciones de Seguridad**
 
-### **Problema de Seguridad con VLAN Nativa**
+### 5.1. **Problema de Seguridad con VLAN Nativa**
 
 ```bash
 # ATAQUE DE SALTO DE VLAN (VLAN HOPPING)
@@ -145,7 +145,7 @@ NUNCA usar VLAN 1 como nativa
 Usar VLAN "basura" no utilizada para nativa
 ```
 
-### **Configuración Segura**
+### 5.2. **Configuración Segura**
 
 ```bash
 ! CONFIGURACIÓN NO SEGURA (POR DEFECTO)
@@ -160,9 +160,9 @@ Switch(config-vlan)# exit
 ! ✅ VLAN 999 no tiene dispositivos, solo existe para tráfico nativo
 ```
 
-## 🔧 **Configuración Completa y Segura**
+## 6. 🔧 **Configuración Completa y Segura**
 
-### **Ejemplo Práctico Corporativo**
+### 6.1. **Ejemplo Práctico Corporativo**
 
 ```bash
 ! ESCENARIO: Empresa con 3 departamentos + VLAN de administración
@@ -198,7 +198,7 @@ CoreSwitch(config-if)# switchport trunk native vlan 999
 CoreSwitch(config-if)# switchport trunk allowed vlan 10,20,30,99
 ```
 
-### **Configuración de Puertos de Acceso**
+### 6.2. **Configuración de Puertos de Acceso**
 
 ```bash
 ! PUERTOS PARA USUARIOS (NO TRUNK)
@@ -213,9 +213,9 @@ Switch(config-if-range)# switchport access vlan 20
 Switch(config-if-range)# description USUARIOS_IT
 ```
 
-## 📊 **Verificación y Troubleshooting**
+## 7. 📊 **Verificación y Troubleshooting**
 
-### **Comandos de Verificación**
+### 7.1. **Comandos de Verificación**
 
 ```bash
 ! VER ESTADO DE TRUNKS
@@ -253,7 +253,7 @@ Port        Vlans in spanning tree forwarding state and not pruned
 Gi0/1       10,20,30,99
 ```
 
-### **Troubleshooting Común**
+### 7.2. **Troubleshooting Común**
 
 ```bash
 # PROBLEMA 1: Trunk no se forma
@@ -271,9 +271,9 @@ SÍNTOMA: Dispositivos en esa VLAN no pueden comunicarse through trunk
 SOLUCIÓN: Añadir VLAN a la lista permitida
 ```
 
-## **Resumen de Conceptos Clave**
+## 8. **Resumen de Conceptos Clave**
 
-### **TRUNK:**
+### 8.1. **TRUNK:**
 ```bash
 ✅ Transporta MÚLTIPLES VLANs en un solo enlace físico
 ✅ Usa etiquetado 802.1Q para identificar a qué VLAN pertenece cada frame
@@ -281,7 +281,7 @@ SOLUCIÓN: Añadir VLAN a la lista permitida
 ✅ Debe configurarse igual en ambos extremos del enlace
 ```
 
-### **VLAN NATIVA:**
+### 8.2. **VLAN NATIVA:**
 ```bash
 ✅ Única VLAN que viaja SIN etiqueta 802.1Q en un trunk
 ✅ Por defecto es VLAN 1 (❌ INSECURO)
@@ -289,7 +289,7 @@ SOLUCIÓN: Añadir VLAN a la lista permitida
 ✅ Debe coincidir en ambos extremos del trunk
 ```
 
-### **MEJORES PRÁCTICAS:**
+### 8.3. **MEJORES PRÁCTICAS:**
 ```bash
 1. ✅ NUNCA usar VLAN 1 para nada
 2. ✅ Usar VLAN dedicada no utilizada como nativa (999, 4094, etc.)
@@ -300,7 +300,7 @@ SOLUCIÓN: Añadir VLAN a la lista permitida
 ```
 
 
-### **Comandos Explicados Paso a Paso**
+### 8.4. **Comandos Explicados Paso a Paso**
 
 ```bash
 ! CREACIÓN DE VLANs
@@ -348,7 +348,7 @@ Switch# show interfaces trunk
 ! Muestra información detallada sobre puertos trunk
 ```
 
-### **Ejemplo Práctico Completo**
+### 8.5. **Ejemplo Práctico Completo**
 
 ```bash
 ! ESCENARIO: Empresa con 3 departamentos
@@ -388,9 +388,9 @@ Switch(config-if)# no shutdown
 
 ---
 
-## **2. Port Security**
+## 9. **Port Security**
 
-### **Concepto Teórico Detallado**
+### 9.1. **Concepto Teórico Detallado**
 
 **¿Qué es Port Security?**
 Es un mecanismo que **restringe qué dispositivos pueden conectarse** a un puerto del switch basándose en direcciones MAC.
@@ -411,7 +411,7 @@ Es un mecanismo que **restringe qué dispositivos pueden conectarse** a un puert
 
 
 
-### **Comandos Explicados Paso a Paso**
+### 9.2. **Comandos Explicados Paso a Paso**
 
 ```bash
 ! HABILITAR PORT SECURITY BÁSICO
@@ -470,7 +470,7 @@ Switch(config-if)# switchport port-security aging type inactivity
 ! Alternativa: 'absolute' (tiempo fijo independiente del tráfico)
 ```
 
-### **Ejemplo Práctico Completo**
+### 9.3. **Ejemplo Práctico Completo**
 
 ```bash
 ! ESCENARIO: Oficina con políticas de seguridad específicas
@@ -516,11 +516,11 @@ Switch# show port-security address
 ! Muestra la tabla de direcciones MAC seguras aprendidas
 ```
 
-## **3. DHCP Snooping**
+## 10. **DHCP Snooping**
 
-## **¿Pero qué es DHCP?**
+## 11. **¿Pero qué es DHCP?**
 
-### **¿Qué es DHCP?**
+### 11.1. **¿Qué es DHCP?**
 
 **DHCP (Dynamic Host Configuration Protocol)** es el "servicio de entrega de direcciones" automático de las redes. En lugar de configurar manualmente cada dispositivo, DHCP asigna automáticamente:
 
@@ -529,37 +529,37 @@ Switch# show port-security address
 - ✅ **Gateway por defecto**
 - ✅ **Servidores DNS**
 
-## **El Proceso de 4 Pasos (DORA)**
+## 12. **El Proceso de 4 Pasos (DORA)**
 
-### **1.DISCOVER - "¿Hay algún servidor DHCP?"**
+### 12.1. **1.DISCOVER - "¿Hay algún servidor DHCP?"**
 ```bash
 Cliente → Broadcast: "¡Hola! Necesito una IP, ¿alguien puede ayudarme?"
 ```
 - El cliente envía broadcast sin IP
 - Todos los dispositivos en la red local lo reciben
 
-### **2.OFFER - "Sí, te ofrezco esta IP"**
+### 12.2. **2.OFFER - "Sí, te ofrezco esta IP"**
 ```bash
 Servidor DHCP → Cliente: "Te ofrezco la IP 192.168.1.100"
 ```
 - Servidor reserva una IP disponible
 - Envía oferta con configuración de red
 
-### **3.REQUEST - "Acepto tu oferta"** 
+### 12.3. **3.REQUEST - "Acepto tu oferta"** 
 ```bash
 Cliente → Broadcast: "Acepto la IP 192.168.1.100 del servidor X"
 ```
 - Cliente confirma que acepta la IP
 - Se hace por broadcast por si hay múltiples servidores
 
-### **4.ACK - "Confirmado, usa esta IP"**
+### 12.4. **4.ACK - "Confirmado, usa esta IP"**
 ```bash
 Servidor DHCP → Cliente: "Confirmado, usa 192.168.1.100 por 24 horas"
 ```
 - Confirmación final del servidor
 - Incluye tiempo de arrendamiento (lease time)
 
-## **Renovación de IP**
+## 13. **Renovación de IP**
 
 ```bash
 # A LOS 50% DEL TIEMPO DE ARRENDAMIENTO:
@@ -572,19 +572,19 @@ Servidor → Cliente: "Sí, renuevas por X tiempo más"
 
 ![Funcionamiento de DHCP](img/DHCP2.jpg){width=600 height=300}
 
-## **En Resumen**
+## 14. **En Resumen**
 
 **DHCP = Sistema automático que evita tener que configurar manualmente cada dispositivo en la red, asignando y gestionando direcciones IP de forma dinámica.**
 
 **Funciona como un "alquiler de direcciones" con renovación automática.**
 
-### **¿Qué es DHCP Snooping?**
+### 14.1. **¿Qué es DHCP Snooping?**
 La función exacta de DHCP Snooping es actuar como un guardián de seguridad que previene ataques DHCP maliciosos mediante la creación de una base de datos confiable de asignaciones IP-MAC, diferenciando entre puertos trusted (donde se conectan servidores DHCP legítimos) y untrusted (clientes), bloqueando respuestas DHCP no autorizadas y proporcionando la base de datos que tecnologías como DAI e IP Source Guard utilizan para validar la legitimidad del tráfico ARP y las direcciones IP en la red.
 
 En esencia: DHCP Snooping es el sistema de verificación de identidades que asegura que solo dispositivos autorizados puedan ofrecer direcciones IP y mantiene un registro confiable de qué dispositivo tiene qué IP en qué puerto.
 DHCP Snooping es la BASE, DAI es la CAPA DE SEGURIDAD que usa esa base
 
-### **Analogía para Entenderlo**
+### 14.2. **Analogía para Entenderlo**
 
 Imagina un edificio con:
 - **Servidores DHCP legítimos** = Oficinas de administración autorizadas
@@ -596,16 +596,16 @@ Imagina un edificio con:
 
 ![](img/dhcp_snooping2.jpg)
 
-## 🔍 **Problemas que Resuelve DHCP Snooping**
+## 15. 🔍 **Problemas que Resuelve DHCP Snooping**
 
-### **1. Ataque DHCP Starvation (Inanición)**
+### 15.1. **Ataque DHCP Starvation (Inanición)**
 ```bash
 # Un atacante envía MÚLTIPLES solicitudes DHCP con MACs falsas
 # Resultado: Agota el pool de IPs del servidor legítimo
 # Clientes legítimos no pueden obtener IP
 ```
 
-### **2. Ataque DHCP Rogue (Servidor Falso)**
+### 15.2. **Ataque DHCP Rogue (Servidor Falso)**
 ```bash
 # Atacante configura servidor DHCP no autorizado
 # Ofrece IPs con:
@@ -614,16 +614,16 @@ Imagina un edificio con:
 # Resultado: Man-in-the-Middle completo
 ```
 
-### **3. IP Spoofing (Suplantación de IP)**
+### 15.3. **IP Spoofing (Suplantación de IP)**
 ```bash
 # Clientes usan IPs que no les corresponden
 # Difícil de rastrear en la red
 # Puede eludir controles de seguridad basados en IP
 ```
 
-## 🏗️ **Arquitectura de DHCP Snooping**
+## 16. 🏗️ **Arquitectura de DHCP Snooping**
 
-### **Componentes Clave**
+### 16.1. **Componentes Clave**
 
 1. **Puertos Trusted (Confiables)**
 
@@ -643,9 +643,9 @@ Imagina un edificio con:
 
 
 
-## ⚙️ **Configuración Detallada Paso a Paso**
+## 17. ⚙️ **Configuración Detallada Paso a Paso**
 
-### **Configuración Básica**
+### 17.1. **Configuración Básica**
 
 ```bash
 ! PASO 1: HABILITAR DHCP SNOOPING GLOBALMENTE
@@ -672,7 +672,7 @@ Switch(config-if-range)# no ip dhcp snooping trust
 ! Aunque por defecto ya lo son, es buena práctica
 ```
 
-### **Configuración Avanzada**
+### 17.2. **Configuración Avanzada**
 
 ```bash
 ! OPCIÓN 82 (AGENT INFORMATION OPTION)
@@ -693,9 +693,9 @@ Switch(config)# ip dhcp snooping database write-delay 15
 ! Previene pérdida de información en reinicios
 ```
 
-## 🔧 **Ejemplos Prácticos de Configuración**
+## 18. 🔧 **Ejemplos Prácticos de Configuración**
 
-### **Ejemplo 1: Pequeña Oficina**
+### 18.1. **Ejemplo 1: Pequeña Oficina**
 
 ```bash
 ! ESCENARIO: 1 servidor DHCP, 24 puertos de usuario
@@ -715,7 +715,7 @@ Switch(config-if-range)# ip dhcp snooping limit rate 5
 ! Limita a 5 mensajes/segundo para prevenir ataques
 ```
 
-### **Ejemplo 2: Empresa Mediana con Múltiples VLANs**
+### 18.2. **Ejemplo 2: Empresa Mediana con Múltiples VLANs**
 
 ```bash
 ! ESCENARIO: Múltiples departamentos, servidor centralizado
@@ -745,7 +745,7 @@ Switch(config-if-range)# switchport access vlan 99
 Switch(config-if-range)# ip dhcp snooping limit rate 8
 ```
 
-### **Ejemplo 3: Entorno de Alta Seguridad**
+### 18.3. **Ejemplo 3: Entorno de Alta Seguridad**
 
 ```bash
 ! ESCENARIO: Entorno crítico con verificación estricta
@@ -773,9 +773,9 @@ Switch(config-if-range)# ip dhcp snooping limit rate 5
 ! Solo 5 mensajes DHCP por segundo - muy restrictivo
 ```
 
-## 🛠️ **Integración con Otras Tecnologías de Seguridad**
+## 19. 🛠️ **Integración con Otras Tecnologías de Seguridad**
 
-### **Con Dynamic ARP Inspection (DAI)**
+### 19.1. **Con Dynamic ARP Inspection (DAI)**
 
 ```bash
 ! DHCP Snooping es PRERREQUISITO para DAI
@@ -788,7 +788,7 @@ Switch(config)# ip arp inspection validate src-mac dst-mac ip
 ! DAI verifica que las respuestas ARP coincidan con la tabla de DHCP Snooping
 ```
 
-### **Con IP Source Guard**
+### 19.2. **Con IP Source Guard**
 
 ```bash
 ! IP Source Guard también depende de DHCP Snooping
@@ -800,9 +800,9 @@ Switch(config-if)# ip verify source
 ! Solo permite tráfico de IPs que están en la tabla de DHCP Snooping
 ```
 
-## 📊 **Comandos de Verificación y Monitoreo**
+## 20. 📊 **Comandos de Verificación y Monitoreo**
 
-### **Verificación Básica**
+### 20.1. **Verificación Básica**
 
 ```bash
 ! VER ESTADO GLOBAL DE DHCP SNOOPING
@@ -838,7 +838,7 @@ no      | Fa0/2 |
 ...     | ...  |
 ```
 
-### **Estadísticas y Troubleshooting**
+### 20.2. **Estadísticas y Troubleshooting**
 
 ```bash
 ! ESTADÍSTICAS DETALLADAS POR INTERFAZ
@@ -871,7 +871,7 @@ Last succeeded : Never
 Last failed : Never
 ```
 
-### **Comandos de Depuración (Debug)**
+### 20.3. **Comandos de Depuración (Debug)**
 
 ```bash
 ! SOLO USAR EN TROUBLESHOOTING - PUEDE GENERAR MUCHO OUTPUT
@@ -888,9 +888,9 @@ DHCP_SNOOPING: received packet on FastEthernet0/1:
   CHADDR: 0050.5689.ABCD
 ```
 
-## 🔄 **Flujo de Trabajo Completo de DHCP Snooping**
+## 21. 🔄 **Flujo de Trabajo Completo de DHCP Snooping**
 
-### **Proceso Paso a Paso**
+### 21.1. **Proceso Paso a Paso**
 
 1. **Inicialización:**
    ```bash
@@ -923,9 +923,9 @@ DHCP_SNOOPING: received packet on FastEthernet0/1:
    Guarda base de datos periódicamente en memoria no volátil
    ```
 
-## 💡 **Mejores Prácticas y Recomendaciones**
+## 22. 💡 **Mejores Prácticas y Recomendaciones**
 
-### **Configuración Recomendada**
+### 22.1. **Configuración Recomendada**
 
 ```bash
 ! CONFIGURACIÓN ÓPTIMA PARA ENTORNOS CORPORATIVOS
@@ -946,7 +946,7 @@ Switch(config-if-range)# no ip dhcp snooping trust
 Switch(config-if-range)# ip dhcp snooping limit rate 10
 ```
 
-### **Consideraciones Importantes**
+### 22.2. **Consideraciones Importantes**
 
 1. **Planificación:**
    
@@ -970,7 +970,7 @@ Switch(config-if-range)# ip dhcp snooping limit rate 10
       - Monitorear contadores de paquetes descartados
       - Revisar logs regularmente
 
-## 🎯 **Resumen Final**
+## 23. 🎯 **Resumen Final**
 
 **DHCP Snooping es la base fundamental** para:
 
@@ -982,9 +982,9 @@ Switch(config-if-range)# ip dhcp snooping limit rate 10
 **Sin DHCP Snooping, las demás tecnologías de seguridad (DAI, IP Source Guard) no pueden funcionar correctamente.**
 
 
-## 🛡️ **3. Dynamic ARP Inspection (DAI)**
+## 24. 🛡️ **3. Dynamic ARP Inspection (DAI)**
 
-### **Concepto Teórico Detallado**
+### 24.1. **Concepto Teórico Detallado**
 
 **¿Qué es DAI?**
 Es un mecanismo de seguridad que **previene ataques ARP spoofing** validando paquetes ARP en la red.
@@ -1004,7 +1004,7 @@ Es un mecanismo de seguridad que **previene ataques ARP spoofing** validando paq
 
 DAI utiliza la tabla de DHCP Snooping EXCLUSIVAMENTE cuando recibe un ARP Response (Respuesta ARP)
 
-### **Comandos Explicados Paso a Paso**
+### 24.2. **Comandos Explicados Paso a Paso**
 
 ```bash
 ! CONFIGURACIÓN BÁSICA DE DAI
@@ -1033,7 +1033,7 @@ Switch(config-if)# ip arp inspection limit rate 15
 ! Previene flood de ARP que podría saturar la CPU
 ```
 
-### **Configuración Integrada con DHCP Snooping**
+### 24.3. **Configuración Integrada con DHCP Snooping**
 
 ```bash
 ! PRIMERO: Configurar DHCP Snooping (requisito para DAI)
@@ -1065,7 +1065,7 @@ Switch(config-if-range)# ip arp inspection limit rate 10
 ! Por defecto son untrusted (inspeccionados)
 ```
 
-### **Ejemplo Práctico Completo**
+### 24.4. **Ejemplo Práctico Completo**
 
 ```bash
 ! ESCENARIO: Red corporativa con múltiples VLANs
@@ -1116,9 +1116,9 @@ Switch# show ip arp inspection interface fastethernet 0/10
 
 ---
 
-## 🌉 **4. BPDU Guard & BPDU Filter**
+## 25. 🌉 **4. BPDU Guard & BPDU Filter**
 
-### **Concepto Teórico Detallado**
+### 25.1. **Concepto Teórico Detallado**
 
 **¿Qué son las BPDUs?**
 BPDU (Bridge Protocol Data Units) son mensajes que intercambian los switches para **construir y mantener el spanning-tree**.
@@ -1129,7 +1129,7 @@ BPDU (Bridge Protocol Data Units) son mensajes que intercambian los switches par
 - **Bucles de red**: Configuraciones incorrectas crean loops
 - **Interrupciones de servicio**: Topología STP cambia inesperadamente
 
-### **BPDU Guard - Explicación Detallada**
+### 25.2. **BPDU Guard - Explicación Detallada**
 
 **Propósito**: Proteger puertos de acceso contra recepción de BPDUs
 
@@ -1138,7 +1138,7 @@ BPDU (Bridge Protocol Data Units) son mensajes que intercambian los switches par
 - Ideal para **puertos con usuarios finales**
 - Se activa solo en puertos con **PortFast**
 
-### **Comandos BPDU Guard**
+### 25.3. **Comandos BPDU Guard**
 
 ```bash
 ! MÉTODO 1: Global (recomendado para consistencia)
@@ -1159,7 +1159,7 @@ Switch(config)# errdisable recovery interval 300
 ! Reactiva puertos automáticamente después de 5 minutos
 ```
 
-### **BPDU Filter - Explicación Detallada**
+### 25.4. **BPDU Filter - Explicación Detallada**
 
 **Propósito**: **Silenciar** BPDUs en puertos específicos
 
@@ -1169,7 +1169,7 @@ Switch(config)# errdisable recovery interval 300
 - **Peligroso**: Puede crear bucles si no se usa correctamente
 - **Caso de uso**: Conectar dispositivos que envían BPDUs pero no deben participar en STP
 
-### **Comandos BPDU Filter**
+### 25.5. **Comandos BPDU Filter**
 
 ```bash
 ! MÉTODO 1: Global
@@ -1183,7 +1183,7 @@ Switch(config-if)# spanning-tree bpdufilter enable
 ! Habilita BPDU Filter específicamente en este puerto
 ```
 
-### **Ejemplo Práctico: Cuándo Usar Cada Uno**
+### 25.6. **Ejemplo Práctico: Cuándo Usar Cada Uno**
 
 ```bash
 ! ESCENARIO: Oficina con diferentes tipos de puertos
@@ -1224,9 +1224,9 @@ Switch# show errdisable recovery
 
 ---
 
-## 🔍 **5. IP Source Guard**
+## 26. 🔍 **5. IP Source Guard**
 
-### **Concepto Teórico Detallado**
+### 26.1. **Concepto Teórico Detallado**
 
 **¿Qué es IP Source Guard?**
 Es un mecanismo que **filtra tráfico IP** basándose en la tabla de bindings de DHCP Snooping.
@@ -1244,7 +1244,7 @@ Es un mecanismo que **filtra tráfico IP** basándose en la tabla de bindings de
 3. **Permite** solo tráfico de IPs autorizadas
 4. **Actualiza** dinámicamente cuando expiran leases DHCP
 
-### **Comandos Explicados Paso a Paso**
+### 26.2. **Comandos Explicados Paso a Paso**
 
 ```bash
 ! PRERREQUISITO: DHCP Snooping debe estar configurado
@@ -1267,7 +1267,7 @@ Switch(config-if)# ip verify source vlan dhcp-snooping port-security
 ! MÁXIMA SEGURIDAD pero más complejo de implementar
 ```
 
-### **Ejemplo Práctico Completo**
+### 26.3. **Ejemplo Práctico Completo**
 
 ```bash
 ! ESCENARIO: Red segura con validación múltiple
@@ -1325,9 +1325,9 @@ Switch# debug ip dhcp snooping events
 
 ---
 
-## 🏗️ **CONFIGURACIÓN INTEGRADA COMPLETA**
+## 27. 🏗️ **CONFIGURACIÓN INTEGRADA COMPLETA**
 
-### **Switch de Acceso Corporativo Seguro**
+### 27.1. **Switch de Acceso Corporativo Seguro**
 
 ```bash
 ! INICIALIZACIÓN BÁSICA
@@ -1414,7 +1414,7 @@ SW-ACCESO-01(config)# end
 SW-ACCESO-01# copy running-config startup-config
 ```
 
-### **Comandos de Verificación y Monitoreo**
+### 27.2. **Comandos de Verificación y Monitoreo**
 
 ```bash
 ! VERIFICACIÓN COMPLETA DEL ESTADO
@@ -1442,9 +1442,9 @@ SW-ACCESO-01# show spanning-tree interface fastethernet 0/1 detail
 
 ---
 
-## 🎯 **RESUMEN FINAL DE MEJORES PRÁCTICAS**
+## 28. 🎯 **RESUMEN FINAL DE MEJORES PRÁCTICAS**
 
-### **Recomendaciones por Tecnología:**
+### 28.1. **Recomendaciones por Tecnología:**
 
 1. **VLANs**:
       - Nunca usar VLAN 1 para tráfico de usuario
@@ -1471,7 +1471,7 @@ SW-ACCESO-01# show spanning-tree interface fastethernet 0/1 detail
       - "port-security" para máxima seguridad
       - Monitorizar bindings regularmente
 
-### **Flujo de Implementación Recomendado:**
+### 28.2. **Flujo de Implementación Recomendado:**
 1. VLANs y segmentación
 2. Port Security básica
 3. DHCP Snooping
@@ -1481,7 +1481,7 @@ SW-ACCESO-01# show spanning-tree interface fastethernet 0/1 detail
 7. Verificación y ajuste
 
 
-## Portfast
+## 29. Portfast
 
 PortFast es una funcionalidad de los switches Cisco que se configura en puertos de acceso que conectan estaciones de trabajo finales (como PCs, impresoras, servidores) y nunca otros switches o dispositivos de red.
 ¿Qué hace PortFast?
@@ -1517,9 +1517,9 @@ En resumen: PortFast es una optimización para puertos de usuarios finales que a
 
 ---
 
-### Configuración de PortFast
+### 29.1. Configuración de PortFast
 
-#### **1. Por interfaz (recomendado)**
+#### 29.1.1. **Por interfaz (recomendado)**
 ```bash
 Switch# configure terminal
 Switch(config)# interface [tipo-número]  # Ej: gigabitethernet 0/1
@@ -1531,7 +1531,7 @@ Switch(config-if)# spanning-tree portfast
 Switch(config-if)# spanning-tree bpduguard enable
 ```
 
-#### **2. De forma global (más rápido)**
+#### 29.1.2. **De forma global (más rápido)**
 Habilita PortFast en **todas** las interfaces que no son trunk y están en estado *connected*:
 ```bash
 Switch# configure terminal
@@ -1545,7 +1545,7 @@ Switch(config)# spanning-tree portfast bpduguard default
 
 ---
 
-### Verificación
+### 29.2. Verificación
 ```bash
 Switch# show spanning-tree interface [tipo-número] detail
 ```
@@ -1555,7 +1555,7 @@ Busca en la salida:
 
 ---
 
-### Comandos importantes para aclarar dudas
+### 29.3. Comandos importantes para aclarar dudas
 
 **¿La interfaz es de acceso o trunk?**
 ```bash
@@ -1579,7 +1579,7 @@ Switch(config-if)# no shutdown
 
 ---
 
-### ⚠️ Recordatorio importante
+### 29.4. ⚠️ Recordatorio importante
 
 **SOLO uses PortFast en puertos que conecten dispositivos finales** (PCs, impresoras, servidores). **NUNCA** en puertos que conecten a otros switches, routers o puntos de acceso inalámbricos, ya que podrías causar bucles en la red.
 

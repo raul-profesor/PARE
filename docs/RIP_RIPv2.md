@@ -154,7 +154,7 @@ RIPv2 es un protocolo sencillo pero muy valioso desde el punto de vista formativ
 
 Sin embargo, su uso es prácticamente residual en escenarios nicho (redes TO o tecnología operativa p.ej. ), *legacy* o redes muy pequeñas donde la simplicidad es preferible a los beneficios de protocolos más modernos.
 
-## Referencias
+## 13. Referencias
 
 + [RIP: Routing Information Protocol](https://ccnadesdecero.es/routing-information-protocol-rip/)
 

@@ -18,15 +18,15 @@ En la lista de temas del examen CCNA, encontraréis varios verbos distintos, com
 
 Como introducción a los cambios de configuración en un dispositivo Cisco y a su guardado, en este capítulo veremos el tema del examen 4.3: Configurar y verificar el control de acceso al dispositivo mediante contraseñas locales. Sin embargo, este capítulo no está orientado específicamente a uno de los temas del examen CCNA, sino que sienta una base necesaria para todos los temas del examen que requieren configurar y verificar varios protocolos.
 
-## 4.1 Shells: GUI y CLI
+## 1. Shells: GUI y CLI
 
 Una shell es un programa informático que permite a un usuario interactuar con el ordenador. Es la interfaz entre el ordenador y el usuario y recibe ese nombre porque es la capa exterior del sistema operativo. Para configurar un router o un switch de Cisco, usáis una shell para enviar comandos al dispositivo. En esta sección, veremos los dos tipos de shell que usaremos en este libro.
 
-### 4.1.1 GUI y CLI
+### 1.1. GUI y CLI
 
 Hay dos tipos principales de shell: la interfaz gráfica de usuario (GUI, pronunciada “G-U-I” o “gooey”) y la interfaz de línea de comandos (CLI). Examinemos estos dos tipos.
 
-#### Interfaces gráficas
+#### 1.1.1. Interfaces gráficas
 
 Una GUI permite a un usuario manipular el ordenador mediante una interfaz gráfica. Independientemente de vuestro nivel de experiencia o inexperiencia con los ordenadores, estoy seguro de que ya habéis usado una GUI antes. Si tenéis un PC con Windows, la GUI es la interfaz con la que interactuáis al abrir, cerrar y mover ventanas, o al abrir el menú Inicio para buscar un programa, etc. Ese es el shell de Windows. Si tenéis un smartphone, usáis una GUI para interactuar con el teléfono y sus aplicaciones.
 
@@ -37,7 +37,7 @@ Aunque la mayor parte del examen CCNA no se centra en las GUIs, se espera que co
 La interfaz gráfica de un controlador inalámbrico Cisco, accesible mediante un navegador web.
 ///
 
-#### Interfaces de línea de comandos
+#### 1.1.2. Interfaces de línea de comandos
 
 Una CLI es una interfaz basada en texto que permite controlar e interactuar con un dispositivo introduciendo comandos, que son líneas de texto. Un ejemplo famoso de CLI que quizá hayáis visto antes es el símbolo del sistema de Windows, que se muestra en la Figura 2. Aunque la gran mayoría de los usuarios usan la GUI de forma exclusiva o casi exclusiva, la CLI del símbolo del sistema ofrece otra forma de interactuar con un PC.
 
@@ -51,7 +51,7 @@ Para el examen CCNA, debéis estar familiarizados con la CLI de los routers y sw
 !!!note "Nota"
     Durante los dos volúmenes de este libro, presentaremos diversos comandos de CLI para configurar los protocolos que debéis conocer para el examen CCNA. La práctica práctica con esos comandos, por ejemplo usando Cisco Packet Tracer, es esencial para prepararse para el examen CCNA.
 
-### 4.1.2 Acceso a la CLI de un dispositivo Cisco
+### 1.2. Acceso a la CLI de un dispositivo Cisco
 
 Para configurar dispositivos Cisco, primero tenéis que conectar vuestro ordenador al dispositivo para acceder a la CLI. Hay dos métodos principales para hacerlo:
 
@@ -110,7 +110,7 @@ Cómo usar PuTTY para acceder a la CLI de un dispositivo Cisco mediante el puert
 !!!note "Nota"
     No os examinarán sobre cómo usar PuTTY u otro emulador de terminal para conectaros a un puerto de consola en el examen CCNA, pero incluyo esta información por si tenéis hardware físico con el que practicar. Para practicar en laboratorio de forma práctica para el CCNA, os recomiendo Cisco Packet Tracer, en el que simplemente podéis hacer clic sobre el icono de un dispositivo para acceder a la CLI.
 
-## 4.2 Navegación por la CLI de Cisco IOS
+## 2. Navegación por la CLI de Cisco IOS
 
 Ahora sí que ya vamos a entrar en la práctica de la CLI de Cisco IOS, navegando entre diferentes modos y enviando comandos a un dispositivo Cisco. Quiero volver a enfatizar que las redes no son solo teoría, sino también una habilidad práctica. Será difícil asimilar esta información si no la ponéis en práctica vosotros mismos, por lo que os recomiendo encarecidamente que sigáis la explicación en Packet Tracer (o en la CLI de un router o switch Cisco real) e intentéis probar los distintos comandos y atajos que cubrimos.
 
@@ -127,7 +127,7 @@ no
 
 El diálogo de configuración del sistema es un asistente paso a paso que permite hacer una configuración sencilla del dispositivo sin necesidad de conocer los comandos de la CLI de Cisco IOS. Esta función normalmente no se usa y no es algo que necesitéis conocer para el CCNA, así que os recomiendo omitirla escribiendo no y pulsando la tecla Enter (las opciones [sí/no] se muestran entre corchetes).
 
-### 4.2.1 Los modos EXEC
+### 2.1. Los modos EXEC
 
 Después de omitir el diálogo de configuración del sistema, se os muestra un indicador como el siguiente, donde podéis escribir comandos y pulsar Enter para enviarlos al dispositivo. El formato del indicador es el nombre del host (en este caso, Router, el nombre predeterminado de los routers Cisco) seguido de un signo mayor que. Esto indica que estáis en modo EXEC de usuario:
 
@@ -171,7 +171,7 @@ El modo EXEC privilegiado da acceso ilimitado a los comandos show disponibles y 
 
 Aunque el modo EXEC privilegiado es más potente que el modo EXEC de usuario, ambos modos están limitados porque no permiten hacer cambios en la configuración del dispositivo. Los modos EXEC solo permiten ver el estado y la configuración del dispositivo, así como ejecutar comandos operativos para realizar acciones como reiniciar el dispositivo, guardar la configuración, mover y eliminar archivos, etc.
 
-### 4.2.2 Modo de configuración global
+### 2.2. Modo de configuración global
 
 Para hacer cambios en la configuración del dispositivo, debemos salir de los modos EXEC y pasar al siguiente modo de la jerarquía de IOS: el modo de configuración global. Para hacerlo, usad el comando configure terminal desde el modo EXEC privilegiado:
 
@@ -213,7 +213,7 @@ R1(config)# do show clock
 *03:06:22.892 UTC Fri Feb 10 2023
 ```
 
-### 4.2.3 Atajos de teclado
+### 2.3. Atajos de teclado
 
 Hay varios atajos de teclado que pueden ayudaros a navegar con mayor fluidez por la CLI e introducir comandos. Ya hemos visto dos en la sección anterior; Ctrl-C y Ctrl-Z pueden usarse para volver al modo EXEC privilegiado desde cualquier modo de configuración. Hay muchos más, y veremos algunos a continuación.
 
@@ -231,11 +231,11 @@ También podéis usar el teclado para ver los comandos ejecutados previamente, q
 - Flecha arriba: comando anterior.
 - Flecha abajo: comando siguiente.
 
-### 4.2.4 Ayuda sensible al contexto
+### 2.4. Ayuda sensible al contexto
 
 Tendréis que aprender muchos comandos distintos para prepararos para el CCNA, y esos comandos son solo una fracción de todos los comandos disponibles en Cisco IOS. Para el examen CCNA, es importante practicar y familiarizarse con los distintos comandos que veremos en este libro. Sin embargo, Cisco IOS tiene una función llamada ayuda sensible al contexto que puede ayudaros si habéis olvidado un comando.
 
-#### Visualización de los comandos disponibles
+#### 2.4.1. Visualización de los comandos disponibles
 
 Un signo de interrogación (?) puede usarse para pedir ayuda en la CLI de Cisco IOS de varias formas:
 
@@ -293,7 +293,7 @@ R1> en?
 enable
 ```
 
-#### Autocompletado de comandos
+#### 2.4.2. Autocompletado de comandos
 
 Escribir varios comandos puede resultar tedioso cuando configuráis un dispositivo manualmente. Afortunadamente, Cisco IOS no os exige escribir comandos completos; solo requiere que escribáis suficientes caracteres para que solo exista un posible comando que empiece por esos caracteres.
 
@@ -329,7 +329,7 @@ La Tabla 1 resume estas funciones de ayuda sensible al contexto. Dedica un poco 
 | partial-command<Tab> | Completa automáticamente el comando si solo existe una opción que empiece por los caracteres escritos |
 | partial-command<Enter> | Ejecuta el comando si solo existe una opción que empiece por los caracteres escritos |
 
-## 4.3 Archivos de configuración de IOS
+## 3. Archivos de configuración de IOS
 
 Los dispositivos Cisco IOS usan dos archivos de texto distintos para almacenar la configuración del dispositivo: running-config y startup-config. Los dos archivos se almacenan en memoria hardware distinta y cumplen propósitos diferentes. Podéis ver cada archivo de configuración con los comandos show running-config y show startup-config.
 
@@ -362,11 +362,11 @@ Si queréis devolver un dispositivo a su configuración predeterminada de fábri
 - erase nvram:
 - erase startup-config
 
-## 4.4 Protección con contraseña del modo EXEC privilegiado
+## 4. Protección con contraseña del modo EXEC privilegiado
 
 El modo EXEC privilegiado no solo permite a un usuario ejecutar cualquiera de los comandos show disponibles para recopilar información sobre la configuración y el estado del dispositivo, sino que también le permite acceder al modo de configuración global y hacer cambios de configuración en el dispositivo. Por eso, siempre es buena idea configurar una contraseña para impedir que usuarios no autorizados accedan al modo EXEC privilegiado. En esta sección, veremos la enable password y su versión más segura, la enable secret.
 
-### 4.4.1 Configuración de la enable password
+### 4.1. Configuración de la enable password
 
 La enable password es una contraseña que debéis introducir para acceder al modo EXEC privilegiado. También es el nombre del comando usado para configurar la contraseña; se configura con el comando enable password en el modo de configuración global. Después de configurar la enable password, cada vez que un usuario use el comando enable en el modo EXEC de usuario, deberá introducir esa contraseña para acceder al modo EXEC privilegiado.
 
@@ -412,7 +412,7 @@ El comando service password-encryption cifra las contraseñas usando un cifrado 
 
 La enable password es un ejemplo de función heredada: algo que ha sido reemplazado por una función más nueva (la enable secret) pero que sigue siendo compatible con Cisco IOS. Las diferencias entre la enable password y la enable secret son un posible tema de examen, pero al configurar dispositivos de red debéis usar siempre enable secret.
 
-### 4.4.2 Configuración de la enable secret
+### 4.2. Configuración de la enable secret
 
 La enable secret es una contraseña más segura que puede configurarse para proteger el acceso al modo EXEC privilegiado. Almacena la contraseña como hash en lugar de como texto cifrado. El hashing puede entenderse como un cifrado unidireccional; no se puede revertir. La enable secret puede configurarse con el comando enable secret en el modo de configuración global. En el ejemplo siguiente, configuro una enable secret y la veo en running-config:
 
@@ -428,7 +428,7 @@ enable password 7 0307580507
 
 El comando enable secret genera un hash de la contraseña especificada usando el algoritmo de hashing predeterminado del dispositivo. Hay varios algoritmos de hashing que pueden usarse para generar el hash y la disponibilidad de estos algoritmos varía según la versión de IOS del dispositivo. En la plataforma que estoy usando para esta demostración, el tipo de algoritmo es scrypt (pronunciado “S-crypt”), también conocido como tipo 9 (como indica el 9 antes del hash en la salida del ejemplo anterior). En muchos dispositivos antiguos, el algoritmo predeterminado es Message Digest 5 (MD5), también conocido como tipo 5. El tipo 5 no es tan seguro como el tipo 9, así que el tipo 9 debe usarse siempre que sea posible. En el capítulo 11 del volumen 2, veremos los distintos algoritmos de hashing soportados por Cisco IOS y cómo configurar secretos usando algoritmos específicos.
 
-## Resumen
+## 5. Resumen
 
 - Una shell es un programa informático que permite a un usuario interactuar con el ordenador. Una interfaz gráfica de usuario (GUI) es una shell con una interfaz gráfica, y una interfaz de línea de comandos (CLI) es una shell con una interfaz basada en texto.
 - Para el examen CCNA, debéis ser capaces de usar la CLI de Cisco IOS para configurar los protocolos y funciones que aparecen en la lista de temas del examen.

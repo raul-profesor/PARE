@@ -17,7 +17,7 @@ El término *enrutamiento* puede referirse a dos procesos diferentes: el proceso
 
 Abordaremos pues ambos aspectos del enrutamiento.
 
-## Cómo envían paquetes los hosts finales
+## 1. Cómo envían paquetes los hosts finales
 
 Antes de examinar los detalles de cómo los routers reenvían paquetes IP, echemos un ojo a los hosts finales que se envían dichos paquetes entre sí. Después de que un host prepare un paquete para enviarlo a otro, debe encapsularlo en una trama. Si bien nos centramos en el enrutamiento, es decir un proceso de Capa 3, ¡no nos olvidemos de la Capa 2! Los paquetes nunca se envían por cable (u ondas de radio) sin estar encapsulados en una trama.
 
@@ -72,7 +72,7 @@ Ethernet adapter Local Area Connection:
 
 Hay un par de puntos principales que se deben tener en cuenta en esta sección: primero, para enviar un paquete a un destino en la misma red, un host encapsulará el paquete (dirigido a la dirección IP del host de destino) en una trama dirigida a la dirección MAC del host de destino. El segundo punto es que, para enviar un paquete a un destino en una red diferente, el host emisor encapsulará el paquete (dirigido a la dirección IP del host de destino) en una trama dirigida a la dirección MAC de la puerta de enlace predeterminada. En cualquier caso, se debe usar ARP para obtener la dirección MAC adecuada (la del host de destino o la de la puerta de enlace predeterminada).
 
-## Fundamentos de routing
+## 2. Fundamentos de routing
 
 En el apartado anterior hemos visto cómo un host envía paquetes a destinos fuera de su red local; envía cada paquete en una trama dirigida a la dirección MAC de la puerta de enlace predeterminada.
 
@@ -93,7 +93,7 @@ En la figura de arriba, R1 recibe un paquete de PC1 y lo reenvía a PC3:
 2. R1 busca la dirección IP de destino del paquete en su tabla de enrutamiento. 192.168.2.11 pertenece a la red 192.168.2.0/24, por lo que selecciona esa ruta para reenviarlo. 
 3. R1 encapsula el paquete en una nueva trama destinada a la dirección MAC de PC3 y lo reenvía fuera de la interfaz especificada por la ruta (G0/1).
 
-## La tabla de enrutamiento
+## 3. La tabla de enrutamiento
 
 La tabla de enrutamiento de un router es una base de datos de destinos conocidos por el router. Puede considerarse como un conjunto de instrucciones:
 
@@ -156,7 +156,7 @@ Con solo configurar las direcciones IP y habilitar las dos interfaces de R1, R1 
 !!!note "Nota"
     La línea `192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks` no es una ruta. Esta afirmación significa que en la tabla de enrutamiento hay dos rutas a subredes que encajan en la red de clase C 192.168.1.0/24, con dos máscaras de red diferentes (/24 y /32). Lo mismo aplica a la línea similar sobre 192.168.2.0/24. 
     
-### Rutas conectadas
+### 3.1. Rutas conectadas
 
 Una ruta conectada es una ruta a la red a la que está conectada una interfaz. Se añade automáticamente una ruta conectada a la tabla de enrutamiento por cada interfaz que tenga una dirección IP y esté activa (se puede comprobar el estado de la interfaz con `show ip interface brief`). Por ejemplo, la interfaz G0/0 de R1 tiene la dirección IP 192.168.1.1/24, por lo que agrega automáticamente una ruta a la red 192.168.1.0/24 a su tabla de enrutamiento.
 
@@ -178,7 +178,7 @@ A modo de recordatorio rápido, la siguiente imagen muestra cómo la ruta a 192.
 
 Dirección IP y longitud del prefijo (expresada como máscara de red) de la ruta a 192.168.1.0/24. Debido a la longitud del prefijo /24, los primeros tres octetos son fijos (los bits no pueden cambiar). Sin embargo, el último octeto puede ser cualquier número de 8 bits: .1, .11, .100, .179, etc. Esto significa que cualquier paquete con una dirección IP de destino que comience por 192.168.1 puede reenviarse mediante esta ruta.
 
-### Rutas locales
+### 3.2. Rutas locales
 
 Una ruta local es una ruta a la dirección IP exacta configurada en la interfaz del router.
 
@@ -198,7 +198,7 @@ Por ejemplo, aunque ambas interfaces de R1 tienen una longitud de prefijo /24, s
 
 Una ruta local indica al router que los paquetes destinados a la dirección IP especificada en la ruta son para él mismo; debe continuar desencapsulando el mensaje y examinando su contenido. En este caso, el router no reenvía el paquete, sino que lo recibe. La ruta local es necesaria para distinguir la dirección IP del router de otras direcciones IP en la red conectada. **Si R1 solo tuviera una ruta conectada a 192.168.1.0/24, pero ninguna ruta local, reenviaría los paquetes destinados a 192.168.1.1 desde su interfaz G0/0, en lugar de recibirlos.**
 
-## Elección de rutas
+## 4. Elección de rutas
 
 Cuando un router reenvía un paquete, debe decidir qué ruta de su tabla de enrutamiento utilizará para reenviarlo, lo que se denomina selección de ruta. Para determinar cómo reenviar un paquete en particular, el router seleccionará la ruta coincidente más específica. Definamos este término:
 
@@ -228,7 +228,7 @@ Un switch a veces inunda de tramas, pero un router nunca inunda de paquetes; ree
 | La dirección IP de destino del paquete coincide con una ruta local. | Recibir el paquete |
 | La dirección IP de destino del paquete no coincide con ninguna ruta. | Descartar el paquete |
 
-## Rutas estáticas
+## 5. Rutas estáticas
 
 El proceso de reenvío de paquetes descrito en la sección anterior se denomina enrutamiento, pero el término enrutamiento también se utiliza para referirse a los procesos que utilizan los routers para aprender rutas. Además de las rutas conectadas y locales que un router inserta automáticamente en su tabla de enrutamiento, existen dos métodos principales mediante los cuales los routers pueden aprender rutas:
 
@@ -279,7 +279,7 @@ En resumen, cada router necesita una ruta a 192.168.3.0/24 para poder reenviar p
     En este ejemplo, nos referimos a las rutas necesarias para habilitar la comunicación bidireccional entre el PC1 y el PC3. Si bien no es necesario para tal fin, no hay problema en configurar una ruta a 192.168.23.0/24 en el R1 y una ruta a 192.168.12.0/24 en el R3.
 
 
-### Configurando rutas estáticas
+### 5.1. Configurando rutas estáticas
 
 El comando para configurar una ruta estática es, desde el modo de configuración global, `ip route`. Sin embargo, existen diferentes opciones en cuanto a los argumentos que se proporcionan con el comando:
 
@@ -287,7 +287,7 @@ El comando para configurar una ruta estática es, desde el modo de configuració
 + `ip route red-destino máscara interfaz-salida`
 + `ip route red-destino máscara interfaz-salida próximo-salto`
 
-### Rutas estáticas especificando el próximo salto
+### 5.2. Rutas estáticas especificando el próximo salto
 
 Se puede configurar una ruta estática especificando la dirección de red de destino, la máscara de red y la dirección IP del siguiente salto.
 
@@ -325,7 +325,7 @@ La ruta estática indica `S 192.168.3.0/24 [1/0] vía 192.168.12.2` (nótese el 
 !!!note "Nota"
     R1 conoce la dirección IP del siguiente salto, pero la información que realmente necesita es la dirección MAC del siguiente salto. Para obtenerla, debe enviar una solicitud ARP a la dirección IP del siguiente salto.
 
-### Rutas estáticas especificando la interfaz de salida
+### 5.3. Rutas estáticas especificando la interfaz de salida
 
 En lugar de especificar la dirección IP del siguiente salto de la ruta, puede especificar la interfaz de salida, es decir, la interfaz desde la que el router debe reenviar los paquetes. El siguiente ejemplo muestra las mismas rutas estáticas que hemos visto en la figura anterior, pero configuradas con la interfaz de salida:
 
@@ -381,7 +381,7 @@ La dependencia del proxy ARP es una desventaja de las rutas estáticas conectada
 
 Deberíamos conocer la definición de rutas estáticas conectadas directamente y poder configurarlas, pero debido a las desventajas de depender de ARP proxy, es muy recomendable no usarlas en una red real. En su lugar, debemos utilizar rutas estáticas recursivas o la siguiente opción: rutas estáticas completamente especificadas.
 
-### Rutas estáticas especificando tanto el interfaz de salida como el próximo salto
+### 5.4. Rutas estáticas especificando tanto el interfaz de salida como el próximo salto
 
 La tercera opción al configurar una ruta estática es especificar tanto la interfaz de salida como el siguiente salto, lo que se denomina ruta estática completamente especificada. Las siguientes son las mismas cuatro rutas estáticas, esta vez configuradas como **rutas estáticas completamente especificadas**:
 
@@ -402,7 +402,7 @@ S     192.168.3.0/24 [1/0] via 192.168.12.2, GigabitEthernet0/0
 
 Este tipo de ruta estática puede parecer la mejor de las tres, pero en realidad, se pueden usar rutas recursivas o estáticas completamente especificadas sin una diferencia notable en el rendimiento. Sin embargo, generalmente se deben evitar las rutas estáticas conectadas directamente.
 
-### Configurando una ruta por defecto
+### 5.5. Configurando una ruta por defecto
 
 
 La ruta predeterminada es una ruta al destino menos específico posible: 0.0.0.0/0. Esta ruta coincide con todas las direcciones IP posibles, desde 0.0.0.0 hasta 255.255.255.255. Al ser la ruta menos específica posible, la ruta predeterminada solo se seleccionará si no hay rutas más específicas en la tabla de enrutamiento del router.
@@ -450,7 +450,7 @@ S     192.168.3.0/24 [1/0] via 192.168.13.2
     En este mismo tema se ha indicado que un router descartará los paquetes que no coincidan con ninguna ruta en su tabla de enrutamiento. Sin embargo, si el router tiene una ruta predeterminada, esta situación no ocurrirá; la ruta predeterminada coincide con todas las direcciones IP. Si un paquete no coincide con una ruta más específica, el router lo reenviará por la ruta predeterminada en lugar de descartarlo.
 
 
-## Resumen
+## 6. Resumen
 
 + El término enrutamiento puede referirse al proceso de reenvío de paquetes entre redes y a la creación de una tabla de enrutamiento.
 + Los hosts de una misma red pueden enviarse paquetes entre sí sin necesidad de un router. Sin embargo, para enviar paquetes a destinos fuera de la red local, se requiere un router.

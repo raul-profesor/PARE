@@ -14,11 +14,11 @@ En el capítulo 11 tratamos el subnetting, que permite dividir una red en subred
 - 2.1 Configurar y verificar VLANs (rango normal) que abarcan varios switches
 - 2.2 Configurar y verificar la conectividad entre switches
 
-## ¿Por qué necesitamos VLANs?
+## 1. ¿Por qué necesitamos VLANs?
 
 Para entender una tecnología, es importante comprender por qué existe y qué problema resuelve. Para mostrar el papel que desempeñan las VLANs en la segmentación de redes, vamos a analizar una red sin segmentación, una red con segmentación en la Capa 3 y otra con segmentación tanto en la Capa 3 como en la Capa 2.
 
-### 1. Segmentación en la Capa 3 con subredes
+### 1.1. Segmentación en la Capa 3 con subredes
 
 ![](img/VLANs_1.png){text-align: justify}
 /// figura
@@ -40,7 +40,7 @@ Puede que os preguntéis cómo mejora la seguridad segmentar la LAN en subredes 
 !!!note "Nota"
     En este capítulo no vamos a explicar cómo usar un router para controlar qué tráfico se permite y qué tráfico se deniega. Por ahora, segmentaremos la red, pero no especificaremos qué tráfico se permite o se deniega. Cubriremos las listas de control de acceso (un método para controlar el tráfico) en la parte 6 del libro.
 
-### 2. Segmentación en la Capa 2 con VLANs
+### 1.2. Segmentación en la Capa 2 con VLANs
 
 Usando subnetting, hemos segmentado la LAN en la Capa 3. Sin embargo, los switches no son conscientes de la Capa 3. Desde la perspectiva de SW1, todos los hosts siguen formando parte de la misma LAN; están en el mismo dominio de difusión. Una trama broadcast enviada por cualquier host conectado a SW1 será recibida por todos los demás hosts conectados (lo mismo ocurre con los unknown unicast). La figura 3 lo demuestra: cuando un host del departamento de ingeniería envía una trama broadcast, SW1 la inunda a todos los demás hosts conectados, sin importar la subred.
 
@@ -70,7 +70,7 @@ Ahora ya hemos segmentado correctamente la LAN tanto en la Capa 3 (con subredes)
 
 Hasta este punto del libro no hemos configurado casi nada en los switches. Esto se debe a que un switch puede cumplir su función básica de reenvío de tramas sin ninguna configuración especial; crea automáticamente su tabla de direcciones MAC examinando la dirección MAC de origen de las tramas que recibe y luego puede reenviar tramas entre hosts de una LAN. Sin embargo, para usar VLANs debemos configurarlas en los puertos del switch.
 
-### 1. Creación y nombrado de VLANs
+### 2.1. Creación y nombrado de VLANs
 
 Primero, vamos a examinar el estado por defecto de las VLANs en SW1. El ejemplo siguiente muestra la salida del comando `show vlan brief` antes de configurar ninguna VLAN. Este comando muestra la lista de VLANs que existen en el switch (la base de datos de VLANs), así como qué puertos están en cada VLAN:
 
@@ -153,7 +153,7 @@ VLAN Name                             Status    Ports
 !!!note "Nota"
     Si queréis eliminar una VLAN por completo, podéis negar el comando que usasteis para crearla añadiendo `no` delante, por ejemplo `no vlan 10`.
 
-### 2. Asignación de puertos a VLANs
+### 2.2. Asignación de puertos a VLANs
 
 Ahora que ya hemos creado las VLANs 10, 20 y 30 en SW1, asignemos los puertos de SW1 a la VLAN adecuada. Hay dos pasos:
 
@@ -204,7 +204,7 @@ Del mismo modo, otro nombre para un puerto access es puerto sin etiquetar; las t
 !!!note "Nota"
     Los puertos access suelen usarse para conectar hosts finales, como PCs. Los puertos trunk suelen usarse para conectar otros switches (y a veces routers, como veremos en la sección 4).
 
-### 1. La etiqueta IEEE 802.1Q
+### 3.1. La etiqueta IEEE 802.1Q
 
 El protocolo usado para etiquetar tramas reenviadas por puertos trunk es IEEE 802.1Q (normalmente se pronuncia “dot one Q”). La etiqueta 802.1Q tiene 4 bytes y se añade entre los campos Source y EtherType del encabezado Ethernet. La figura 6 muestra la posición de la etiqueta 802.1Q dentro de una trama, así como los campos de la etiqueta.
 
@@ -219,13 +219,13 @@ La segunda parte de 802.1Q es Tag Control Information (TCI), que contiene tres s
 
 El campo VLAN Identifier (VID) es quizá el más importante; es el que indica a qué VLAN pertenece la trama. Tiene 12 bits y por eso hay 4.096 VLANs en total (2^12 = 4096).
 
-### Cisco Inter-Switch Link
+### 3.2. Cisco Inter-Switch Link
 
 Antes de IEEE 802.1Q, Cisco desarrolló un protocolo llamado Inter-Switch Link (ISL) para etiquetar tramas sobre enlaces trunk. Como protocolo propietario de Cisco, ISL solo puede usarse en switches Cisco. Mientras que 802.1Q añade una etiqueta de 4 bytes al encabezado Ethernet, ISL encapsula la trama Ethernet con un encabezado de 26 bytes y un trailer de 4 bytes que contiene un FCS (separado del FCS del trailer Ethernet).
 
 ISL hoy se considera obsoleto y no es compatible con switches Cisco nuevos. Sin embargo, aún podéis encontrar switches Cisco que soportan tanto 802.1Q como ISL; en esos casos, se requiere un comando adicional al configurar puertos trunk, como veremos en la sección 2. Aunque no tenéis que conocer ISL para el examen CCNA, sí debéis entender cómo afecta a la configuración de trunk en switches que lo soportan (porque requiere un comando adicional).
 
-### 2. Configuración de puertos trunk
+### 3.3. Configuración de puertos trunk
 
 Para demostrar la configuración de puertos trunk, configuremos el puerto G0/0 de SW1 como vimos en la figura 5: un enlace trunk capaz de transportar tráfico en las VLANs 10, 20 y 30. Aunque solo voy a mostrar el lado de SW1 del enlace, si lo probáis en un entorno real, asegurad que el puerto G0/0 de SW2 esté configurado del mismo modo (con los mismos comandos que en SW1). En el ejemplo siguiente, intento configurar G0/0 de SW1 como trunk, pero el comando es rechazado.
 
@@ -287,7 +287,7 @@ Sin embargo, la siguiente parte lista las VLANs que están permitidas y existen 
 !!!note "Nota"
     El dominio de gestión al que se refiere la línea `Vlans allowed and active in management domain` es el dominio de VLAN Trunking Protocol (VTP). VTP es uno de los temas del capítulo 13, así que no lo mencionaremos más en este capítulo.
 
-### 3. Modificación de la lista de VLANs permitidas
+### 3.4. Modificación de la lista de VLANs permitidas
 
 Aunque todas las VLANs están permitidas en un puerto trunk por defecto, se considera buena práctica permitir solo las VLANs necesarias. Esto puede ayudar a limitar el tamaño de los dominios de broadcast; si una VLAN no está permitida en un trunk, las tramas broadcast y unknown unicast de esa VLAN no se inundarán por la interfaz. El comando para configurar la lista de VLANs permitidas en el trunk es `switchport trunk allowed vlan`, y luego hay varias palabras clave y argumentos posibles, como se muestra en el siguiente ejemplo:
 
@@ -365,7 +365,7 @@ Un error típico de principiantes (y el motivo de muchos memes de redes: sí, ex
 
 Es un error simple, pero sus consecuencias pueden ser desastrosas: bloquear todas las comunicaciones por el trunk salvo las de un único host en una sola VLAN. Esto puede ser una “pregunta trampa” en el examen, así que aseguraos de conocer la diferencia entre especificar la lista de VLANs permitidas (`switchport trunk allowed vlan vlans`) y añadir a la lista de VLANs permitidas (`switchport trunk allowed vlan add vlans`).
 
-### 4. La VLAN nativa
+### 3.5. La VLAN nativa
 
 Como se mencionó en la sección 2, los puertos access (sin etiquetar) envían y reciben tramas sin etiquetas 802.1Q. Los puertos trunk (etiquetados), por otro lado, envían y reciben tramas con etiquetas 802.1Q para indicar a qué VLAN pertenece cada trama, pero ¿qué ocurre si un switch recibe una trama sin etiqueta en un puerto trunk? La respuesta es la VLAN nativa.
 
@@ -403,7 +403,7 @@ Tramas reenviadas por un enlace trunk en la VLAN nativa y en una VLAN no nativa.
 !!!note "Nota"
     La VLAN nativa se configura por puerto. Si un switch tiene varios puertos trunk, es posible configurar una VLAN nativa distinta en cada uno.
 
-### 5. Desajuste de VLAN nativa
+### 3.6. Desajuste de VLAN nativa
 
 Como la VLAN nativa se configura en los puertos de cada switch, es posible configurar una VLAN nativa diferente en cada extremo del enlace. Sin embargo, esto es una mala configuración y no debe hacerse. ¡Aseguraos de que la VLAN nativa coincida en ambos extremos del enlace! La figura 8 muestra un ejemplo de lo que puede ocurrir cuando hay un desajuste de VLAN nativa.
 
@@ -417,7 +417,7 @@ La VLAN nativa de G0/0 en SW1 es 10, pero la VLAN nativa de G0/0 en SW2 es 30. C
 !!!note "Nota"
     Los switches Cisco suelen ejecutar Per-VLAN Spanning Tree Plus (PVST+) o Rapid Per-VLAN Spanning Tree Plus (Rapid-PVST+). Si hay un desajuste de VLAN nativa, estos protocolos impiden que el tráfico se reenvíe por el trunk en las VLANs desalineadas y muestran un mensaje indicando este hecho. Cubriremos PVST+ y Rapid-PVST+ en los capítulos 14 y 15, respectivamente. Cisco Discovery Protocol (CDP) también puede detectar desajustes de VLAN nativa, pero no bloqueará el tráfico en las VLANs desalineadas; solo mostrará mensajes que indiquen el problema. Cubriremos CDP en el capítulo 1 del volumen 2.
 
-### 6. Desactivación de la VLAN nativa
+### 3.7. Desactivación de la VLAN nativa
 
 La VLAN nativa se desarrolló para acomodar dispositivos que no soportan etiquetado 802.1Q, como los hubs. Sin embargo, hoy en día normalmente no hace falta usar la VLAN nativa, y su uso puede dejar la red vulnerable a exploits de seguridad. Por tanto, es buena práctica desactivar la VLAN nativa en los puertos trunk.
 

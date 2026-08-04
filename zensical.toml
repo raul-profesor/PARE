@@ -18,10 +18,13 @@ nav = [
         "spanning_tree.md",
         "SecSwitches.md",
         "dtp.md",
-        "direccionamientoIP.md",
-        "cheatsheet_routers.md"
+         "cheatsheet_routers.md"
     ]},
     {Enrutamiento = [
+        "direccionamientoIP.md",
+        "subnetting.md",
+        "routing.md",
+        "vida_paquete.md",
         "routers_y_rutas_estaticas.md",
         "rutas_dinamicas.md",
         "RIP_RIPv2.md",

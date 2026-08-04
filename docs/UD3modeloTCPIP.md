@@ -20,7 +20,7 @@ Ninguno de estos modelos aparece explícitamente como tema del examen CCNA. Sin 
 
 El propósito de este capítulo es ofrecer una visión general de alto nivel sobre cómo viajan los datos desde el origen hasta el destino a través de una red. En el resto del libro, vamos a rellenar los huecos sobre los mecanismos concretos que hacen posible la comunicación en red, pero primero necesitamos un marco de referencia.
 
-## 4.1 Modelos conceptuales de red
+## 1. Modelos conceptuales de red
 
 Desde los inicios de las redes de ordenadores, se han llevado a cabo varios intentos para crear modelos que definan las distintas funciones necesarias para que los ordenadores se comuniquen entre sí. Algunos de estos modelos eran propietarios de un fabricante, es decir, fueron creados por un fabricante concreto (por ejemplo, IBM) para ser usados por sus productos. Sin embargo, el enfoque propietario no era ideal; cada fabricante diseñaba sus propios protocolos de comunicación, por lo que habilitar la comunicación entre productos de distintos fabricantes no era una tarea sencilla.
 
@@ -35,7 +35,7 @@ El uso de capas permite un diseño modular: en cada capa del modelo, existen var
 
 Hay dos modelos de red que los profesionales de redes deben conocer: OSI y TCP/IP. Aunque el modelo TCP/IP es el que se utiliza en las redes modernas, el modelo OSI también ha influido mucho en la forma en que pensamos y hablamos de las redes y sigue considerándose conocimiento básico para cualquier persona implicada en redes, aunque no se utilice en las redes modernos.
 
-## 4.2 El modelo de referencia OSI
+## 2. El modelo de referencia OSI
 
 El modelo de interconexión de sistemas abiertos (OSI) es un modelo conceptual de red desarrollado por la Organización Internacional de Normalización (ISO). La mayoría de la gente simplemente lo llama modelo OSI.
 
@@ -59,7 +59,7 @@ Como este capítulo se centra en el modelo TCP/IP, no vamos a cubrir el papel de
 !!!note "Nota"
     Aunque vamos a centrarnos en el modelo TCP/IP en este capítulo, la terminología del modelo OSI sigue utilizándose ampliamente, así que merece la pena recordar las siete capas y sus nombres. La mayoría de los estudiantes usan un truco mnemotécnico para recordarlas; por ejemplo, “Please Do Not Teach Students Pointless Acronyms”, usando la inicial de cada nombre de capa desde la capa 1 hasta la 7.
 
-## 4.3 El modelo TCP/IP
+## 3. El modelo TCP/IP
 
 El modelo TCP/IP nació de una investigación y un desarrollo financiados por el Departamento de Defensa de los Estados Unidos (DOD) y la Agencia de Proyectos de Investigación Avanzada (DARPA). Originalmente se conocía como modelo de referencia ARPANET, pero desde entonces ha evolucionado hacia el conjunto de protocolos de Internet, definido en la Request for Comments (RFC) 1122. Las RFC son documentos publicados por el Internet Engineering Task Force (IETF) para definir protocolos estándar para Internet. Algunos nombres más comunes para este modelo son el conjunto TCP/IP, el modelo TCP/IP o simplemente TCP/IP. TCP e IP son dos de los protocolos fundamentales incluidos en el modelo, por eso a menudo se usan para referirse a él.
 
@@ -90,7 +90,7 @@ Los protocolos de ejemplo que aparecen en la Tabla 4.2 son algunos de los protoc
 !!!note "Nota"
     Las capas del modelo TCP/IP pueden nombrarse por su nombre o por su número: la Capa física es la Capa 1, la Capa de enlace de datos es la Capa 2, la Capa de red es la Capa 3, la Capa de transporte es la Capa 4 y la Capa de aplicación es la Capa 7. Como ya mencioné antes, la terminología del modelo OSI sigue utilizándose ampliamente (¡para bien o para mal!), así que incluso al referirnos al modelo TCP/IP, la Capa de aplicación suele llamarse Capa 7 en lugar de Capa 5 o 4.
 
-### 4.3.1 Las capas del modelo TCP/IP
+### 3.1. Las capas del modelo TCP/IP
 
 Cada capa del modelo TCP/IP proporciona una función esencial para que los ordenadores puedan comunicarse a través de una red. El objetivo final es que una aplicación en un ordenador pueda comunicarse con una aplicación en otro ordenador a través de una red; por ejemplo, el navegador web de un PC comunicándose con un servidor web. Figura 1 ilustra este proceso: un PC (PC1) accede a una página web alojada en un servidor (SRV1). A medida que examinemos cada capa del modelo TCP/IP en las páginas siguientes, veremos cómo las capas trabajan juntas para habilitar esta comunicación.
 
@@ -109,7 +109,7 @@ Las funciones definidas por cada capa del modelo TCP/IP incluyen:
 
 Ahora vamos a examinar cada capa del modelo TCP/IP una por una para ver cómo permiten la comunicación en red. El objetivo de este capítulo es proporcionar un marco sobre el que podamos construir el resto del libro, con detalles sobre cómo los distintos protocolos de cada capa cumplen sus funciones.
 
-#### Capa 1: la capa física
+#### 3.1.1. Capa 1: la capa física
 
 La Capa física es bastante intuitiva; define los requisitos físicos para transmitir datos (una serie de bits) desde un nodo a otro. Esos bits pueden codificarse como señales eléctricas que recorren un cable de cobre, señales de luz en un cable de fibra óptica o ondas de radio en una conexión inalámbrica.
 
@@ -117,7 +117,7 @@ Ya hemos tratado este tema en el capítulo 3: IEEE 802.3 (Ethernet) e IEEE 802.1
 
 En resumen, la Capa física del modelo TCP/IP define los requisitos físicos para permitir que una serie de bits viaje desde un nodo a otro a través de un medio físico.
 
-#### Capa 2: la capa de enlace de datos
+#### 3.1.2. Capa 2: la capa de enlace de datos
 
 Ethernet y Wi‑Fi no solo definen especificaciones físicas; también especifican cómo deben direccionarse y enviarse los datos a otro nodo conectado al mismo medio físico dentro de una LAN. La función de la Capa de enlace de datos es preparar los datos para su transmisión por ese medio físico para que puedan ser recibidos por el siguiente nodo del camino hacia el destino final. Ese siguiente nodo puede ser el propio destino final o el siguiente router del camino. El recorrido desde un nodo al siguiente se llama salto, y la función de la Capa de enlace de datos es proporcionar entrega de mensajes de salto a salto.
 
@@ -140,7 +140,7 @@ La Capa de enlace de datos consigue esta entrega de salto a salto utilizando dir
 Un mensaje enviado desde PC1 a SRV1 recorre tres saltos por la red: desde PC1 a R1, desde R1 a R2 y desde R2 a SRV1. En cada salto, el mensaje se direcciona a la dirección MAC del siguiente salto. Un mensaje que atraviese un conmutador no cuenta como salto.
 ///
 
-#### Capa 3: la capa de red
+#### 3.1.3. Capa 3: la capa de red
 
 Acabamos de ver cómo se usa la Capa de enlace de datos para reenviar un mensaje de salto a salto hasta que llega al destino final. En cada salto, el mensaje se envía a la dirección MAC del siguiente salto. Sin embargo, aún necesitamos una forma de que el host de origen dirija el mensaje al host de destino final. Ese es el papel de la Capa de red: la entrega de extremo a extremo.
 
@@ -163,7 +163,7 @@ Entender cómo funcionan juntas la Capa 2 y la Capa 3 para entregar un mensaje a
 - Las capas 2 y 3 trabajan juntas para permitir que un mensaje viaje a través de la red hasta su destino final.
 - La dirección IP de destino de un mensaje permanece igual a lo largo del recorrido, mientras que la dirección MAC de destino cambia en cada salto.
 
-#### Capa 4: la capa de transporte
+#### 3.1.4. Capa 4: la capa de transporte
 
 Las capas 2 y 3 trabajan juntas para entregar un mensaje desde el host de origen a través de una red hasta el host de destino. Podríais pensar que eso ya es el final de la historia porque el mensaje ha llegado a su destino, pero en realidad no es así del todo. No basta con que los datos lleguen al host correcto; necesitamos una forma de dirigir los datos a un proceso de aplicación concreto en el host de destino; por ejemplo, un servicio que se ejecute en un servidor. Ese es el papel de la Capa 4, la Capa de transporte.
 
@@ -182,13 +182,13 @@ Las capas 2 y 3 trabajan juntas para entregar el mensaje de PC1 a SRV1. En la Ca
 !!!note "Nota"
     Las tres direcciones: la dirección MAC (Capa 2), la dirección IP (Capa 3) y el número de puerto (Capa 4), se incluyen en el mismo mensaje. Vamos a ver cómo funciona esto en la sección 4.3.2.
 
-#### TCP y UDP
+#### 3.1.5. TCP y UDP
 
 Los dos protocolos de Capa 4 más comunes son TCP (Transmission Control Protocol) y UDP (User Datagram Protocol). Ambos permiten a los ordenadores dirigir mensajes a servicios de aplicación concretos en el host de destino, pero existen varias diferencias entre ellos.
 
 Por ejemplo, TCP implementa comprobaciones para asegurarse de que cada mensaje llega a su destino y se usa en protocolos de Capa de aplicación como HTTP y HTTPS (utilizados para acceder a sitios web). UDP, en cambio, sigue un enfoque de “envíalo y olvídate”; no comprueba que todos los mensajes lleguen al destino. UDP se usa en protocolos de voz sobre IP (VoIP), usados para llamadas telefónicas, y en protocolos de streaming de vídeo en directo, entre otros. Vamos a estudiar TCP y UDP en el capítulo 22 de este libro.
 
-#### Capa 7: la capa de aplicación
+#### 3.1.6. Capa 7: la capa de aplicación
 
 La Capa de aplicación es la interfaz entre las aplicaciones que se ejecutan en un ordenador y la red. Usando protocolos de Capa 7, una aplicación que se ejecute en un ordenador puede preparar un mensaje para enviarlo a través de la red. Ese mensaje podría ser, por ejemplo, una solicitud desde un navegador web para recuperar una página web alojada en un servidor web. Después, las capas 2, 3 y 4 son responsables de entregar ese mensaje a la aplicación adecuada en el ordenador de destino.
 
@@ -205,7 +205,7 @@ Los protocolos de Capa 7 como HTTPS no son aplicaciones en sí mismas; más bien
 !!!note "Nota"
     Reenviar un mensaje consiste en enviarlo al siguiente nodo del camino hacia el destino, ya sea el propio nodo de destino final o el siguiente router del camino hacia el destino. En capítulos posteriores de este volumen, vamos a estudiar cómo los routers y los conmutadores toman decisiones de reenvío para entregar los mensajes al destino correcto.
 
-### 4.3.2 Encapsulación y desencapsulación de datos
+### 3.2. Encapsulación y desencapsulación de datos
 
 En esta sección, vamos a ver cómo trabajan juntas las capas del modelo TCP/IP para permitir que los ordenadores se comuniquen entre sí. A estas alturas, ya deberíais conocer el propósito básico de cada capa del modelo TCP/IP:
 
@@ -215,7 +215,7 @@ En esta sección, vamos a ver cómo trabajan juntas las capas del modelo TCP/IP 
 - Capa 2 (Enlace de datos): proporciona entrega de mensajes de salto a salto.
 - Capa 1 (Física): el medio físico por el que ocurre la comunicación.
 
-#### Encapsulación de datos
+#### 3.2.1. Encapsulación de datos
 
 El proceso que sigue un host para enviar datos consta de cinco pasos. Empieza con el protocolo de la Capa 7 preparando algunos datos para enviarlos. En el segundo paso, un protocolo de la Capa 4 añade una cabecera a esos datos dirigida a un determinado puerto.
 
@@ -245,7 +245,7 @@ El proceso de cinco pasos de encapsulación y transmisión de datos: (1) el prot
 !!!note "Nota"
     La cabecera de la Capa 2 es el comienzo del mensaje; es la primera parte que se envía. El pie de página de la Capa 2 es el final del mensaje; es la última parte que se envía.
 
-#### Desencapsulación de datos
+#### 3.2.2. Desencapsulación de datos
 
 Cuando el host de destino recibe el mensaje, sigue el proceso contrario: la desencapsulación. En el proceso de desencapsulación, el host que recibe el mensaje inspecciona la información de cada cabecera y pie de página y luego los elimina hasta llegar a los datos del interior. Igual que encapsular y transmitir un mensaje, recibir y desencapsular un mensaje también puede resumirse en cinco pasos, como sigue (también véase Figura 6):
 
@@ -260,7 +260,7 @@ Cuando el host de destino recibe el mensaje, sigue el proceso contrario: la dese
 El proceso de cinco pasos de recibir y desencapsular datos: (1) el host de destino recibe los bits (el mensaje), (2) la cabecera y el pie de página de la Capa 2 se inspeccionan y eliminan, (3) la cabecera de la Capa 3 se inspecciona y elimina, (4) la cabecera de la Capa 4 se inspecciona y elimina, y (5) los datos son recibidos y procesados por la aplicación.
 ///
 
-#### Unidades de datos de protocolo
+#### 3.2.3. Unidades de datos de protocolo
 
 En cada etapa del proceso de encapsulación/desencapsulación, se da un nombre al mensaje:
 
@@ -281,7 +281,7 @@ El contenido de cada PDU (todo lo encapsulado por la cabecera/pie de página de 
 Los datos de la aplicación encapsulados en una cabecera de la Capa 4 forman un segmento (L4PDU); un segmento encapsulado en una cabecera de la Capa 3 forma un paquete (L3PDU); y un paquete encapsulado en una cabecera/pie de página de la Capa 2 forma una trama (L2PDU). El contenido encapsulado de cada PDU es su carga útil.
 ///
 
-#### Interacciones entre capas adyacentes y entre capas iguales
+#### 3.2.4. Interacciones entre capas adyacentes y entre capas iguales
 
 Dentro de un ordenador, cada capa del modelo TCP/IP proporciona un servicio para la capa superior, lo que se llama interacción entre capas adyacentes. A continuación, se resumen las interacciones entre capas adyacentes del modelo TCP/IP:
 
@@ -305,7 +305,7 @@ Figura 8 ilustra estas interacciones entre capas adyacentes de diferentes capas 
 Cada capa de un host proporciona servicios para la capa superior; esto se llama interacción entre capas adyacentes. Cuando dos hosts se comunican, cada capa de un host se comunica con la misma capa del otro host; esto se llama interacción entre capas iguales.
 ///
 
-## Resumen
+## 4. Resumen
 
 - Los modelos de red proporcionan marcos para definir las funciones necesarias para habilitar la comunicación en red.
 - Los modelos de red se dividen en capas; cada capa describe una función necesaria para la comunicación en red e incluye varios protocolos que pueden cumplir el papel de esa capa.

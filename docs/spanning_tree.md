@@ -12,7 +12,7 @@ Este capítulo trata sobre
 
 Este capítulo trata sobre Spanning Tree Protocol (STP), un protocolo que se ejecuta en todos los switches Cisco de forma predeterminada y resuelve un problema importante en las LAN: los bucles de Capa 2, que hacen que las tramas circulen indefinidamente por la red. STP aparece en el tema de examen 2.5: identificar las operaciones básicas de Rapid PVST+ Spanning Tree Protocol. Este tema se refiere a la versión rápida del protocolo, que se cubre en el capítulo siguiente. Sin embargo, para entender Rapid STP primero debemos estudiar el protocolo original, y eso es precisamente lo que haremos en este capítulo.
 
-## 1 La necesidad de STP
+## 1. La necesidad de STP
 
 En el capítulo 7 (direcciones IPv4), vimos brevemente los campos del encabezado IPv4; uno de ellos es el campo Time-to-Live (TTL), que se decrementa cada vez que un router reenvía un paquete. Cuando el valor del campo TTL llega a 0, el paquete se descarta, evitando que los paquetes circulen indefinidamente por la red como consecuencia de una mala configuración; esto se conoce como bucle de enrutamiento o bucle de Capa 3.
 
@@ -41,7 +41,7 @@ El segundo problema es el MAC address flapping: cuando un switch aprende la mism
 
 Un bucle de Capa 2 puede derribar una LAN en cuestión de segundos (según la cantidad de tráfico BUM), por lo que es absolutamente esencial evitarlo. Esa es la función de STP.
 
-## 2 Cómo funciona STP
+## 2. Cómo funciona STP
 
 STP puede resumirse en una frase: evita los bucles de Capa 2 bloqueando conexiones redundantes, dejando un único camino activo entre cualquier par de nodos en una LAN. La figura muestra un ejemplo: el enlace entre SW2 y SW3 queda deshabilitado, evitando que se produzca un bucle de Capa 2.
 
@@ -62,13 +62,13 @@ Mientras que la figura anterior mostraba solo tres switches, la figura siguiente
 STP crea una topología sin bucles en una LAN con malla. En la topología física (izquierda), existen innumerables formas de que las tramas circulen por la red. Sin embargo, STP crea una topología lógica (derecha) sin bucles.
 ///
 
-### ¿Qué es un árbol de expansión?
+### 2.1. ¿Qué es un árbol de expansión?
 
 Un árbol de expansión es un concepto del campo de la teoría de grafos. En teoría de grafos, un grafo es una estructura que modela las relaciones entre objetos (también llamados nodos). Un árbol es un subgrafo en el que cualquier par de nodos están conectados por exactamente un camino, y spanning significa que el árbol incluye todos los nodos; el árbol abarca todos los nodos.
 
 Comparemos esto con una red que usa STP. Cada switch que ejecuta STP es un nodo del grafo, con diversas conexiones físicas entre ellos (la topología física de la figura anterior). STP deshabilita algunas conexiones, dejando solo un camino activo entre cualquier par de nodos; este es el subgrafo: el árbol de expansión (la topología lógica de la figura anterior).
 
-## 3 El algoritmo STP
+## 3. El algoritmo STP
 
 El proceso que usa STP para crear una topología sin bucles se llama algoritmo STP. Hay tres pasos principales en el algoritmo:
 
@@ -83,7 +83,7 @@ La figura siguiente muestra un ejemplo de una LAN después de que STP ha creado 
 Una LAN después de que STP ha creado una topología sin bucles. SW3 es el puente raíz y cada otro switch tiene un puerto raíz que conduce a SW3. Los puertos restantes son puertos designados o no designados; los puertos no designados están bloqueados, deshabilitando sus conexiones.
 ///
 
-### 1 Elección del puente raíz
+### 3.1. Elección del puente raíz
 
 El primer paso del algoritmo STP es elegir un único switch como puente raíz para la LAN. El puente raíz es el punto central de referencia para la topología STP, y en pasos posteriores todos los demás switches se asegurarán de tener exactamente un camino activo para llegar al puente raíz.
 
@@ -99,7 +99,7 @@ Cuando un switch arranca por primera vez, aún no conoce el puente raíz de la L
 SW1, SW2, SW3 y SW4 arrancan al mismo tiempo, y cada switch se declara a sí mismo como puente raíz. Los switches envían BPDUs por sus puertos con información como el BID propio y el BID del switch que creen que es el puente raíz (en este caso, ellos mismos).
 ///
 
-#### El BID
+#### 3.1.1. El BID
 
 El switch que envíe el BPDU superior será elegido puente raíz de la LAN. El BPDU superior es el que tiene parámetros superiores según el algoritmo STP. Cuando se trata de elegir el puente raíz, eso significa el BPDU con el campo My BID numéricamente más bajo. Antes de determinar cuál de los cuatro switches tiene el BID más bajo, examinemos la estructura del BID, como se muestra en la figura. El BID es un número de 64 bits que consta de un bridge priority de 16 bits y una dirección MAC de 48 bits.
 
@@ -127,7 +127,7 @@ Como el ID de VLAN forma parte del BID, el switch tendrá un bridge priority ún
 !!!note "Nota"
     Para el resto de este capítulo nos centraremos en una topología de una sola VLAN. No espero preguntas sobre la creación de un árbol de expansión único para cada VLAN en el examen CCNA.
 
-#### ¿Por qué incluir el ID de VLAN en el bridge priority?
+#### 3.1.2. ¿Por qué incluir el ID de VLAN en el bridge priority?
 
 El estándar STP (IEEE 802.1D) especifica que cada switch debe tener un BID único. Esto se consigue combinando el bridge priority con la dirección MAC del switch. Aunque todos los switches de la LAN tengan el mismo bridge priority, las direcciones MAC son únicas, por lo que el resultado es un BID único para cada switch.
 
@@ -135,7 +135,7 @@ Sin embargo, los switches Cisco que ejecutan PVST+ ejecutan una instancia STP se
 
 Por ejemplo, si un switch que ejecuta dos instancias STP (VLAN 1 y VLAN 2) tiene el valor de prioridad predeterminado 32768 y una dirección MAC 5254.000f.adab, el BID resultante sería 32769:5254.000f.adab para la VLAN 1 y 32770:5254.000f.adab para la VLAN 2. Observad que el bridge priority se escribe en decimal, mientras que la dirección MAC se escribe en hexadecimal (como es habitual), y a menudo se separan con dos puntos, como en 32769:5254.000f.adab.
 
-#### Comparación de BIDs
+#### 3.1.3. Comparación de BIDs
 
 Ahora que ya hemos visto el bridge priority (prioridad + ID de VLAN), ¿qué es la dirección MAC que forma la segunda parte del BID? No es la MAC de ninguno de los puertos del switch; es más bien una dirección MAC separada que identifica al switch como un todo. En esta sección compararemos BIDs y veremos cómo se usa la dirección MAC como desempate. A continuación se muestran los BIDs de los cuatro switches de la figura:
 
@@ -167,7 +167,7 @@ VLAN0001
 . . .
 ```
 
-#### Configuración de la prioridad del bridge
+#### 3.1.4. Configuración de la prioridad del bridge
 
 Como acabamos de confirmar, SW1 es el puente raíz de la LAN porque tiene la dirección MAC más baja. Sin embargo, es posible configurar la prioridad del bridge para cambiar qué switch será el puente raíz. Esto suele ser deseable porque el puente raíz desempeña un papel muy importante: sirve como punto de referencia central para el árbol de expansión y los demás switches se asegurarán de que el camino más eficiente para llegar al puente raíz esté habilitado. Si un switch está conectado al router que usan los hosts finales para acceder a redes externas, es buena idea que sea el puente raíz; debe existir un camino eficiente para llegar al router sin que las tramas tengan que pasar por demasiados switches.
 
@@ -227,7 +227,7 @@ SW2(config)# spanning-tree vlan 1 root primary
 !!!note "Nota"
     La mejor forma de asegurar que un switch será el puente raíz es usar el comando `spanning-tree vlan vlan-id priority 0`. Entonces, la única forma de arrebatarle el rol de raíz sería usar el mismo comando en otro switch que tenga una dirección MAC más baja y, por tanto, un BID más bajo. Recordad este punto para el examen.
 
-## 4 Selección del puerto raíz
+## 4. Selección del puerto raíz
 
 Después de elegir el puente raíz, cada switch no raíz seleccionará uno de sus puertos como puerto raíz: el puerto con la mejor ruta hacia el puente raíz. El switch calcula esto en función de la información en los BPDUs que recibe de sus vecinos. El puerto raíz se selecciona usando varios parámetros: el coste raíz (que mide la proximidad del puerto al puente raíz), el BID del vecino y el ID del puerto del vecino, en ese orden de prioridad:
 
@@ -251,7 +251,7 @@ El coste raíz de un puerto es el coste total de los puertos que llevan hacia el
 Los switches no raíz seleccionan un puerto raíz. SW4 elige G0/0 porque tiene el menor coste raíz de sus puertos. SW2 G0/0 y G0/1 tienen el mismo coste raíz, por lo que SW2 elige G0/1 porque tiene el BID del vecino más bajo. SW1 G0/0 y G0/1 tienen el mismo coste raíz y el mismo BID del vecino, por lo que SW1 elige G0/1 porque tiene el menor ID del puerto del vecino.
 ///
 
-### Coste raíz más bajo
+### 4.1. Coste raíz más bajo
 
 Como ya se ha mencionado varias veces, las decisiones que forman parte del algoritmo STP se basan en la información de los BPDUs que los switches intercambian. Una vez que se ha decidido el puente raíz, es el único switch que genera BPDUs nuevos; los demás switches reciben esos BPDUs y los reenvían a sus vecinos, actualizando cierta información en ellos. Una de las piezas de información del BPDU es el coste raíz. Los BPDUs enviados por el puente raíz tienen un coste de 0 (el coste del puente raíz para alcanzarse a sí mismo es 0). Cuando los switches no raíz reenvían esos BPDUs, suman el coste del puerto por el que los recibieron.
 
@@ -264,7 +264,7 @@ Los switches anuncian su coste raíz entre sí en los BPDUs. SW3 (el puente raí
 
 Aunque SW4 puede determinar su puerto raíz basándose solo en el coste raíz, SW1 y SW2 no; SW1 tiene un coste raíz de 4 por sus puertos G0/0 y G0/1, y SW2 tiene un coste raíz de 8 por ambos puertos G0/0 y G0/1. Para que SW1 y SW2 seleccionen sus puertos raíz, deben pasar al siguiente paso del proceso de selección: el BID del vecino más bajo.
 
-### BID del vecino más bajo
+### 4.2. BID del vecino más bajo
 
 Cuando un switch envía BPDUs, una de las piezas de información que incluye es su propio BID. Esto puede servir luego al switch receptor como desempate al decidir su puerto raíz. El puerto conectado al vecino con el BID más bajo será el puerto raíz del switch. La figura siguiente muestra cómo SW1 y SW2 comparan los BIDs de sus vecinos para decidir sus puertos raíz; SW2 puede seleccionar G0/1, pero SW1 aún no puede elegir un puerto raíz.
 
@@ -276,7 +276,7 @@ SW1 compara el BID del vecino de sus puertos G0/0 y G0/1, y SW2 compara el BID d
 !!!note "Nota"
     El puerto conectado al puerto raíz de otro switch debe ser un puerto designado (forwarding). El puerto raíz proporciona el único camino del switch al puente raíz, así que su vecino no debe bloquear el enlace.
 
-### ID del puerto del vecino más bajo
+### 4.3. ID del puerto del vecino más bajo
 
 Otra parte de la información incluida en un BPDU STP es el ID del puerto que envió el BPDU. Se usa como desempate final al seleccionar el puerto raíz. Es importante enfatizar que, al usar el ID del puerto como desempate, son los IDs de los puertos del vecino los que cuentan, no el ID del puerto del switch local. Al decidir el puerto raíz de SW1, tenemos que comparar los IDs de los puertos de SW3 conectados a SW1.
 
@@ -306,7 +306,7 @@ SW1 compara los ID de puerto vecinos de sus puertos G0/0 y G0/1. G0/1 está cone
 !!!note "Nota"
     Recuerda que compares los IDs del vecino, no los IDs del puerto local del switch; ese es un posible truco del examen.
 
-## 5 Selección del puerto designado
+## 5. Selección del puerto designado
 
 Ahora que cada switch no raíz ha seleccionado un puerto raíz, el último paso es seleccionar puertos designados. Mientras que un puerto raíz es un puerto en estado forwarding que apunta hacia el puente raíz, un puerto designado es un puerto en estado forwarding que apunta alejándose del puente raíz. Por eso todos los puertos del puente raíz son puertos designados: todos apuntan alejándose del puente raíz.
 
@@ -315,7 +315,7 @@ Debe haber exactamente un puerto designado por cada segmento de la LAN. El signi
 - El puerto del switch con el coste raíz más bajo se convierte en designado.
 - El puerto del switch con el BID más bajo se convierte en designado.
 
-### ¿Qué es un segmento?
+### 5.1. ¿Qué es un segmento?
 
 Un segmento es una división de una red, cuya extensión depende del contexto. Un segmento de Capa 1 puede definirse como una conexión eléctrica entre dispositivos y equivale a un dominio de colisión; este es el significado de segmento usado en este capítulo. Dos switches conectados son otro ejemplo de segmento de Capa 1. Otro ejemplo es un grupo de dispositivos conectados a un hub Ethernet; una señal eléctrica enviada por un dispositivo es recibida por todos los demás conectados al hub.
 
@@ -330,7 +330,7 @@ Primero, SW1 G0/0 está conectado a SW3 G0/1 (un puerto designado) y, por tanto,
 Cada segmento debe tener exactamente un puerto designado. Todos los puertos del puente raíz son designados, y también los conectados a un puerto raíz. Se selecciona un puerto designado en cada segmento restante y el resto son no designados.
 ///
 
-### Puerto del switch con el coste raíz más bajo
+### 5.2. Puerto del switch con el coste raíz más bajo
 
 El primer parámetro usado para decidir qué lado de los enlaces restantes se vuelve designado es el coste raíz: el puerto del switch con el menor coste raíz se vuelve designado, y el otro puerto pasa a ser no designado. Prestad atención a la redacción: es “el puerto del switch con el menor coste raíz se vuelve designado”, no “el puerto con el menor coste raíz se vuelve designado”. Estamos comparando el coste raíz de cada switch a través de su puerto raíz, no el coste de cada puerto cuyo rol se está decidiendo.
 
@@ -341,7 +341,7 @@ La figura siguiente muestra cómo los switches comparan sus costes raíz para de
 Los switches comparan sus costes raíz para seleccionar puertos designados. El coste raíz de SW1 (4) es menor que el de SW2 (8), por lo que SW1 G0/3 se convierte en designado y SW2 G0/0 en no designado. SW1 y SW4 tienen el mismo coste raíz (4), así que hace falta un desempate para decidir qué puerto será designado.
 ///
 
-### Puerto del switch con el BID más bajo
+### 5.3. Puerto del switch con el BID más bajo
 
 Como desempate para decidir qué puerto se vuelve designado, los switches compararán sus BIDs; el puerto del switch con el BID más bajo se convertirá en designado y el puerto del otro switch será no designado. La figura siguiente muestra cómo SW1 y SW4 comparan BIDs para decidir qué puerto del switch se convierte en designado; el BID de SW4 es menor que el de SW1, así que SW4 G0/1 se convierte en designado y SW1 G0/2 en no designado.
 
@@ -356,13 +356,13 @@ Todos los roles de puerto ya han quedado decididos: raíz, designado y no design
 - Selección del puerto raíz (uno por switch, excluyendo el puente raíz): menor coste raíz, menor BID del vecino, menor ID del puerto del vecino.
 - Selección del puerto designado (uno por segmento): puerto del switch con menor coste raíz, puerto del switch con menor BID.
 
-## 6 Estados y temporizadores de los puertos STP
+## 6. Estados y temporizadores de los puertos STP
 
 En la sección anterior cubrimos los puertos raíz, designados y no designados; estos son los roles de puerto STP. Además de los tres roles, existen varios estados de puerto. Ya mencioné dos de ellos: el estado forwarding y el estado blocking.
 
 En el estado forwarding, el puerto está activo y puede reenviar y recibir tramas. En una LAN estable, los puertos raíz y designados deben estar en estado forwarding. En el estado blocking, el puerto está deshabilitado y no puede reenviar ni recibir tramas; los puertos no designados deberían estar en estado blocking. Sin embargo, hay otros estados transitorios por los que pasa un puerto durante la preparación para reenviar tramas, así como temporizadores que regulan cuánto tiempo permanece cada puerto en cada estado.
 
-### 1 Estados de los puertos STP
+### 6.1. Estados de los puertos STP
 
 Hay cuatro estados principales de puertos STP: blocking, listening, learning y forwarding. También se puede hablar de un quinto estado: disabled. Este se refiere a un puerto que no está operativo, por ejemplo, si está deshabilitado con el comando `shutdown` o si no está conectado a otro dispositivo; STP no está activo en ese puerto, por lo que normalmente no se incluye como estado STP. La tabla siguiente resume los cuatro estados principales que vamos a estudiar en esta sección.
 
@@ -407,7 +407,7 @@ Cómo pasa un puerto de switch por los estados STP. Un puerto recién habilitado
 
 Cuando todos los switches de la red han decidido los roles de sus puertos y todos están en estado blocking o forwarding, STP ha convergido; la LAN es estable. Si hay cambios en la red (por ejemplo, fallos de puertos, puertos deshabilitados, nuevos switches añadidos, etc.), los switches usarán STP para recalcular la topología y la red volverá a converger en una nueva topología estable.
 
-### 2 Temporizadores STP
+### 6.2. Temporizadores STP
 
 Hay tres temporizadores que regulan el funcionamiento de STP, como se resume en la tabla siguiente.
 
@@ -440,13 +440,13 @@ Los temporizadores STP hacen que SW1 no pueda reenviar tráfico durante 50 segun
 
 Aunque los temporizadores de STP pueden ser lentos, lo hacen por una buena razón: para asegurarse de que un puerto no empieza a reenviar antes de tiempo y provoca un bucle de Capa 2. Sin embargo, existen varias funciones que mejoran la velocidad de STP, y cubriremos una en la siguiente sección, que trata de PortFast y BPDU Guard. Además, veremos Rapid STP, una evolución de STP que reduce mucho el tiempo necesario para la convergencia.
 
-## 7 PortFast y BPDU Guard
+## 7. PortFast y BPDU Guard
 
 Los switches Cisco incluyen un conjunto de funciones opcionales de STP (a veces llamadas STP toolkit) que aceleran la convergencia del STP y mejoran la estabilidad. Para el examen CCNA, debes conocer algunas de estas funciones opcionales de STP. En esta sección cubriremos dos: PortFast y BPDU Guard.
 
 Hasta ahora nos hemos centrado en conexiones entre switches, pero STP está activo en todos los puertos del switch, no solo en los conectados a otros switches. Los puertos de switch conectados a dispositivos que no usan STP (como PCs) serán siempre puertos designados; no existe riesgo de bucle de Capa 2. Sin embargo, debido al funcionamiento basado en temporizadores de STP, tardará 30 segundos desde la conexión del dispositivo en que realmente pueda acceder a la red, es decir, antes de que el puerto del switch entre en estado forwarding. Esto puede resultar frustrante para los usuarios que desconocen STP y, en cualquier caso, es un inconveniente.
 
-### 1 PortFast
+### 7.1. PortFast
 
 PortFast es una función opcional de STP que permite que un puerto del switch pase inmediatamente a estado forwarding, evitando los estados listening y learning. La figura siguiente muestra cómo PortFast permite que un dispositivo conectado tenga acceso inmediato a la red.
 
@@ -471,7 +471,7 @@ SW1(config-if)# spanning-tree portfast
 
 Como PortFast coloca los puertos del switch en estado forwarding inmediatamente, evitando los estados listening y learning, es importante habilitarlo solo en puertos destinados a hosts finales. No conectéis switches a puertos con PortFast habilitado; de lo contrario, pueden producirse bucles de Capa 2, como indica el mensaje de advertencia del ejemplo anterior.
 
-### 2 BPDU Guard
+### 7.2. BPDU Guard
 
 BPDU Guard es otra función opcional de STP que deshabilita un puerto del switch si recibe un BPDU; debe habilitarse en todos los puertos con PortFast. Recordad: los puertos con PortFast solo deben conectarse a hosts finales, que no envían BPDUs. Si un usuario conecta sin cuidado otro switch a un puerto destinado a hosts finales, BPDU Guard deshabilita el puerto y evita que el nuevo switch afecte a la topología STP (por ejemplo, convirtiéndose en el nuevo puente raíz).
 
@@ -498,7 +498,7 @@ Un puerto en estado err-disabled no es operativo; su estado será down/down en l
 !!!note "Nota"
     Recuerda estas buenas prácticas: habilita PortFast solo en puertos destinados a hosts finales, y habilita BPDU Guard en todos los puertos con PortFast. Es posible usar solo PortFast o solo BPDU Guard, pero la mejor práctica es usar ambas funciones a la vez.
 
-## Resumen
+## 8. Resumen
 
 - La cabecera Ethernet no dispone de ningún mecanismo para descartar tramas en bucle, así que circulan indefinidamente.
 - Si se acumulan suficientes tramas en bucle, puede producirse una tormenta de broadcast que consume tantos recursos que la red queda inutilizable.

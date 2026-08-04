@@ -19,7 +19,7 @@ Dado el nombre IPv4, quizá os preguntéis qué ocurrió con las versiones anter
 !!!note "Nota"
     Además de IPv4, IPv6 es otro tema importante del examen que tiene su propia parte en este volumen. IPv6 se introdujo en 1995 para reemplazar a IPv4, pero su adopción ha sido lenta. Aunque la adopción de IPv6 se está acelerando a medida que se agota el conjunto de direcciones IPv4 disponibles, parece que en el futuro previsible, los ingenieros de redes tendrán que estar familiarizados tanto con IPv4 como con IPv6.
 
-## La cabecera IPv4
+## 1. La cabecera IPv4
 
 Antes de ver los detalles de las direcciones IPv4, resulta útil comprender el encabezado que contiene esas direcciones. Sin embargo, la cabecera IPv4 no sólo contiene direcciones IPv4; contiene una variedad de campos, cada uno de los cuales cumple una función diferente al permitir la entrega de paquetes de un extremo a otro (la función de la Capa 3).
 
@@ -38,7 +38,7 @@ Como se indicó, el campo Opciones es opcional (y de tamaño variable), por lo q
 !!!note "Nota"
     A los efectos del examen CCNA, no os preocupéis por memorizar la longitud y la posición de cada campo dla cabecera IPv4. Las preguntas del examen CCNA son más sustanciales que trivias como "¿Cuál es la longitud del campo X?" A los efectos de este capítulo, es suficiente tener una comprensión básica del propósito de cada campo. Este capítulo se centra en las direcciones IPv4 en los campos Dirección de origen y Dirección de destino y, en el resto de este libro, veremos otros campos con mayor detalle según sea necesario.
     
-### El campo Versión
+### 1.1. El campo Versión
 
 El primer campo de la cabecera IPv4 es el campo Versión. Tiene 4 bits de longitud. Como mencioné anteriormente, existen dos versiones de IP utilizadas en las redes modernas: IPv4 e IPv6. El propósito de este campo es simple: indicar qué versión de IP se está utilizando. En las redes modernas, podéis esperar encontrar uno de dos valores en este campo:
 
@@ -48,7 +48,7 @@ El primer campo de la cabecera IPv4 es el campo Versión. Tiene 4 bits de longit
 !!!note "Nota"
     Como se mencionó en el capítulo 6, el prefijo 0b indica un número binario y el prefijo 0d indica un número decimal. Veremos cómo convertir entre los dos sistemas numéricos más adelante en este capítulo.
 
-### El campo IHL
+### 1.2. El campo IHL
 
 El segundo campo es el campo Longitud del encabezado de Internet (IHL), que tiene una longitud de 4 bits. Este campo se utiliza para indicar la longitud de la cabecera IPv4. La razón por la que este campo es necesario es porque el encabezado IP tiene una longitud variable, dependiendo de si el campo Opciones está presente o no (y el campo Opciones en sí también tiene una longitud variable).
 
@@ -57,7 +57,7 @@ El campo IHL indica la longitud de la cabecera IPv4 en incrementos de 4 bytes. P
     No se debe utilizar un valor inferior a 5 en este campo porque la cabecera IPv4 no puede tener menos de 20 bytes de longitud.
 
 Cualquier valor mayor que 5 en el campo IHL indica que el campo Opciones está presente en el encabezado. El valor máximo del campo IHL es 15, lo que indica que el encabezado tiene una longitud de 60 bytes (la longitud máxima dla cabecera IPv4). En ese caso, el campo Opciones tiene una longitud de 40 bytes y el resto del encabezado tiene 20 bytes.
-### Los campos DSCP y ECN
+### 1.3. Los campos DSCP y ECN
 
 Los dos campos siguientes son Punto de código de servicios diferenciados (DSCP), que tiene una longitud de 6 bits, y Notificación de congestión explícita (ECN), que tiene una longitud de 2 bits. Este byte dla cabecera IPv4 solía llamarse campo Tipo de servicio y todavía lo es a veces, pero DSCP + ECN es la definición actual.
 
@@ -75,17 +75,17 @@ La diferencia entre los campos IHL y Longitud total. El campo IHL indica la long
 
 Otra diferencia entre los campos IHL y Longitud total es que el valor del campo Longitud total indica la longitud del paquete en bytes, en lugar de incrementos de 4 bytes. Por ejemplo, un valor de 100 en el campo Longitud total significa que el paquete tiene 100 bytes de longitud y un valor de 1000 en el campo Longitud total significa que el paquete tiene 1000 bytes de longitud.
 
-### Los campos Identificación, Indicadores y Desplazamiento de fragmentos
+### 1.4. Los campos Identificación, Indicadores y Desplazamiento de fragmentos
 
 Los campos Identificación, Indicadores y Desplazamiento de fragmentos, de 32 bits en total, se utilizan juntos para admitir la fragmentación de paquetes, cuando un paquete se divide en varios paquetes más pequeños llamados fragmentos. IPv4 utiliza un concepto llamado unidad máxima de transmisión (MTU) para indicar el tamaño máximo que debe tener un paquete, y cualquier paquete mayor que la MTU se fragmentará. Luego, el host de destino final del paquete vuelve a ensamblar los fragmentos para restaurar el paquete original.
 
 La MTU típica es de 1500 bytes y debería ser compatible con todos los dispositivos modernos. Sin embargo, si por alguna razón un enrutador en la ruta del paquete hacia el destino tiene una MTU más baja, fragmentará el paquete. Otra posibilidad es que un host envíe paquetes más grandes que el tamaño estándar de 1500 bytes (a veces se utilizan tamaños de paquetes de hasta 9000 bytes). Si un enrutador en el camino hacia el destino no admite esos paquetes más grandes, los fragmentará. Examinemos brevemente el papel de cada uno de estos tres campos.
 
-### Campo de identificación
+### 1.5. Campo de identificación
 
 Este campo tiene 16 bits de longitud y se utiliza para identificar a qué paquete original pertenece un fragmento. Cuando se fragmenta un paquete, todos sus fragmentos deben tener el mismo valor en este campo.
 
-### Campo para flags
+### 1.6. Campo para flags
 
 Este campo tiene 3 bits de longitud y se utiliza para controlar e identificar fragmentos. Los 3 bits de este campo (bit 0, bit 1 y bit 2) se definen de la siguiente manera:
 
@@ -93,11 +93,11 @@ Este campo tiene 3 bits de longitud y se utiliza para controlar e identificar fr
 + Bit 1: bit de No fragmentar (DF): si este bit se establece en 1, significa que el paquete no debe fragmentarse. En ese caso, si el tamaño del paquete es mayor que la MTU, será descartado.
 + Bit 2: bit Más fragmentos (MF): si este bit se establece en 1, significa que quedan más fragmentos; este no es el último. El fragmento final del paquete tendrá un valor de 0 en este campo (lo que indica que no hay más fragmentos). Un paquete no fragmentado siempre tendrá un valor de 0 para este bit.
 
-### Campo de desplazamiento de fragmento
+### 1.7. Campo de desplazamiento de fragmento
 
 Este campo tiene 13 bits de longitud y se utiliza para indicar la posición del fragmento dentro del paquete original. Esto permite volver a ensamblar paquetes fragmentados incluso si los fragmentos llegan desordenados. Esto es poco común, pero si hay múltiples caminos hacia un destino, diferentes fragmentos pueden tomar caminos diferentes, en cuyo caso pueden llegar al destino desordenados.
 
-### El campo TTL
+### 1.8. El campo TTL
 
 El campo Tiempo de vida (TTL) es un campo de 8 bits. Cuando un host envía un paquete, establecerá un valor inicial en este campo (un valor común es 64) y luego cada enrutador que reenvíe el paquete disminuirá el valor en este campo en 1. Si el valor llega a 0, el enrutador descartará el paquete.
 
@@ -109,7 +109,7 @@ Un paquete en bucle se descarta debido al mecanismo TTL. (1) R1 reenvía el paqu
 ///
 
 No deberían producirse bucles en una red configurada correctamente, pero pueden ocurrir errores. El campo TTL evita que los paquetes se repitan indefinidamente; una vez que el TTL del paquete llegue a 0, se descartará.
-### El campo Protocolo
+### 1.9. El campo Protocolo
 
 El campo Protocolo tiene 8 bits de longitud y se utiliza para indicar qué tipo de mensaje se encapsula dentro del paquete. Esto es similar al campo EtherType del encabezado Ethernet, que indica el tipo de mensaje encapsulado en la trama (por ejemplo, un paquete IPv4 o un paquete IPv6).
 
@@ -120,29 +120,29 @@ En el capítulo anterior, cubrimos la utilidad ping, que es un componente de ICM
     17—Protocolo de datagramas de usuario (UDP)
     89—Abrir primero la ruta más corta (OSPF)
 
-### El campo Suma de comprobación del encabezado
+### 1.10. El campo Suma de comprobación del encabezado
 
 El campo Suma de comprobación del encabezado tiene 16 bits de longitud y se utiliza para comprobar si hay errores en la cabecera IPv4. El mecanismo es similar al FCS del tráiler Ethernet. Sin embargo, una diferencia importante es que el campo Suma de comprobación del encabezado solo busca errores en la cabecera IPv4, no en todo el paquete. Por otro lado, el campo Ethernet FCS no solo busca errores en el encabezado de Ethernet; busca errores en todo el trama.
 
-### Los campos Dirección de origen y Dirección de destino
+### 1.11. Los campos Dirección de origen y Dirección de destino
 
 Estos dos campos contienen la dirección IP del host que envía el paquete (campo Dirección de origen) y del destinatario previsto (campo Dirección de destino). Cada uno tiene una longitud de 32 bits, la longitud de una dirección IPv4. Cubriremos la estructura de las direcciones IPv4 con detalle más adelante en este capítulo.
 
-### El campo Opciones
+### 1.12. El campo Opciones
 
 El último campo dla cabecera IPv4 es el campo Opciones. Como se mencionó anteriormente, este campo es opcional y de longitud variable: desde 0 bytes (si no se usa) hasta 40 bytes de longitud; Esta es la razón por la que la cabecera IPv4 requiere un campo para indicar la longitud del encabezado. Este campo rara vez se utiliza y sus casos de uso están más allá del alcance del examen CCNA.
 
-## El sistema numérico binario
+## 2. El sistema numérico binario
 
 Para comprender las direcciones IPv4, debéis comprender el sistema numérico binario, así como también cómo convertir entre números binarios y decimales. Y para entender cómo funcionan los números binarios, primero revisemos cómo funcionan los números decimales. Todos estamos familiarizados con los números decimales porque los usamos en nuestra vida diaria, pero muchos de nosotros no pensamos en cómo funciona realmente el sistema numérico decimal.
 
-### Decimal
+### 2.1. Decimal
 
 El sistema numérico decimal utiliza 10 dígitos: 0, 1, 2, 3, 4, 5, 6, 7, 8 y 9. Todos los valores se expresan utilizando esos 10 dígitos. Por esta razón, el sistema numérico decimal también se llama base 10. Los valores del 0 al 9 se pueden expresar con un solo dígito, pero para expresar valores mayores, tenemos que usar más dígitos. Por ejemplo, el número después de 0d9 es 0d10: un 1 en la posición de las decenas y un 0 en la posición de las unidades.
 
 Después de contar hasta 0d99 (9 en la posición de las decenas y 9 en la posición de las unidades), tenemos que sumar un tercer dígito; el número después de 0d99 es 0d100: un 1 en la posición de las centenas y un 0 tanto en la posición de las decenas como de las unidades. Debido a que el decimal usa 10 dígitos, el valor de cada posición adicional aumenta diez veces a medida que agrega más dígitos: 1, luego 10, luego 100, luego 1000, etc. Por eso, en el número 1009 (por ejemplo), el 1 de la izquierda tiene un valor mayor que el 9 de la derecha, aunque por sí solo, el número 9 tiene un valor mayor que el número 1.
 
-### Binario
+### 2.2. Binario
 
 Contar en el sistema binario sigue el mismo proceso pero con solo dos dígitos: 0 y 1. Por esta razón, el sistema numérico binario también se llama base 2. Solo los valores 0 y 1 se pueden expresar con un solo dígito; para expresar valores mayores, tenemos que agregar más dígitos.
 
@@ -242,13 +242,13 @@ El binario es un tema fundamental para diversas aplicaciones en redes. Además d
 
 + **Enrutamiento IPv4 e IPv6:** Esto incluye casi la totalidad del dominio 3.0 de los temas del examen CCNA (Conectividad IP) y representa el 25 % del examen CCNA completo. Por ejemplo, para saber cómo un enrutador reenviará un paquete, debe identificar la ruta coincidente más específica: la ruta con la mayor cantidad de bits que coinciden con la dirección IP de destino del paquete. Para ello, debe comprender los números binarios. Cubriremos el concepto de la ruta coincidente más específica en el capítulo 9 y otros temas del dominio 3.0 en las partes 4 y 5 de este volumen. Listas de control de acceso (ACL): las ACL son el tema del examen 5.6: Configurar y verificar listas de control de acceso. Las ACL se utilizan para permitir o denegar tráfico de red específico, y lo hacen comparando los bits de la ACL configurada con los bits de las direcciones IP de origen y/o destino de un paquete. Para configurar las ACL adecuadas, debe comprender el sistema binario.
 
-## Direccionamiento IPv4
+## 3. Direccionamiento IPv4
 
 Una dirección IPv4 es un número de 32 bits que identifica un host en la Capa 3 del modelo TCP/IP. Las direcciones IP (ya sean IPv4 o IPv6) se utilizan para dirigir un mensaje a su destinatario final, a diferencia de las direcciones MAC, que se utilizan para dirigir un mensaje al siguiente salto. Mientras que se dice que los conmutadores son dispositivos de Capa 2, se dice que los enrutadores son dispositivos de Capa 3 o que operan en la Capa 3 porque toman decisiones de reenvío basándose en la dirección IP de destino de los mensajes (ubicada en el encabezado de la Capa 3).
 !!!note "Nota"
     En este capítulo, veremos cómo configurar direcciones IPv4 en enrutadores, pero cubriremos cómo los enrutadores reenvían paquetes en la parte 2 de este libro.
 
-### La estructura de una dirección IPv4
+### 3.1. La estructura de una dirección IPv4
 
 Las direcciones IPv4 tienen 32 bits de longitud, pero una cadena de 32 bits de 1 y 0 no es muy legible ni fácil de recordar. Para facilitar su lectura, las direcciones IPv4 se representan mediante números decimales en lugar de binarios. Para simplificarlo aún más, primero dividimos la dirección IPv4 de 32 bits en cuatro grupos de 8 bits llamados octetos, separados por un punto, y luego convertimos cada uno de los octetos a decimal; esto se llama notación decimal con puntos. Es por eso que, para los fines de CCNA, solo necesita poder convertir entre binario y decimal para números de hasta 8 bits. La figura 7 muestra una dirección IPv4 escrita en decimal con puntos y en binario.
 ![](img/direccionamientoIP_7.png)
@@ -257,7 +257,7 @@ Las direcciones IPv4 tienen 32 bits de longitud, pero una cadena de 32 bits de 1
 Una dirección IPv4 escrita tanto en decimal con puntos como en binario. La dirección de 32 bits se divide en cuatro octetos de 8 bits cada uno. La dirección se divide en dos partes: la parte de red y la parte de host. La longitud del prefijo indica el tamaño de la parte de la red en bits y el resto es la parte del host.
 ///
 
-#### Octeto y byte
+#### 3.1.1. Octeto y byte
 
 Quizás te preguntes cuál es la diferencia entre un octeto y un byte, los cuales he definido como un grupo de 8 bits. Un octeto siempre significa 8 bits. Sin embargo, un byte no es necesariamente 8 bits; un byte es la unidad mínima de datos que una computadora puede leer o escribir al mismo tiempo. Casi siempre es de 8 bits, pero en el pasado había computadoras que usaban bytes de 6, 7 y 9 bits. Por lo tanto, el término octeto se utiliza a veces para referirse a un grupo de 8 bits. En el contexto de las direcciones IPv4, se prefiere el octeto.
 Longitud del prefijo
@@ -304,7 +304,7 @@ Se debe estar familiarizado con ambos métodos para indicar la longitud de la pa
 !!!note "Nota"
     Una máscara de red es siempre una serie de unos seguidos de una serie de ceros; esto se debe a que las direcciones IPv4 siempre están estructuradas para tener la parte de la red a la izquierda (los bits más significativos) y la parte del host a la derecha (los bits menos significativos). Máscaras de red como 0.0.0.255 o 255.0.255.0 no son posibles.
 
-### Configuración de direcciones IPv4 en un enrutador
+### 3.2. Configuración de direcciones IPv4 en un enrutador
 
 A diferencia de las direcciones MAC, que el fabricante asigna a un dispositivo, las direcciones IP deben ser asignadas por el ingeniero o administrador que configura el dispositivo. Veamos cómo configurar direcciones IP en un enrutador Cisco.
 
@@ -388,7 +388,7 @@ R1(config-if)# no shutdown
 !!!note "Nota"
     Para acceder al modo de configuración de interfaz para otra interfaz, no es necesario volver al modo de configuración global; podéis hacerlo directamente desde el modo de configuración de la interfaz. Tened en cuenta que no hay ninguna indicación de que cambié de configurar G0/0 a G0/1; nuevamente, siempre verifique que haya utilizado el nombre de interfaz correcto después del comando de interfaz.
 
-#### Verificación final
+#### 3.2.1. Verificación final
 
 G0/0 y G0/1 de R1 están configurados y habilitados. Después de la configuración, siempre es una buena idea verificar que las configuraciones sean correctas. En el siguiente ejemplo, utilicé una vez más el comando show ip interface brief para verificar:
 
@@ -440,11 +440,11 @@ La PC1 envía un paquete a la PC3 a través del R1. El paquete se dirige a la di
 
 Para que un enrutador reenvíe paquetes a redes remotas (que no están conectadas directamente al enrutador), se requieren configuraciones adicionales; Cubriremos esas configuraciones en capítulos posteriores de este volumen. Sin embargo, en la red de ejemplo que se muestra en la figura 11, la LAN 1 y la LAN 2 están conectadas directamente al R1; no se necesitan más configuraciones. PC1 y PC2 en LAN 1 ahora pueden comunicarse con PC3 y PC4 en LAN 2 a través de R1.
 
-### Atributos de una red IPv4
+### 3.3. Atributos de una red IPv4
 
 Cada red IPv4 tiene algunos atributos que debería poder identificar: la dirección de red, la dirección de transmisión, la cantidad máxima de hosts, la primera dirección utilizable y la última dirección utilizable de la red.
 
-#### Dirección de red
+#### 3.3.1. Dirección de red
 
 La dirección de red es la primera dirección de cualquier red y se utiliza para identificar la red; no se puede asignar a un host. Una dirección IPv4 es una dirección de red si todos los bits de su parte de host están establecidos en 0. La figura 12 muestra un ejemplo: 192.168.100.0/24.
 
@@ -454,7 +454,7 @@ La dirección de red es la primera dirección de cualquier red y se utiliza para
 192.168.100.0 es una dirección de red, como indica la parte de host `00000000`. Esta dirección identifica toda la red 192.168.100.0/24 y no se puede asignar a un host. 192.168.100.100 (utilizada en la figura 7) es una dirección de host de esa red.
 ///
 
-#### Dirección de broadcast
+#### 3.3.2. Dirección de broadcast
 
 La dirección de transmisión es la última dirección de cualquier red y, al igual que la dirección de red, no se puede asignar a un host. La dirección de transmisión se puede utilizar para enviar un mensaje a todos los hosts de la red local. Una dirección IPv4 es una dirección de transmisión si todos los bits de su porción de host están configurados en 1. La figura 13 muestra la dirección de transmisión de la red 192.168.100.0/24.
 ![](img/direccionamientoIP_13.png)
@@ -466,7 +466,7 @@ La dirección de transmisión es la última dirección de cualquier red y, al ig
 !!!note "Nota"
     Para enviar un mensaje a todos los dispositivos de la red local, los hosts normalmente envían los mensajes a 255.255.255.255, en lugar de a la dirección de transmisión de su red local. 255.255.255.255 es una dirección de transmisión especialmente reservada. Sin embargo, los hosts de otras redes pueden utilizar la dirección de transmisión 192.168.100.255 para enviar un mensaje a todos los hosts de la red 192.168.100.0/24.
 
-#### Número máximo de hosts
+#### 3.3.3. Número máximo de hosts
 
 La cantidad máxima de hosts en una red es la cantidad de direcciones IP disponibles para asignar a los hosts conectados a la red. Para calcular la cantidad total de direcciones IP en una red, la fórmula es 2y, donde y es la cantidad de bits de host. Por ejemplo, con una longitud de prefijo /24, hay ocho bits de host; 28 es igual a 256, por lo que hay 256 direcciones IP en total en una red /24 (como 192.168.100.0/24).
 
@@ -476,7 +476,7 @@ Sin embargo, debido a que la red y las direcciones de transmisión de cada red n
 + /16: 216 – 2 = 65.534 hosts
 + /24: 28 – 2 = 254 anfitriones
 
-#### Primera y última dirección utilizable
+#### 3.3.4. Primera y última dirección utilizable
 
 La primera dirección utilizable de una red es la primera dirección IP que se puede asignar a un host; en otras palabras, es la primera dirección IP después de la dirección de red. Es sencillo de calcular: simplemente agregue uno a la dirección de red (cambie el bit menos significativo a 1). La figura 14 muestra la primera dirección utilizable de la red 192.168.100.0/24.
 
@@ -506,7 +506,7 @@ Para encontrar la última dirección utilizable, cambie los octetos de la parte 
 
 Este proceso se volverá más desafiante cuando cubramos la división en subredes en el capítulo 11 de este libro. Al dividir en subredes, utilizamos longitudes de prefijo que no encajan perfectamente entre los octetos de una dirección IP, como /19, /23, /28, etc. En ese caso, es importante ser competente en la conversión entre decimal y binario para poder identificar la red y los bits del host, convertir los bits del host a 0 o 1 según sea necesario, convertirlos nuevamente a decimal, etc.
 
-### Clases de direcciones IPv4
+### 3.4. Clases de direcciones IPv4
 
 Originalmente, todas las direcciones IPv4 usaban una longitud de prefijo /8; el primer octeto identificaba la red y los últimos tres octetos identificaban el host específico dentro de esa red. Sin embargo, ese sistema pronto fue abandonado; debido a que solo los primeros 8 bits se podían usar para crear diferentes redes, solo podía haber 256 (28) redes (LAN) diferentes: de 0.x.x.x a 255.x.x.x. En el mundo moderno, donde Internet es omnipresente, no hay suficientes redes.
 
@@ -562,7 +562,7 @@ Direcciones reservadasDentro de cada clase de dirección, existen varios rangos 
 + **0.0.0.0/8:** cualquier dirección IP que comience con el primer octeto 0 está reservada.
 + **127.0.0.0/8:** este rango está reservado para direcciones de loopback. Un mensaje enviado a cualquier dirección IP en este rango (es decir, ping 127.0.0.1) se enviará de vuelta al host local (el dispositivo en el que está trabajando) sin transmitirse a través de la red. Esto se puede utilizar para probar el software de red en el dispositivo local.
 
-## Resumen
+## 4. Resumen
 + La cabecera IPv4 tiene una longitud de 20 a 60 bytes y contiene 14 campos.
 + El campo Versión indica la versión de IP (IPv4 o IPv6).
 + El campo Longitud del encabezado de Internet (IHL) indica la longitud del encabezado en incrementos de 4 bytes.
