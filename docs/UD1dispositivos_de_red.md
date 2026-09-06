@@ -4,18 +4,22 @@ lang: es
 
 # Dispositivos de red
 
-Este capítulo ofrece una introducción general a las redes y a algunos de los distintos tipos de dispositivos que las componen. Tras ver qué es una red, examinaremos los clientes, los servidores, los conmutadores, los routers y los cortafuegos. Veremos el papel básico de cada uno de estos tipos de dispositivos en una red, pero no entraremos en detalles sobre cómo realizan realmente estas funciones; todavía os quedan muchos temas por descubrir. Al final de este capítulo, seréis capaces de identificar cada uno de los dispositivos de red en la figura 1 y de explicar brevemente sus funciones respectives.
+Este capítulo ofrece una introducción general a las redes y a algunos de los distintos tipos de dispositivos que las componen. Tras ver qué es una red, examinaremos los clientes, los servidores, los conmutadores o switches, los routers y los cortafuegos o firewall. Veremos el papel básico de cada uno de estos tipos de dispositivos en una red, pero no entraremos en detalles sobre cómo realizan realmente estas funciones; todavía os quedan muchos temas por descubrir. Al final de este capítulo, seréis capaces de identificar cada uno de los dispositivos de red en la figura 1 y de explicar brevemente sus respectivas funciones.
 
 ![](img/UD1_1.png){text-align: justify}
 /// figura
 Una red de empresa que conecta varias oficinas a través de Internet.
 ///
 
-Cada oficina de la figura 1 es una red de área local (LAN), es decir, un grupo de dispositivos interconectados en una zona limitada, como una oficina. Dentro de cada oficina del esquema, podéis encontrar los tipos de dispositivos de red que veremos en este capítulo: clientes, servidores, conmutadores, routers y cortafuegos. La conexión entre oficinas se denomina red de área amplia (WAN), una red que se extiende sobre una gran zona geográfica, como entre ciudades. En el volumen 2 de este libro, veremos varios tipos de conexiones WAN. Internet, representada por el icono de nube en la figura 1, es solo una de las opciones para conectar ubicaciones remotas.
+Cada oficina de la figura 1 es una red de área local (LAN), es decir, un grupo de dispositivos interconectados en una zona limitada, como una oficina. Dentro de cada oficina del esquema podéis encontrar los tipos de dispositivos de red que veremos en este capítulo: clientes, servidores, conmutadores, routers y cortafuegos.
+
+La conexión entre oficinas se denomina red de área amplia (WAN), una red que se extiende sobre una gran zona geográfica, como entre ciudades. Internet, representada por el icono de nube en la figura 1, es solo una de las opciones para conectar ubicaciones remotas.
 
 ## 1. ¿Qué es una red?
 
-¿Qué es una red? Como término general, “red” puede referirse a muchas cosas diferentes. Un sistema de ferrocarriles que une poblaciones y ciudades es una red. Las venas y arterias de nuestro cuerpo pueden llamarse red. Un grupo de personas, como colegas o asociados de negocio, también puede considerarse una red. ¿Qué tienen en común todas estas cosas? Todas sirven para conectar personas o elementos. En los dos volúmenes de este libro, vamos a estudiar un tipo concreto de red: la red de ordenadores, es decir, una red que conecta equipos informáticos. Un ordenador conectado a una red puede ser muy diverso, por ejemplo:
+¿Qué es una red? Como término general, “red” puede referirse a muchas cosas diferentes.
+
+Un sistema de ferrocarriles que une poblaciones y ciudades es una red. Las venas y arterias de nuestro cuerpo pueden llamarse red. Un grupo de personas, como colegas o asociados de negocio, también puede considerarse una red. ¿Qué tienen en común todas estas cosas? Todas sirven para conectar personas o elementos. En este módulo, vamos a estudiar un tipo concreto de red: la red de ordenadores, es decir, una red que conecta equipos informáticos. Un ordenador conectado a una red puede ser muy diverso, por ejemplo:
 
 - Un ordenador personal conectado a Internet a través de una red doméstica.
 - Un televisor que se conecta a Internet para reproducir contenido en streaming.
@@ -49,7 +53,7 @@ Iconos de un ordenador de escritorio y un servidor de archivos. Estos iconos se 
 
 Es importante señalar que los clientes y los servidores no son tipos concretos de dispositivos físicos. Más bien, son roles que pueden asumir distintos tipos de equipos. Si un dispositivo ofrece un servicio, como alojar una página web, está funcionando como servidor. Si un dispositivo accede a un servicio, como recuperar una página web desde un servidor, está funcionando como cliente.
 
-!!!note "Nota"
+!!! note "Nota"
     El término servidor también se usa para referirse a un tipo concreto de dispositivo: un ordenador muy potente diseñado para ofrecer servicios a muchos clientes, como un servidor de YouTube que transmite vídeo a miles de usuarios a través de Internet. Sin embargo, casi cualquier tipo de dispositivo puede funcionar como servidor, por lo que es mejor pensar en el servidor como un rol, no como un tipo específico de equipo.
 
 Veamos algunos ejemplos de parejas cliente-servidor:
@@ -107,28 +111,32 @@ Dos LAN conectadas a Internet mediante un router en el borde de cada una.
 
 Los routers no se usan para conectar muchos hosts finales dentro de una LAN. En su lugar, se colocan en el borde de una LAN y se utilizan para habilitar las comunicaciones entre LANs y redes externas, como Internet.
 
-Al igual que los conmutadores, los routers utilizan diversas tecnologías para desempeñar su función en la red, facilitando las comunicaciones entre LANs. Empezaremos a ver cómo funcionan en el capítulo 7, que trata sobre las direcciones IP.
+Al igual que los conmutadores, los routers utilizan diversas tecnologías para desempeñar su función en la red, facilitando las comunicaciones entre LANs. Empezaremos a ver cómo funcionan más adelante en el curso.
 
 #### 2.3.1. Routers inalámbricos
 
-Quizá os preguntéis: “Si eso es un router, ¿qué es el router inalámbrico que conecta mi red doméstica a Internet?” Un router inalámbrico (también conocido como router Wi-Fi o router doméstico) no es solo un router; es un dispositivo de red multifuncional que combina los roles de varios dispositivos distintos.
+Quizá os preguntéis: *Si eso es un router, ¿qué es el router inalámbrico que conecta mi red doméstica a Internet?* Un router inalámbrico (también conocido como router Wi-Fi o router doméstico) no es solo un router; es un dispositivo de red multifuncional que combina los roles de varios dispositivos distintos.
 
 Estos equipos suelen desempeñar las funciones de router, conmutador, punto de acceso inalámbrico (para proporcionar conectividad Wi-Fi) y cortafuegos, todo en un mismo dispositivo. Son perfectos para una red pequeña de oficina o de casa (SOHO) con solo unos pocos usuarios. Sin embargo, en las redes empresariales, no es viable que un único dispositivo cumpla todos los roles necesarios.
 
+*[SOHO]: Small Office/Home Office (pequeña oficina/oficina doméstica).
+
 ### 2.4. Cortafuegos
 
-Los dispositivos de las dos LAN de la figura 5 son perfectamente capaces de comunicarse entre sí y con otros dispositivos a través de Internet. Sin embargo, al permitir que nuestros dispositivos se comuniquen por Internet, los exponemos a posibles riesgos de seguridad. Internet es una red pública muy amplia, y cualquiera puede conectarse a ella, con intenciones buenas o malas. Para proteger nuestras redes, debemos hacer uso de cortafuegos. La figura 6 muestra cómo los cortafuegos pueden proteger las redes al denegar ciertos tipos de tráfico de red.
+Los dispositivos de las dos LAN de la figura 5 son perfectamente capaces de comunicarse entre sí y con otros dispositivos a través de Internet. Sin embargo, al permitir que nuestros dispositivos se comuniquen por Internet, los exponemos a posibles riesgos de seguridad. Internet es una red pública muy amplia, y cualquiera puede conectarse a ella, con intenciones buenas o malas.
+
+Para proteger nuestras redes, debemos hacer uso de cortafuegos. La figura 6 muestra cómo los cortafuegos pueden proteger las redes al denegar ciertos tipos de tráfico de red.
 
 ![](img/UD1_6.png){text-align: justify}
 /// figura
 Un cortafuegos entre cada LAN e Internet protege la red. Se permite la comunicación entre las dos LAN, pero se deniega el tráfico malicioso procedente de un atacante.
 ///
 
-Probablemente ya hayáis oído el término cortafuegos en relación con un programa de software en vuestro PC. Por ejemplo, los PCs con Windows usan Microsoft Defender Firewall de forma predeterminada. Ese tipo de cortafuegos se denomina cortafuegos basado en el host. Examina el tráfico de red que entra y sale del dispositivo host y luego decide permitirlo o denegarlo (bloquearlo). Toma estas decisiones en función de un conjunto de reglas definidas. Sin embargo, no es este el tipo de cortafuegos que debéis conocer para la CCNA. El tipo de cortafuegos que vamos a cubrir es el cortafuegos de red.
+Probablemente ya hayáis oído el término cortafuegos en relación con un programa de software en vuestro PC. Por ejemplo, los PCs con Windows usan Microsoft Defender Firewall de forma predeterminada. Ese tipo de cortafuegos se denomina cortafuegos basado en el host. Examina el tráfico de red que entra y sale del dispositivo host y luego decide permitirlo o denegarlo (bloquearlo). Toma estas decisiones en función de un conjunto de reglas definidas. El tipo de cortafuegos del que hablaremos aquí es el cortafuegos de red.
 
 Un cortafuegos de red es un aparato independiente de hardware que cumple una función similar a la de un cortafuegos basado en el host, pero a mayor escala. Inspecciona todo el tráfico que entra y sale de una red y decide permitirlo o denegarlo en función de un conjunto de reglas configuradas.
 
-Los cortafuegos no son un foco principal de la CCNA. Veremos alguna de sus funciones en el capítulo 11 del volumen 2, que trata sobre conceptos de seguridad, pero la mayor parte de este libro se centrará en los dos tipos de dispositivos que ya hemos comentado: los routers y los conmutadores.
+Los cortafuegos no son un foco principal de este módulo que, por lo tanto, se centrará en los dos tipos de dispositivos que ya hemos comentado: los routers y los conmutadores.
 
 ## 3. Resumen
 
@@ -143,3 +151,4 @@ Los cortafuegos no son un foco principal de la CCNA. Veremos alguna de sus funci
 - Los routers proporcionan conectividad entre LANs y redes externas, como Internet.
 - Un router inalámbrico (router Wi-Fi/router doméstico) es un dispositivo multifuncional que combina los roles de router, conmutador, punto de acceso inalámbrico y cortafuegos.
 - Los cortafuegos protegen la red inspeccionando el tráfico que entra o sale de ella y permitiendo o denegando el acceso según un conjunto de reglas configuradas.
+

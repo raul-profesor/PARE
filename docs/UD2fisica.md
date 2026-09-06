@@ -11,13 +11,11 @@ Este capítulo cubre:
 - Los tipos de conexiones cableadas y las normas de cableado.
 - Los usos del par trenzado sin apantallar y de las conexiones de fibra óptica en redes.
 
-En el capítulo anterior vimos varios diagramas que mostraban nodos de red conectados con cables. En este capítulo, vamos a ver los tipos concretos de cables, conectores y puertos que se utilizan para realizar esas conexiones. Estos temas forman parte de la sección 1.0, Fundamentos de red, del examen CCNA. En concreto, vamos a cubrir aspectos del tema de examen 1.3, que son los siguientes:
+En el capítulo anterior vimos varios diagramas que mostraban nodos de red conectados con cables. En este capítulo, vamos a ver los tipos concretos de cables, conectores y puertos que se utilizan para realizar esas conexiones.
 
-- 1.3 Comparar los tipos de interfaces físicas y de cableado.
-  - 1.3.a Fibra monomodo, fibra multimodo, cobre.
-  - 1.3.b Conexiones (medio compartido Ethernet y punto a punto).
+En el pasado, ha habido muchas formas diferentes de conectar dispositivos, y todavía las hay. Sin embargo, en las redes modernas, Ethernet domina y es, con diferencia, el tipo de conexión más común. Quizá ya hayáis oído hablar de Ethernet en relación con los cables Ethernet. Ethernet no es una única cosa, sino una colección de normas para las conexiones físicas por cable y de reglas para comunicarse a través de esas conexiones.
 
-En el pasado, ha habido muchas formas diferentes de conectar dispositivos, y todavía las hay. Sin embargo, en las redes modernas, Ethernet domina y es, con diferencia, el tipo de conexión más común. Quizá ya hayáis oído hablar de Ethernet en relación con los cables Ethernet. Ethernet no es una única cosa, sino una colección de normas para las conexiones físicas por cable y de reglas para comunicarse a través de esas conexiones. En este capítulo, vamos a ver dos tipos diferentes de conexiones físicas entre dispositivos: las que utilizan cables de cobre y las que utilizan cables de fibra óptica.
+En esta unidad, vamos a ver dos tipos diferentes de conexiones físicas entre dispositivos: las que utilizan cables de cobre y las que utilizan cables de fibra óptica.
 
 ## 1. Estándares de red
 
@@ -32,7 +30,7 @@ Lo mismo ocurre con los ordenadores. Para que dos ordenadores se comuniquen, deb
 Existen varios organismos que definen los estándares utilizados en las redes de ordenadores, y vamos a mencionar a un par de ellos a lo largo de los dos volúmenes de este libro. El más importante para este capítulo es el Institute of Electrical and Electronics Engineers (IEEE, pronunciado «I-triple-E»). En 1983, el IEEE definió por primera vez el estándar IEEE 802.3, más conocido como Ethernet.
 
 !!!note "Nota"
-    El IEEE también define el estándar IEEE 802.11, mejor conocido, aunque no oficialmente, como Wi-Fi. Las WLAN IEEE 802.11 son un tema importante del examen CCNA y se tratan en la parte 4 del volumen 2 de este libro.
+    El IEEE también define el estándar IEEE 802.11, mejor conocido, aunque no oficialmente, como Wi-Fi.
 
 Ethernet no es un estándar único, sino una familia de estándares que definen tanto los aspectos físicos de las conexiones de red como la forma de formatear los datos en mensajes para enviarlos por la red.
 
@@ -42,12 +40,14 @@ Términos como bit, byte, megabit, megabyte, etc., os resultarán familiares, in
 
 Para entender lo que significan estos términos, debemos definir el término bit. Un bit es la unidad básica de información utilizada por los ordenadores. La palabra bit es simplemente una combinación de las palabras binary digit. El binario es un sistema numérico que expresa todos los valores utilizando solo dos dígitos: 0 y 1. Un byte, por su parte, es simplemente una unidad de 8 bits. Ocho bits equivalen a 1 byte.
 
-El binario es el lenguaje de los ordenadores. Calculan en binario y se comunican en binario. Todo lo que veis en la pantalla de un ordenador o oís por su altavoz es una serie de 0s y 1s interpretada por un ordenador y presentada en un formato comprensible para los humanos. Eso incluye aplicaciones, fotos, vídeos, canciones, este libro si lo estáis leyendo en formato electrónico, y todo lo demás que hace un ordenador.
+El binario es el lenguaje de los ordenadores. Calculan en binario y se comunican en binario. Todo lo que veis en la pantalla de un ordenador u oís por su altavoz es una serie de 0s y 1s interpretada por un ordenador y presentada en un formato comprensible para los humanos. Eso incluye aplicaciones, fotos, vídeos, canciones y todo lo demás que hace un ordenador.
 
-El CCNA, como certificación de redes, trata sobre cómo se comunican los ordenadores; eso es precisamente lo que es la red. Cuando dos ordenadores conectados por un cable se comunican entre sí, se envían largas series de bits (0s y 1s) a través de ese cable. En las redes modernas, suelen enviarlos a una velocidad de miles de millones por segundo. Exactamente cómo se transmiten esos 0s y 1s depende del medio. Por ejemplo, los 0s y 1s pueden comunicarse por cable de cobre modificando el voltaje de una señal eléctrica entre los dos dispositivos. El voltaje «x» representa un valor de 0, y el voltaje «y» representa un valor de 1. En la Figura 1 se ilustra este concepto; cuando el router envía 1 byte de datos al conmutador a través del cable que los une, los cambios de voltaje de la señal se utilizan para comunicar los valores 0 y 1.
+El primer concepto que debemos entender bien es cómo se comunican los ordenadores; eso es precisamente lo que es la red. Cuando dos ordenadores conectados por un cable se comunican entre sí, se envían largas series de bits (0s y 1s) a través de ese cable. En las redes modernas, suelen enviarlos a una velocidad de miles de millones por segundo. Exactamente cómo se transmiten esos 0s y 1s depende del medio. Por ejemplo, los 0s y 1s pueden comunicarse por cable de cobre modificando el voltaje de una señal eléctrica entre los dos dispositivos. El voltaje *«x»* representa un valor de 0, y el voltaje *«y»* representa un valor de 1. 
+
+En la Figura 1 se ilustra este concepto; cuando el router envía 1 byte de datos al conmutador a través del cable que los une, los cambios de voltaje de la señal se utilizan para comunicar los valores 0 y 1.
 
 !!!note "Nota"
-    Entender el sistema numérico binario es muy importante para el examen CCNA. En los próximos capítulos de este volumen, vamos a ver cómo contar en binario y cómo convertir entre binario y otros sistemas numéricos como el decimal o el hexadecimal.
+    Entender el sistema numérico binario es muy importante para la comprensión física del funcionamiento de redes y ordenadores. Más adelante, vamos a ver cómo contar en binario y cómo convertir entre binario y otros sistemas numéricos como el decimal o el hexadecimal.
 
 ![](img/UD2_1.png){text-align: justify}
 /// figura
@@ -63,9 +63,9 @@ Medimos la velocidad de las conexiones de red por cuántos bits pueden transmiti
 
 Las velocidades de red se expresan entonces como X bits por segundo (bps); por ejemplo, 56 kilobits por segundo (56 kbps), 100 megabits por segundo (100 Mbps), 10 gigabits por segundo (10 Gbps) o 1 terabit por segundo (1 Tbps).
 
-### 2.1. 1,000 o 1,024 bits
+### 2.1. 1.000 o 1.024 bits
 
-Existe cierta confusión sobre si 1 kilobit son 1.000 bits o 1.024 bits, si 1 megabit son 1.000 kilobits o 1.024 kilobits, etc. Las definiciones que se han listado anteriormente son correctas, y son los términos que debéis conocer para el CCNA. Los valores de 1.024 son resultado del sistema numérico binario (base 2); 2^10 es igual a 1.024. Los términos correctos para los valores en base 2 son:
+Existe cierta confusión sobre si 1 kilobit son 1.000 bits o 1.024 bits, si 1 megabit son 1.000 kilobits o 1.024 kilobits, etc. Las definiciones que se han listado anteriormente son correctas, y son los términos que debéis conocer. Los valores de 1.024 son resultado del sistema numérico binario (base 2); 2^10 es igual a 1.024. Los términos correctos para los valores en base 2 son:
 
 - 1 kibibit (1.024 bits)
 - 1 mebibit (1.024 kibibits)
@@ -74,7 +74,11 @@ Existe cierta confusión sobre si 1 kilobit son 1.000 bits o 1.024 bits, si 1 me
 
 ## 3. Conexiones de cobre UTP
 
-El CCNA os exige conocer dos tipos de conexiones cableadas: las que usan cables de cobre y las que usan cables de fibra óptica. Primero, vamos a ver los cables de cobre. Este es el tipo de cable de red más comúnmente llamado cable Ethernet, aunque el estándar Ethernet utiliza tanto cables de cobre como de fibra óptica. Antes de examinar un cable Ethernet de cobre en sí, vamos a mirar el conector del extremo del cable y el puerto al que se conecta en un dispositivo de red, ambos representados en la Figura 2.
+Veremos principalmente dos tipos de conexiones cableadas: las que usan cables de cobre y las que usan cables de fibra óptica.
+
+Primero, vamos a ver los cables de cobre. Este es el tipo de cable de red más comúnmente llamado cable Ethernet, aunque el estándar Ethernet utiliza tanto cables de cobre como de fibra óptica.
+
+Antes de examinar un cable Ethernet de cobre en sí, vamos a mirar el conector del extremo del cable y el puerto al que se conecta en un dispositivo de red, ambos representados en la Figura 2.
 
 ![](img/UD2_2.jpg){text-align: justify}
 /// figura
@@ -98,7 +102,7 @@ El IEEE define varios estándares para las conexiones Ethernet que soportan dife
 
 #### 3.1.1. Grupos de trabajo y subgrupos del IEEE
 
-El IEEE asigna grupos de trabajo para desarrollar tecnologías concretas. Los dos grupos de trabajo principales relevantes para el CCNA son 802.3 (encargado de desarrollar el estándar Ethernet para redes cableadas) y 802.11 (redes LAN inalámbricas, también conocidas como Wi-Fi).
+El IEEE asigna grupos de trabajo para desarrollar tecnologías concretas. Los dos grupos de trabajo principales relevantes para este curso son 802.3 (encargado de desarrollar el estándar Ethernet para redes cableadas) y 802.11 (redes LAN inalámbricas, también conocidas como Wi-Fi).
 
 Dentro de cada grupo de trabajo, se asignan subgrupos para revisar y seguir desarrollando los estándares originales. Cada vez que se forma un subgrupo, se le asigna una letra en orden secuencial (por ejemplo, 802.3a a 802.3z). Cuando se usan todas las letras, se añade otra más (por ejemplo, 802.3aa a 802.3az). En el momento de escribir esto, 802.3dk está en desarrollo.
 
@@ -111,8 +115,12 @@ La Tabla 3.1 muestra algunos ejemplos de estándares Ethernet que usan cableado 
 | 1 Gbps | Gigabit Ethernet | IEEE 802.3ab | 1000BASE-T | 100 m |
 | 10 Gbps | 10 Gig Ethernet | IEEE 802.3an | 10GBASE-T | 100 m |
 
+/// caption
+Tabla 3.1. Algunos estándares Ethernet que usan cableado de cobre. Cada estándar tiene tres nombres distintos: uno derivado de la velocidad, otro del grupo de trabajo del IEEE y un nombre informal que indica la velocidad y el tipo de cable.
+///
+
 !!!note "Nota"
-    Para el examen CCNA, no es necesario memorizar los nombres de los grupos de trabajo del IEEE asociados a cada estándar. Sin embargo, sí debéis conocer los nombres derivados de la velocidad y los nombres informales.
+    No es necesario memorizar los nombres de los grupos de trabajo del IEEE asociados a cada estándar. Sin embargo, sí debéis conocer los nombres derivados de la velocidad y los nombres informales.
 
 Cada uno de estos estándares admite una longitud máxima de cable de 100 metros. Intentar usar cables UTP más largos que el máximo indicado puede provocar atenuación de la señal y un rendimiento menor. La longitud máxima del cable puede ser un problema para las conexiones de cobre UTP. Como veremos en la sección 3.4, una mayor longitud máxima es una ventaja importante de la fibra óptica frente a los cables UTP de cobre.
 
@@ -128,6 +136,10 @@ Los estándares de estos cables reciben nombres como Category 5, que a menudo se
 | 1 Gbps | 1000BASE-T | Cat 5e |
 | 10 Gbps | 10GBASE-T | Cat 6a |
 
+/// caption
+Tabla 3.2. Algunos estándares de cable que pueden utilizarse con los estándares Ethernet mencionados. El nombre del cable no es un estándar IEEE, sino un estándar EIA/TIA.
+///
+
 ### 3.2. Cables straight-through y crossover
 
 Aunque hoy en día todos los cables UTP usados para comunicaciones de red tienen cuatro pares de hilos (ocho hilos), no todos los estándares Ethernet utilizan los cuatro pares de hilos:
@@ -139,7 +151,7 @@ Aunque hoy en día todos los cables UTP usados para comunicaciones de red tienen
 
 Cada hilo del cable está conectado a uno de los ocho pines del conector 8P8C. Para que los dispositivos se comuniquen a través de estos pares de hilos, cada par forma un circuito eléctrico entre los dos dispositivos conectados. En las conexiones 10BASE-T y 100BASE-T, es muy importante usar el cable adecuado para asegurar que los hilos conectan los pines de un extremo de la conexión con los pines correctos del otro extremo. Para facilitar esto, existen dos tipos de cables que podemos utilizar: straight-through y crossover. Estos tipos de cable se diferencian en qué pines de un extremo del cable se conectan a qué pines del otro extremo.
 
-#### 3.2.1. Cables straight-through
+#### 3.2.1. Cables straight-through (directo)
 
 10BASE-T y 100BASE-T usan dos pares de hilos, uno para cada sentido de la comunicación. Los dos pares de hilos son:
 
@@ -164,7 +176,7 @@ Dos routers conectados mediante un cable straight-through. Como ambos routers tr
 
 Cuando dos dispositivos que transmiten usando el mismo par de pines se conectan con un cable straight-through, no podrán comunicarse. Los pines Tx de un dispositivo se conectan a los pines Tx del otro. Para que dispositivos como estos puedan comunicarse, necesitan un cable con un cableado distinto: un cable crossover.
 
-#### 3.2.2. Cables crossover
+#### 3.2.2. Cables crossover (cruzado)
 
 Un cable crossover conecta pares de pines opuestos; los pines 1 y 2 de un extremo del cable se conectan a los pines 3 y 6 del otro extremo. Esto permite que los dispositivos que transmiten datos en el mismo par de pines puedan comunicarse entre sí. Como muestra la Figura 5, los dispositivos que transmiten usando el mismo par de pines pueden comunicarse entre sí cuando se conectan con un cable crossover.
 
@@ -182,12 +194,18 @@ La Tabla 3.3 enumera algunos tipos habituales de dispositivos de red y qué pine
 | PC/Servidor | 1 y 2 | 3 y 6 |
 | Conmutador | 3 y 6 | 1 y 2 |
 
+///caption
+Tabla 3.3. Pines de transmisión y recepción de distintos tipos de dispositivos de red. Los conmutadores transmiten por los pines 3 y 6 y reciben por los pines 1 y 2, mientras que todos los demás dispositivos hacen lo contrario.
+///
+
 !!!note "Nota"
     Aunque 10BASE-T y 100BASE-T solo usan dos pares de hilos, siguen existiendo cuatro pares de hilos dentro del cable. Los otros dos pares de hilos quedan sin utilizar.
 
 #### 3.2.3. Auto MDI-X
 
-Ahora que ya hemos cubierto los cables straight-through y crossover, queremos daros una buena noticia: en los equipos de red modernos, no tenéis que preocuparos por usar el tipo de cable correcto. Eso se debe a una función llamada Auto Medium-Dependent Interface Crossover (Auto MDI-X). Auto MDI-X permite que un dispositivo cambie qué pines usará para transmitir y recibir datos según el dispositivo al que esté conectado. Debéis conocer los cables straight-through y crossover como posible pregunta de examen, pero en el campo probablemente no tendréis que pensar si un cable es straight-through o crossover.
+Ahora que ya hemos cubierto los cables straight-through y crossover, hay que daros una buena noticia: ^^en los equipos de red modernos, no tenéis que preocuparos por usar el tipo de cable correcto.^^ Eso se debe a una función llamada **Auto Medium-Dependent Interface Crossover (Auto MDI-X)**. Auto MDI-X permite que un dispositivo cambie qué pines usará para transmitir y recibir datos según el dispositivo al que esté conectado. 
+
+Debéis conocer los cables straight-through y crossover como posible pregunta de examen, pero en el mundo laboral real probablemente no tendréis que pensar si un cable es straight-through o crossover.
 
 La Figura 6 demuestra este concepto. Los dos routers están conectados mediante un cable straight-through. Normalmente, los routers transmiten datos en el par 1–2 y reciben en el par 3–6, pero gracias a Auto MDI-X, el router de la derecha invierte eso; transmite datos en el par 3–6 y recibe en el par 1–2.
 
@@ -226,11 +244,12 @@ La Figura 8 muestra un conmutador Cisco con un par de transceptores SFP: uno ins
 Un conmutador Cisco con un transceptor SFP insertado en uno de sus puertos SFP. Se coloca un SFP adicional encima del conmutador.
 ///
 
-Como muestra la Figura 9, un cable de fibra óptica tiene varias capas. Una chaqueta exterior (4) y un buffer (3) sirven para proteger y contener los componentes internos. Una capa de revestimiento reflectante (2) ayuda a conducir la señal luminosa a lo largo del núcleo de vidrio (1). El núcleo es una fibra de vidrio muy fina, aunque su grosor depende del tipo de cable.
+Como muestra la Figura 9, un cable de fibra óptica tiene varias capas. La cobertura exterior (4) y un refuerzo (3) sirven para proteger y contener los componentes internos. Una capa de revestimiento reflectante (2) ayuda a conducir la señal luminosa a lo largo del núcleo de vidrio (1). El núcleo es una fibra de vidrio muy fina, aunque su grosor depende del tipo de cable.
 
 ![](img/UD2_9.png){text-align: justify}
+
 /// figura
-La estructura típica de un cable de fibra óptica. Una chaqueta exterior (4) y un buffer (3) sirven para proteger y contener los componentes internos. Una capa de revestimiento reflectante (2) ayuda a conducir la señal luminosa a lo largo del núcleo de vidrio (1).
+La estructura típica de un cable de fibra óptica. Una cobertura exterior (4) y un buffer o material de refuerzo(3) que sirven para proteger y contener los componentes internos. Una capa de revestimiento reflectante (2) que ayuda a conducir la señal luminosa a lo largo del núcleo de vidrio (1).
 ///
 
 Todo tipo de cableado de fibra óptica puede transportar una señal a mayor distancia que el cableado de cobre, pero incluso dentro de la categoría de fibra óptica, la longitud máxima admitida puede variar mucho. Existen dos tipos principales de cableado de fibra óptica: fibra multimodo (MMF) y fibra monomodo (SMF). La Figura 10 muestra cómo viaja la luz a lo largo de los cables MMF y SMF.
