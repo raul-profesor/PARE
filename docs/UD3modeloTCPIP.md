@@ -12,11 +12,13 @@ Este capítulo cubre:
 - El papel que juega cada capa al mover datos a través de una red.
 - La encapsulación y la desencapsulación de datos.
 
-En el capítulo anterior vimos Ethernet, concretamente los tipos de conexiones físicas definidas por el estándar Ethernet. Ethernet también define reglas sobre cómo los dispositivos pueden comunicarse a través de esas conexiones. Sin embargo, Ethernet por sí solo no es suficiente para que dos ordenadores se comuniquen en una red; por ejemplo, para que un PC consulte una página web desde un servidor a través de Internet. La comunicación a través de una red es un proceso complejo y requiere diversos protocolos, cada uno con funciones específicas, que, al combinarse, permiten la comunicación en red.
+En una unidad anterior vimos Ethernet, concretamente los tipos de conexiones físicas definidas por el estándar Ethernet. Ethernet también define reglas sobre cómo los dispositivos pueden comunicarse a través de esas conexiones.
 
-En este capítulo, vamos a ver un par de modelos que definen las distintas funciones necesarias para que los ordenadores se comuniquen a través de una red: el modelo de interconexión de sistemas abiertos (OSI) y el modelo TCP/IP (cuyos nombres provienen de dos protocolos clave del modelo: Transmission Control Protocol y Internet Protocol). TCP/IP es el modelo que utilizan actualmente las redes modernas de todo el mundo.
+Sin embargo, Ethernet por sí solo no es suficiente para que dos ordenadores se comuniquen en una red; por ejemplo, para que un PC consulte una página web desde un servidor a través de Internet. La comunicación a través de una red es un proceso complejo y requiere diversos protocolos, cada uno con funciones específicas, que, al combinarse, permiten la comunicación en red.
 
-Ninguno de estos modelos aparece explícitamente como tema del examen CCNA. Sin embargo, la información incluida en este capítulo es conocimiento fundamental de redes. A lo largo de los dos volúmenes de este libro, vamos a estudiar las funciones de diversos protocolos de red, así que es importante contar con un marco para entenderlo todo. Ese es precisamente el papel de estos modelos de red: proporcionar un marco para organizar las distintas funciones que hacen que una red funcione.
+En esta unidad, vamos a ver un par de modelos que definen las distintas funciones necesarias para que los ordenadores se comuniquen a través de una red: el modelo de interconexión de sistemas abiertos (OSI) y el modelo TCP/IP (cuyos nombres provienen de dos protocolos clave del modelo: *Transmission Control Protocol* e *Internet Protocol*). TCP/IP es el modelo que utilizan actualmente las redes modernas de todo el mundo.
+
+La información incluida en esta unidad es conocimiento fundamental de redes. A lo largo del módulo vamos a estudiar las funciones de diversos protocolos de red, así que es importante contar con un marco para entenderlo todo. Ese es precisamente el papel de estos modelos de red: proporcionar un marco para organizar las distintas funciones que hacen que una red funcione.
 
 El propósito de este capítulo es ofrecer una visión general de alto nivel sobre cómo viajan los datos desde el origen hasta el destino a través de una red. En el resto del libro, vamos a rellenar los huecos sobre los mecanismos concretos que hacen posible la comunicación en red, pero primero necesitamos un marco de referencia.
 
@@ -33,7 +35,7 @@ Los modelos de red son marcos que definen las distintas funciones necesarias par
 
 El uso de capas permite un diseño modular: en cada capa del modelo, existen varios protocolos que pueden cubrir los roles necesarios de esa capa. Por ejemplo, en el capítulo anterior, vimos algunos aspectos de Ethernet (IEEE 802.3) y también mencionamos brevemente las redes LAN inalámbricas definidas por IEEE 802.11 (más conocidas como Wi‑Fi). Ambos protocolos cumplen el mismo propósito: definen cómo deben enviarse los datos a través de un medio físico concreto (cables UTP/fibra para Ethernet, ondas de radio para Wi‑Fi). Una aplicación de correo electrónico en un ordenador no necesita preocuparse de si el mensaje se enviará por una conexión Ethernet cableada o por una conexión Wi‑Fi inalámbrica; siempre que la aplicación de correo realice su papel, puede esperar que las demás capas hagan lo suyo.
 
-Hay dos modelos de red que los profesionales de redes deben conocer: OSI y TCP/IP. Aunque el modelo TCP/IP es el que se utiliza en las redes modernas, el modelo OSI también ha influido mucho en la forma en que pensamos y hablamos de las redes y sigue considerándose conocimiento básico para cualquier persona implicada en redes, aunque no se utilice en las redes modernos.
+Hay dos modelos de red que los profesionales de redes deben conocer: OSI y TCP/IP. Aunque el modelo TCP/IP es el que se utiliza en las redes modernas, el modelo OSI también ha influido mucho en la forma en que pensamos y hablamos de las redes y sigue considerándose conocimiento básico para cualquier persona implicada en redes, aunque no se utilice en las redes modernas.
 
 ## 2. El modelo de referencia OSI
 
@@ -53,6 +55,9 @@ El modelo OSI define siete capas, cada una con sus propias funciones que contrib
 | 3 | Red |
 | 2 | Enlace de datos |
 | 1 | Físico |
+///caption
+Tabla 4.1. Las siete capas del modelo OSI.
+///
 
 Como este capítulo se centra en el modelo TCP/IP, no vamos a cubrir el papel de cada una de las siete capas que aparecen en la Tabla 4.1. El modelo OSI es un modelo del pasado que no recomendamos estudiar en profundidad a menos que os interese la historia del desarrollo de las redes.
 
@@ -79,13 +84,16 @@ El modelo TCP/IP definido en la RFC 1122 tiene cuatro capas; sin embargo, los in
 | Red | Internet | Red | IPv4, IPv6 |
 | Enlace de datos | Link | Enlace de datos | Ethernet, 802.11 (Wi‑Fi) |
 | Físico | Físico | Físico |  |
+///caption
+Tabla 4.2. Las capas del modelo OSI y del modelo TCP/IP, con algunos protocolos de ejemplo.
+///
 
 !!!note "Nota"
     Las capas similares del modelo OSI y del modelo TCP/IP no son completamente equivalentes; aunque tienen similitudes, son dos modelos independientes.
 
 Como muestra la Tabla 4.2, en lugar de las tres capas superiores (Aplicación, Presentación y Sesión) del modelo OSI, TCP/IP usa una única capa llamada Capa de aplicación. Además, en la versión de cuatro capas del modelo TCP/IP, las funciones de las dos capas inferiores de la versión de cinco capas se abordan con una única capa llamada Capa de enlace. Sin embargo, para el CCNA y para entender las redes, el modelo de cinco capas suele ser más útil, y es el que vamos a usar a lo largo de este libro.
 
-Los protocolos de ejemplo que aparecen en la Tabla 4.2 son algunos de los protocolos que vamos a estudiar en este libro; son solo algunos de los que debéis conocer para el examen CCNA. Los incluí en la tabla como referencia, pero vamos a ver cómo funcionan en el resto del libro. En este capítulo, vamos a centrarnos en entender el papel de cada capa del modelo TCP/IP.
+Los protocolos de ejemplo que aparecen en la Tabla 4.2 son algunos de los protocolos que vamos a estudiar en este módulo; son solo algunos de los que debéis conocer. Están incluidos en la tabla como referencia, pero vamos a ver cómo funcionan en el resto del módulo. En esta sección, vamos a centrarnos en entender el papel de cada capa del modelo TCP/IP.
 
 !!!note "Nota"
     Las capas del modelo TCP/IP pueden nombrarse por su nombre o por su número: la Capa física es la Capa 1, la Capa de enlace de datos es la Capa 2, la Capa de red es la Capa 3, la Capa de transporte es la Capa 4 y la Capa de aplicación es la Capa 7. Como ya mencioné antes, la terminología del modelo OSI sigue utilizándose ampliamente (¡para bien o para mal!), así que incluso al referirnos al modelo TCP/IP, la Capa de aplicación suele llamarse Capa 7 en lugar de Capa 5 o 4.
