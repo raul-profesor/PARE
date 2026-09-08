@@ -84,6 +84,7 @@ El modelo TCP/IP definido en la RFC 1122 tiene cuatro capas; sin embargo, los in
 | Red | Internet | Red | IPv4, IPv6 |
 | Enlace de datos | Link | Enlace de datos | Ethernet, 802.11 (Wi‑Fi) |
 | Físico | Físico | Físico |  |
+
 ///caption
 Tabla 4.2. Las capas del modelo OSI y del modelo TCP/IP, con algunos protocolos de ejemplo.
 ///
@@ -91,7 +92,7 @@ Tabla 4.2. Las capas del modelo OSI y del modelo TCP/IP, con algunos protocolos 
 !!!note "Nota"
     Las capas similares del modelo OSI y del modelo TCP/IP no son completamente equivalentes; aunque tienen similitudes, son dos modelos independientes.
 
-Como muestra la Tabla 4.2, en lugar de las tres capas superiores (Aplicación, Presentación y Sesión) del modelo OSI, TCP/IP usa una única capa llamada Capa de aplicación. Además, en la versión de cuatro capas del modelo TCP/IP, las funciones de las dos capas inferiores de la versión de cinco capas se abordan con una única capa llamada Capa de enlace. Sin embargo, para el CCNA y para entender las redes, el modelo de cinco capas suele ser más útil, y es el que vamos a usar a lo largo de este libro.
+Como muestra la Tabla 4.2, en lugar de las tres capas superiores (Aplicación, Presentación y Sesión) del modelo OSI, TCP/IP usa una única capa llamada Capa de aplicación. Además, en la versión de cuatro capas del modelo TCP/IP, las funciones de las dos capas inferiores de la versión de cinco capas se abordan con una única capa llamada Capa de enlace. Sin embargo para entender las redes, el modelo de cinco capas suele ser más útil, y es el que vamos a usar a lo largo de este módulo.
 
 Los protocolos de ejemplo que aparecen en la Tabla 4.2 son algunos de los protocolos que vamos a estudiar en este módulo; son solo algunos de los que debéis conocer. Están incluidos en la tabla como referencia, pero vamos a ver cómo funcionan en el resto del módulo. En esta sección, vamos a centrarnos en entender el papel de cada capa del modelo TCP/IP.
 
@@ -115,13 +116,13 @@ Las funciones definidas por cada capa del modelo TCP/IP incluyen:
 - El direccionamiento de los mensajes hacia una aplicación concreta en el nodo de destino.
 - Cómo debe interactuar una aplicación con la red.
 
-Ahora vamos a examinar cada capa del modelo TCP/IP una por una para ver cómo permiten la comunicación en red. El objetivo de este capítulo es proporcionar un marco sobre el que podamos construir el resto del libro, con detalles sobre cómo los distintos protocolos de cada capa cumplen sus funciones.
+Ahora vamos a examinar cada capa del modelo TCP/IP una por una para ver cómo permiten la comunicación en red. El objetivo de este capítulo es proporcionar un marco sobre el que podamos construir el resto del curso, con detalles sobre cómo los distintos protocolos de cada capa cumplen sus funciones.
 
 #### 3.1.1. Capa 1: la capa física
 
 La Capa física es bastante intuitiva; define los requisitos físicos para transmitir datos (una serie de bits) desde un nodo a otro. Esos bits pueden codificarse como señales eléctricas que recorren un cable de cobre, señales de luz en un cable de fibra óptica o ondas de radio en una conexión inalámbrica.
 
-Ya hemos tratado este tema en el capítulo 3: IEEE 802.3 (Ethernet) e IEEE 802.11 (Wi‑Fi) definen especificaciones en la Capa física. Por ejemplo, Ethernet define tipos de conectores y cables, cómo deben codificarse los datos en señales eléctricas (o de luz) y multitud de otros detalles sobre cómo comunicarse a través de cables UTP y fibra óptica. Del mismo modo, Wi‑Fi define qué frecuencias de radio deben utilizarse para la comunicación WLAN inalámbrica, cómo deben modularse las ondas de radio para codificar datos, etc.
+Ya hemos tratado este tema anteriormente: IEEE 802.3 (Ethernet) e IEEE 802.11 (Wi‑Fi) definen especificaciones en la Capa física. Por ejemplo, Ethernet define tipos de conectores y cables, cómo deben codificarse los datos en señales eléctricas (o de luz) y multitud de otros detalles sobre cómo comunicarse a través de cables UTP y fibra óptica. Del mismo modo, Wi‑Fi define qué frecuencias de radio deben utilizarse para la comunicación WLAN inalámbrica, cómo deben modularse las ondas de radio para codificar datos, etc.
 
 En resumen, la Capa física del modelo TCP/IP define los requisitos físicos para permitir que una serie de bits viaje desde un nodo a otro a través de un medio físico.
 
@@ -129,7 +130,7 @@ En resumen, la Capa física del modelo TCP/IP define los requisitos físicos par
 
 Ethernet y Wi‑Fi no solo definen especificaciones físicas; también especifican cómo deben direccionarse y enviarse los datos a otro nodo conectado al mismo medio físico dentro de una LAN. La función de la Capa de enlace de datos es preparar los datos para su transmisión por ese medio físico para que puedan ser recibidos por el siguiente nodo del camino hacia el destino final. Ese siguiente nodo puede ser el propio destino final o el siguiente router del camino. El recorrido desde un nodo al siguiente se llama salto, y la función de la Capa de enlace de datos es proporcionar entrega de mensajes de salto a salto.
 
-Figura 2 ilustra este concepto de saltos en la red. PC1 envía un mensaje a SRV1, quizá una solicitud para acceder a un archivo alojado en el servidor. Para que el mensaje de PC1 llegue a SRV1, debe pasar por tres saltos en la red: desde PC1 a R1, desde R1 a R2 y desde R2 a SRV1. La función de la Capa de enlace de datos es reenviar el mensaje de un salto al siguiente hasta que llegue al host de destino: SRV1. Observad que un mensaje que atraviese un conmutador no cuenta como un salto. Lo veremos cuando estudiemos el switching Ethernet en el capítulo 6.
+Figura 2 ilustra este concepto de saltos en la red. PC1 envía un mensaje a SRV1, quizá una solicitud para acceder a un archivo alojado en el servidor. Para que el mensaje de PC1 llegue a SRV1, debe pasar por tres saltos en la red: desde PC1 a R1, desde R1 a R2 y desde R2 a SRV1. La función de la Capa de enlace de datos es reenviar el mensaje de un salto al siguiente hasta que llegue al host de destino: SRV1. Observad que un mensaje que atraviese un conmutador no cuenta como un salto. Lo veremos cuando estudiemos el switching Ethernet más adelante.
 
 !!!note "Nota"
     PC1, R1, R2 y SRV1 son ejemplos de nombres de host. Un nombre de host es un nombre usado para identificar cada dispositivo de la red. El patrón de nombres que vamos a usar en este libro será PCX para los PCs, SWX para los conmutadores, RX para los routers y SRVX para los servidores.
@@ -160,11 +161,11 @@ PC1 direcciona un mensaje a la dirección IP de SRV1. La Capa 3 es responsable d
 ///
 
 !!!note "Nota"
-    Hay dos versiones de IP en uso hoy en día: IP versión 4 (IPv4) e IP versión 6 (IPv6). Los ingenieros de red deben conocer ambas, y ambas forman parte del examen CCNA. IPv4 e IPv6 usan formatos de dirección distintos. Por ejemplo, una dirección IPv4 podría ser 203.0.113.255 y una dirección IPv6 podría ser 2001:db8:1:1:2fe3:1:32a:af01.
+    Hay dos versiones de IP en uso hoy en día: IP versión 4 (IPv4) e IP versión 6 (IPv6). Los ingenieros de red deben conocer ambas puesto que actualmente están en uso. IPv4 e IPv6 usan formatos de dirección distintos. Por ejemplo, una dirección IPv4 podría ser 203.0.113.255 y una dirección IPv6 podría ser 2001:db8:1:1:2fe3:1:32a:af01.
 
 Aunque IPv4 ha sido durante mucho tiempo la versión dominante de IP, IPv6 va ganando popularidad poco a poco. En los últimos años, la adopción de IPv6 se ha acelerado a medida que se agotan las direcciones IPv4 disponibles. Vamos a tratar ambos tipos de direcciones en este libro.
 
-Entender cómo funcionan juntas la Capa 2 y la Capa 3 para entregar un mensaje a su destino es un concepto fundamental que debéis entender para el examen CCNA. En este capítulo, os ofrezco una visión general de alto nivel; revisaremos estos conceptos y profundizaremos en ellos en capítulos posteriores de este volumen. En este punto, basta con conocer estos puntos:
+Entender cómo funcionan juntas la Capa 2 y la Capa 3 para entregar un mensaje a su destino es un concepto fundamental que debéis entender. En este capítulo, os ofrezco una visión general de alto nivel; revisaremos estos conceptos y profundizaremos en ellos en capítulos posteriores de este volumen. En este punto, basta con conocer estos puntos:
 
 - La Capa 2 usa direcciones MAC para proporcionar entrega de salto a salto de mensajes.
 - La Capa 3 usa direcciones IP para proporcionar entrega de extremo a extremo de mensajes.
@@ -180,7 +181,7 @@ Al igual que las capas 2 y 3, la Capa 4 también usa su propio esquema de direcc
 !!!note "Nota"
     Los números de puerto de la Capa 4 no están relacionados con los puertos físicos de un dispositivo a los que conectamos cables (que son un aspecto de la Capa 1, la Capa física). Son un concepto con el mismo nombre, pero diferente.
 
-Figura 4 ilustra este concepto. Las capas 2 y 3 trabajan juntas para entregar el mensaje de PC1 a SRV1, y la Capa 4 lo entrega al proceso de aplicación adecuado en SRV1. SRV1 es un servidor que ofrece varios servicios a los clientes de la red. Es un servidor DNS que convierte nombres de sitios web en direcciones IP para los clientes (esto es lo que pasa cuando escribís manning.com en el navegador). También es un servidor web que usa HTTP y HTTPS para permitir que los clientes accedan a los sitios web que aloja. DNS, HTTP y HTTPS son protocolos de la Capa 7 (Capa de aplicación), y cada uno acepta mensajes usando un número de puerto de Capa 4 distinto.
+La Figura 4 ilustra este concepto. Las capas 2 y 3 trabajan juntas para entregar el mensaje de PC1 a SRV1, y la Capa 4 lo entrega al proceso de aplicación adecuado en SRV1. SRV1 es un servidor que ofrece varios servicios a los clientes de la red. Es un servidor DNS que convierte nombres de sitios web en direcciones IP para los clientes (esto es lo que pasa cuando escribís manning.com en el navegador). También es un servidor web que usa HTTP y HTTPS para permitir que los clientes accedan a los sitios web que aloja. DNS, HTTP y HTTPS son protocolos de la Capa 7 (Capa de aplicación), y cada uno acepta mensajes usando un número de puerto de Capa 4 distinto.
 
 ![](img/UD3_4.png){text-align: justify}
 /// figura

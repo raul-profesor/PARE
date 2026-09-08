@@ -2,7 +2,7 @@
 lang: "es"
 ---
 
-# IETF, ISO e ITU: Diferencias y Funciones
+# Anexo I: IETF, ISO e ITU: Diferencias y Funciones
 
 **IETF, ISO e ITU** son las tres organizaciones globales más importantes que crean estándares técnicos, pero cada una tiene un rol, un enfoque y una forma de trabajar muy distintos.
 
