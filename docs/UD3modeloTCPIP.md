@@ -20,7 +20,7 @@ En esta unidad, vamos a ver un par de modelos que definen las distintas funcione
 
 La información incluida en esta unidad es conocimiento fundamental de redes. A lo largo del módulo vamos a estudiar las funciones de diversos protocolos de red, así que es importante contar con un marco para entenderlo todo. Ese es precisamente el papel de estos modelos de red: proporcionar un marco para organizar las distintas funciones que hacen que una red funcione.
 
-El propósito de este capítulo es ofrecer una visión general de alto nivel sobre cómo viajan los datos desde el origen hasta el destino a través de una red. En el resto del libro, vamos a rellenar los huecos sobre los mecanismos concretos que hacen posible la comunicación en red, pero primero necesitamos un marco de referencia.
+El propósito de este capítulo es ofrecer una visión general de alto nivel sobre cómo viajan los datos desde el origen hasta el destino a través de una red. En el resto del curso, vamos a rellenar los huecos sobre los mecanismos concretos que hacen posible la comunicación en red, pero primero necesitamos un marco de referencia.
 
 ## 1. Modelos conceptuales de red
 
@@ -73,7 +73,7 @@ El modelo TCP/IP nació de una investigación y un desarrollo financiados por el
 
 Sin embargo, algunas RFC acaban siendo reconocidas como Internet Standards; son las RFC que definen los protocolos que componen el modelo TCP/IP. Por ejemplo, TCP, IP y otros protocolos conocidos como HTTPS son Internet Standards.
 
-El modelo TCP/IP definido en la RFC 1122 tiene cuatro capas; sin embargo, los ingenieros de red suelen hacer referencia a un modelo TCP/IP de cinco capas. La versión de cinco capas del modelo, como se muestra con borde grueso en la Tabla 4.2, es la que vamos a usar en este libro. La tabla enumera las capas del modelo TCP/IP, sus capas equivalentes del modelo OSI y algunos protocolos de ejemplo que pertenecen a cada capa del modelo.
+El modelo TCP/IP definido en la RFC 1122 tiene cuatro capas; sin embargo, los ingenieros de red suelen hacer referencia a un modelo TCP/IP de cinco capas. La versión de cinco capas del modelo, como se muestra con borde grueso en la Tabla 4.2, es la que vamos a usar en este curso. La tabla enumera las capas del modelo TCP/IP, sus capas equivalentes del modelo OSI y algunos protocolos de ejemplo que pertenecen a cada capa del modelo.
 
 | Modelo OSI | Modelo TCP/IP de cuatro capas | Modelo TCP/IP de cinco capas | Protocolos de ejemplo |
 | --- | --- | --- | --- |
@@ -130,11 +130,12 @@ En resumen, la Capa física del modelo TCP/IP define los requisitos físicos par
 
 Ethernet y Wi‑Fi no solo definen especificaciones físicas; también especifican cómo deben direccionarse y enviarse los datos a otro nodo conectado al mismo medio físico dentro de una LAN. La función de la Capa de enlace de datos es preparar los datos para su transmisión por ese medio físico para que puedan ser recibidos por el siguiente nodo del camino hacia el destino final. Ese siguiente nodo puede ser el propio destino final o el siguiente router del camino. El recorrido desde un nodo al siguiente se llama salto, y la función de la Capa de enlace de datos es proporcionar entrega de mensajes de salto a salto.
 
-Figura 2 ilustra este concepto de saltos en la red. PC1 envía un mensaje a SRV1, quizá una solicitud para acceder a un archivo alojado en el servidor. Para que el mensaje de PC1 llegue a SRV1, debe pasar por tres saltos en la red: desde PC1 a R1, desde R1 a R2 y desde R2 a SRV1. La función de la Capa de enlace de datos es reenviar el mensaje de un salto al siguiente hasta que llegue al host de destino: SRV1. Observad que un mensaje que atraviese un conmutador no cuenta como un salto. Lo veremos cuando estudiemos el switching Ethernet más adelante.
+La Figura 2 ilustra este concepto de saltos en la red. PC1 envía un mensaje a SRV1, quizá una solicitud para acceder a un archivo alojado en el servidor. Para que el mensaje de PC1 llegue a SRV1, debe pasar por tres saltos en la red: desde PC1 a R1, desde R1 a R2 y desde R2 a SRV1. La función de la Capa de enlace de datos es reenviar el mensaje de un salto al siguiente hasta que llegue al host de destino: SRV1. Observad que un mensaje que atraviese un conmutador no cuenta como un salto. Lo veremos cuando estudiemos el switching Ethernet más adelante.
 
 !!!note "Nota"
-    PC1, R1, R2 y SRV1 son ejemplos de nombres de host. Un nombre de host es un nombre usado para identificar cada dispositivo de la red. El patrón de nombres que vamos a usar en este libro será PCX para los PCs, SWX para los conmutadores, RX para los routers y SRVX para los servidores.
+    PC1, R1, R2 y SRV1 son ejemplos de nombres de host. Un nombre de host es un nombre usado para identificar cada dispositivo de la red. El patrón de nombres que vamos a usar en este curso será PCX para los PCs, SWX para los conmutadores, RX para los routers y SRVX para los servidores.
 
+![](img/UD3_2.png){text-align: justify}
 /// figura
 Un mensaje enviado desde PC1 a SRV1 recorre tres saltos por la red: desde PC1 a R1, desde R1 a R2 y desde R2 a SRV1. En cada salto, el mensaje se direcciona a la dirección MAC del siguiente salto. Un mensaje que atraviese un conmutador no cuenta como salto.
 ///
@@ -142,18 +143,14 @@ Un mensaje enviado desde PC1 a SRV1 recorre tres saltos por la red: desde PC1 a 
 La Capa de enlace de datos consigue esta entrega de salto a salto utilizando direcciones de control de acceso al medio (MAC), un tipo de dirección de red asignada a cada puerto de un dispositivo. En cada salto, el mensaje se envía a la dirección MAC del siguiente salto. En el primer salto, PC1 direcciona el mensaje a la dirección MAC de R1. En el segundo salto, R1 direcciona el mensaje a la dirección MAC de R2. En el salto final, R2 direcciona el mensaje a la dirección MAC de SRV1.
 
 !!!note "Nota"
-    Los papeles de SW1 y SW2 pueden parecer poco claros en Figura 2. Como se explicó en el capítulo 2, la función de un conmutador es proporcionar muchos puertos para que los hosts finales se conecten a la LAN. Para evitar saturar el diagrama, solo muestro un host final conectado a cada conmutador (PC1 a SW1 y SRV1 a SW2). Sin embargo, en la realidad podrían haber más de 40 hosts finales conectados a cada uno de ellos. En el capítulo 6, estudiaremos cómo funcionan los conmutadores.
+    Los papeles de SW1 y SW2 pueden parecer poco claros en Figura 2. Como se explicó anteriormente, la función de un conmutador es proporcionar muchos puertos para que los hosts finales se conecten a la LAN. Para evitar saturar el diagrama, solo muestro un host final conectado a cada conmutador (PC1 a SW1 y SRV1 a SW2). Sin embargo, en la realidad podrían haber más de 40 hosts finales conectados a cada uno de ellos. En el capítulo 6, estudiaremos cómo funcionan los conmutadores.
 
-![](img/UD3_2.png){text-align: justify}
-/// figura
-Un mensaje enviado desde PC1 a SRV1 recorre tres saltos por la red: desde PC1 a R1, desde R1 a R2 y desde R2 a SRV1. En cada salto, el mensaje se direcciona a la dirección MAC del siguiente salto. Un mensaje que atraviese un conmutador no cuenta como salto.
-///
 
 #### 3.1.3. Capa 3: la capa de red
 
 Acabamos de ver cómo se usa la Capa de enlace de datos para reenviar un mensaje de salto a salto hasta que llega al destino final. En cada salto, el mensaje se envía a la dirección MAC del siguiente salto. Sin embargo, aún necesitamos una forma de que el host de origen dirija el mensaje al host de destino final. Ese es el papel de la Capa de red: la entrega de extremo a extremo.
 
-El tipo de dirección usada en la Capa de red es la dirección de Protocolo de Internet (IP). Lo más probable es que ya hayáis oído hablar de las direcciones IP, aunque quizá no sepáis exactamente cómo funcionan. Vamos a verlas en el capítulo 7. Figura 3 muestra cómo PC1 direcciona un mensaje a SRV1 indicando la dirección IP de SRV1. La dirección IP de destino del mensaje permanece igual a lo largo de todo el recorrido, mientras que la dirección MAC de destino cambia en cada salto.
+El tipo de dirección usada en la Capa de red es la dirección de Protocolo de Internet (IP). Lo más probable es que ya hayáis oído hablar de las direcciones IP, aunque quizá no sepáis exactamente cómo funcionan. Vamos a verlas próximamente. La Figura 3 muestra cómo PC1 direcciona un mensaje a SRV1 indicando la dirección IP de SRV1. La dirección IP de destino del mensaje permanece igual a lo largo de todo el recorrido, mientras que la dirección MAC de destino cambia en cada salto.
 
 ![](img/UD3_3.png){text-align: justify}
 /// figura
@@ -163,7 +160,7 @@ PC1 direcciona un mensaje a la dirección IP de SRV1. La Capa 3 es responsable d
 !!!note "Nota"
     Hay dos versiones de IP en uso hoy en día: IP versión 4 (IPv4) e IP versión 6 (IPv6). Los ingenieros de red deben conocer ambas puesto que actualmente están en uso. IPv4 e IPv6 usan formatos de dirección distintos. Por ejemplo, una dirección IPv4 podría ser 203.0.113.255 y una dirección IPv6 podría ser 2001:db8:1:1:2fe3:1:32a:af01.
 
-Aunque IPv4 ha sido durante mucho tiempo la versión dominante de IP, IPv6 va ganando popularidad poco a poco. En los últimos años, la adopción de IPv6 se ha acelerado a medida que se agotan las direcciones IPv4 disponibles. Vamos a tratar ambos tipos de direcciones en este libro.
+Aunque IPv4 ha sido durante mucho tiempo la versión dominante de IP, IPv6 va ganando popularidad poco a poco. En los últimos años, la adopción de IPv6 se ha acelerado a medida que se agotan las direcciones IPv4 disponibles. Vamos a tratar ambos tipos de direcciones en este curso.
 
 Entender cómo funcionan juntas la Capa 2 y la Capa 3 para entregar un mensaje a su destino es un concepto fundamental que debéis entender. En este capítulo, os ofrezco una visión general de alto nivel; revisaremos estos conceptos y profundizaremos en ellos en capítulos posteriores de este volumen. En este punto, basta con conocer estos puntos:
 
@@ -181,7 +178,7 @@ Al igual que las capas 2 y 3, la Capa 4 también usa su propio esquema de direcc
 !!!note "Nota"
     Los números de puerto de la Capa 4 no están relacionados con los puertos físicos de un dispositivo a los que conectamos cables (que son un aspecto de la Capa 1, la Capa física). Son un concepto con el mismo nombre, pero diferente.
 
-La Figura 4 ilustra este concepto. Las capas 2 y 3 trabajan juntas para entregar el mensaje de PC1 a SRV1, y la Capa 4 lo entrega al proceso de aplicación adecuado en SRV1. SRV1 es un servidor que ofrece varios servicios a los clientes de la red. Es un servidor DNS que convierte nombres de sitios web en direcciones IP para los clientes (esto es lo que pasa cuando escribís manning.com en el navegador). También es un servidor web que usa HTTP y HTTPS para permitir que los clientes accedan a los sitios web que aloja. DNS, HTTP y HTTPS son protocolos de la Capa 7 (Capa de aplicación), y cada uno acepta mensajes usando un número de puerto de Capa 4 distinto.
+La Figura 4 ilustra este concepto. Las capas 2 y 3 trabajan juntas para entregar el mensaje de PC1 a SRV1, y la Capa 4 lo entrega al proceso de aplicación adecuado en SRV1. SRV1 es un servidor que ofrece varios servicios a los clientes de la red. Es un servidor DNS que convierte nombres de sitios web en direcciones IP para los clientes (esto es lo que pasa cuando escribís archlinux.org en el navegador, por ejemplo). También es un servidor web que usa HTTP y HTTPS para permitir que los clientes accedan a los sitios web que aloja. DNS, HTTP y HTTPS son protocolos de la Capa 7 (Capa de aplicación), y cada uno acepta mensajes usando un número de puerto de Capa 4 distinto.
 
 ![](img/UD3_4.png){text-align: justify}
 /// figura
@@ -189,7 +186,7 @@ Las capas 2 y 3 trabajan juntas para entregar el mensaje de PC1 a SRV1. En la Ca
 ///
 
 !!!note "Nota"
-    Las tres direcciones: la dirección MAC (Capa 2), la dirección IP (Capa 3) y el número de puerto (Capa 4), se incluyen en el mismo mensaje. Vamos a ver cómo funciona esto en la sección 4.3.2.
+    Las tres direcciones: la dirección MAC (Capa 2), la dirección IP (Capa 3) y el número de puerto (Capa 4), se incluyen en el mismo mensaje. 
 
 #### 3.1.5. TCP y UDP
 
@@ -202,7 +199,7 @@ Por ejemplo, TCP implementa comprobaciones para asegurarse de que cada mensaje l
 La Capa de aplicación es la interfaz entre las aplicaciones que se ejecutan en un ordenador y la red. Usando protocolos de Capa 7, una aplicación que se ejecute en un ordenador puede preparar un mensaje para enviarlo a través de la red. Ese mensaje podría ser, por ejemplo, una solicitud desde un navegador web para recuperar una página web alojada en un servidor web. Después, las capas 2, 3 y 4 son responsables de entregar ese mensaje a la aplicación adecuada en el ordenador de destino.
 
 !!!note "Nota"
-    Aunque el modelo TCP/IP solo tiene cinco capas (o cuatro, en la definición original), la Capa 7 es el término más común para la Capa de aplicación, así que es el que vamos a usar a lo largo de este libro. Esto se debe a la influencia del modelo OSI, tal como se mencionó antes.
+    Aunque el modelo TCP/IP solo tiene cinco capas (o cuatro, en la definición original), la Capa 7 es el término más común para la Capa de aplicación, así que es el que vamos a usar a lo largo de este curso. Esto se debe a la influencia del modelo OSI, tal como se mencionó antes.
 
 Los protocolos de Capa 7 como HTTPS no son aplicaciones en sí mismas; más bien, proporcionan servicios para que esas aplicaciones puedan comunicarse con aplicaciones de otros ordenadores a través de la red. Figura 1 muestra el proceso completo que permite a un navegador web de PC1 enviar un mensaje para solicitar una página web al servidor web que se ejecuta en SRV1. El proceso que sigue el mensaje para llegar a SRV1 es el siguiente:
 
@@ -212,7 +209,7 @@ Los protocolos de Capa 7 como HTTPS no son aplicaciones en sí mismas; más bien
 - Capa 2: PC1 dirige el mensaje al siguiente salto en la ruta hacia SRV1, que es R1. Después de recibir el mensaje, R1 lo reenvía al siguiente salto (R2) dirigiéndolo a la dirección MAC de R2. Finalmente, R2 reenvía el mensaje al destino final (SRV1) dirigiéndolo a la dirección MAC de SRV1. A diferencia de la dirección IP de destino del mensaje, la dirección MAC de destino cambia en cada salto.
 
 !!!note "Nota"
-    Reenviar un mensaje consiste en enviarlo al siguiente nodo del camino hacia el destino, ya sea el propio nodo de destino final o el siguiente router del camino hacia el destino. En capítulos posteriores de este volumen, vamos a estudiar cómo los routers y los conmutadores toman decisiones de reenvío para entregar los mensajes al destino correcto.
+    Reenviar un mensaje consiste en enviarlo al siguiente nodo del camino hacia el destino, ya sea el propio nodo de destino final o el siguiente router del camino hacia el destino. En unidades posteriores de este módulo vamos a estudiar cómo los routers y los swtiches toman decisiones de reenvío para entregar los mensajes al destino correcto.
 
 ### 3.2. Encapsulación y desencapsulación de datos
 
