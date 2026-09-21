@@ -20,7 +20,7 @@ Como introducción a los cambios de configuración en un dispositivo Cisco y a s
 
 ## 1. Shells: GUI y CLI
 
-Una shell es un programa informático que permite a un usuario interactuar con el ordenador. Es la interfaz entre el ordenador y el usuario y recibe ese nombre porque es la capa exterior del sistema operativo. Para configurar un router o un switch de Cisco, usáis una shell para enviar comandos al dispositivo. En esta sección, veremos los dos tipos de shell que usaremos en este libro.
+Una shell es un programa informático que permite a un usuario interactuar con el ordenador. Es la interfaz entre el ordenador y el usuario y recibe ese nombre porque es la capa exterior del sistema operativo. Para configurar un router o un switch de Cisco, usáis una shell para enviar comandos al dispositivo. En esta sección, veremos los dos tipos de shell que usaremos en este módulo.
 
 ### 1.1. GUI y CLI
 
@@ -30,7 +30,7 @@ Hay dos tipos principales de shell: la interfaz gráfica de usuario (GUI, pronun
 
 Una GUI permite a un usuario manipular el ordenador mediante una interfaz gráfica. Independientemente de vuestro nivel de experiencia o inexperiencia con los ordenadores, estoy seguro de que ya habéis usado una GUI antes. Si tenéis un PC con Windows, la GUI es la interfaz con la que interactuáis al abrir, cerrar y mover ventanas, o al abrir el menú Inicio para buscar un programa, etc. Ese es el shell de Windows. Si tenéis un smartphone, usáis una GUI para interactuar con el teléfono y sus aplicaciones.
 
-Aunque la mayor parte del examen CCNA no se centra en las GUIs, se espera que conozcáis al menos una GUI para el examen: la interfaz gráfica del controlador inalámbrico de Cisco (WLC). Veremos las redes inalámbricas y cómo configurar un WLC mediante la GUI en la parte 4 del volumen 2 de este libro. La Figura 1 muestra una captura de pantalla de la GUI de un WLC de Cisco.
+Aunque la mayor parte del examen CCNA no se centra en las GUIs, se espera que conozcáis al menos una GUI para el examen: la interfaz gráfica del controlador inalámbrico de Cisco (WLC). Veremos las redes inalámbricas y cómo configurar un WLC mediante la GUI más adelante. La Figura 1 muestra una captura de pantalla de la GUI de un WLC de Cisco.
 
 ![](img/UD4_1.png){text-align: justify}
 /// figura
@@ -229,7 +229,7 @@ También podéis usar el teclado para ver los comandos ejecutados previamente, q
 
 ### 2.4. Ayuda sensible al contexto
 
-Tendréis que aprender muchos comandos distintos para prepararos para el CCNA, y esos comandos son solo una fracción de todos los comandos disponibles en Cisco IOS. Para el examen CCNA, es importante practicar y familiarizarse con los distintos comandos que veremos en este libro. Sin embargo, Cisco IOS tiene una función llamada ayuda sensible al contexto que puede ayudaros si habéis olvidado un comando.
+Estos comandos son solo una fracción de todos los comandos disponibles en Cisco IOS. Es importante practicar y familiarizarse con los distintos comandos que iremos viendo. Sin embargo, Cisco IOS tiene una función llamada ayuda sensible al contexto que puede ayudaros si habéis olvidado un comando.
 
 #### 2.4.1. Visualización de los comandos disponibles
 
