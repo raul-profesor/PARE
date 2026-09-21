@@ -46,10 +46,8 @@ Una CLI es una interfaz basada en texto que permite controlar e interactuar con 
 La CLI del símbolo del sistema de un PC con Windows, accesible desde la GUI del shell de Windows.
 ///
 
-Para el examen CCNA, debéis estar familiarizados con la CLI de los routers y switches de Cisco que ejecutan Cisco IOS. Para quienes no tienen experiencia previa con una CLI (como yo cuando empecé a preparar el CCNA en 2018), esto puede parecer intimidante. Sin embargo, al final de este capítulo, espero que veáis que navegar por la CLI de Cisco IOS no es tan complicado.
+Para el examen CCNA, debéis estar familiarizados con la CLI de los routers y switches de Cisco que ejecutan Cisco IOS. Para quienes no tienen experiencia previa con una CLI, esto puede parecer intimidante. Sin embargo, al final de esta sección, espero que veáis que navegar por la CLI de Cisco IOS no es tan complicado.
 
-!!!note "Nota"
-    Durante los dos volúmenes de este libro, presentaremos diversos comandos de CLI para configurar los protocolos que debéis conocer para el examen CCNA. La práctica práctica con esos comandos, por ejemplo usando Cisco Packet Tracer, es esencial para prepararse para el examen CCNA.
 
 ### 1.2. Acceso a la CLI de un dispositivo Cisco
 
@@ -107,8 +105,6 @@ El valor apropiado para cada ajuste depende del dispositivo que estéis configur
 Cómo usar PuTTY para acceder a la CLI de un dispositivo Cisco mediante el puerto de consola. En la pestaña Serial, configurad estos ajustes y luego pulsad Open: (1) Speed (baud): 9600 bits por segundo, (2) Data bits: 8, (3) Stop bits: 1, (4) Parity: None, (5) Flow control: None.
 ///
 
-!!!note "Nota"
-    No os examinarán sobre cómo usar PuTTY u otro emulador de terminal para conectaros a un puerto de consola en el examen CCNA, pero incluyo esta información por si tenéis hardware físico con el que practicar. Para practicar en laboratorio de forma práctica para el CCNA, os recomiendo Cisco Packet Tracer, en el que simplemente podéis hacer clic sobre el icono de un dispositivo para acceder a la CLI.
 
 ## 2. Navegación por la CLI de Cisco IOS
 
@@ -123,9 +119,9 @@ no
 ```
 
 !!!note "Nota"
-    En la salida de la CLI mostrada en este libro, el texto en negrita indica los comandos tecleados por el usuario. El texto normal indica la salida mostrada por el dispositivo.
+    En la salida de la CLI mostrada en este texto, el texto en negrita indica los comandos tecleados por el usuario. El texto normal indica la salida mostrada por el dispositivo.
 
-El diálogo de configuración del sistema es un asistente paso a paso que permite hacer una configuración sencilla del dispositivo sin necesidad de conocer los comandos de la CLI de Cisco IOS. Esta función normalmente no se usa y no es algo que necesitéis conocer para el CCNA, así que os recomiendo omitirla escribiendo no y pulsando la tecla Enter (las opciones [sí/no] se muestran entre corchetes).
+El diálogo de configuración del sistema es un asistente paso a paso que permite hacer una configuración sencilla del dispositivo sin necesidad de conocer los comandos de la CLI de Cisco IOS. Esta función normalmente no se usa y no es algo que necesitéis conocer, así que os recomiendo omitirla escribiendo no y pulsando la tecla Enter (las opciones `[sí/no]` se muestran entre corchetes).
 
 ### 2.1. Los modos EXEC
 
@@ -146,7 +142,7 @@ Router>show clock
 ```
 
 !!!note "Nota"
-    Hay una variedad de comandos show que iréis conociendo a lo largo de este libro. Aprender los comandos show disponibles y cómo interpretar su salida es una parte fundamental del estudio para el CCNA.
+    Hay una variedad de comandos show que iréis conociendo a lo largo de este texto. Aprender los comandos show disponibles y cómo interpretar su salida es una parte fundamental del estudio para el CCNA.
 
 Comprobar la hora claramente no es intrusivo, por lo que el comando show clock está disponible en el modo EXEC de usuario. Sin embargo, un comando más intrusivo como reload, que reinicia el dispositivo, no funciona en el modo EXEC de usuario, como se muestra en el ejemplo siguiente. El router muestra un mensaje de error (un signo de porcentaje indica un mensaje de IOS):
 
@@ -181,9 +177,9 @@ Enter configuration commands, one per line. End with CNTL/Z.
 Router(config)#
 ```
 
-Aunque solo hay dos modos EXEC en la CLI de Cisco (modo EXEC de usuario y modo EXEC privilegiado), existen varios modos de configuración que examinaremos a lo largo de este libro. En este capítulo, solo veremos el primero: el modo de configuración global. Desde el modo de configuración global, podéis configurar varias funciones como el nombre del dispositivo y las contraseñas. Desde este modo, también podéis acceder a los otros modos de configuración que veremos en capítulos posteriores de los dos volúmenes del libro.
+Aunque solo hay dos modos EXEC en la CLI de Cisco (modo EXEC de usuario y modo EXEC privilegiado), existen varios modos de configuración que examinaremos a lo largo de este curso. En este capítulo, solo veremos el primero: el modo de configuración global. Desde el modo de configuración global, podéis configurar varias funciones como el nombre del dispositivo y las contraseñas. Desde este modo, también podéis acceder a los otros modos de configuración que veremos en temas posteriores del curso.
 
-Una configuración que podéis hacer desde el modo de configuración global es cambiar el nombre del dispositivo con el comando hostname, como se muestra en el ejemplo siguiente. Fijaos que al ejecutar el comando, el indicador cambia de Router a R1, lo que indica que el nombre del host ha cambiado. El comando tiene efecto de inmediato. Configurar un nombre único en cada dispositivo de la red es esencial para poder identificarlos con facilidad. Para este libro, usaremos identificadores numéricos sencillos (R1, R2, etc.). En una red empresarial real, a menudo se incluye otra información, como la ubicación del dispositivo, en el nombre del host (por ejemplo, Office1_R1):
+Una configuración que podéis hacer desde el modo de configuración global es cambiar el nombre del dispositivo con el comando hostname, como se muestra en el ejemplo siguiente. Fijaos que al ejecutar el comando, el indicador cambia de Router a R1, lo que indica que el nombre del host ha cambiado. El comando tiene efecto de inmediato. Configurar un nombre único en cada dispositivo de la red es esencial para poder identificarlos con facilidad. Para esta unidad, usaremos identificadores numéricos sencillos (R1, R2, etc.). En una red empresarial real, a menudo se incluye otra información, como la ubicación del dispositivo, en el nombre del host (por ejemplo, Oficina_R1):
 
 ```text
 Router(config)#hostname R1
@@ -426,7 +422,7 @@ enable password 7 0307580507
 !!!note "Nota"
     Fijaos que la enable password sigue apareciendo en la configuración. Si se configuran tanto la enable password como la enable secret, solo se podrá usar la enable secret. El comando enable password sigue en la configuración, pero no puede usarse para acceder al modo EXEC privilegiado.
 
-El comando enable secret genera un hash de la contraseña especificada usando el algoritmo de hashing predeterminado del dispositivo. Hay varios algoritmos de hashing que pueden usarse para generar el hash y la disponibilidad de estos algoritmos varía según la versión de IOS del dispositivo. En la plataforma que estoy usando para esta demostración, el tipo de algoritmo es scrypt (pronunciado “S-crypt”), también conocido como tipo 9 (como indica el 9 antes del hash en la salida del ejemplo anterior). En muchos dispositivos antiguos, el algoritmo predeterminado es Message Digest 5 (MD5), también conocido como tipo 5. El tipo 5 no es tan seguro como el tipo 9, así que el tipo 9 debe usarse siempre que sea posible. En el capítulo 11 del volumen 2, veremos los distintos algoritmos de hashing soportados por Cisco IOS y cómo configurar secretos usando algoritmos específicos.
+El comando enable secret genera un hash de la contraseña especificada usando el algoritmo de hashing predeterminado del dispositivo. Hay varios algoritmos de hashing que pueden usarse para generar el hash y la disponibilidad de estos algoritmos varía según la versión de IOS del dispositivo. En la plataforma que estoy usando para esta demostración, el tipo de algoritmo es scrypt (pronunciado “S-crypt”), también conocido como tipo 9 (como indica el 9 antes del hash en la salida del ejemplo anterior). En muchos dispositivos antiguos, el algoritmo predeterminado es Message Digest 5 (MD5), también conocido como tipo 5. El tipo 5 no es tan seguro como el tipo 9, así que el tipo 9 debe usarse siempre que sea posible. 
 
 ## 5. Resumen
 
