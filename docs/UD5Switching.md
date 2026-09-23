@@ -4,7 +4,7 @@ lang: es
 
 # Conmutación Ethernet
 
-Este capítulo cubre:
+Este sección cubre:
 
 - La definición de una LAN.
 - El contenido de la cabecera y del trailer de Ethernet.
@@ -13,9 +13,9 @@ Este capítulo cubre:
 - Cómo usan los hosts de red ARP para conocer la dirección MAC de otros hosts.
 - La utilidad ping.
 
-En este capítulo, veremos la conmutación Ethernet en LAN, que es el proceso que usan los switches para reenviar tramas a sus destinos correctos dentro de una LAN. Una trama es un PDU de Capa 2, que incluye la cabecera, el trailer y la carga útil de la Capa 2; ya tratamos los PDU en el capítulo 4. Cuando un host de red envía una trama por uno de sus puertos, es tarea del switch asegurarse de que la trama llegue a su destino correcto.
+En esta sección, veremos la conmutación Ethernet en LAN, que es el proceso que usan los switches para reenviar tramas a sus destinos correctos dentro de una LAN. Una trama es un PDU de Capa 2, que incluye la cabecera, el trailer y la carga útil de la Capa 2; ya tratamos los PDU con anterioridad. Cuando un host de red envía una trama por uno de sus puertos, es tarea del switch asegurarse de que la trama llegue a su destino correcto.
 
-Este capítulo cubre material del dominio 1.0 de los temas del examen CCNA: Fundamentos de red. En concreto, veremos los siguientes temas:
+Este sección cubre material del dominio 1.0 de los temas del examen CCNA: Fundamentos de red. En concreto, veremos los siguientes temas:
 
 - 1.13 Describir conceptos de conmutación
   - 1.13a Aprendizaje y envejecimiento de MAC
@@ -23,11 +23,11 @@ Este capítulo cubre material del dominio 1.0 de los temas del examen CCNA: Fund
   - 1.13c Inundación de tramas
   - 1.13d Tabla de direcciones MAC
 
-A menudo se dice que los switches son dispositivos de Capa 2 o que operan en la Capa 2. La razón es que usan la información de la cabecera de la Capa 2 (la cabecera Ethernet) para tomar decisiones de reenvío. Esto contrasta con los routers, que usan la información de la cabecera de la Capa 3 (la cabecera IP) para tomar decisiones de reenvío. Veremos cómo reenvían los routers el tráfico de red entre LANs en la parte 2 de este libro, pero por ahora, nos centraremos en cómo reenvían los switches el tráfico dentro de una LAN.
+A menudo se dice que los switches son dispositivos de Capa 2 o que operan en la Capa 2. La razón es que usan la información de la cabecera de la Capa 2 (la cabecera Ethernet) para tomar decisiones de reenvío. Esto contrasta con los routers, que usan la información de la cabecera de la Capa 3 (la cabecera IP) para tomar decisiones de reenvío. Veremos cómo reenvían los routers el tráfico de red entre LANs en la parte 2 de este módulo, pero por ahora, nos centraremos en cómo reenvían los switches el tráfico dentro de una LAN.
 
 ## 1. Redes de área local
 
-En el capítulo 2, definí una red de área local (LAN) como un grupo de dispositivos interconectados en un área limitada, como una oficina, y afirmé que la función de un switch es conectar dispositivos dentro de una LAN. La definición exacta de una LAN puede variar según el contexto, pero, para este tema, la forma en que están conectados los dispositivos es más importante que la distancia física real entre ellos. La Figura 1 demuestra este concepto.
+En el sección 2, definí una red de área local (LAN) como un grupo de dispositivos interconectados en un área limitada, como una oficina, y afirmé que la función de un switch es conectar dispositivos dentro de una LAN. La definición exacta de una LAN puede variar según el contexto, pero, para este tema, la forma en que están conectados los dispositivos es más importante que la distancia física real entre ellos. La Figura 1 demuestra este concepto.
 
 ![](img/UD5_1.png){text-align: justify}
 /// figura
@@ -38,7 +38,7 @@ Hay dos oficinas en el diagrama, así que podríais decir que hay dos LANs, lo c
 
 En la Oficina B, sin embargo, SW3 y SW4 están conectados directamente entre sí. Los hosts finales conectados a un switch pueden comunicarse con los hosts finales conectados al otro switch sin que los mensajes tengan que pasar por un router. SW3, SW4 y todos los hosts finales conectados a ellos forman una sola LAN.
 
-Otro nombre para una LAN es dominio de Capa 2: una parte de una red donde se conmuta tráfico de tramas y los hosts conectados al switch o switches pueden comunicarse entre sí sin usar un router. Manteneos esta definición en mente durante todo este capítulo; examinaremos cómo reenvían los switches las tramas dentro de un dominio de Capa 2.
+Otro nombre para una LAN es dominio de Capa 2: una parte de una red donde se conmuta tráfico de tramas y los hosts conectados al switch o switches pueden comunicarse entre sí sin usar un router. Manteneos esta definición en mente durante todo este sección; examinaremos cómo reenvían los switches las tramas dentro de un dominio de Capa 2.
 
 ## 2. La cabecera y el trailer de Ethernet
 
@@ -55,7 +55,7 @@ El Preamble y el SFD se envían con cada trama Ethernet para permitir que el dis
 
 El dispositivo que envía una trama Ethernet facilita esto enviando el Preamble y el SFD. El Preamble tiene 7 bytes (56 bits; recordad que 1 byte son 8 bits) y es simplemente una serie de 1s y 0s alternados, como este: 10101010. Luego, el SFD tiene 1 byte y señala que el Preamble ha terminado y que la trama va a comenzar. El patrón de bits del SFD es 10101011.
 
-La razón por la que el Preamble y el SFD no se consideran parte de la trama Ethernet, aunque se envían con cada trama, es que son una función exclusiva de la Capa 1, la Capa física. No contienen información que influya en la decisión que toma el dispositivo receptor sobre la trama. Como se mencionó en capítulos anteriores, Ethernet incluye especificaciones tanto en la Capa 1 como en la Capa 2, pero los aspectos de la Capa 1 de Ethernet no se consideran parte de una trama, que es un concepto de Capa 2.
+La razón por la que el Preamble y el SFD no se consideran parte de la trama Ethernet, aunque se envían con cada trama, es que son una función exclusiva de la Capa 1, la Capa física. No contienen información que influya en la decisión que toma el dispositivo receptor sobre la trama. Como se mencionó en seccións anteriores, Ethernet incluye especificaciones tanto en la Capa 1 como en la Capa 2, pero los aspectos de la Capa 1 de Ethernet no se consideran parte de una trama, que es un concepto de Capa 2.
 
 ### 2.2. Destination y Source
 
@@ -88,18 +88,20 @@ Como hay más dígitos disponibles, el hexadecimal puede expresar valores grande
 !!!note "Nota"
     Podéis usar un prefijo para indicar si un número es decimal o hexadecimal: 0d para decimal y 0x para hexadecimal. Esto puede ser útil en redes porque usamos varios sistemas: binario, decimal y hexadecimal. Diez en decimal es 10, pero 10 en hexadecimal equivale a 16 en decimal. Para diferenciarlos claramente, podéis escribir 0d10 o 0x10.
 
-En la parte 5 de este libro (IPv6), practicaremos la conversión entre decimal, hexadecimal y binario. Por ahora, no es necesario; basta con entender que las direcciones MAC suelen escribirse en hexadecimal.
+Más adelante practicaremos la conversión entre decimal, hexadecimal y binario. Por ahora, no es necesario; basta con entender que las direcciones MAC suelen escribirse en hexadecimal.
 
 #### 2.2.2. Características de las direcciones MAC
 
-Ya hemos visto dos características de las direcciones MAC: tienen 6 bytes de longitud y normalmente se escriben en hexadecimal. Al escribirlas en hexadecimal, podemos expresar la dirección con menos caracteres; las direcciones MAC se escriben como 12 caracteres hexadecimales en lugar de 48 bits (1s y 0s). Los detalles sobre la notación de esos 12 caracteres pueden variar. A continuación, tenéis una sola dirección MAC escrita con tres convenciones de notación distintas. Por supuesto, como es un libro del CCNA, seguiré la convención de Cisco para escribir direcciones MAC, pero merece la pena saber que se pueden escribir de otras formas. Para compararlas, también he incluido la dirección escrita en binario; estoy seguro de que estaréis de acuerdo en que las representaciones hexadecimales son más fáciles de leer:
+Ya hemos visto dos características de las direcciones MAC: tienen 6 bytes de longitud y normalmente se escriben en hexadecimal. Al escribirlas en hexadecimal, podemos expresar la dirección con menos caracteres; las direcciones MAC se escriben como 12 caracteres hexadecimales en lugar de 48 bits (1s y 0s). Los detalles sobre la notación de esos 12 caracteres pueden variar.
+
+A continuación, tenéis una sola dirección MAC escrita con tres convenciones de notación distintas. Por supuesto, como es un módulo del CCNA, seguiré la convención de Cisco para escribir direcciones MAC, pero merece la pena saber que se pueden escribir de otras formas. Para compararlas, también he incluido la dirección escrita en binario; estoy seguro de que estaréis de acuerdo en que las representaciones hexadecimales son más fáciles de leer:
 
 - 0cf5.a452.b101 (usado por Cisco IOS)
 - 0C-F5-A4-52-B1-01 (usado por Windows)
 - 0c:f5:a4:52:b1:01 (usado por macOS)
 - 000011001111010110100100010100101011000100000001 (binario)
 
-A diferencia de las direcciones IP (que trataremos en el capítulo 7), las direcciones MAC no las asigna el administrador o ingeniero de red que configura el dispositivo. En su lugar, cada puerto de un dispositivo de red tiene una dirección MAC asignada por el fabricante. Por esta razón, otro nombre para una dirección MAC es burned-in address (BIA): está "grabada" en el puerto físico. Una dirección MAC es globalmente única: no debería compartirse con ningún otro puerto de ningún otro dispositivo del mundo.
+A diferencia de las direcciones IP (que también veremos más adelante), las direcciones MAC no las asigna el administrador o ingeniero de red que configura el dispositivo. En su lugar, cada puerto de un dispositivo de red tiene una dirección MAC asignada por el fabricante. Por esta razón, otro nombre para una dirección MAC es burned-in address (BIA): está "grabada" en el puerto físico. Una dirección MAC es globalmente única: no debería compartirse con ningún otro puerto de ningún otro dispositivo del mundo.
 
 !!!note "Nota"
     Es posible sobrescribir una dirección MAC asignada por el fabricante configurándola manualmente, pero es extremadamente raro hacerlo.
@@ -125,11 +127,11 @@ Resumamos las direcciones MAC antes de seguir adelante:
 El campo Type/Length es un campo de 2 bytes que puede usarse bien para indicar el tipo del paquete encapsulado (por ejemplo, un paquete IPv4 o IPv6) o para indicar la longitud del paquete encapsulado (en bytes). Hay razones históricas por las que este campo puede usarse para dos propósitos, pero ambos usos forman parte oficialmente del estándar Ethernet. En la actualidad, en casi todos los casos, este campo se usa para indicar el tipo del paquete encapsulado: en lugar de indicar la longitud, el final de la trama se indica mediante una señal especial después de la trama.
 
 !!!note "Nota"
-    El estándar original IEEE 802.3 usaba el campo Type/Length exclusivamente para indicar la longitud del paquete encapsulado, y se usaba una cabecera adicional para indicar el tipo de protocolo encapsulado: la cabecera Logical Link Control (LLC), a veces con una extensión adicional de Subnetwork Access Protocol (SNAP). Sin embargo, esto queda fuera del alcance del examen CCNA.
+    El estándar original IEEE 802.3 usaba el campo Type/Length exclusivamente para indicar la longitud del paquete encapsulado, y se usaba una cabecera adicional para indicar el tipo de protocolo encapsulado: la cabecera Logical Link Control (LLC), a veces con una extensión adicional de Subnetwork Access Protocol (SNAP). Sin embargo, esto queda fuera del alcance del curso.
 
 Un valor de 1500 (decimal) o menos en este campo significa que indica la longitud del paquete encapsulado en bytes. Por ejemplo, si el valor es 1500, significa que el paquete encapsulado tiene 1500 bytes de longitud.
 
-Un valor de 1536 o superior en este campo indica el tipo del paquete encapsulado, que normalmente es IPv4 o IPv6. Cuando se usa para indicar el tipo del paquete encapsulado, este campo se llama EtherType. Para referencia, aquí tenéis los valores de este campo para IPv4 e IPv6, que son temas importantes en el examen CCNA (normalmente se usa la notación hexadecimal; incluyo los números decimales para compararlos):
+Un valor de 1536 o superior en este campo indica el tipo del paquete encapsulado, que normalmente es IPv4 o IPv6. Cuando se usa para indicar el tipo del paquete encapsulado, este campo se llama EtherType. Para referencia, aquí tenéis los valores de este campo para IPv4 e IPv6:
 
 - IPv4: 0x0800 (0d2048)
 - IPv6: 0x86DD (0d34525)
@@ -172,9 +174,9 @@ La Figura 3 muestra el estado de la red después de que los switches han aprendi
 
 Los puertos de los dispositivos Cisco tienen un nombre que indica su velocidad máxima soportada (Ethernet = 10 Mbps, FastEthernet = 100 Mbps, GigabitEthernet = 1 Gbps, TenGigabitEthernet = 10 Gbps), seguido de uno a tres números. El número de números que se usan depende del modelo del dispositivo.
 
-En este libro, usaré un sistema de dos números (X/Y), donde el primer número es la ranura del dispositivo y el segundo es el número de puerto dentro de esa ranura. Una ranura es un grupo de puertos de un dispositivo de red. En muchos casos, los puertos de una ranura son modulares, es decir, puedes insertar módulos con distintos tipos de puertos según tus necesidades. Además, acortaré los nombres para usar solo la primera letra: E = Ethernet, F = FastEthernet, G = GigabitEthernet, T = TenGigabitEthernet.
+En este módulo, usaré un sistema de dos números (X/Y), donde el primer número es la ranura del dispositivo y el segundo es el número de puerto dentro de esa ranura. Una ranura es un grupo de puertos de un dispositivo de red. En muchos casos, los puertos de una ranura son modulares, es decir, puedes insertar módulos con distintos tipos de puertos según tus necesidades. Además, acortaré los nombres para usar solo la primera letra: E = Ethernet, F = FastEthernet, G = GigabitEthernet, T = TenGigabitEthernet.
 
-Además, los números de puerto en los switches físicos de Cisco comienzan en 1 (G0/1, G0/2, G0/3, etc.). Sin embargo, en la mayoría de ejemplos de este libro usaré dispositivos virtuales ejecutados en el software de emulación de Cisco CML (Cisco Modeling Labs), en el que los números de puerto comienzan en 0 (G0/0, G0/1, G0/2, etc.).
+Además, los números de puerto en los switches físicos de Cisco comienzan en 1 (G0/1, G0/2, G0/3, etc.). Sin embargo, en la mayoría de ejemplos de este módulo usaré dispositivos virtuales ejecutados en el software de emulación de Cisco CML (Cisco Modeling Labs), en el que los números de puerto comienzan en 0 (G0/0, G0/1, G0/2, etc.).
 
 ### 3.2. Inundación y reenvío de tramas
 
@@ -213,11 +215,11 @@ La respuesta de PC3 a PC1 también es una trama unicast, pero esta vez tanto SW1
 - Unicast desconocida (inundar): el switch enviará la trama por todos los puertos excepto por el que la recibió.
 
 !!!note "Nota"
-    Un switch es transparente para sus hosts conectados; PC1 y PC3 dirigen sus mensajes directamente entre sí, no a SW1 ni a SW2, exactamente igual que si estuvieran conectados directamente por un único cable. Por eso, un mensaje que pasa a través de un switch no se considera un salto, como se dijo en el capítulo 4. Además, los switches no modifican las tramas que conmutan de ninguna manera; simplemente las reenvían o las inundan según corresponda.
+    Un switch es transparente para sus hosts conectados; PC1 y PC3 dirigen sus mensajes directamente entre sí, no a SW1 ni a SW2, exactamente igual que si estuvieran conectados directamente por un único cable. Por eso, un mensaje que pasa a través de un switch no se considera un salto, como se dijo en el sección 4. Además, los switches no modifican las tramas que conmutan de ninguna manera; simplemente las reenvían o las inundan según corresponda.
 
 ### 3.3. La tabla de direcciones MAC en Cisco IOS
 
-El comando para ver la tabla de direcciones MAC de un switch Cisco es show mac address-table (en modo EXEC de usuario o EXEC privilegiado). Como muestra el ejemplo siguiente, hay algunas columnas más además de la dirección MAC y el puerto. La columna Type indica si la dirección MAC se aprendió dinámicamente (DYNAMIC) o se configuró estáticamente (STATIC). La columna Vlan indica en qué VLAN virtual se aprendió cada dirección MAC. Veremos VLANs en el capítulo 12. Por ahora, solo tened en cuenta que todas las direcciones MAC están en la VLAN 1 por defecto:
+El comando para ver la tabla de direcciones MAC de un switch Cisco es show mac address-table (en modo EXEC de usuario o EXEC privilegiado). Como muestra el ejemplo siguiente, hay algunas columnas más además de la dirección MAC y el puerto. La columna Type indica si la dirección MAC se aprendió dinámicamente (DYNAMIC) o se configuró estáticamente (STATIC). La columna Vlan indica en qué VLAN virtual se aprendió cada dirección MAC. Veremos VLANs en el sección 12. Por ahora, solo tened en cuenta que todas las direcciones MAC están en la VLAN 1 por defecto:
 
 ```text
 SW1# show mac address-table                      
@@ -238,7 +240,7 @@ Vlan    Mac Address       Type        Ports
 !!!note "Nota"
     Cisco abrevia los puertos GigabitEthernet como “GiX/X”, no como “GX/X”.
 
-Por encima de las direcciones MAC de PC1, PC2, PC3 y PC4 del ejemplo anterior, hay una dirección MAC adicional en la tabla de direcciones MAC de SW1 (5254.0017.7cd2). Es la dirección MAC del puerto G0/0 de SW2. Aunque las direcciones MAC de los puertos de un switch no desempeñan un papel cuando reenvía tráfico entre hosts, los switches intercambian mensajes entre sí y aprenden las direcciones MAC de cada uno en el proceso. Veremos algunos de estos mensajes intercambiados entre switches en este libro.
+Por encima de las direcciones MAC de PC1, PC2, PC3 y PC4 del ejemplo anterior, hay una dirección MAC adicional en la tabla de direcciones MAC de SW1 (5254.0017.7cd2). Es la dirección MAC del puerto G0/0 de SW2. Aunque las direcciones MAC de los puertos de un switch no desempeñan un papel cuando reenvía tráfico entre hosts, los switches intercambian mensajes entre sí y aprenden las direcciones MAC de cada uno en el proceso. Veremos algunos de estos mensajes intercambiados entre switches en este módulo.
 
 Aunque normalmente podéis dejar que un switch aprenda solo las direcciones MAC y que las borre según sea necesario (tras 5 minutos de inactividad), también podéis borrar manualmente las direcciones MAC dinámicas de la tabla de un switch con el comando clear mac address-table dynamic. El ejemplo siguiente lo muestra; borro la tabla de direcciones MAC de SW1 y luego la vuelvo a ver, pero está vacía:
 
@@ -273,7 +275,7 @@ ARP permite a un host aprender la dirección MAC de otro host de la LAN. ARP imp
 Si una solicitud ARP es broadcast (dirigida a todos los demás hosts de la LAN), ¿cómo especifica el emisor a qué host quiere aprender su dirección MAC? Lo hace especificando la dirección IP del host del que quiere conocer la dirección MAC. La Figura 6 demuestra esto. PC1 quiere enviar un mensaje a PC3, pero no conoce la dirección MAC de PC3. Por tanto, PC1 usa ARP para aprender la dirección MAC de PC3.
 
 !!!note "Nota"
-    Las direcciones IP de PC1, PC2, PC3 y PC4 se muestran en la Figura 6, pero no es necesario entender todavía la estructura de las direcciones IP. Veremos las direcciones IP en el siguiente capítulo.
+    Las direcciones IP de PC1, PC2, PC3 y PC4 se muestran en la Figura 6, pero no es necesario entender todavía la estructura de las direcciones IP. Veremos las direcciones IP en el siguiente sección.
 
 ![](img/UD5_6.png){text-align: justify}
 /// figura
@@ -299,16 +301,16 @@ Ahora PC1 podrá enviar su mensaje en una trama dirigida a la dirección MAC de 
 Fijaos que, gracias al intercambio de solicitud y respuesta ARP, SW1 y SW2 ya han aprendido las direcciones MAC de PC1 y PC3 (el proceso de aprendizaje de MAC no se muestra en la Figura 6 para centrar la atención en el proceso ARP). Por tanto, cuando PC1 envía su mensaje a PC3, los switches no lo inundarán: simplemente lo reenviarán por el puerto apropiado porque es un mensaje unicast conocido.
 
 !!!note "Nota"
-    Los mensajes unicast pueden entenderse como uno a uno y los broadcast como uno a todos. Además, existe otro tipo de mensaje llamado multicast, que es uno a varios (pero no necesariamente a todos). Veremos los mensajes multicast en capítulos posteriores de este volumen y del volumen 2.
+    Los mensajes unicast pueden entenderse como uno a uno y los broadcast como uno a todos. Además, existe otro tipo de mensaje llamado multicast, que es uno a varios (pero no necesariamente a todos). Veremos los mensajes multicast en seccións posteriores de este volumen y del volumen 2.
 
-Ya hemos visto cómo aprenden los switches las direcciones MAC, cómo inundan y reenvían las tramas, y cómo los hosts aprenden la dirección MAC de otro host de la LAN enviando una solicitud ARP a la dirección IP del host, pero aún falta una pieza más. ¿Cómo sabe un host la dirección IP del host al que quiere enviar un mensaje? La respuesta es: “depende.” Veremos algunas posibilidades en este libro; por ejemplo, el Sistema de nombres de dominio (DNS), que se usa para convertir nombres de host (por ejemplo, manning.com) en direcciones IP. Como otra opción, el usuario del dispositivo podría especificar manualmente la dirección IP a la que quiere enviar un mensaje, como al usar ping para probar la conectividad.
+Ya hemos visto cómo aprenden los switches las direcciones MAC, cómo inundan y reenvían las tramas, y cómo los hosts aprenden la dirección MAC de otro host de la LAN enviando una solicitud ARP a la dirección IP del host, pero aún falta una pieza más. ¿Cómo sabe un host la dirección IP del host al que quiere enviar un mensaje? La respuesta es: “depende.” Veremos algunas posibilidades en este módulo; por ejemplo, el Sistema de nombres de dominio (DNS), que se usa para convertir nombres de host (por ejemplo, manning.com) en direcciones IP. Como otra opción, el usuario del dispositivo podría especificar manualmente la dirección IP a la que quiere enviar un mensaje, como al usar ping para probar la conectividad.
 
 !!!note "Nota"
     Un dispositivo no tiene que usar ARP cada vez que envía un mensaje. Después de usar ARP para aprender la dirección MAC de otro dispositivo, almacena esa información en su tabla ARP para usos futuros.
 
 ## 5. Ping
 
-Ping es una utilidad de software que prueba la alcanzabilidad de hosts a través de una red. No está directamente relacionada con el tema de la conmutación Ethernet, pero es una herramienta a la que me referiré a lo largo del libro, y además sirve para completar la pieza final del puzzle de este capítulo: cómo sabe un host origen la dirección IP del host destino al que quiere enviar un mensaje.
+Ping es una utilidad de software que prueba la alcanzabilidad de hosts a través de una red. No está directamente relacionada con el tema de la conmutación Ethernet, pero es una herramienta a la que me referiré a lo largo del módulo, y además sirve para completar la pieza final del puzzle de este sección: cómo sabe un host origen la dirección IP del host destino al que quiere enviar un mensaje.
 
 Para enviar un mensaje ping a otro host de la red, el comando es ping ip-address (esto es válido en Cisco IOS, Windows, Linux, macOS, etc.). La dirección IP del host de destino se especifica directamente en el comando; así es como el host origen conoce la dirección IP del host destino.
 

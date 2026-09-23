@@ -1782,7 +1782,7 @@
                   
 
 <h1 id="cisco-ios-cli">Cisco IOS CLI</h1>
-<p>Este capítulo cubre:</p>
+<p>Esta sección cubre:</p>
 <ul>
 <li>Las interfaces que se usan para configurar dispositivos de red.</li>
 <li>Cómo conectarse a la CLI de un dispositivo Cisco a través del puerto de consola.</li>
@@ -1790,16 +1790,14 @@
 <li>Cómo ver y guardar los archivos de configuración del dispositivo.</li>
 <li>Cómo proteger con contraseña un dispositivo Cisco IOS.</li>
 </ul>
-<p>Este capítulo supone un cambio respecto a la teoría de redes del capítulo anterior: llega el momento de pasar a la práctica con routers y switches de Cisco. Entender la teoría de redes es esencial, pero las redes también son una habilidad que hay que practicar, y eso significa configurar dispositivos de red.</p>
-<p>En la lista de temas del examen CCNA, encontraréis varios verbos distintos, como explicar X, describir Y e identificar Z, que indican que Cisco espera que tengáis una comprensión teórica de los conceptos citados y de su funcionamiento. Sin embargo, también hay muchos temas del examen que indican configurar X o configurar y verificar Y. En estos casos, además de comprender teóricamente los conceptos, debéis ser capaces de configurarlos en dispositivos de red de Cisco y verificar su funcionamiento.</p>
-<p>Como introducción a los cambios de configuración en un dispositivo Cisco y a su guardado, en este capítulo veremos el tema del examen 4.3: Configurar y verificar el control de acceso al dispositivo mediante contraseñas locales. Sin embargo, este capítulo no está orientado específicamente a uno de los temas del examen CCNA, sino que sienta una base necesaria para todos los temas del examen que requieren configurar y verificar varios protocolos.</p>
+<p>Esta sección supone un cambio respecto a la teoría de redes del sección anterior: llega el momento de pasar a la práctica con routers y switches de Cisco. Entender la teoría de redes es esencial, pero las redes también son una habilidad que hay que practicar, y eso significa configurar dispositivos de red.</p>
 <h2 id="1-shells-gui-y-cli">1. Shells: GUI y CLI</h2>
-<p>Una shell es un programa informático que permite a un usuario interactuar con el ordenador. Es la interfaz entre el ordenador y el usuario y recibe ese nombre porque es la capa exterior del sistema operativo. Para configurar un router o un switch de Cisco, usáis una shell para enviar comandos al dispositivo. En esta sección, veremos los dos tipos de shell que usaremos en este libro.</p>
+<p>Una shell es un programa informático que permite a un usuario interactuar con el ordenador. Es la interfaz entre el ordenador y el usuario y recibe ese nombre porque es la capa exterior del sistema operativo. Para configurar un router o un switch de Cisco, usáis una shell para enviar comandos al dispositivo. En esta sección, veremos los dos tipos de shell que usaremos en este módulo.</p>
 <h3 id="11-gui-y-cli">1.1. GUI y CLI</h3>
 <p>Hay dos tipos principales de shell: la interfaz gráfica de usuario (GUI, pronunciada “G-U-I” o “gooey”) y la interfaz de línea de comandos (CLI). Examinemos estos dos tipos.</p>
 <h4 id="111-interfaces-graficas">1.1.1. Interfaces gráficas</h4>
 <p>Una GUI permite a un usuario manipular el ordenador mediante una interfaz gráfica. Independientemente de vuestro nivel de experiencia o inexperiencia con los ordenadores, estoy seguro de que ya habéis usado una GUI antes. Si tenéis un PC con Windows, la GUI es la interfaz con la que interactuáis al abrir, cerrar y mover ventanas, o al abrir el menú Inicio para buscar un programa, etc. Ese es el shell de Windows. Si tenéis un smartphone, usáis una GUI para interactuar con el teléfono y sus aplicaciones.</p>
-<p>Aunque la mayor parte del examen CCNA no se centra en las GUIs, se espera que conozcáis al menos una GUI para el examen: la interfaz gráfica del controlador inalámbrico de Cisco (WLC). Veremos las redes inalámbricas y cómo configurar un WLC mediante la GUI en la parte 4 del volumen 2 de este libro. La Figura 1 muestra una captura de pantalla de la GUI de un WLC de Cisco.</p>
+<p>Aunque la mayor parte del examen CCNA no se centra en las GUIs, se espera que conozcáis al menos una GUI para el examen: la interfaz gráfica del controlador inalámbrico de Cisco (WLC). Veremos las redes inalámbricas y cómo configurar un WLC mediante la GUI más adelante. La Figura 1 muestra una captura de pantalla de la GUI de un WLC de Cisco.</p>
 <figure id="__figura_1">
 <p><img alt="" justify="justify" src="../img/UD4_1.png" text-align:="text-align:" /></p>
 <figcaption>
@@ -1814,18 +1812,14 @@
 <p><span class="caption-prefix">Figura 2. </span> La CLI del símbolo del sistema de un PC con Windows, accesible desde la GUI del shell de Windows.</p>
 </figcaption>
 </figure>
-<p>Para el examen CCNA, debéis estar familiarizados con la CLI de los routers y switches de Cisco que ejecutan Cisco IOS. Para quienes no tienen experiencia previa con una CLI (como yo cuando empecé a preparar el CCNA en 2018), esto puede parecer intimidante. Sin embargo, al final de este capítulo, espero que veáis que navegar por la CLI de Cisco IOS no es tan complicado.</p>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>Durante los dos volúmenes de este libro, presentaremos diversos comandos de CLI para configurar los protocolos que debéis conocer para el examen CCNA. La práctica práctica con esos comandos, por ejemplo usando Cisco Packet Tracer, es esencial para prepararse para el examen CCNA.</p>
-</div>
+<p>Para el examen CCNA, debéis estar familiarizados con la CLI de los routers y switches de Cisco que ejecutan Cisco IOS. Para quienes no tienen experiencia previa con una CLI, esto puede parecer intimidante. Sin embargo, al final de esta sección, espero que veáis que navegar por la CLI de Cisco IOS no es tan complicado.</p>
 <h3 id="12-acceso-a-la-cli-de-un-dispositivo-cisco">1.2. Acceso a la CLI de un dispositivo Cisco</h3>
 <p>Para configurar dispositivos Cisco, primero tenéis que conectar vuestro ordenador al dispositivo para acceder a la CLI. Hay dos métodos principales para hacerlo:</p>
 <ul>
 <li>Conectar un PC o portátil al puerto de consola del dispositivo mediante un cable de consola.</li>
 <li>Conectarse al dispositivo a través de la red usando un protocolo como Telnet o Secure Shell (SSH).</li>
 </ul>
-<p>Veremos Telnet y SSH en el capítulo 4 del volumen 2. Hasta entonces, nos centraremos en las conexiones mediante el puerto de consola del dispositivo. El puerto de consola es un puerto físico que permite conectar un ordenador directamente al dispositivo (en contraposición a conectarse a través de la infraestructura de la red). Para hacerlo, debéis estar físicamente cerca del dispositivo; un cable de consola suele tener solo unos pocos pies de longitud.</p>
+<p>Veremos Telnet y SSH en el sección 4 del volumen 2. Hasta entonces, nos centraremos en las conexiones mediante el puerto de consola del dispositivo. El puerto de consola es un puerto físico que permite conectar un ordenador directamente al dispositivo (en contraposición a conectarse a través de la infraestructura de la red). Para hacerlo, debéis estar físicamente cerca del dispositivo; un cable de consola suele tener solo unos pocos pies de longitud.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>Los puertos de consola no pueden utilizarse para comunicar datos a través de la red. Están dedicados a configurar el dispositivo mediante la CLI.</p>
@@ -1838,7 +1832,7 @@
 </figcaption>
 </figure>
 <p>Los cables de consola vienen en varios tipos con distintos conectores. El tipo que se usa depende de los puertos disponibles en el propio dispositivo y del PC que se conecta a él. Quizá la opción más sencilla sea utilizar un cable USB estándar para conectar vuestro PC al puerto de consola USB del dispositivo (aseguraos de que el cable tenga los conectores USB correctos para vuestro PC y para el dispositivo al que queréis conectaros).</p>
-<p>Para conectar al puerto de consola RJ45, debéis usar un cable de rollover. Es un patrón distinto de los cables straight-through y crossover que vimos en el capítulo 3; los cables de rollover están conectados de la siguiente manera:</p>
+<p>Para conectar al puerto de consola RJ45, debéis usar un cable de rollover. Es un patrón distinto de los cables straight-through y crossover que vimos en el sección 3; los cables de rollover están conectados de la siguiente manera:</p>
 <ul>
 <li>Pin 1 a pin 8</li>
 <li>Pin 2 a pin 7</li>
@@ -1872,10 +1866,6 @@
 <p><span class="caption-prefix">Figura 5. </span> Cómo usar PuTTY para acceder a la CLI de un dispositivo Cisco mediante el puerto de consola. En la pestaña Serial, configurad estos ajustes y luego pulsad Open: (1) Speed (baud): 9600 bits por segundo, (2) Data bits: 8, (3) Stop bits: 1, (4) Parity: None, (5) Flow control: None.</p>
 </figcaption>
 </figure>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>No os examinarán sobre cómo usar PuTTY u otro emulador de terminal para conectaros a un puerto de consola en el examen CCNA, pero incluyo esta información por si tenéis hardware físico con el que practicar. Para practicar en laboratorio de forma práctica para el CCNA, os recomiendo Cisco Packet Tracer, en el que simplemente podéis hacer clic sobre el icono de un dispositivo para acceder a la CLI.</p>
-</div>
 <h2 id="2-navegacion-por-la-cli-de-cisco-ios">2. Navegación por la CLI de Cisco IOS</h2>
 <p>Ahora sí que ya vamos a entrar en la práctica de la CLI de Cisco IOS, navegando entre diferentes modos y enviando comandos a un dispositivo Cisco. Quiero volver a enfatizar que las redes no son solo teoría, sino también una habilidad práctica. Será difícil asimilar esta información si no la ponéis en práctica vosotros mismos, por lo que os recomiendo encarecidamente que sigáis la explicación en Packet Tracer (o en la CLI de un router o switch Cisco real) e intentéis probar los distintos comandos y atajos que cubrimos.</p>
 <p>Cuando accedéis por primera vez a la CLI de un dispositivo Cisco nuevo, se os ofrece la opción de configurar el dispositivo mediante el diálogo de configuración del sistema, como se muestra en el ejemplo siguiente:</p>
@@ -1885,16 +1875,16 @@
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>En la salida de la CLI mostrada en este libro, el texto en negrita indica los comandos tecleados por el usuario. El texto normal indica la salida mostrada por el dispositivo.</p>
+<p>En la salida de la CLI mostrada en este texto, el texto en negrita indica los comandos tecleados por el usuario. El texto normal indica la salida mostrada por el dispositivo.</p>
 </div>
-<p>El diálogo de configuración del sistema es un asistente paso a paso que permite hacer una configuración sencilla del dispositivo sin necesidad de conocer los comandos de la CLI de Cisco IOS. Esta función normalmente no se usa y no es algo que necesitéis conocer para el CCNA, así que os recomiendo omitirla escribiendo no y pulsando la tecla Enter (las opciones [sí/no] se muestran entre corchetes).</p>
+<p>El diálogo de configuración del sistema es un asistente paso a paso que permite hacer una configuración sencilla del dispositivo sin necesidad de conocer los comandos de la CLI de Cisco IOS. Esta función normalmente no se usa y no es algo que necesitéis conocer, así que os recomiendo omitirla escribiendo no y pulsando la tecla Enter (las opciones <code>[sí/no]</code> se muestran entre corchetes).</p>
 <h3 id="21-los-modos-exec">2.1. Los modos EXEC</h3>
 <p>Después de omitir el diálogo de configuración del sistema, se os muestra un indicador como el siguiente, donde podéis escribir comandos y pulsar Enter para enviarlos al dispositivo. El formato del indicador es el nombre del host (en este caso, Router, el nombre predeterminado de los routers Cisco) seguido de un signo mayor que. Esto indica que estáis en modo EXEC de usuario:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Router&gt;
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Todos los comandos que cubrimos en este capítulo se aplican tanto a routers como a switches de Cisco. Ambos ejecutan el mismo sistema operativo: Cisco IOS.</p>
+<p>Todos los comandos que cubrimos en este sección se aplican tanto a routers como a switches de Cisco. Ambos ejecutan el mismo sistema operativo: Cisco IOS.</p>
 </div>
 <p>El modo EXEC de usuario es el menos privilegiado de la jerarquía de comandos de Cisco IOS; permite introducir algunos comandos básicos para ver información sobre la configuración y el estado del dispositivo. Sin embargo, no permite hacer nada intrusivo, como cambiar la configuración del dispositivo, reiniciarlo, etc. Para demostrar un comando sencillo que podéis usar en el modo EXEC de usuario, escribo show clock y pulso Enter. El router muestra la hora actual de su reloj:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Router&gt;show clock
@@ -1902,7 +1892,7 @@
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Hay una variedad de comandos show que iréis conociendo a lo largo de este libro. Aprender los comandos show disponibles y cómo interpretar su salida es una parte fundamental del estudio para el CCNA.</p>
+<p>Hay una variedad de comandos show que iréis conociendo a lo largo de este texto. Aprender los comandos show disponibles y cómo interpretar su salida es una parte fundamental del estudio para el CCNA.</p>
 </div>
 <p>Comprobar la hora claramente no es intrusivo, por lo que el comando show clock está disponible en el modo EXEC de usuario. Sin embargo, un comando más intrusivo como reload, que reinicia el dispositivo, no funciona en el modo EXEC de usuario, como se muestra en el ejemplo siguiente. El router muestra un mensaje de error (un signo de porcentaje indica un mensaje de IOS):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Router&gt;reload
@@ -1926,8 +1916,8 @@
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Enter configuration commands, one per line. End with CNTL/Z.
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Router(config)#
 </span></code></pre></div>
-<p>Aunque solo hay dos modos EXEC en la CLI de Cisco (modo EXEC de usuario y modo EXEC privilegiado), existen varios modos de configuración que examinaremos a lo largo de este libro. En este capítulo, solo veremos el primero: el modo de configuración global. Desde el modo de configuración global, podéis configurar varias funciones como el nombre del dispositivo y las contraseñas. Desde este modo, también podéis acceder a los otros modos de configuración que veremos en capítulos posteriores de los dos volúmenes del libro.</p>
-<p>Una configuración que podéis hacer desde el modo de configuración global es cambiar el nombre del dispositivo con el comando hostname, como se muestra en el ejemplo siguiente. Fijaos que al ejecutar el comando, el indicador cambia de Router a R1, lo que indica que el nombre del host ha cambiado. El comando tiene efecto de inmediato. Configurar un nombre único en cada dispositivo de la red es esencial para poder identificarlos con facilidad. Para este libro, usaremos identificadores numéricos sencillos (R1, R2, etc.). En una red empresarial real, a menudo se incluye otra información, como la ubicación del dispositivo, en el nombre del host (por ejemplo, Office1_R1):</p>
+<p>Aunque solo hay dos modos EXEC en la CLI de Cisco (modo EXEC de usuario y modo EXEC privilegiado), existen varios modos de configuración que examinaremos a lo largo de este curso. En este sección, solo veremos el primero: el modo de configuración global. Desde el modo de configuración global, podéis configurar varias funciones como el nombre del dispositivo y las contraseñas. Desde este modo, también podéis acceder a los otros modos de configuración que veremos en temas posteriores del curso.</p>
+<p>Una configuración que podéis hacer desde el modo de configuración global es cambiar el nombre del dispositivo con el comando hostname, como se muestra en el ejemplo siguiente. Fijaos que al ejecutar el comando, el indicador cambia de Router a R1, lo que indica que el nombre del host ha cambiado. El comando tiene efecto de inmediato. Configurar un nombre único en cada dispositivo de la red es esencial para poder identificarlos con facilidad. Para esta unidad, usaremos identificadores numéricos sencillos (R1, R2, etc.). En una red empresarial real, a menudo se incluye otra información, como la ubicación del dispositivo, en el nombre del host (por ejemplo, Oficina_R1):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Router(config)#hostname R1
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>R1(config)#
 </span></code></pre></div>
@@ -1970,7 +1960,7 @@
 <li>Flecha abajo: comando siguiente.</li>
 </ul>
 <h3 id="24-ayuda-sensible-al-contexto">2.4. Ayuda sensible al contexto</h3>
-<p>Tendréis que aprender muchos comandos distintos para prepararos para el CCNA, y esos comandos son solo una fracción de todos los comandos disponibles en Cisco IOS. Para el examen CCNA, es importante practicar y familiarizarse con los distintos comandos que veremos en este libro. Sin embargo, Cisco IOS tiene una función llamada ayuda sensible al contexto que puede ayudaros si habéis olvidado un comando.</p>
+<p>Estos comandos son solo una fracción de todos los comandos disponibles en Cisco IOS. Es importante practicar y familiarizarse con los distintos comandos que iremos viendo. Sin embargo, Cisco IOS tiene una función llamada ayuda sensible al contexto que puede ayudaros si habéis olvidado un comando.</p>
 <h4 id="241-visualizacion-de-los-comandos-disponibles">2.4.1. Visualización de los comandos disponibles</h4>
 <p>Un signo de interrogación (?) puede usarse para pedir ayuda en la CLI de Cisco IOS de varias formas:</p>
 <ul>
@@ -2007,7 +1997,7 @@
 </span></code></pre></div>
 <p>Las otras dos opciones mostradas también merecen mención:</p>
 <ul>
-<li>El carácter pipe (|) puede usarse para filtrar la salida de un comando show. Más adelante en este capítulo os mostraré un ejemplo.</li>
+<li>El carácter pipe (|) puede usarse para filtrar la salida de un comando show. Más adelante en este sección os mostraré un ejemplo.</li>
 <li><cr> significa carriage return, que se refiere a la tecla Enter. Esto significa que podéis pulsar simplemente Enter para ejecutar el comando. Aunque hay una palabra clave disponible (detail), show clock por sí solo es un comando válido.</li>
 </ul>
 <p>El tercer caso de uso del signo de interrogación sirve para mostrar las posibles completaciones de un comando o palabra clave parcialmente escrito. En este caso, el signo de interrogación debe escribirse inmediatamente después del comando parcialmente escrito, sin un espacio. Por ejemplo, escribir e? en el modo EXEC de usuario mostrará varios comandos que empiezan por e. Escribir en?, por el contrario, mostrará que enable es el único comando que empieza por en, como se ve en el ejemplo siguiente:</p>
@@ -2145,7 +2135,7 @@
 <p class="admonition-title">Nota</p>
 <p>Fijaos que la enable password sigue apareciendo en la configuración. Si se configuran tanto la enable password como la enable secret, solo se podrá usar la enable secret. El comando enable password sigue en la configuración, pero no puede usarse para acceder al modo EXEC privilegiado.</p>
 </div>
-<p>El comando enable secret genera un hash de la contraseña especificada usando el algoritmo de hashing predeterminado del dispositivo. Hay varios algoritmos de hashing que pueden usarse para generar el hash y la disponibilidad de estos algoritmos varía según la versión de IOS del dispositivo. En la plataforma que estoy usando para esta demostración, el tipo de algoritmo es scrypt (pronunciado “S-crypt”), también conocido como tipo 9 (como indica el 9 antes del hash en la salida del ejemplo anterior). En muchos dispositivos antiguos, el algoritmo predeterminado es Message Digest 5 (MD5), también conocido como tipo 5. El tipo 5 no es tan seguro como el tipo 9, así que el tipo 9 debe usarse siempre que sea posible. En el capítulo 11 del volumen 2, veremos los distintos algoritmos de hashing soportados por Cisco IOS y cómo configurar secretos usando algoritmos específicos.</p>
+<p>El comando enable secret genera un hash de la contraseña especificada usando el algoritmo de hashing predeterminado del dispositivo. Hay varios algoritmos de hashing que pueden usarse para generar el hash y la disponibilidad de estos algoritmos varía según la versión de IOS del dispositivo. En la plataforma que estoy usando para esta demostración, el tipo de algoritmo es scrypt (pronunciado “S-crypt”), también conocido como tipo 9 (como indica el 9 antes del hash en la salida del ejemplo anterior). En muchos dispositivos antiguos, el algoritmo predeterminado es Message Digest 5 (MD5), también conocido como tipo 5. El tipo 5 no es tan seguro como el tipo 9, así que el tipo 9 debe usarse siempre que sea posible. </p>
 <h2 id="5-resumen">5. Resumen</h2>
 <ul>
 <li>Una shell es un programa informático que permite a un usuario interactuar con el ordenador. Una interfaz gráfica de usuario (GUI) es una shell con una interfaz gráfica, y una interfaz de línea de comandos (CLI) es una shell con una interfaz basada en texto.</li>

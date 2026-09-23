@@ -4,7 +4,7 @@ lang: es
 
 # Cisco IOS CLI
 
-Este capítulo cubre:
+Esta sección cubre:
 
 - Las interfaces que se usan para configurar dispositivos de red.
 - Cómo conectarse a la CLI de un dispositivo Cisco a través del puerto de consola.
@@ -12,11 +12,7 @@ Este capítulo cubre:
 - Cómo ver y guardar los archivos de configuración del dispositivo.
 - Cómo proteger con contraseña un dispositivo Cisco IOS.
 
-Este capítulo supone un cambio respecto a la teoría de redes del capítulo anterior: llega el momento de pasar a la práctica con routers y switches de Cisco. Entender la teoría de redes es esencial, pero las redes también son una habilidad que hay que practicar, y eso significa configurar dispositivos de red.
-
-En la lista de temas del examen CCNA, encontraréis varios verbos distintos, como explicar X, describir Y e identificar Z, que indican que Cisco espera que tengáis una comprensión teórica de los conceptos citados y de su funcionamiento. Sin embargo, también hay muchos temas del examen que indican configurar X o configurar y verificar Y. En estos casos, además de comprender teóricamente los conceptos, debéis ser capaces de configurarlos en dispositivos de red de Cisco y verificar su funcionamiento.
-
-Como introducción a los cambios de configuración en un dispositivo Cisco y a su guardado, en este capítulo veremos el tema del examen 4.3: Configurar y verificar el control de acceso al dispositivo mediante contraseñas locales. Sin embargo, este capítulo no está orientado específicamente a uno de los temas del examen CCNA, sino que sienta una base necesaria para todos los temas del examen que requieren configurar y verificar varios protocolos.
+Esta sección supone un cambio respecto a la teoría de redes del sección anterior: llega el momento de pasar a la práctica con routers y switches de Cisco. Entender la teoría de redes es esencial, pero las redes también son una habilidad que hay que practicar, y eso significa configurar dispositivos de red.
 
 ## 1. Shells: GUI y CLI
 
@@ -56,7 +52,7 @@ Para configurar dispositivos Cisco, primero tenéis que conectar vuestro ordenad
 - Conectar un PC o portátil al puerto de consola del dispositivo mediante un cable de consola.
 - Conectarse al dispositivo a través de la red usando un protocolo como Telnet o Secure Shell (SSH).
 
-Veremos Telnet y SSH en el capítulo 4 del volumen 2. Hasta entonces, nos centraremos en las conexiones mediante el puerto de consola del dispositivo. El puerto de consola es un puerto físico que permite conectar un ordenador directamente al dispositivo (en contraposición a conectarse a través de la infraestructura de la red). Para hacerlo, debéis estar físicamente cerca del dispositivo; un cable de consola suele tener solo unos pocos pies de longitud.
+Veremos Telnet y SSH en el sección 4 del volumen 2. Hasta entonces, nos centraremos en las conexiones mediante el puerto de consola del dispositivo. El puerto de consola es un puerto físico que permite conectar un ordenador directamente al dispositivo (en contraposición a conectarse a través de la infraestructura de la red). Para hacerlo, debéis estar físicamente cerca del dispositivo; un cable de consola suele tener solo unos pocos pies de longitud.
 
 !!!note "Nota"
     Los puertos de consola no pueden utilizarse para comunicar datos a través de la red. Están dedicados a configurar el dispositivo mediante la CLI.
@@ -70,7 +66,7 @@ Dos puertos de consola en un switch de Cisco: USB Mini-B (izquierda) y RJ45 (der
 
 Los cables de consola vienen en varios tipos con distintos conectores. El tipo que se usa depende de los puertos disponibles en el propio dispositivo y del PC que se conecta a él. Quizá la opción más sencilla sea utilizar un cable USB estándar para conectar vuestro PC al puerto de consola USB del dispositivo (aseguraos de que el cable tenga los conectores USB correctos para vuestro PC y para el dispositivo al que queréis conectaros).
 
-Para conectar al puerto de consola RJ45, debéis usar un cable de rollover. Es un patrón distinto de los cables straight-through y crossover que vimos en el capítulo 3; los cables de rollover están conectados de la siguiente manera:
+Para conectar al puerto de consola RJ45, debéis usar un cable de rollover. Es un patrón distinto de los cables straight-through y crossover que vimos en el sección 3; los cables de rollover están conectados de la siguiente manera:
 
 - Pin 1 a pin 8
 - Pin 2 a pin 7
@@ -132,7 +128,7 @@ Router>
 ```
 
 !!!note "Nota"
-    Todos los comandos que cubrimos en este capítulo se aplican tanto a routers como a switches de Cisco. Ambos ejecutan el mismo sistema operativo: Cisco IOS.
+    Todos los comandos que cubrimos en este sección se aplican tanto a routers como a switches de Cisco. Ambos ejecutan el mismo sistema operativo: Cisco IOS.
 
 El modo EXEC de usuario es el menos privilegiado de la jerarquía de comandos de Cisco IOS; permite introducir algunos comandos básicos para ver información sobre la configuración y el estado del dispositivo. Sin embargo, no permite hacer nada intrusivo, como cambiar la configuración del dispositivo, reiniciarlo, etc. Para demostrar un comando sencillo que podéis usar en el modo EXEC de usuario, escribo show clock y pulso Enter. El router muestra la hora actual de su reloj:
 
@@ -177,7 +173,7 @@ Enter configuration commands, one per line. End with CNTL/Z.
 Router(config)#
 ```
 
-Aunque solo hay dos modos EXEC en la CLI de Cisco (modo EXEC de usuario y modo EXEC privilegiado), existen varios modos de configuración que examinaremos a lo largo de este curso. En este capítulo, solo veremos el primero: el modo de configuración global. Desde el modo de configuración global, podéis configurar varias funciones como el nombre del dispositivo y las contraseñas. Desde este modo, también podéis acceder a los otros modos de configuración que veremos en temas posteriores del curso.
+Aunque solo hay dos modos EXEC en la CLI de Cisco (modo EXEC de usuario y modo EXEC privilegiado), existen varios modos de configuración que examinaremos a lo largo de este curso. En este sección, solo veremos el primero: el modo de configuración global. Desde el modo de configuración global, podéis configurar varias funciones como el nombre del dispositivo y las contraseñas. Desde este modo, también podéis acceder a los otros modos de configuración que veremos en temas posteriores del curso.
 
 Una configuración que podéis hacer desde el modo de configuración global es cambiar el nombre del dispositivo con el comando hostname, como se muestra en el ejemplo siguiente. Fijaos que al ejecutar el comando, el indicador cambia de Router a R1, lo que indica que el nombre del host ha cambiado. El comando tiene efecto de inmediato. Configurar un nombre único en cada dispositivo de la red es esencial para poder identificarlos con facilidad. Para esta unidad, usaremos identificadores numéricos sencillos (R1, R2, etc.). En una red empresarial real, a menudo se incluye otra información, como la ubicación del dispositivo, en el nombre del host (por ejemplo, Oficina_R1):
 
@@ -277,7 +273,7 @@ R1>show clock ?
 
 Las otras dos opciones mostradas también merecen mención:
 
-- El carácter pipe (|) puede usarse para filtrar la salida de un comando show. Más adelante en este capítulo os mostraré un ejemplo.
+- El carácter pipe (|) puede usarse para filtrar la salida de un comando show. Más adelante en este sección os mostraré un ejemplo.
 - <cr> significa carriage return, que se refiere a la tecla Enter. Esto significa que podéis pulsar simplemente Enter para ejecutar el comando. Aunque hay una palabra clave disponible (detail), show clock por sí solo es un comando válido.
 
 El tercer caso de uso del signo de interrogación sirve para mostrar las posibles completaciones de un comando o palabra clave parcialmente escrito. En este caso, el signo de interrogación debe escribirse inmediatamente después del comando parcialmente escrito, sin un espacio. Por ejemplo, escribir e? en el modo EXEC de usuario mostrará varios comandos que empiezan por e. Escribir en?, por el contrario, mostrará que enable es el único comando que empieza por en, como se ve en el ejemplo siguiente:
