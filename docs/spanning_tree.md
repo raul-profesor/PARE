@@ -1,7 +1,8 @@
-
 ---
 lang: es
 ---
+
+# Spanning Tree Protocol (STP)
 
 Este capítulo trata sobre
 
@@ -10,18 +11,18 @@ Este capítulo trata sobre
 - Los distintos roles, estados y temporizadores de los puertos STP.
 - Cómo usar PortFast para acelerar la convergencia del STP.
 
-Este capítulo trata sobre Spanning Tree Protocol (STP), un protocolo que se ejecuta en todos los switches Cisco de forma predeterminada y resuelve un problema importante en las LAN: los bucles de Capa 2, que hacen que las tramas circulen indefinidamente por la red. STP aparece en el tema de examen 2.5: identificar las operaciones básicas de Rapid PVST+ Spanning Tree Protocol. Este tema se refiere a la versión rápida del protocolo, que se cubre en el capítulo siguiente. Sin embargo, para entender Rapid STP primero debemos estudiar el protocolo original, y eso es precisamente lo que haremos en este capítulo.
+Este capítulo trata sobre Spanning Tree Protocol (STP), un protocolo que se ejecuta en todos los switches Cisco de forma predeterminada y resuelve un problema importante en las LAN: los bucles de Capa 2, que hacen que las tramas circulen indefinidamente por la red. 
 
 ## 1. La necesidad de STP
 
-En el capítulo 7 (direcciones IPv4), vimos brevemente los campos del encabezado IPv4; uno de ellos es el campo Time-to-Live (TTL), que se decrementa cada vez que un router reenvía un paquete. Cuando el valor del campo TTL llega a 0, el paquete se descarta, evitando que los paquetes circulen indefinidamente por la red como consecuencia de una mala configuración; esto se conoce como bucle de enrutamiento o bucle de Capa 3.
+En la capa 3 existen varios campos del encabezado IPv4; uno de ellos es el campo Time-to-Live (TTL), que se decrementa cada vez que un router reenvía un paquete. Cuando el valor del campo TTL llega a 0, el paquete se descarta, evitando que los paquetes circulen indefinidamente por la red como consecuencia de una mala configuración; esto se conoce como bucle de enrutamiento o bucle de Capa 3.
 
 El encabezado Ethernet no tiene un campo así; si se produce un bucle entre switches, es decir, un bucle de Capa 2, no hay ningún mecanismo para evitar que las tramas circulen indefinidamente por la LAN. Si hay demasiadas tramas circulando por la LAN, los switches pueden saturarse y provocar una pérdida de servicio para todos los hosts de la LAN.
 
 Entonces, ¿cómo se originan los bucles de Capa 2? Mientras que los bucles de Capa 3 son el resultado de una mala configuración en alguna parte de la red, los bucles de Capa 2 son inevitables en una LAN donde existen varios caminos entre dos nodos cualesquiera, como resultado del inundado de tráfico BUM (broadcast, unknown unicast y multicast).
 
 !!!note "Nota"
-    Volveré a mencionar el tráfico multicast varias veces a lo largo de estos dos volúmenes. Por ahora, basta con saber que los switches inundan por defecto las tramas multicast.
+    Se volverá a mencionar el tráfico multicast en el futuro. Por ahora, basta con saber que los switches inundan por defecto las tramas multicast.
 
 Tener varios caminos entre hosts es un ejemplo de redundancia y es algo deseable en una red. La redundancia consiste en disponer de dispositivos y conexiones adicionales más allá del mínimo necesario para la comunicación. Gracias a la redundancia, el servicio de red no se pierde si falla un dispositivo o una conexión; no existe un único punto de fallo.
 

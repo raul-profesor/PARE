@@ -8,7 +8,7 @@ Este capítulo trata sobre
 - Cómo configurar puertos trunk para transportar tráfico en varias VLANs.
 - Enrutamiento entre VLANs con un router o un switch multicapa.
 
-En el capítulo 11 tratamos el subnetting, que permite dividir una red en subredes más pequeñas. Esto es un ejemplo de segmentación de red: la división de una red en partes más pequeñas. Las VLANs (Virtual LANs, pronunciadas “V-LANs”), tema de este capítulo, pueden compararse con las subredes porque también permiten dividir una red en partes más pequeñas. Con las VLANs, podemos dividir una LAN (un dominio de difusión) en redes locales más pequeñas, llamadas VLANs. Mientras que las subredes permiten segmentar la red en la Capa 3, las VLANs permiten segmentar la red en la Capa 2. En este capítulo se cubrirán tres temas del examen CCNA, todos relacionados con los switches y las VLANs:
+En futuras unidades trataremos el subnetting, que permite dividir una red en subredes más pequeñas. Esto es un ejemplo de segmentación de red: la división de una red en partes más pequeñas. Las VLANs (Virtual LANs, pronunciadas “V-LANs”), tema de este capítulo, pueden compararse con las subredes porque también permiten dividir una red en partes más pequeñas. Con las VLANs, podemos dividir una LAN (un dominio de difusión) en redes locales más pequeñas, llamadas VLANs. Mientras que las subredes permiten segmentar la red en la Capa 3, las VLANs permiten segmentar la red en la Capa 2. En este capítulo se cubrirán tres temas del examen CCNA, todos relacionados con los switches y las VLANs:
 
 - 1.1.b Switches de Capa 2 y Capa 3
 - 2.1 Configurar y verificar VLANs (rango normal) que abarcan varios switches
@@ -38,7 +38,7 @@ Una LAN segmentada en tres subredes. El departamento de ingeniería usa la subre
 Puede que os preguntéis cómo mejora la seguridad segmentar la LAN en subredes separadas. Al exigir que el tráfico entre departamentos pase por el router, podéis controlar qué tráfico se permite y cuál no; las políticas de seguridad pueden implementarse en el router para controlar el tráfico. La figura 2 muestra a un PC del departamento de ingeniería accediendo a un servidor utilizado por recursos humanos; este es un ejemplo de tráfico que quizá queráis restringir. Podéis elegir bloquear a todos los hosts fuera del departamento de RR. HH. el acceso al servidor o permitir solo tipos específicos de comunicación con él.
 
 !!!note "Nota"
-    En este capítulo no vamos a explicar cómo usar un router para controlar qué tráfico se permite y qué tráfico se deniega. Por ahora, segmentaremos la red, pero no especificaremos qué tráfico se permite o se deniega. Cubriremos las listas de control de acceso (un método para controlar el tráfico) en la parte 6 del libro.
+    En este capítulo no vamos a explicar cómo usar un router para controlar qué tráfico se permite y qué tráfico se deniega. Por ahora, segmentaremos la red, pero no especificaremos qué tráfico se permite o se deniega. Cubriremos las listas de control de acceso (un método para controlar el tráfico) en otra unidad.
 
 ### 1.2. Segmentación en la Capa 2 con VLANs
 
@@ -50,7 +50,7 @@ Aunque los hosts están divididos en tres subredes, en la Capa 2 siguen formando
 ///
 
 !!!note "Nota"
-    Una definición de LAN es “un grupo de dispositivos interconectados en un área limitada”, pero como se vio en el capítulo 6, una definición más matizada considera cómo están conectados los dispositivos y cómo se reenvía el tráfico entre ellos, en lugar de limitarse solo a su ubicación física. Para este capítulo, una LAN es lo mismo que un dominio de broadcast: el grupo de dispositivos que recibirán una trama broadcast enviada por cualquier otro miembro del grupo.
+    Una definición de LAN es “un grupo de dispositivos interconectados en un área limitada”, pero como se vio anteriormente, una definición más matizada considera cómo están conectados los dispositivos y cómo se reenvía el tráfico entre ellos, en lugar de limitarse solo a su ubicación física. Para este capítulo, una LAN es lo mismo que un dominio de broadcast: el grupo de dispositivos que recibirán una trama broadcast enviada por cualquier otro miembro del grupo.
 
 Desde el punto de vista de la seguridad, esto sigue sin ser adecuado: el tráfico de hosts de una subred puede llegar a hosts de otras subredes. Además, que todos los hosts estén en el mismo dominio de difusión puede tener efectos negativos sobre el rendimiento de la red; el inundado innecesario de tramas por todos los puertos puede causar o empeorar la congestión. Para resolver estos problemas, debemos segmentar la red en la Capa 2 y podemos usar VLANs para hacerlo.
 
@@ -64,11 +64,13 @@ Al asignar las interfaces de SW1 a tres VLANs separadas, SW1 se divide en tres s
 !!!note "Nota"
     La red física de la figura 4 es la misma que la de la figura 3; la única diferencia es que los puertos de SW1 ahora están en tres VLANs separadas. He mostrado SW1 como tres switches virtuales separados para ilustrar cómo funcionan las VLANs. Los diagramas de red normalmente no se representan así; en un diagrama típico, las VLANs aparecen etiquetadas, pero solo se muestra el switch físico.
 
-Ahora ya hemos segmentado correctamente la LAN tanto en la Capa 3 (con subredes) como en la Capa 2 (con VLANs). SW1 no reenviará ni inundará tramas entre VLANs: los hosts de VLANs separadas solo pueden comunicarse entre sí a través de R1. Como regla general, debe existir una relación uno a uno entre subredes y VLANs, como se muestra en la figura 4: una subred por VLAN. Si continuáis vuestros estudios más allá del CCNA, encontraréis casos en los que hay varias subredes asociadas a una sola VLAN, pero para el CCNA podéis asumir que esta relación es uno a uno.
+Ahora ya hemos segmentado correctamente la LAN tanto en la Capa 3 (con subredes) como en la Capa 2 (con VLANs). SW1 no reenviará ni inundará tramas entre VLANs: los hosts de VLANs separadas solo pueden comunicarse entre sí a través de R1.
+
+Como regla general, debe existir una relación uno a uno entre subredes y VLANs, como se muestra en la figura 4: una subred por VLAN. Si continuáis vuestros estudios más allá del ciclo, encontraréis casos en los que hay varias subredes asociadas a una sola VLAN pero para este curso, podéis asumir que esta relación es uno a uno.
 
 ## 2. Configuración de VLANs y puertos de acceso
 
-Hasta este punto del libro no hemos configurado casi nada en los switches. Esto se debe a que un switch puede cumplir su función básica de reenvío de tramas sin ninguna configuración especial; crea automáticamente su tabla de direcciones MAC examinando la dirección MAC de origen de las tramas que recibe y luego puede reenviar tramas entre hosts de una LAN. Sin embargo, para usar VLANs debemos configurarlas en los puertos del switch.
+Hasta este punto del curso no hemos configurado casi nada en los switches. Esto se debe a que un switch puede cumplir su función básica de reenvío de tramas sin ninguna configuración especial; crea automáticamente su tabla de direcciones MAC examinando la dirección MAC de origen de las tramas que recibe y luego puede reenviar tramas entre hosts de una LAN. Sin embargo, para usar VLANs debemos configurarlas en los puertos del switch.
 
 ### 2.1. Creación y nombrado de VLANs
 
@@ -107,7 +109,9 @@ Vlan    Mac Address       Type        Ports
 La segunda conclusión es que las VLANs 1002, 1003, 1004 y 1005 también existen en el switch por defecto. Estas VLANs están reservadas para FDDI y Token Ring, dos tecnologías antiguas de la Capa de enlace de datos. FDDI y Token Ring ya no se usan en redes modernas, pero incluso en versiones actuales de Cisco IOS, estas cuatro VLANs se reservan por compatibilidad con versiones anteriores; no se pueden eliminar ni usar para VLANs Ethernet.
 
 !!!note "Nota"
-    Hay 4096 VLANs en total (del 0 al 4095), pero las VLANs 0 y 4095 están reservadas para fines especiales fuera del alcance del examen CCNA. Como las VLANs 1002-1005 están reservadas para FDDI y Token Ring, el rango de VLANs utilizables es del 1 al 1001 y del 1006 al 4094 (4.090 VLANs en total). Esto significa que una sola LAN (dominio de difusión) puede dividirse en un máximo de 4.090 VLANs, mucho más de lo que la mayoría de LANs necesitarán.
+    Hay 4096 VLANs en total (del 0 al 4095), pero las VLANs 0 y 4095 están reservadas para fines especiales.
+    
+    Como las VLANs 1002-1005 están reservadas para FDDI y Token Ring, el rango de VLANs utilizables es del 1 al 1001 y del 1006 al 4094 (4.090 VLANs en total). Esto significa que una sola LAN (dominio de difusión) puede dividirse en un máximo de 4.090 VLANs, mucho más de lo que la mayoría de LANs necesitarán.
 
 Para configurar una VLAN, usad el comando `vlan vlan-id` desde el modo de configuración global (`vlan-id` es un número). Eso os llevará al modo de configuración de VLAN, desde donde también podéis configurar el nombre de la VLAN con el comando `name vlan-name`. En el ejemplo siguiente, creo y nombro las VLANs 10, 20 y 30 en SW1 y luego las confirmo con `show vlan brief` (omitiendo las VLANs 1002-1005 en la salida para ahorrar espacio):
 
@@ -160,7 +164,9 @@ Ahora que ya hemos creado las VLANs 10, 20 y 30 en SW1, asignemos los puertos de
 - Configurar los puertos de SW1 en modo access.
 - Configurar la VLAN del modo access de los puertos.
 
-Un puerto access es un puerto de switch que pertenece a una sola VLAN, a diferencia de un puerto trunk, que transporta tráfico en varias VLANs (lo trataremos en la sección 3). Por defecto, los puertos de switch de Cisco usan un protocolo llamado Dynamic Trunking Protocol (DTP) para determinar automáticamente si cada puerto debe operar en modo access o en modo trunk. Lo cubriremos en el capítulo 13, pero por ahora basta con saber que es una buena práctica configurar manualmente el modo access o trunk en lugar de dejar que DTP determine automáticamente el estado de las interfaces.
+Un puerto access es un puerto de switch que pertenece a una sola VLAN, a diferencia de un puerto trunk, que transporta tráfico en varias VLANs (lo trataremos en la sección 3). Por defecto, los puertos de switch de Cisco usan un protocolo llamado Dynamic Trunking Protocol (DTP) para determinar automáticamente si cada puerto debe operar en modo access o en modo trunk.
+
+Por ahora basta con saber que es una buena práctica configurar manualmente el modo access o trunk en lugar de dejar que DTP determine automáticamente el estado de las interfaces.
 
 Podéis configurar manualmente un puerto de switch para que funcione en modo access con el comando `switchport mode access` en el modo de configuración de interfaz. Luego, usad `switchport access vlan vlan-id` para configurar a qué VLAN pertenece el puerto. En el ejemplo siguiente, configuro las interfaces G0/0, G0/1, G0/2 y G0/3 de SW1 como puertos access en la VLAN 10, las G1/0, G1/1, G1/2 y G1/3 como puertos access en la VLAN 20, y los puertos G2/0, G2/1, G2/2 y G2/3 como access en la VLAN 30:
 
@@ -182,8 +188,6 @@ SW1(config-if-range)# switchport access vlan 30
 
 ¡Ya hemos terminado de configurar SW1! Reenviará e inundará tramas entre hosts de cada VLAN, pero no entre VLANs; cada VLAN es un dominio de broadcast independiente. Tened en cuenta que las VLANs se configuran en los puertos del switch; aunque es habitual decir que un host final está en la VLAN X, ese host en realidad no conoce en qué VLAN está; las VLANs son un concepto usado por los switches, no por hosts finales como PCs.
 
-!!!note "Nota"
-    Hay excepciones en las que los hosts finales sí son VLAN-aware; veremos un ejemplo cuando cubramos las máquinas virtuales más adelante.
 
 ## 3. Conexión de switches con puertos trunk
 
@@ -202,7 +206,7 @@ Así funcionan los puertos trunk: el switch que reenvía una trama añade una et
 Del mismo modo, otro nombre para un puerto access es puerto sin etiquetar; las tramas reenviadas por un puerto access no llevan etiqueta para indicar la VLAN, y las tramas recibidas por un puerto access se asignan a la VLAN especificada en el comando `switchport access vlan`. Como los puertos access solo están asociados a una VLAN, no es necesaria una etiqueta para identificar a qué VLAN pertenecen las tramas enviadas y recibidas por ese puerto.
 
 !!!note "Nota"
-    Los puertos access suelen usarse para conectar hosts finales, como PCs. Los puertos trunk suelen usarse para conectar otros switches (y a veces routers, como veremos en la sección 4).
+    Los puertos access suelen usarse para conectar hosts finales, como PCs. Los puertos trunk suelen usarse para conectar otros switches (y a veces routers, como veremos).
 
 ### 3.1. La etiqueta IEEE 802.1Q
 
@@ -215,7 +219,7 @@ La posición de la etiqueta 802.1Q dentro de una trama Ethernet y los campos de 
 
 El campo Tag Protocol Identifier (TPID) tiene 16 bits y siempre contiene el valor `0x8100`. Cuando una trama está etiquetada con 802.1Q, el campo TPID ocupa la posición que normalmente tendría el campo EtherType. Cuando el switch ve el valor `0x8100`, sabe que la trama está etiquetada mediante 802.1Q; ese es el propósito del campo TPID.
 
-La segunda parte de 802.1Q es Tag Control Information (TCI), que contiene tres subcampos: PCP, DEI y VID. El campo Priority Code Point (PCP) tiene 3 bits y puede usarse para marcar tramas como de mayor o menor prioridad; esto se usa para Quality of Service (QoS), un tema que trataremos en el capítulo 10 del volumen 2. El campo Drop Eligible Indicator (DEI) tiene 1 bit y también se usa para QoS; puede indicarse qué tramas pueden descartarse si la red está congestionada.
+La segunda parte de 802.1Q es Tag Control Information (TCI), que contiene tres subcampos: PCP, DEI y VID. El campo Priority Code Point (PCP) tiene 3 bits y puede usarse para marcar tramas como de mayor o menor prioridad; esto se usa para Quality of Service (QoS). El campo Drop Eligible Indicator (DEI) tiene 1 bit y también se usa para QoS; puede indicarse qué tramas pueden descartarse si la red está congestionada.
 
 El campo VLAN Identifier (VID) es quizá el más importante; es el que indica a qué VLAN pertenece la trama. Tiene 12 bits y por eso hay 4.096 VLANs en total (2^12 = 4096).
 
@@ -223,7 +227,7 @@ El campo VLAN Identifier (VID) es quizá el más importante; es el que indica a 
 
 Antes de IEEE 802.1Q, Cisco desarrolló un protocolo llamado Inter-Switch Link (ISL) para etiquetar tramas sobre enlaces trunk. Como protocolo propietario de Cisco, ISL solo puede usarse en switches Cisco. Mientras que 802.1Q añade una etiqueta de 4 bytes al encabezado Ethernet, ISL encapsula la trama Ethernet con un encabezado de 26 bytes y un trailer de 4 bytes que contiene un FCS (separado del FCS del trailer Ethernet).
 
-ISL hoy se considera obsoleto y no es compatible con switches Cisco nuevos. Sin embargo, aún podéis encontrar switches Cisco que soportan tanto 802.1Q como ISL; en esos casos, se requiere un comando adicional al configurar puertos trunk, como veremos en la sección 2. Aunque no tenéis que conocer ISL para el examen CCNA, sí debéis entender cómo afecta a la configuración de trunk en switches que lo soportan (porque requiere un comando adicional).
+ISL hoy se considera obsoleto y no es compatible con switches Cisco nuevos. Sin embargo, aún podéis encontrar switches Cisco que soportan tanto 802.1Q como ISL; en esos casos, se requiere un comando adicional al configurar puertos trunk, como veremos en la sección 2. Aunque no tenéis que conocer ISL, sí debéis entender cómo afecta a la configuración de trunk en switches que lo soportan (porque requiere un comando adicional).
 
 ### 3.3. Configuración de puertos trunk
 
@@ -278,7 +282,7 @@ Gi0/0       1,10,20,30
 . . .
 ```
 
-La primera sección (las dos primeras líneas) lista cada puerto trunk y alguna información básica. El valor `on` en la columna Mode significa que G0/0 está configurado manualmente como trunk (con el comando `switchport mode trunk`). La columna Encapsulation es evidente; el valor es `802.1q` porque configuré antes el comando `switchport trunk encapsulation dot1q`. La columna Status dice `trunking`; esto es lo esperado porque configuré manualmente G0/0 en modo trunk. La última columna es Native vlan; la VLAN nativa es un tema importante para entender en el CCNA, y lo cubriremos en esta sección.
+La primera sección (las dos primeras líneas) lista cada puerto trunk y alguna información básica. El valor `on` en la columna Mode significa que G0/0 está configurado manualmente como trunk (con el comando `switchport mode trunk`). La columna Encapsulation es evidente; el valor es `802.1q` porque configuré antes el comando `switchport trunk encapsulation dot1q`. La columna Status dice `trunking`; esto es lo esperado porque configuré manualmente G0/0 en modo trunk. La última columna es Native vlan; la VLAN nativa es un tema importante para entender en el, y lo cubriremos en esta sección.
 
 La segunda parte de la salida lista las VLANs permitidas en cada puerto trunk (`Vlans allowed on trunk`). Como indica `1-4094`, todas las VLANs están permitidas por defecto en un puerto trunk; esto significa que el tráfico de todas las VLANs puede ser reenviado y recibido por el puerto.
 
@@ -315,7 +319,7 @@ Gi0/0       10,20,30
 . . .
 ```
 
-Las otras opciones son palabras clave, y para el examen CCNA es importante comprender cómo funciona cada una. `add` y `remove` se usan para modificar la lista actual de VLANs permitidas. En el siguiente ejemplo, añado la VLAN 1 y elimino la VLAN 30 de la lista de VLANs permitidas; la lista de VLANs permitidas pasa a ser 1, 10 y 20:
+Las otras opciones son palabras clave, es importante comprender cómo funciona cada una. `add` y `remove` se usan para modificar la lista actual de VLANs permitidas. En el siguiente ejemplo, añado la VLAN 1 y elimino la VLAN 30 de la lista de VLANs permitidas; la lista de VLANs permitidas pasa a ser 1, 10 y 20:
 
 ```
 SW1(config-if)#
@@ -415,7 +419,7 @@ Un desajuste de VLAN nativa provoca que las tramas no lleguen a su destino. La V
 La VLAN nativa de G0/0 en SW1 es 10, pero la VLAN nativa de G0/0 en SW2 es 30. Cuando PC1 envía una trama a PC10, SW1 reenvía la trama sin etiqueta a SW2. Sin embargo, cuando SW2 recibe la trama sin etiqueta, la asigna a la VLAN 30 (la VLAN nativa de G0/0 en SW2). Como el destino está conectado a G0/1 de SW2 (un puerto access en la VLAN 10), SW2 no puede reenviar la trama a su destino correcto. Cuando el tráfico cruza de una VLAN a otra de esta forma, se denomina VLAN hopping.
 
 !!!note "Nota"
-    Los switches Cisco suelen ejecutar Per-VLAN Spanning Tree Plus (PVST+) o Rapid Per-VLAN Spanning Tree Plus (Rapid-PVST+). Si hay un desajuste de VLAN nativa, estos protocolos impiden que el tráfico se reenvíe por el trunk en las VLANs desalineadas y muestran un mensaje indicando este hecho. Cubriremos PVST+ y Rapid-PVST+ en los capítulos 14 y 15, respectivamente. Cisco Discovery Protocol (CDP) también puede detectar desajustes de VLAN nativa, pero no bloqueará el tráfico en las VLANs desalineadas; solo mostrará mensajes que indiquen el problema. Cubriremos CDP en el capítulo 1 del volumen 2.
+    Los switches Cisco suelen ejecutar Per-VLAN Spanning Tree Plus (PVST+) o Rapid Per-VLAN Spanning Tree Plus (Rapid-PVST+). Si hay un desajuste de VLAN nativa, estos protocolos impiden que el tráfico se reenvíe por el trunk en las VLANs desalineadas y muestran un mensaje indicando este hecho.
 
 ### 3.7. Desactivación de la VLAN nativa
 

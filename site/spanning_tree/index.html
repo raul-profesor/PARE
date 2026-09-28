@@ -25,7 +25,7 @@
     
     
       
-        <title>Spanning tree - PARE - Planificación y Administración de Redes y Equipos</title>
+        <title>Spanning Tree Protocol (STP) - PARE - Planificación y Administración de Redes y Equipos</title>
       
     
     
@@ -148,7 +148,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lang-es" class="md-skip">
+        <a href="#spanning-tree-protocol-stp" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -182,7 +182,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Spanning tree
+              Spanning Tree Protocol (STP)
             
           </span>
         </div>
@@ -708,6 +708,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -716,7 +718,7 @@
   <span class="md-ellipsis">
     
   
-    Spanning tree
+    Spanning Tree Protocol (STP)
   
 
     
@@ -734,7 +736,7 @@
   <span class="md-ellipsis">
     
   
-    Spanning tree
+    Spanning Tree Protocol (STP)
   
 
     
@@ -751,23 +753,14 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lang-es" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        lang: es
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#1-la-necesidad-de-stp" class="md-nav__link">
@@ -1588,23 +1581,14 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lang-es" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        lang: es
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#1-la-necesidad-de-stp" class="md-nav__link">
@@ -1975,10 +1959,7 @@
                 
                   
 
-  <h1>Spanning tree</h1>
-
-<hr />
-<h2 id="lang-es">lang: es</h2>
+<h1 id="spanning-tree-protocol-stp">Spanning Tree Protocol (STP)</h1>
 <p>Este capítulo trata sobre</p>
 <ul>
 <li>Cómo los bucles de Capa 2 provocan tormentas de broadcast.</li>
@@ -1986,14 +1967,14 @@
 <li>Los distintos roles, estados y temporizadores de los puertos STP.</li>
 <li>Cómo usar PortFast para acelerar la convergencia del STP.</li>
 </ul>
-<p>Este capítulo trata sobre Spanning Tree Protocol (STP), un protocolo que se ejecuta en todos los switches Cisco de forma predeterminada y resuelve un problema importante en las LAN: los bucles de Capa 2, que hacen que las tramas circulen indefinidamente por la red. STP aparece en el tema de examen 2.5: identificar las operaciones básicas de Rapid PVST+ Spanning Tree Protocol. Este tema se refiere a la versión rápida del protocolo, que se cubre en el capítulo siguiente. Sin embargo, para entender Rapid STP primero debemos estudiar el protocolo original, y eso es precisamente lo que haremos en este capítulo.</p>
+<p>Este capítulo trata sobre Spanning Tree Protocol (STP), un protocolo que se ejecuta en todos los switches Cisco de forma predeterminada y resuelve un problema importante en las LAN: los bucles de Capa 2, que hacen que las tramas circulen indefinidamente por la red. </p>
 <h2 id="1-la-necesidad-de-stp">1. La necesidad de STP</h2>
-<p>En el capítulo 7 (direcciones IPv4), vimos brevemente los campos del encabezado IPv4; uno de ellos es el campo Time-to-Live (TTL), que se decrementa cada vez que un router reenvía un paquete. Cuando el valor del campo TTL llega a 0, el paquete se descarta, evitando que los paquetes circulen indefinidamente por la red como consecuencia de una mala configuración; esto se conoce como bucle de enrutamiento o bucle de Capa 3.</p>
+<p>En la capa 3 existen varios campos del encabezado IPv4; uno de ellos es el campo Time-to-Live (TTL), que se decrementa cada vez que un router reenvía un paquete. Cuando el valor del campo TTL llega a 0, el paquete se descarta, evitando que los paquetes circulen indefinidamente por la red como consecuencia de una mala configuración; esto se conoce como bucle de enrutamiento o bucle de Capa 3.</p>
 <p>El encabezado Ethernet no tiene un campo así; si se produce un bucle entre switches, es decir, un bucle de Capa 2, no hay ningún mecanismo para evitar que las tramas circulen indefinidamente por la LAN. Si hay demasiadas tramas circulando por la LAN, los switches pueden saturarse y provocar una pérdida de servicio para todos los hosts de la LAN.</p>
 <p>Entonces, ¿cómo se originan los bucles de Capa 2? Mientras que los bucles de Capa 3 son el resultado de una mala configuración en alguna parte de la red, los bucles de Capa 2 son inevitables en una LAN donde existen varios caminos entre dos nodos cualesquiera, como resultado del inundado de tráfico BUM (broadcast, unknown unicast y multicast).</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Volveré a mencionar el tráfico multicast varias veces a lo largo de estos dos volúmenes. Por ahora, basta con saber que los switches inundan por defecto las tramas multicast.</p>
+<p>Se volverá a mencionar el tráfico multicast en el futuro. Por ahora, basta con saber que los switches inundan por defecto las tramas multicast.</p>
 </div>
 <p>Tener varios caminos entre hosts es un ejemplo de redundancia y es algo deseable en una red. La redundancia consiste en disponer de dispositivos y conexiones adicionales más allá del mínimo necesario para la comunicación. Gracias a la redundancia, el servicio de red no se pierde si falla un dispositivo o una conexión; no existe un único punto de fallo.</p>
 <p>Sin embargo, sin algo como STP para evitar bucles, las tramas circularán indefinidamente en una LAN con conexiones redundantes, como se muestra en la figura. Cualquiera de las conexiones entre switches de la figura podría eliminarse (por ejemplo, la conexión entre SW2 y SW3), y los PCs seguirían pudiendo comunicarse entre sí; este es un ejemplo de redundancia.</p>
@@ -2512,6 +2493,9 @@
 
 
 
+
+  
+  
 
 
 
