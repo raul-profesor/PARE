@@ -11,10 +11,10 @@ nav = [
         "UD2fisica.md",
         "UD3modeloTCPIP.md",
         "UD4CiscoCLI.md",
-        "UD5Switching.md",
         "institut_estandard.md"
     ]},
     {Switch = [
+        "UD5Switching.md",
         "VLANS.md",
         "spanning_tree.md",
         "SecSwitches.md",
