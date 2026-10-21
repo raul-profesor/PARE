@@ -4,6 +4,12 @@
         <loc>https://raul-profesor.github.io/PARE/</loc>
       </url>
       <url>
+        <loc>https://raul-profesor.github.io/PARE/RIP_RIPv2/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/SecSwitches/</loc>
+      </url>
+      <url>
         <loc>https://raul-profesor.github.io/PARE/UD1dispositivos_de_red/</loc>
       </url>
       <url>
@@ -19,49 +25,7 @@
         <loc>https://raul-profesor.github.io/PARE/UD5Switching/</loc>
       </url>
       <url>
-        <loc>https://raul-profesor.github.io/PARE/institut_estandard/</loc>
-      </url>
-      <url>
         <loc>https://raul-profesor.github.io/PARE/VLANS/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/spanning_tree/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/SecSwitches/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/dtp/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/cheatsheet_routers/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/direccionamientoIP/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/subnetting/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/routing/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/vida_paquete/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/routers_y_rutas_estaticas/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/rutas_dinamicas/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/RIP_RIPv2/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/ospf/</loc>
-      </url>
-      <url>
-        <loc>https://raul-profesor.github.io/PARE/intervlan/</loc>
       </url>
       <url>
         <loc>https://raul-profesor.github.io/PARE/acl_estandar/</loc>
@@ -70,6 +34,42 @@
         <loc>https://raul-profesor.github.io/PARE/acl_extendida/</loc>
       </url>
       <url>
+        <loc>https://raul-profesor.github.io/PARE/cheatsheet_routers/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/direccionamientoIP/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/dtp/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/institut_estandard/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/intervlan/</loc>
+      </url>
+      <url>
         <loc>https://raul-profesor.github.io/PARE/nat/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/ospf/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/routers_y_rutas_estaticas/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/routing/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/rutas_dinamicas/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/spanning_tree/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/subnetting/</loc>
+      </url>
+      <url>
+        <loc>https://raul-profesor.github.io/PARE/vida_paquete/</loc>
       </url>
 </urlset>
