@@ -19,7 +19,8 @@ nav = [
         "spanning_tree.md",
         "SecSwitches.md",
         "dtp.md",
-         "cheatsheet_routers.md"
+        "cheatsheet_routers.md",
+        "Conf_ext_seg_sw.md"
     ]},
     {Enrutamiento = [
         "direccionamientoIP.md",
@@ -94,7 +95,11 @@ types = [
     "figure",
     { name = "figura", prefix = "Figura {}. " }
 ]
-auto=true
+
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
 
 [project.markdown_extensions.pymdownx.highlight]
 anchor_linenums = true
@@ -102,7 +107,7 @@ line_spans = "__span"
 pygments_lang_class = true
 [project.markdown_extensions.pymdownx.inlinehilite]
 [project.markdown_extensions.pymdownx.snippets]
-[project.markdown_extensions.pymdownx.superfences]
+#[project.markdown_extensions.pymdownx.superfences]
 [project.markdown_extensions.footnotes]
 [project.markdown_extensions.pymdownx.caret]
 [project.markdown_extensions.pymdownx.keys]
