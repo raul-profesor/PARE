@@ -3,6 +3,10 @@ site_name = "PARE - Planificación y Administración de Redes y Equipos"
 site_url = "https://raul-profesor.github.io/PARE"
 dev_addr = "localhost:9090"
 extra_css = ["stylesheets/extra.css"]
+extra_javascript = [
+  "https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.min.js",
+  "javascripts/mermaid.js",
+]
 # Tema Material
 nav = [
     {Home = "index.md"},
