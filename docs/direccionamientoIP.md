@@ -8,22 +8,20 @@ Este capítulo cubre
 + La estructura de las direcciones IPv4.
 + Cómo configurar direcciones IPv4 en enrutadores Cisco
 
-En el capítulo 6, nos centramos en la Capa 2 del modelo TCP/IP: cómo los conmutadores utilizan la información del encabezado Ethernet para tomar decisiones de reenvío. En este capítulo, subiremos una capa a la Capa 3 y veremos el contenido del encabezado del Protocolo de Internet versión 4 (IPv4), enfocándonos en el direccionamiento IPv4.
+Con anterioridad, nos centramos en la Capa 2 del modelo TCP/IP: cómo los conmutadores utilizan la información del encabezado Ethernet para tomar decisiones de reenvío. En este capítulo, subiremos una capa a la Capa 3 y veremos el contenido del encabezado del Protocolo de Internet versión 4 (IPv4), enfocándonos en el direccionamiento IPv4.
 
 Ahora estamos en el ámbito de los enrutadores, más que de los conmutadores. Mientras que los conmutadores usan información en el encabezado de la Capa 2 para decidir cómo reenviar mensajes a sus destinos adecuados, los enrutadores usan información en el encabezado de la Capa 3 para tomar sus decisiones de reenvío. En este capítulo, todavía no nos centraremos exactamente en cómo los enrutadores toman esas decisiones de reenvío; Lo dejaremos para la parte 2 de este libro. En lugar de ello, primero nos centraremos en el contenido dla cabecera IPv4 y las direcciones utilizadas en ese encabezado.
 
-El tema específico del examen que cubriremos es el tema 1.6: Configurar y verificar el direccionamiento y subredes IPv4. Sin embargo, el direccionamiento IPv4 no sólo es relevante para el tema 1.6 del examen; Es un tema fundamental que es esencial para comprender casi cualquier otro tema del examen CCNA. También tened en cuenta que cubriremos la subred, la segunda mitad del tema 1.6, en la parte 2 de este libro.
-
-Dado el nombre IPv4, quizá os preguntéis qué ocurrió con las versiones anteriores. La historia y las características de IPv0, v1, v2 y v3, aunque son pasos importantes en la evolución hacia IPv4, no son necesarias para el examen CCNA, por lo que no las cubriremos. IPv4, definido oficialmente en RFC 791 (titulado «Internet Protocol»), constituye la base de las redes modernas, como internet.
+Dado el nombre IPv4, quizá os preguntéis qué ocurrió con las versiones anteriores. La historia y las características de IPv0, v1, v2 y v3, aunque son pasos importantes en la evolución hacia IPv4, no son necesarias para la correcta comprensión del tema que nos ocupa, por lo que no las cubriremos. IPv4, definido oficialmente en RFC 791 (titulado «Internet Protocol»), constituye la base de las redes modernas, como internet.
 
 !!!note "Nota"
-    Además de IPv4, IPv6 es otro tema importante del examen que tiene su propia parte en este volumen. IPv6 se introdujo en 1995 para reemplazar a IPv4, pero su adopción ha sido lenta. Aunque la adopción de IPv6 se está acelerando a medida que se agota el conjunto de direcciones IPv4 disponibles, parece que en el futuro previsible, los ingenieros de redes tendrán que estar familiarizados tanto con IPv4 como con IPv6.
+    IPv6 se introdujo en 1995 para reemplazar a IPv4, pero su adopción ha sido lenta. Aunque la adopción de IPv6 se está acelerando a medida que se agota el conjunto de direcciones IPv4 disponibles, parece que en el futuro previsible, los ingenieros de redes tendrán que estar familiarizados tanto con IPv4 como con IPv6.
 
 ## 1. La cabecera IPv4
 
 Antes de ver los detalles de las direcciones IPv4, resulta útil comprender el encabezado que contiene esas direcciones. Sin embargo, la cabecera IPv4 no sólo contiene direcciones IPv4; contiene una variedad de campos, cada uno de los cuales cumple una función diferente al permitir la entrega de paquetes de un extremo a otro (la función de la Capa 3).
 
-La cabecera IPv4 es más compleja que el encabezado Ethernet, como probablemente notará al observar la figura 1. En total, hay 14 campos (aunque el campo Opciones es opcional), mientras que el encabezado y el tráiler Ethernet solo tienen 4 (6 si incluye el Preámbulo y el SFD).
+La cabecera IPv4 es más compleja que el encabezado Ethernet, como probablemente notarás al observar la figura 1. En total, hay 14 campos (aunque el campo Opciones es opcional), mientras que el encabezado y el tráiler Ethernet solo tienen 4 (6 si incluye el Preámbulo y el SFD).
 ![](img/direccionamientoIP_1.png)
 
 /// figura
@@ -57,14 +55,14 @@ El campo IHL indica la longitud de la cabecera IPv4 en incrementos de 4 bytes. P
     No se debe utilizar un valor inferior a 5 en este campo porque la cabecera IPv4 no puede tener menos de 20 bytes de longitud.
 
 Cualquier valor mayor que 5 en el campo IHL indica que el campo Opciones está presente en el encabezado. El valor máximo del campo IHL es 15, lo que indica que el encabezado tiene una longitud de 60 bytes (la longitud máxima dla cabecera IPv4). En ese caso, el campo Opciones tiene una longitud de 40 bytes y el resto del encabezado tiene 20 bytes.
+
 ### 1.3. Los campos DSCP y ECN
 
 Los dos campos siguientes son Punto de código de servicios diferenciados (DSCP), que tiene una longitud de 6 bits, y Notificación de congestión explícita (ECN), que tiene una longitud de 2 bits. Este byte dla cabecera IPv4 solía llamarse campo Tipo de servicio y todavía lo es a veces, pero DSCP + ECN es la definición actual.
 
 Estos campos se utilizan para la Calidad de servicio (QoS), que es una característica de la red que se utiliza para priorizar tipos específicos de tráfico de red sobre otros tipos. Un caso de uso común de QoS es priorizar el tráfico de red sensible a demoras, tráfico de red para el cual es muy importante llegar al destino lo antes posible, sin demoras. Un ejemplo de esto es el tráfico de voz y video; Creo que la mayoría de nosotros sabemos lo frustrante que puede ser tener una llamada de Zoom (o una llamada usando cualquier aplicación similar) de mala calidad. QoS ayuda a garantizar que este tráfico se reenvíe con el menor retraso posible.
-!!!note "Nota"
-    QoS es otro tema del examen CCNA y lo cubriremos en el capítulo 10 del volumen 2 de este libro.
-    ### El campo Longitud total
+
+### El campo Longitud total
 
 El campo Longitud total es un campo de 16 bits que indica la longitud total del paquete: la cabecera IPv4 y su carga útil. No confundáis esto con el campo IHL, que indica únicamente la longitud de la cabecera IPv4. La figura 2 ilustra la diferencia entre los campos IHL y Longitud total.
 ![](img/direccionamientoIP_2.png)
@@ -75,7 +73,7 @@ La diferencia entre los campos IHL y Longitud total. El campo IHL indica la long
 
 Otra diferencia entre los campos IHL y Longitud total es que el valor del campo Longitud total indica la longitud del paquete en bytes, en lugar de incrementos de 4 bytes. Por ejemplo, un valor de 100 en el campo Longitud total significa que el paquete tiene 100 bytes de longitud y un valor de 1000 en el campo Longitud total significa que el paquete tiene 1000 bytes de longitud.
 
-### 1.4. Los campos Identificación, Indicadores y Desplazamiento de fragmentos
+### 1.4. Los campos Identificación, Indicadores y Desplazamiento de fragmentos (Identification, Flasgs, Fragment Offset)
 
 Los campos Identificación, Indicadores y Desplazamiento de fragmentos, de 32 bits en total, se utilizan juntos para admitir la fragmentación de paquetes, cuando un paquete se divide en varios paquetes más pequeños llamados fragmentos. IPv4 utiliza un concepto llamado unidad máxima de transmisión (MTU) para indicar el tamaño máximo que debe tener un paquete, y cualquier paquete mayor que la MTU se fragmentará. Luego, el host de destino final del paquete vuelve a ensamblar los fragmentos para restaurar el paquete original.
 
@@ -89,9 +87,9 @@ Este campo tiene 16 bits de longitud y se utiliza para identificar a qué paquet
 
 Este campo tiene 3 bits de longitud y se utiliza para controlar e identificar fragmentos. Los 3 bits de este campo (bit 0, bit 1 y bit 2) se definen de la siguiente manera:
 
-+ Bit 0: Reservado: el uso de este bit no se ha definido, por lo que siempre está establecido en 0.
++ Bit 0: Reservado, el uso de este bit no se ha definido, por lo que siempre está establecido en 0.
 + Bit 1: bit de No fragmentar (DF): si este bit se establece en 1, significa que el paquete no debe fragmentarse. En ese caso, si el tamaño del paquete es mayor que la MTU, será descartado.
-+ Bit 2: bit Más fragmentos (MF): si este bit se establece en 1, significa que quedan más fragmentos; este no es el último. El fragmento final del paquete tendrá un valor de 0 en este campo (lo que indica que no hay más fragmentos). Un paquete no fragmentado siempre tendrá un valor de 0 para este bit.
++ Bit 2: bit Más fragmentos (MF), si este bit se establece en 1, significa que quedan más fragmentos; este no es el último. El fragmento final del paquete tendrá un valor de 0 en este campo (lo que indica que no hay más fragmentos). Un paquete no fragmentado siempre tendrá un valor de 0 para este bit.
 
 ### 1.7. Campo de desplazamiento de fragmento
 
@@ -120,7 +118,7 @@ En el capítulo anterior, cubrimos la utilidad ping, que es un componente de ICM
     17—Protocolo de datagramas de usuario (UDP)
     89—Abrir primero la ruta más corta (OSPF)
 
-### 1.10. El campo Suma de comprobación del encabezado
+### 1.10. El campo Suma de comprobación del encabezado (Header Checksum)
 
 El campo Suma de comprobación del encabezado tiene 16 bits de longitud y se utiliza para comprobar si hay errores en la cabecera IPv4. El mecanismo es similar al FCS del tráiler Ethernet. Sin embargo, una diferencia importante es que el campo Suma de comprobación del encabezado solo busca errores en la cabecera IPv4, no en todo el paquete. Por otro lado, el campo Ethernet FCS no solo busca errores en el encabezado de Ethernet; busca errores en todo el trama.
 
@@ -130,7 +128,7 @@ Estos dos campos contienen la dirección IP del host que envía el paquete (camp
 
 ### 1.12. El campo Opciones
 
-El último campo dla cabecera IPv4 es el campo Opciones. Como se mencionó anteriormente, este campo es opcional y de longitud variable: desde 0 bytes (si no se usa) hasta 40 bytes de longitud; Esta es la razón por la que la cabecera IPv4 requiere un campo para indicar la longitud del encabezado. Este campo rara vez se utiliza y sus casos de uso están más allá del alcance del examen CCNA.
+El último campo de la cabecera IPv4 es el campo Opciones. Como se mencionó anteriormente, este campo es opcional y de longitud variable: desde 0 bytes (si no se usa) hasta 40 bytes de longitud; Esta es la razón por la que la cabecera IPv4 requiere un campo para indicar la longitud del encabezado. Este campo rara vez se utiliza y sus casos de uso están más allá del alcance del módulo.
 
 ## 2. El sistema numérico binario
 
@@ -171,21 +169,23 @@ Tabla 1 Números decimales y sus equivalentes binarios (ver figura de la tabla)
 | 7   | 111   |     | 15  | 1111  |     | 23  | 10111  |     | 31  | 11111  |
 
 Aunque las direcciones IPv4 tienen una longitud de 32 bits, la buena noticia es que sólo tenéis que poder convertir entre binario y decimal para números de hasta 8 bits de longitud. Esto se debe a que las direcciones IPv4 se dividen en cuatro grupos de 8 bits, lo que las hace más manejables.
-Convertir números binarios a decimales
 
-Convertir números binarios a decimales es un proceso simple: simplemente sume los valores de los bits establecidos en 1. La figura 5 demuestra este proceso.
+#### Convertir números binarios a decimales
+
+Convertir números binarios a decimales es un proceso simple: simplemente sumas los valores de los bits establecidos en 1. La figura 5 demuestra este proceso.
 ![](img/direccionamientoIP_5.png)
 
 /// figura
 El número binario 00101111 es igual a 47 en decimal. Para calcular esto, suma el valor de cada bit que está establecido en 1: 32 + 8 + 4 + 2 + 1 = 47.
 ///
 
-Recomiendo encarecidamente dedicar algo de tiempo a practicar esto. Para hacerlo, escriba algunos números aleatorios de 8 bits (11011010, 01011100, 11101110, etc.) y practique convirtiéndolos a decimal. Con un poco de práctica, deberías poder convertir de binario a decimal en tu cabeza, sin escribir el valor de cada bit. Para comprobar sus respuestas, puede hacer una búsqueda rápida en Internet de "convertidor de binario a decimal"; Hay muchas herramientas gratuitas disponibles.
+Recomiendo encarecidamente dedicar algo de tiempo a practicar esto. Para hacerlo, escribe algunos números aleatorios de 8 bits (11011010, 01011100, 11101110, etc.) y practica convirtiéndolos a decimal. Con un poco de práctica, deberías poder convertir de binario a decimal en tu cabeza, sin escribir el valor de cada bit. Para comprobar tus respuestas, puede hacer una búsqueda rápida en Internet de "convertidor de binario a decimal"; Hay muchas herramientas gratuitas disponibles.
+
 !!!note "Nota"
     El valor mínimo de un número de 8 bits (con todos los bits establecidos en 0) es 0d0. El valor máximo de un número de 8 bits (con todos los bits establecidos en 1) es 0d255. Por tanto, 8 bits proporcionan 256 valores posibles: desde 0d0 (0b00000000) hasta 0d255 (0b11111111).
     Convertir números decimales a binarios
 
-La conversión de decimal a binario requiere algunos pasos más. Hay algunos métodos para hacer esto, pero la figura 6 demuestra el proceso que uso. Primero, intente restar el valor del bit más significativo (128) del número decimal. Si el resultado es un número positivo, anote el resto y escriba un 1 en esa posición de bit. Si la resta daría como resultado un valor negativo, no restes; simplemente escribid un 0 en esa posición de bit. Luego, resta el valor del segundo bit más significativo (64) del resto de la resta anterior (o del número original, si no pudiste restar 128 del número) y repite el proceso hasta llegar a 0. La figura 6 muestra cómo funciona esto:
+La conversión de decimal a binario requiere algunos pasos más. Hay algunos métodos para hacer esto, pero la figura 6 demuestra un proceso que uso. Primero, intenta     restar el valor del bit más significativo (128) del número decimal. Si el resultado es un número positivo, anote el resto y escriba un 1 en esa posición de bit. Si la resta daría como resultado un valor negativo, no restes; simplemente escribid un 0 en esa posición de bit. Luego, resta el valor del segundo bit más significativo (64) del resto de la resta anterior (o del número original, si no pudiste restar 128 del número) y repite el proceso hasta llegar a 0. La figura 6 muestra cómo funciona esto:
 
 1. Restar 128 de 206 da un resto de 78. Escribid un 1 en la posición 128.
 
@@ -230,17 +230,17 @@ En lugar de usar la resta, podéis convertir de decimal a binario usando la suma
 Al igual que la conversión de binario a decimal, este proceso se vuelve mucho más fácil con la práctica y, eventualmente, deberías poder hacerlo mentalmente. Para practicar, escribid algunos números aleatorios del 0 al 255 (56, 127, 201, 199, etc.) e intentad convertirlos a binario.
 
 Para practicar más la conversión entre decimal y binario (en ambas direcciones), podéis probar el juego binario en Cisco Learning Network: https://learningnetwork.cisco.com/s/binary-game. Probadlo varias veces al día; A medida que practiques y mejores, tus puntuaciones en el Juego Binario deberían aumentar y podrás hacer los cálculos necesarios en tu cabeza.
-!!!note "Nota"
-    Ser capaz de convertir rápidamente entre decimal y binario es de gran ayuda en el examen CCNA, especialmente cuando se trata de subredes (el tema del capítulo 11). El examen CCNA tiene un límite de tiempo de 2 horas; no pierda tiempo innecesariamente haciendo conversiones de binario a decimal y de decimal a binario. Un poco de práctica con el juego binario de Cisco ayuda mucho.
 
+!!!note "Nota"
+    Ser capaz de convertir rápidamente entre decimal y binario es de gran ayuda en el manejo de redes, especialmente cuando se trata de subredes. No pierdas tiempo innecesariamente haciendo conversiones de binario a decimal y de decimal a binario. Un poco de práctica con el juego binario de Cisco ayuda mucho.
 
 El binario es un tema fundamental para diversas aplicaciones en redes. Además del direccionamiento IPv4 (el tema de este capítulo), los siguientes son otros temas que requieren que usted domine el binario, incluida la conversión entre binario y decimal:
 
-+ **Subredes IPv4:** La subred es el proceso de dividir redes en redes más pequeñas y constituye la segunda parte del tema 1.6 del examen: Configurar y verificar el direccionamiento y la subred IPv4. Para subdividir redes IPv4, es necesario poder convertir direcciones IPv4 de decimal a binario y viceversa. Abordaremos la subred en el capítulo 11 de este libro.
++ **Subredes IPv4:** La subred es el proceso de dividir redes en redes más pequeñas. Para subdividir redes IPv4, es necesario poder convertir direcciones IPv4 de decimal a binario y viceversa. Abordaremos la subred más adelante
++
++ **Direccionamiento IPv6:** Configurar y verificar el direccionamiento y el prefijo IPv6. Para comprender las direcciones IPv6, es necesario poder convertir entre binario, decimal y hexadecimal (ya que las direcciones IPv6 suelen escribirse en hexadecimal). Abordaremos IPv6 en la parte 5 de este libro.
 
-+ **Direccionamiento IPv6:** Este es el tema 1.8 del examen: Configurar y verificar el direccionamiento y el prefijo IPv6. Para comprender las direcciones IPv6, es necesario poder convertir entre binario, decimal y hexadecimal (ya que las direcciones IPv6 suelen escribirse en hexadecimal). Abordaremos IPv6 en la parte 5 de este libro.
-
-+ **Enrutamiento IPv4 e IPv6:** Esto incluye casi la totalidad del dominio 3.0 de los temas del examen CCNA (Conectividad IP) y representa el 25 % del examen CCNA completo. Por ejemplo, para saber cómo un enrutador reenviará un paquete, debe identificar la ruta coincidente más específica: la ruta con la mayor cantidad de bits que coinciden con la dirección IP de destino del paquete. Para ello, debe comprender los números binarios. Cubriremos el concepto de la ruta coincidente más específica en el capítulo 9 y otros temas del dominio 3.0 en las partes 4 y 5 de este volumen. Listas de control de acceso (ACL): las ACL son el tema del examen 5.6: Configurar y verificar listas de control de acceso. Las ACL se utilizan para permitir o denegar tráfico de red específico, y lo hacen comparando los bits de la ACL configurada con los bits de las direcciones IP de origen y/o destino de un paquete. Para configurar las ACL adecuadas, debe comprender el sistema binario.
++ **Enrutamiento IPv4 e IPv6:** Para saber cómo un enrutador reenviará un paquete, debe identificar la ruta coincidente más específica: la ruta con la mayor cantidad de bits que coinciden con la dirección IP de destino del paquete. Para ello, debe comprender los números binarios. Cubriremos el concepto de la ruta coincidente más específica en el capítulo 9 y otros temas del dominio 3.0 en las partes 4 y 5 de este volumen. Listas de control de acceso (ACL): las ACL son el tema del examen 5.6: Configurar y verificar listas de control de acceso. Las ACL se utilizan para permitir o denegar tráfico de red específico, y lo hacen comparando los bits de la ACL configurada con los bits de las direcciones IP de origen y/o destino de un paquete. Para configurar las ACL adecuadas, debe comprender el sistema binario.
 
 ## 3. Direccionamiento IPv4
 
@@ -250,7 +250,8 @@ Una dirección IPv4 es un número de 32 bits que identifica un host en la Capa 3
 
 ### 3.1. La estructura de una dirección IPv4
 
-Las direcciones IPv4 tienen 32 bits de longitud, pero una cadena de 32 bits de 1 y 0 no es muy legible ni fácil de recordar. Para facilitar su lectura, las direcciones IPv4 se representan mediante números decimales en lugar de binarios. Para simplificarlo aún más, primero dividimos la dirección IPv4 de 32 bits en cuatro grupos de 8 bits llamados octetos, separados por un punto, y luego convertimos cada uno de los octetos a decimal; esto se llama notación decimal con puntos. Es por eso que, para los fines de CCNA, solo necesita poder convertir entre binario y decimal para números de hasta 8 bits. La figura 7 muestra una dirección IPv4 escrita en decimal con puntos y en binario.
+Las direcciones IPv4 tienen 32 bits de longitud, pero una cadena de 32 bits de 1 y 0 no es muy legible ni fácil de recordar. Para facilitar su lectura, las direcciones IPv4 se representan mediante números decimales en lugar de binarios. Para simplificarlo aún más, primero dividimos la dirección IPv4 de 32 bits en cuatro grupos de 8 bits llamados octetos, separados por un punto, y luego convertimos cada uno de los octetos a decimal; esto se llama notación decimal con puntos. La figura 7 muestra una dirección IPv4 escrita en decimal con puntos y en binario.
+
 ![](img/direccionamientoIP_7.png)
 
 /// figura
@@ -281,7 +282,8 @@ Dos redes (LAN 1 y LAN 2) conectadas a través de un enrutador (R1). Las direcci
 
 !!!note "Nota"
     El significado exacto del término red puede variar. Se podría decir que la figura 8 muestra una red que consta de dos LAN. Sin embargo, en el contexto de las direcciones IP y las longitudes de los prefijos, se puede pensar que una red es sinónimo de una LAN: un grupo de dispositivos que pueden comunicarse directamente entre sí, sin el uso de un enrutador.
-    Máscaras de red
+
+#### Máscaras de red
 
 En lugar de indicar la longitud del prefijo con /X, otro método común es utilizar una máscara de red: otra cadena de 32 bits que se empareja con una dirección IP para indicar qué bits de la dirección IP son la parte de la red y cuáles son la parte del host. Un bit en la máscara de red establecido en 1 significa que el bit en la misma posición de la dirección IP es parte de la porción de red; un bit en la máscara de red establecido en 0 significa que el bit en la misma posición de la dirección IP es parte de la parte del host.
 
@@ -309,13 +311,13 @@ Se debe estar familiarizado con ambos métodos para indicar la longitud de la pa
 A diferencia de las direcciones MAC, que el fabricante asigna a un dispositivo, las direcciones IP deben ser asignadas por el ingeniero o administrador que configura el dispositivo. Veamos cómo configurar direcciones IP en un enrutador Cisco.
 
 !!!note "Nota"
-    Los hosts finales, como las PC, generalmente reciben sus direcciones IP automáticamente mediante el Protocolo de configuración dinámica de host (DHCP), el tema del capítulo 4 del volumen 2. Sin embargo, las direcciones IP de los dispositivos de infraestructura de red, como los enrutadores, generalmente se configuran manualmente.
+    Los hosts finales, como los PC, generalmente reciben sus direcciones IP automáticamente mediante el Protocolo de configuración dinámica de host (DHCP). Sin embargo, las direcciones IP de los dispositivos de infraestructura de red, como los enrutadores, generalmente se configuran manualmente.
 
 La figura 10 amplía el R1 desde la figura 8 y muestra cómo configurar direcciones IP y habilitar las interfaces G0/0 y G0/1 del R1. En el resto de esta sección, analizaremos estas configuraciones y usaremos los comandos show para verificar el estado de las interfaces de R1 antes y después de la configuración. Estos son los pasos básicos:
 
-1. Desde el modo EXEC de usuario, pase al modo EXEC privilegiado y luego al modo de configuración global.
-2. Acceda al modo de configuración de la interfaz G0/0, configure una dirección IP y una máscara de red, y habilite la interfaz.
-3. Acceda al modo de configuración de la interfaz G0/1, configure una dirección IP y una máscara de red, y habilite la interfaz.
+1. Desde el modo EXEC de usuario, pasa al modo EXEC privilegiado y luego al modo de configuración global.
+2. Accede al modo de configuración de la interfaz G0/0, configura una dirección IP y una máscara de red, y habilita la interfaz.
+3. Accede al modo de configuración de la interfaz G0/1, configura una dirección IP y una máscara de red, y habilita la interfaz.
 
 ![](img/direccionamientoIP_10.png)
 
@@ -323,10 +325,11 @@ La figura 10 amplía el R1 desde la figura 8 y muestra cómo configurar direccio
 Cómo configurar direcciones IP y habilitar interfaces de enrutador. R1 está conectado a dos LAN: 192.168.1.1/24 (G0/0) y 192.168.2.1/24 (G0/1).
 ///
 !!!note "Nota"
-    Los interruptores y PC presentes en la figura 8 han sido reemplazados por líneas perpendiculares al final de las conexiones en la figura 10. Esta es una técnica común en los diagramas de red para indicar que una LAN está conectada a una interfaz, pero sus detalles no son importantes para el diagrama. La figura 10 se centra en R1, por lo que no es necesario mostrar los conmutadores y las PC.
-    Preverificación
+    Los switches y PC presentes en la figura 8 han sido reemplazados por líneas perpendiculares al final de las conexiones en la figura 10. Esta es una técnica común en los diagramas de red para indicar que una LAN está conectada a una interfaz, pero sus detalles no son importantes para el diagrama. La figura 10 se centra en R1, por lo que no es necesario mostrar los conmutadores y las PC.
 
-Confirmemos el estado predeterminado de las interfaces de R1 antes de configurarlas; antes de configurar un dispositivo, es mejor confirmar el estado actual del dispositivo. Un comando conveniente para ver las interfaces de un enrutador es show ip interface brief, ejecutado en modo EXEC de usuario o EXEC privilegiado. ¡Usarás mucho este comando! El siguiente ejemplo muestra el resultado del comando en R1 antes de configurar sus interfaces:
+#### Preverificación
+
+Confirmemos el estado predeterminado de las interfaces de R1 antes de configurarlas; antes de configurar un dispositivo, es mejor confirmar el estado actual del dispositivo. Un comando conveniente para ver las interfaces de un enrutador es `show ip interface brief`, ejecutado en modo EXEC de usuario o EXEC privilegiado. ¡Usarás mucho este comando! El siguiente ejemplo muestra el resultado del comando en R1 antes de configurar sus interfaces:
 
 ```
 R1# show ip interface brief
@@ -340,9 +343,10 @@ GigabitEthernet0/3  unassigned   YES unset  administratively down  down
 La columna Interfaz enumera las interfaces de R1; tiene cuatro y configuraremos dos de ellas. La columna Dirección IP enumerará la dirección IP de cada interfaz después de que las hayamos configurado, pero actualmente solo indica no asignada. La columna Estado enumera el estado físico de cada interfaz. Si la interfaz está conectada a otro dispositivo, el estado será activo; si no es así, el estado estará inactivo y, si la interfaz se desactiva manualmente, estará inactiva administrativamente (independientemente de si está conectada a otro dispositivo). Como se mostró anteriormente, el estado predeterminado es administrativamente inactivo: las interfaces del enrutador Cisco están deshabilitadas de forma predeterminada y deben habilitarse manualmente.
 
 La columna Protocolo indica si el protocolo de Capa 2 de la interfaz está funcionando correctamente. Para una interfaz Ethernet, esto es bastante simple: si la columna Estado dice arriba, el Protocolo también debería estar activo. Si la columna Estado dice inactivo o administrativamente inactivo, el protocolo debería estar inactivo.
-Configuración
 
-Para configurar las interfaces de un dispositivo, debemos utilizar un nuevo modo en la jerarquía de la CLI de IOS: el modo de configuración de interfaz. Para acceder al modo de configuración de la interfaz, utilice el comando interface interface-name desde el modo de configuración global. El siguiente ejemplo demuestra esto:
+#### Configuración
+
+Para configurar las interfaces de un dispositivo, debemos utilizar un nuevo modo en la jerarquía de la CLI de IOS: el modo de configuración de interfaz. Para acceder al modo de configuración de la interfaz, utilizad el comando interface interface-name desde el modo de configuración global. El siguiente ejemplo demuestra esto:
 
 ```
 R1# configure terminal
@@ -373,7 +377,7 @@ R1(config-if)# no shutdown
 ```
 
 !!!note "Nota"
-    Como se mencionó en el capítulo 5, no se podéis usar delante de un comando para eliminarlo de la configuración. Las interfaces del enrutador están deshabilitadas de forma predeterminada porque se les aplica el comando de apagado; el comando no apagado lo elimina y por lo tanto habilita la interfaz.
+    Como se ha mencinoado ya en varias ocasiones,  podéis usar la palabra `no`delante de un comando para eliminarlo de la configuración. Las interfaces del enrutador están deshabilitadas de forma predeterminada porque se les aplica el comando de apagado; el comando no apagado lo elimina y por lo tanto habilita la interfaz.
 
 La interfaz G0/0 de R1 ahora tiene una dirección IP y está habilitada: está lista para reenviar tráfico. A continuación configuremos la interfaz G0/1, como en el siguiente ejemplo:
 
@@ -401,7 +405,7 @@ GigabitEthernet0/2  unassigned   YES unset  administratively down  down
 GigabitEthernet0/3  unassigned   YES unset  administratively down  down
 ```
 
-Observe que G0/0 y G0/1 tienen las direcciones IP correctas y están en las columnas Estado y Protocolo. Sin embargo, show ip interface brief no muestra la máscara de red. Para verificar que la máscara de red sea correcta, podéis usar el comando show ip interface [nombre-interfaz], como en el siguiente ejemplo. Tened en cuenta que, aunque debe utilizar una máscara de red al configurar direcciones IP, la longitud del prefijo se muestra como /X en el resultado de este comando. Este comando muestra una gran cantidad de resultados, por lo que solo incluyo las primeras líneas de cada interfaz:
+Observe que G0/0 y G0/1 tienen las direcciones IP correctas y están en las columnas Estado y Protocolo. Sin embargo, `show ip interface brief` no muestra la máscara de red. Para verificar que la máscara de red sea correcta, podéis usar el comando `show ip interface [nombre-interfaz]`, como en el siguiente ejemplo. Tened en cuenta que, aunque debe utilizar una máscara de red al configurar direcciones IP, la longitud del prefijo se muestra como /X en el resultado de este comando. Este comando muestra una gran cantidad de resultados, por lo que solo incluyo las primeras líneas de cada interfaz:
 
 ```
 R1# show ip interface
@@ -427,7 +431,7 @@ En segundo lugar, la línea final de la MTU de estados de salida incluidos es de
 !!!note "Nota"
     Después de verificar que las configuraciones son correctas, siempre es una buena idea guardar la configuración con uno de los comandos tratados en el capítulo 5: escribir, escribir en memoria o copiar running-config startup-config.
 
-R1 ahora está listo para reenviar tráfico entre LAN 1 y LAN 2. La figura 11 muestra cómo la PC1 puede enviar un paquete a la PC3 a través de R1; La PC1 envía el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 del R1 y luego el R1 reenvía el paquete en una trama dirigida a la dirección MAC de la PC3. Recuerde que la Capa 3 proporciona entrega de un extremo a otro y la Capa 2 proporciona entrega de salto a salto. Aunque no se muestra en el diagrama, antes de que la PC1 pueda encapsular el paquete en una trama, debe usar ARP para conocer la dirección MAC de R1 G0/0. Asimismo, R1 debe usar ARP para conocer la dirección MAC de la PC3.
+R1 ahora está listo para reenviar tráfico entre LAN 1 y LAN 2. La figura 11 muestra cómo el PC1 puede enviar un paquete al PC3 a través de R1; El PC1 envía el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 del R1 y luego el R1 reenvía el paquete en una trama dirigida a la dirección MAC del PC3. Recuerda que la Capa 3 proporciona entrega de un extremo a otro y la Capa 2 proporciona entrega de salto a salto. Aunque no se muestra en el diagrama, antes de que el PC1 pueda encapsular el paquete en una trama, debe usar ARP para conocer la dirección MAC de R1 G0/0. Asimismo, R1 debe usar ARP para conocer la dirección MAC del PC3.
 
 ![](img/direccionamientoIP_11.png)
 
@@ -438,7 +442,7 @@ La PC1 envía un paquete a la PC3 a través del R1. El paquete se dirige a la di
 !!!note "Nota"
     La figura 11 indica la dirección IP de cada host de manera diferente que en los diagramas anteriores. La dirección de red (tratada en la sección correspondiente) se escribe junto al nombre de cada LAN, y solo la parte del host de la dirección IP de cada host se escribe junto al host. Esta es una técnica común para reducir la cantidad de texto en un diagrama. Tanto la PC1 como la PC3 tienen .2 escrito al lado, pero sus direcciones IP no son las mismas; la parte de red de la dirección IP de la PC1 es 192.168.1 y la de la PC3 es 192.168.2. La misma lógica se aplica para PC2 y PC4.
 
-Para que un enrutador reenvíe paquetes a redes remotas (que no están conectadas directamente al enrutador), se requieren configuraciones adicionales; Cubriremos esas configuraciones en capítulos posteriores de este volumen. Sin embargo, en la red de ejemplo que se muestra en la figura 11, la LAN 1 y la LAN 2 están conectadas directamente al R1; no se necesitan más configuraciones. PC1 y PC2 en LAN 1 ahora pueden comunicarse con PC3 y PC4 en LAN 2 a través de R1.
+Para que un enrutador reenvíe paquetes a redes remotas (que no están conectadas directamente al enrutador), se requieren configuraciones adicionales; Cubriremos esas configuraciones en secciones posteriores de este tema. Sin embargo, en la red de ejemplo que se muestra en la figura 11, la LAN 1 y la LAN 2 están conectadas directamente al R1; no se necesitan más configuraciones. PC1 y PC2 en LAN 1 ahora pueden comunicarse con PC3 y PC4 en LAN 2 a través de R1.
 
 ### 3.3. Atributos de una red IPv4
 
@@ -508,10 +512,10 @@ Este proceso se volverá más desafiante cuando cubramos la división en subrede
 
 ### 3.4. Clases de direcciones IPv4
 
-Originalmente, todas las direcciones IPv4 usaban una longitud de prefijo /8; el primer octeto identificaba la red y los últimos tres octetos identificaban el host específico dentro de esa red. Sin embargo, ese sistema pronto fue abandonado; debido a que solo los primeros 8 bits se podían usar para crear diferentes redes, solo podía haber 256 (28) redes (LAN) diferentes: de 0.x.x.x a 255.x.x.x. En el mundo moderno, donde Internet es omnipresente, no hay suficientes redes.
+Originalmente, todas las direcciones IPv4 usaban una longitud de prefijo /8; el primer octeto identificaba la red y los últimos tres octetos identificaban el host específico dentro de esa red. Sin embargo, ese sistema pronto fue abandonado; debido a que solo los primeros 8 bits se podían usar para crear diferentes redes, solo podía haber 256 (2^8) redes (LAN) diferentes: de 0.x.x.x a 255.x.x.x. En el mundo moderno, donde Internet es omnipresente, no hay suficientes redes.
 
 !!!note "Nota"
-    La fórmula para calcular la cantidad de redes disponibles es 2x, donde x es la cantidad de bits en la parte de la red.
+    La fórmula para calcular la cantidad de redes disponibles es 2^x, donde x es la cantidad de bits en la parte de la red.
 
 Para mejorar ese sistema y permitir más redes de varios tamaños, las direcciones IPv4 se organizaron en cinco clases: clase A, clase B, clase C, clase D y clase E. La Tabla 2 enumera las cinco clases de direcciones IPv4 y algo de información sobre ellas.
 
@@ -556,8 +560,11 @@ Tabla 3 Características de las clases A, B y C (ver figura de tabla)
 !!!note "Nota"
     La razón por la que sólo hay 27 redes de clase A, aunque la parte de la red tiene una longitud de 8 bits, es que el primer bit está fijo en 0: sólo hay 7 bits disponibles para cambiar y crear redes diferentes. El mismo razonamiento se aplica a por qué hay 214 redes de clase B (no 216) y 221 redes de clase C (no 224).
 
-Las redes que siguen las reglas de clase A, B y C se denominan redes con clase. Aunque es importante estudiarlo y comprenderlo incluso hoy en día, este sistema ahora está obsoleto y ha sido reemplazado por redes sin clases, un sistema en el que las longitudes de los prefijos no están restringidas por clase. Cubriremos esto en el capítulo 11 cuando analicemos la subred.
-Direcciones reservadasDentro de cada clase de dirección, existen varios rangos de direcciones IP que están reservadas y no se pueden asignar a hosts. Aquí hay dos ejemplos:
+Las redes que siguen las reglas de clase A, B y C se denominan redes con clase. Aunque es importante estudiarlo y comprenderlo incluso hoy en día, este sistema ahora está obsoleto y ha sido reemplazado por redes sin clases, un sistema en el que las longitudes de los prefijos no están restringidas por clase. Cubriremos esto cuando analicemos la subred.
+
+#### Direcciones reservadas
+
+Dentro de cada clase de dirección, existen varios rangos de direcciones IP que están reservadas y no se pueden asignar a hosts. Aquí hay dos ejemplos:
 
 + **0.0.0.0/8:** cualquier dirección IP que comience con el primer octeto 0 está reservada.
 + **127.0.0.0/8:** este rango está reservado para direcciones de loopback. Un mensaje enviado a cualquier dirección IP en este rango (es decir, ping 127.0.0.1) se enviará de vuelta al host local (el dispositivo en el que está trabajando) sin transmitirse a través de la red. Esto se puede utilizar para probar el software de red en el dispositivo local.
