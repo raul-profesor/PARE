@@ -28,14 +28,15 @@ nav = [
     ]},
     {Enrutamiento = [
         "direccionamientoIP.md",
-        "subnetting.md",
+        "ejercicios_direccionamiento_ip.md",
         "routing.md",
         "vida_paquete.md",
+        "subnetting.md",
+        "intervlan.md",  
         "routers_y_rutas_estaticas.md",
         "rutas_dinamicas.md",
         "RIP_RIPv2.md",
         "ospf.md",
-        "intervlan.md",
         "acl_estandar.md",
         "acl_extendida.md",
         "nat.md"
@@ -96,6 +97,7 @@ abbr = {}
 types = [
     "caption",
     "table",
+    { name = "tabla", prefix = "Tabla {}. " },
     "figure",
     { name = "figura", prefix = "Figura {}. " }
 ]

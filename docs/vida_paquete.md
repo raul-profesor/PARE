@@ -4,18 +4,18 @@ lang: es
 
 # Vida del paquete
 
-Este capítulo cubre
+Esta sección cubre
 
 + Un repaso de los procesos involucrados en la entrega de un paquete desde el origen hasta el destino
 + Cómo reenvían tramas los switches
 + El Protocolo de resolución de direcciones (ARP)
 + Cómo reenvían paquetes los routers
 
-Los conceptos que hemos visto hasta ahora —el modelo TCP/IP, la conmutación de tramas, ARP, las direcciones IPv4, el enrutamiento, etc.— son conceptos fundamentales sobre los que iremos construyendo en el resto de los dos volúmenes de este libro. En este capítulo repasaremos muchos de esos conceptos y veremos el papel que desempeña cada uno en la entrega de un paquete desde el host emisor hasta el destino previsto del paquete.
+Los conceptos que hemos visto hasta ahora —el modelo TCP/IP, la conmutación de tramas, ARP, las direcciones IPv4, el enrutamiento, etc.— son conceptos fundamentales sobre los que iremos construyendo en el resto del módulo. En esta sección repasaremos muchos de esos conceptos y veremos el papel que desempeña cada uno en la entrega de un paquete desde el host emisor hasta el destino previsto del paquete.
 
-Este capítulo es único entre los demás de este libro en cuanto a que no trata información nueva; todo lo que aparece en él se ha cubierto en capítulos anteriores. En lugar de introducir conceptos nuevos, el objetivo de este capítulo es tomar los conceptos más importantes de los capítulos anteriores y unirlos todos en un todo coherente.
+Esta sección es única entre las demás de este módulo en cuanto a que no trata información nueva; todo lo que aparece en él se ha cubierto en capítulos anteriores. En lugar de introducir conceptos nuevos, el objetivo de esta sección es tomar los conceptos más importantes de los capítulos anteriores y unirlos todos en un todo coherente.
 
-La figura 1 muestra la red que utilizaremos en este capítulo; usamos la misma al tratar el enrutamiento en el capítulo 9. La figura 1 también resume los diferentes procesos involucrados en la entrega de un paquete de PC1 a PC3: ARP, conmutación, enrutamiento, etc. Repasaremos estos procesos a lo largo del capítulo.
+La figura 1 muestra la red que utilizaremos en esta sección; usamos la misma al tratar el enrutamiento en el capítulo 9. La figura 1 también resume los diferentes procesos involucrados en la entrega de un paquete de PC1 a PC3: ARP, conmutación, enrutamiento, etc. Repasaremos estos procesos a lo largo del capítulo.
 
 ![](img/vida_paquete_1.png){text-align: justify}
 
@@ -25,11 +25,11 @@ Un resumen de las acciones realizadas por cada dispositivo cuando PC1 envía un 
 
 !!!note "Nota"
     Las flechas de la figura 1 son un recordatorio de que, en la Capa 3, el paquete va dirigido a PC3 (dirección IP 192.168.3.11) durante todo el trayecto. Sin embargo, en la Capa 2, el paquete se encapsula en una nueva trama en cada salto, y cada trama va dirigida al siguiente salto (hasta que R3 dirige finalmente su trama a PC3).
-///
+
 
 ## 1. La vida de un paquete de PC1 a PC3
 
-La figura 1 ofrece un esquema de los diferentes procesos involucrados en la entrega de un paquete de PC1 a PC3. Ahora vamos a examinar el proceso paso a paso para ver cómo los diferentes componentes que hemos visto en el libro hasta ahora se unen para permitir las comunicaciones sobre la red.
+La figura 1 ofrece un esquema de los diferentes procesos involucrados en la entrega de un paquete de PC1 a PC3. Ahora vamos a examinar el proceso paso a paso para ver cómo los diferentes componentes que hemos visto en el módulo hasta ahora se unen para permitir las comunicaciones sobre la red.
 
 ### 1.1. De PC1 a R1
 
@@ -37,11 +37,10 @@ En nuestro escenario, PC1 quiere enviar un paquete a PC3. El tipo de paquete no 
 
 La dirección IP de PC1 es 192.168.1.11, y tiene una longitud de prefijo /24 (máscara de red 255.255.255.0), por lo que sabe que su red local incluye las direcciones IP 192.168.1.0 (la dirección de red) hasta 192.168.1.255 (la dirección de difusión). Por lo tanto, sabe que PC3 (192.168.3.11) no está en su red local. Esto significa que PC1 debe enviar el paquete a su puerta de enlace predeterminada en una trama dirigida a la dirección MAC de la puerta de enlace predeterminada (en lugar de a la dirección MAC del propio PC3).
 
-PC1 sabe que la dirección IP de su puerta de enlace predeterminada es 192.168.1.1 (probablemente aprendida mediante DHCP, que veremos en el capítulo 4 del volumen 2), pero la información que realmente necesita es la dirección MAC de la puerta de enlace predeterminada; necesita enviar el paquete (destinado a PC3) en una trama dirigida a la dirección MAC de la G0/1 de R1. Para averiguar la dirección MAC de la G0/1 de R1, usará ARP. La figura 2 esquematiza el intercambio ARP entre PC1 y R1.
+PC1 sabe que la dirección IP de su puerta de enlace predeterminada es 192.168.1.1 (probablemente aprendida mediante DHCP), pero la información que realmente necesita es la dirección MAC de la puerta de enlace predeterminada; necesita enviar el paquete (destinado a PC3) en una trama dirigida a la dirección MAC de la G0/1 de R1. Para averiguar la dirección MAC de la G0/1 de R1, usará ARP. La figura 2 esquematiza el intercambio ARP entre PC1 y R1.
 
 !!!note "Nota"
     ARP no se utiliza para averiguar la dirección MAC del destino del paquete (PC3), sino la dirección MAC de la puerta de enlace predeterminada (R1 G0/1). Como PC1 y PC3 están en LANs separadas, no necesitan conocer la dirección MAC del otro.
-///
 
 ![](img/vida_paquete_2.png){text-align: justify}
 

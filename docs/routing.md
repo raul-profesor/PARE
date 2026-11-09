@@ -20,6 +20,33 @@ En este capítulo trataremos el enrutamiento, el proceso mediante el cual los ro
 
 El término enrutamiento puede referirse en realidad a dos procesos diferentes: el proceso mediante el cual los routers construyen su tabla de enrutamiento (una base de datos de destinos conocidos y cómo reenviar paquetes hacia ellos) y el proceso de reenviar los paquetes en sí. En este capítulo veremos ambos aspectos del enrutamiento, y partiremos de esta base en futuros capítulos de este volumen y del volumen 2.
 
+## 0. Concepto de puerta de enlace predeterminada (gateway)
+
+## 0.1. Qué es
+
+Es la dirección IP del router (o de otro dispositivo de encaminamiento) al que un equipo envía todo lo que quiere sacar de su propia red.
+
+En la práctica es un parámetro más de la configuración de red de tu equipo, junto a la IP y la máscara de subred, y se llama gateway. Cuando configuras una tarjeta de red manualmente, el router de tu casa, del centro o del laboratorio te dirá tres cosas: "tu IP es esta, tu máscara es esta, y tu puerta de enlace es esta".
+
+## 0.2. Para qué sirve
+
+Sirve para salir de la red local. Tu equipo sabe hablar con los dispositivos de su propia red porque los encuentra directamente. Pero en cuanto un paquete va destinado a algo fuera de esa red —una web, un servidor remoto, otra sede, un correo electrónico—, el equipo no tiene a quién entregarlo dentro de su barrio. La puerta de enlace es el intermediario que se ocupa de esa entrega: recibe el paquete de tu equipo y lo reenvía hacia su destino final.
+
+Es, por tanto, el punto de salida de la red. Todo el tráfico que sale de tu red local pasa por ahí.
+## 0.3. Por qué es necesario
+
+Porque sin ella no hay salida.
+
++ Un equipo solo sabe entregar tramas a los dispositivos de su propia subred. Para cualquier otro destino necesita que alguien con más conocimiento de la topología (el router) reenvíe su paquete.
+
++ El router necesita aprender, además, la dirección de la puerta de enlace hacia fuera de su propia red, es decir, quién es el siguiente salto. En los Routers que son "la puerta de salida de la red local" ese siguiente salto es el router de tu proveedor o el router de la red superior, y es precisamente ese dato —el default gateway de ese router— el que permite que un paquete que sale de tu LAN con destino a Internet llegue realmente a su destino.
+
++ Si la puerta de enlace está mal puesta, vacía o el router no responde, el equipo sigue viendo perfectamente a sus compañeros de red (impresoras, NAS, otros PCs) pero no puede salir a Internet: es el fallo típico de "la red local funciona pero no navego".
+
+!!!note "Recapitulando"
+
+    En resumen: qué es (la dirección IP del router de salida), para qué sirve (encaminar todo el tráfico que abandona tu red local) y por qué es necesaria (porque es el único camino que el equipo tiene para salir de su red, tanto en el PC como en el router que da acceso al exterior).
+
 ## 1. Cómo envían paquetes los hosts finales
 
 Antes de examinar los detalles de cómo los routers reenvían los paquetes IP, vamos a echar un vistazo a los hosts finales que se envían esos paquetes entre sí. Después de que un host prepare un paquete para enviar a otro, debe encapsular ese paquete en una trama; aunque nos estamos centrando en el enrutamiento, un proceso de Capa 3, ¡no os olvidéis de la Capa 2! Los paquetes nunca se envían por el cable (o por ondas de radio) sin ir encapsulados en una trama.

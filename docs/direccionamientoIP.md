@@ -1,6 +1,6 @@
 # Direccionamiento IPv4
 
-Este capítulo cubre
+Esta unidad cubre
 
 + Los campos dla cabecera IPv4
 + El sistema numérico binario.
@@ -8,9 +8,9 @@ Este capítulo cubre
 + La estructura de las direcciones IPv4.
 + Cómo configurar direcciones IPv4 en enrutadores Cisco
 
-Con anterioridad, nos centramos en la Capa 2 del modelo TCP/IP: cómo los conmutadores utilizan la información del encabezado Ethernet para tomar decisiones de reenvío. En este capítulo, subiremos una capa a la Capa 3 y veremos el contenido del encabezado del Protocolo de Internet versión 4 (IPv4), enfocándonos en el direccionamiento IPv4.
+Con anterioridad, nos centramos en la Capa 2 del modelo TCP/IP: cómo los conmutadores utilizan la información del encabezado Ethernet para tomar decisiones de reenvío. En esta unidad, subiremos una capa a la Capa 3 y veremos el contenido del encabezado del Protocolo de Internet versión 4 (IPv4), enfocándonos en el direccionamiento IPv4.
 
-Ahora estamos en el ámbito de los enrutadores, más que de los conmutadores. Mientras que los conmutadores usan información en el encabezado de la Capa 2 para decidir cómo reenviar mensajes a sus destinos adecuados, los enrutadores usan información en el encabezado de la Capa 3 para tomar sus decisiones de reenvío. En este capítulo, todavía no nos centraremos exactamente en cómo los enrutadores toman esas decisiones de reenvío; Lo dejaremos para la parte 2 de este libro. En lugar de ello, primero nos centraremos en el contenido dla cabecera IPv4 y las direcciones utilizadas en ese encabezado.
+Ahora estamos en el ámbito de los enrutadores, más que de los conmutadores. Mientras que los conmutadores usan información en el encabezado de la Capa 2 para decidir cómo reenviar mensajes a sus destinos adecuados, los enrutadores usan información en el encabezado de la Capa 3 para tomar sus decisiones de reenvío. En esta unidad, todavía no nos centraremos exactamente en cómo los enrutadores toman esas decisiones de reenvío; Lo dejaremos para más adelante. En lugar de ello, primero nos centraremos en el contenido dla cabecera IPv4 y las direcciones utilizadas en ese encabezado.
 
 Dado el nombre IPv4, quizá os preguntéis qué ocurrió con las versiones anteriores. La historia y las características de IPv0, v1, v2 y v3, aunque son pasos importantes en la evolución hacia IPv4, no son necesarias para la correcta comprensión del tema que nos ocupa, por lo que no las cubriremos. IPv4, definido oficialmente en RFC 791 (titulado «Internet Protocol»), constituye la base de las redes modernas, como internet.
 
@@ -34,7 +34,7 @@ Antes de examinar el propósito de cada campo del encabezado, quiero aclarar có
 
 Como se indicó, el campo Opciones es opcional (y de tamaño variable), por lo que la longitud de la cabecera IPv4 es variable. Sin el campo Opciones, el encabezado tiene una longitud de 20 bytes, desde el primer bit del campo Versión hasta el último bit del campo Dirección de destino. Con el campo Opciones en su tamaño máximo (40 bytes), la cabecera IPv4 tiene 60 bytes de longitud. Sin embargo, el campo Opciones rara vez se utiliza y está más allá del alcance del examen CCNA.
 !!!note "Nota"
-    A los efectos del examen CCNA, no os preocupéis por memorizar la longitud y la posición de cada campo dla cabecera IPv4. Las preguntas del examen CCNA son más sustanciales que trivias como "¿Cuál es la longitud del campo X?" A los efectos de este capítulo, es suficiente tener una comprensión básica del propósito de cada campo. Este capítulo se centra en las direcciones IPv4 en los campos Dirección de origen y Dirección de destino y, en el resto de este libro, veremos otros campos con mayor detalle según sea necesario.
+    A los efectos del curso, no os preocupéis por memorizar la longitud y la posición de cada campo de la cabecera IPv4. Es suficiente tener una comprensión básica del propósito de cada campo. 
     
 ### 1.1. El campo Versión
 
@@ -44,7 +44,7 @@ El primer campo de la cabecera IPv4 es el campo Versión. Tiene 4 bits de longit
 + Un valor de 0b0110 (0d6) indica IPv6.
 
 !!!note "Nota"
-    Como se mencionó en el capítulo 6, el prefijo 0b indica un número binario y el prefijo 0d indica un número decimal. Veremos cómo convertir entre los dos sistemas numéricos más adelante en este capítulo.
+    Como se mencionó con anterioridad, el prefijo 0b indica un número binario y el prefijo 0d indica un número decimal. Veremos cómo convertir entre los dos sistemas numéricos más adelante en esta unidad.
 
 ### 1.2. El campo IHL
 
@@ -111,7 +111,7 @@ No deberían producirse bucles en una red configurada correctamente, pero pueden
 
 El campo Protocolo tiene 8 bits de longitud y se utiliza para indicar qué tipo de mensaje se encapsula dentro del paquete. Esto es similar al campo EtherType del encabezado Ethernet, que indica el tipo de mensaje encapsulado en la trama (por ejemplo, un paquete IPv4 o un paquete IPv6).
 
-En el capítulo anterior, cubrimos la utilidad ping, que es un componente de ICMP. Si un paquete contiene un mensaje ICMP, se indica con un valor de 1 en este campo. Los siguientes son los valores del campo Protocolo de algunos protocolos que cubriremos en este libro:
+En la unidad anterior, cubrimos la utilidad ping, que es un componente de ICMP. Si un paquete contiene un mensaje ICMP, se indica con un valor de 1 en este campo. Los siguientes son los valores del campo Protocolo de algunos protocolos que cubriremos en adelante:
 
     1—ICMP
     6—Protocolo de control de transmisión (TCP)
@@ -124,7 +124,7 @@ El campo Suma de comprobación del encabezado tiene 16 bits de longitud y se uti
 
 ### 1.11. Los campos Dirección de origen y Dirección de destino
 
-Estos dos campos contienen la dirección IP del host que envía el paquete (campo Dirección de origen) y del destinatario previsto (campo Dirección de destino). Cada uno tiene una longitud de 32 bits, la longitud de una dirección IPv4. Cubriremos la estructura de las direcciones IPv4 con detalle más adelante en este capítulo.
+Estos dos campos contienen la dirección IP del host que envía el paquete (campo Dirección de origen) y del destinatario previsto (campo Dirección de destino). Cada uno tiene una longitud de 32 bits, la longitud de una dirección IPv4. Cubriremos la estructura de las direcciones IPv4 con detalle más adelante en esta unidad.
 
 ### 1.12. El campo Opciones
 
@@ -155,7 +155,6 @@ Un número de 8 bits (1 byte) con el valor de cada bit escrito arriba. El equiva
     El dígito más a la derecha de un número binario se llama bit menos significativo porque tiene el menor valor. El dígito más a la izquierda se llama bit más significativo porque tiene el mayor valor.
 
 La Tabla 1 enumera algunos números decimales y sus equivalentes binarios. Con sólo dos dígitos disponibles, los números binarios crecen rápidamente en tamaño (el valor después de 0b11111 sería 0b100000). Por eso, aunque las computadoras usan números binarios, convertimos esos valores binarios a otros sistemas numéricos (decimal y hexadecimal) para hacerlos más legibles para los humanos.
-Tabla 1 Números decimales y sus equivalentes binarios (ver figura de la tabla)
 
 | Dec | Bin   |     | Dec | Bin   |     | Dec | Bin    |     | Dec | Bin    |
 |-----|-------|-----|-----|-------|-----|-----|--------|-----|-----|--------|
@@ -167,6 +166,10 @@ Tabla 1 Números decimales y sus equivalentes binarios (ver figura de la tabla)
 | 5   | 101   |     | 13  | 1101  |     | 21  | 10101  |     | 29  | 11101  |
 | 6   | 110   |     | 14  | 1110  |     | 22  | 10110  |     | 30  | 11110  |
 | 7   | 111   |     | 15  | 1111  |     | 23  | 10111  |     | 31  | 11111  |
+
+/// tabla
+Números decimales y sus equivalentes binarios (ver figura de la tabla)
+///
 
 Aunque las direcciones IPv4 tienen una longitud de 32 bits, la buena noticia es que sólo tenéis que poder convertir entre binario y decimal para números de hasta 8 bits de longitud. Esto se debe a que las direcciones IPv4 se dividen en cuatro grupos de 8 bits, lo que las hace más manejables.
 
@@ -229,24 +232,32 @@ En lugar de usar la resta, podéis convertir de decimal a binario usando la suma
 
 Al igual que la conversión de binario a decimal, este proceso se vuelve mucho más fácil con la práctica y, eventualmente, deberías poder hacerlo mentalmente. Para practicar, escribid algunos números aleatorios del 0 al 255 (56, 127, 201, 199, etc.) e intentad convertirlos a binario.
 
-Para practicar más la conversión entre decimal y binario (en ambas direcciones), podéis probar el juego binario en Cisco Learning Network: https://learningnetwork.cisco.com/s/binary-game. Probadlo varias veces al día; A medida que practiques y mejores, tus puntuaciones en el Juego Binario deberían aumentar y podrás hacer los cálculos necesarios en tu cabeza.
+!!!note "Nota"
+    Para practicar más la conversión entre decimal y binario (en ambas direcciones), podéis probar el juego binario en Cisco Learning Network: 
+    
+    [https://learningnetwork.cisco.com/s/binary-game](https://learningnetwork.cisco.com/s/binary-game)
+    
+    Probadlo varias veces al día; A medida que practiques y mejores, tus puntuaciones en el Juego Binario deberían aumentar y podrás hacer los cálculos necesarios en tu cabeza.
 
 !!!note "Nota"
     Ser capaz de convertir rápidamente entre decimal y binario es de gran ayuda en el manejo de redes, especialmente cuando se trata de subredes. No pierdas tiempo innecesariamente haciendo conversiones de binario a decimal y de decimal a binario. Un poco de práctica con el juego binario de Cisco ayuda mucho.
 
-El binario es un tema fundamental para diversas aplicaciones en redes. Además del direccionamiento IPv4 (el tema de este capítulo), los siguientes son otros temas que requieren que usted domine el binario, incluida la conversión entre binario y decimal:
+El binario es un tema fundamental para diversas aplicaciones en redes. Además del direccionamiento IPv4 (el tema de esta unidad), los siguientes son otros temas que requieren que usted domine el binario, incluida la conversión entre binario y decimal:
 
 + **Subredes IPv4:** La subred es el proceso de dividir redes en redes más pequeñas. Para subdividir redes IPv4, es necesario poder convertir direcciones IPv4 de decimal a binario y viceversa. Abordaremos la subred más adelante
 +
-+ **Direccionamiento IPv6:** Configurar y verificar el direccionamiento y el prefijo IPv6. Para comprender las direcciones IPv6, es necesario poder convertir entre binario, decimal y hexadecimal (ya que las direcciones IPv6 suelen escribirse en hexadecimal). Abordaremos IPv6 en la parte 5 de este libro.
++ **Direccionamiento IPv6:** Configurar y verificar el direccionamiento y el prefijo IPv6. Para comprender las direcciones IPv6, es necesario poder convertir entre binario, decimal y hexadecimal (ya que las direcciones IPv6 suelen escribirse en hexadecimal).
 
-+ **Enrutamiento IPv4 e IPv6:** Para saber cómo un enrutador reenviará un paquete, debe identificar la ruta coincidente más específica: la ruta con la mayor cantidad de bits que coinciden con la dirección IP de destino del paquete. Para ello, debe comprender los números binarios. Cubriremos el concepto de la ruta coincidente más específica en el capítulo 9 y otros temas del dominio 3.0 en las partes 4 y 5 de este volumen. Listas de control de acceso (ACL): las ACL son el tema del examen 5.6: Configurar y verificar listas de control de acceso. Las ACL se utilizan para permitir o denegar tráfico de red específico, y lo hacen comparando los bits de la ACL configurada con los bits de las direcciones IP de origen y/o destino de un paquete. Para configurar las ACL adecuadas, debe comprender el sistema binario.
++ **Enrutamiento IPv4 e IPv6:** Para saber cómo un enrutador reenviará un paquete, debe identificar la ruta coincidente más específica: la ruta con la mayor cantidad de bits que coinciden con la dirección IP de destino del paquete. Para ello, debe comprender los números binarios. Cubriremos el concepto de la ruta coincidente más específica en el futuro.
+
++  **Listas de control de acceso (ACL):** Configurar y verificar listas de control de acceso. Las ACL se utilizan para permitir o denegar tráfico de red específico, y lo hacen comparando los bits de la ACL configurada con los bits de las direcciones IP de origen y/o destino de un paquete. Para configurar las ACL adecuadas, debe comprender el sistema binario.
 
 ## 3. Direccionamiento IPv4
 
 Una dirección IPv4 es un número de 32 bits que identifica un host en la Capa 3 del modelo TCP/IP. Las direcciones IP (ya sean IPv4 o IPv6) se utilizan para dirigir un mensaje a su destinatario final, a diferencia de las direcciones MAC, que se utilizan para dirigir un mensaje al siguiente salto. Mientras que se dice que los conmutadores son dispositivos de Capa 2, se dice que los enrutadores son dispositivos de Capa 3 o que operan en la Capa 3 porque toman decisiones de reenvío basándose en la dirección IP de destino de los mensajes (ubicada en el encabezado de la Capa 3).
+
 !!!note "Nota"
-    En este capítulo, veremos cómo configurar direcciones IPv4 en enrutadores, pero cubriremos cómo los enrutadores reenvían paquetes en la parte 2 de este libro.
+    En esta sección veremos cómo configurar direcciones IPv4 en routers, pero cubriremos cómo los routers reenvían paquetes más adelante.
 
 ### 3.1. La estructura de una dirección IPv4
 
@@ -297,7 +308,7 @@ Una dirección IPv4 (arriba) y su máscara de red (abajo). Los primeros 16 bits 
 !!!note "Nota"
     Una máscara de red suele denominarse máscara de subred; Cubriremos el tema de las subredes más adelante.
 
-Se debe estar familiarizado con ambos métodos para indicar la longitud de la parte de red de una dirección IPv4: usar la notación /X y usar una máscara de red. Generalmente usaré la notación /X porque es más simple, pero como se verá más adelante en este capítulo, la configuración de direcciones IPv4 en Cisco IOS requiere el uso de máscaras de red. A continuación se muestran algunas longitudes de prefijos y sus máscaras de red equivalentes para comparar:
+Se debe estar familiarizado con ambos métodos para indicar la longitud de la parte de red de una dirección IPv4: usar la notación /X y usar una máscara de red. Generalmente usaré la notación /X porque es más simple, pero como se verá más adelante, la configuración de direcciones IPv4 en Cisco IOS requiere el uso de máscaras de red. A continuación se muestran algunas longitudes de prefijos y sus máscaras de red equivalentes para comparar:
 
 + Longitud del prefijo: /8 = máscara de red: 255.0.0.0
 + Longitud del prefijo: /16 = máscara de red: 255.255.0.0
@@ -424,12 +435,12 @@ GigabitEthernet0/1 is up, line protocol is up
 ```
 
 !!!note "Nota"
-    Al indicar el formato de un comando, las palabras clave y los argumentos entre corchetes son opcionales. El comando show ip interface es válido por sí solo y muestra información para todas las interfaces; sin embargo, show ip interface g0/0 limita la salida solo a la interfaz indicada. Además de la longitud del prefijo, hay dos cosas más que me gustaría señalar sobre el resultado anterior, relacionadas con otros temas cubiertos en este capítulo: primero, la línea La dirección de transmisión es 255.255.255.255 indica la dirección IP que se usará para enviar un mensaje a todos los hosts en la red local: 255.255.255.255. Esta es una dirección IP especialmente reservada para paquetes de transmisión. Si R1 desea enviar un mensaje a todos los hosts en la LAN 1, enviará un paquete dirigido a 255.255.255.255 desde su interfaz G0/0 (encapsulado en una trama dirigida a la dirección MAC ffff.ffff.ffff).
+    Al indicar el formato de un comando, las palabras clave y los argumentos entre corchetes son opcionales. El comando show ip interface es válido por sí solo y muestra información para todas las interfaces; sin embargo, show ip interface g0/0 limita la salida solo a la interfaz indicada. Además de la longitud del prefijo, hay dos cosas más que me gustaría señalar sobre el resultado anterior, relacionadas con otros temas cubiertos en esta unidad: primero, la línea La dirección de broadcast es 255.255.255.255 indica la dirección IP que se usará para enviar un mensaje a todos los hosts en la red local: 255.255.255.255. Esta es una dirección IP especialmente reservada para paquetes de transmisión. Si R1 desea enviar un mensaje a todos los hosts en la LAN 1, enviará un paquete dirigido a 255.255.255.255 desde su interfaz G0/0 (encapsulado en una trama dirigida a la dirección MAC ffff.ffff.ffff).
 
 En segundo lugar, la línea final de la MTU de estados de salida incluidos es de 1500 bytes. Como mencionamos cuando observamos la cabecera IPv4, esto significa que si R1 tiene que reenviar una trama de más de 1500 bytes desde cualquiera de sus interfaces, primero debe fragmentar el paquete.
 
 !!!note "Nota"
-    Después de verificar que las configuraciones son correctas, siempre es una buena idea guardar la configuración con uno de los comandos tratados en el capítulo 5: escribir, escribir en memoria o copiar running-config startup-config.
+    Después de verificar que las configuraciones son correctas, siempre es una buena idea guardar la configuración con uno de los comandos tratados en unidades anteriores: escribir, escribir en memoria o copiar running-config startup-config.
 
 R1 ahora está listo para reenviar tráfico entre LAN 1 y LAN 2. La figura 11 muestra cómo el PC1 puede enviar un paquete al PC3 a través de R1; El PC1 envía el paquete en una trama dirigida a la dirección MAC de la interfaz G0/0 del R1 y luego el R1 reenvía el paquete en una trama dirigida a la dirección MAC del PC3. Recuerda que la Capa 3 proporciona entrega de un extremo a otro y la Capa 2 proporciona entrega de salto a salto. Aunque no se muestra en el diagrama, antes de que el PC1 pueda encapsular el paquete en una trama, debe usar ARP para conocer la dirección MAC de R1 G0/0. Asimismo, R1 debe usar ARP para conocer la dirección MAC del PC3.
 
@@ -446,7 +457,7 @@ Para que un enrutador reenvíe paquetes a redes remotas (que no están conectada
 
 ### 3.3. Atributos de una red IPv4
 
-Cada red IPv4 tiene algunos atributos que debería poder identificar: la dirección de red, la dirección de transmisión, la cantidad máxima de hosts, la primera dirección utilizable y la última dirección utilizable de la red.
+Cada red IPv4 tiene algunos atributos que debería poder identificar: la dirección de red, la dirección de broadcast, la cantidad máxima de hosts, la primera dirección utilizable y la última dirección utilizable de la red.
 
 #### 3.3.1. Dirección de red
 
@@ -460,21 +471,21 @@ La dirección de red es la primera dirección de cualquier red y se utiliza para
 
 #### 3.3.2. Dirección de broadcast
 
-La dirección de transmisión es la última dirección de cualquier red y, al igual que la dirección de red, no se puede asignar a un host. La dirección de transmisión se puede utilizar para enviar un mensaje a todos los hosts de la red local. Una dirección IPv4 es una dirección de transmisión si todos los bits de su porción de host están configurados en 1. La figura 13 muestra la dirección de transmisión de la red 192.168.100.0/24.
+La dirección de broadcast es la última dirección de cualquier red y, al igual que la dirección de red, no se puede asignar a un host. La dirección de broadcast se puede utilizar para enviar un mensaje a todos los hosts de la red local. Una dirección IPv4 es una dirección de broadcast si todos los bits de su porción de host están configurados en 1. La figura 13 muestra la dirección de broadcast de la red 192.168.100.0/24.
 ![](img/direccionamientoIP_13.png)
 
 /// figura
-192.168.100.255 es una dirección de transmisión, como lo indica la parte del host de 11111111. Esta dirección se puede usar para enviar un mensaje a todos los hosts en la red 192.168.100.0/24.
+192.168.100.255 es una dirección de broadcast, como lo indica la parte del host de 11111111. Esta dirección se puede usar para enviar un mensaje a todos los hosts en la red 192.168.100.0/24.
 ///
 
 !!!note "Nota"
-    Para enviar un mensaje a todos los dispositivos de la red local, los hosts normalmente envían los mensajes a 255.255.255.255, en lugar de a la dirección de transmisión de su red local. 255.255.255.255 es una dirección de transmisión especialmente reservada. Sin embargo, los hosts de otras redes pueden utilizar la dirección de transmisión 192.168.100.255 para enviar un mensaje a todos los hosts de la red 192.168.100.0/24.
+    Para enviar un mensaje a todos los dispositivos de la red local, los hosts normalmente envían los mensajes a 255.255.255.255, en lugar de a la dirección de broadcast de su red local. 255.255.255.255 es una dirección de broadcast especialmente reservada. Sin embargo, los hosts de otras redes pueden utilizar la dirección de broadcast 192.168.100.255 para enviar un mensaje a todos los hosts de la red 192.168.100.0/24.
 
 #### 3.3.3. Número máximo de hosts
 
-La cantidad máxima de hosts en una red es la cantidad de direcciones IP disponibles para asignar a los hosts conectados a la red. Para calcular la cantidad total de direcciones IP en una red, la fórmula es 2y, donde y es la cantidad de bits de host. Por ejemplo, con una longitud de prefijo /24, hay ocho bits de host; 28 es igual a 256, por lo que hay 256 direcciones IP en total en una red /24 (como 192.168.100.0/24).
+La cantidad máxima de hosts en una red es la cantidad de direcciones IP disponibles para asignar a los hosts conectados a la red. Para calcular la cantidad total de direcciones IP en una red, la fórmula es 2<sup>y</sup>, donde y es la cantidad de bits de host. Por ejemplo, con una longitud de prefijo /24, hay ocho bits de host; 2<sup>8</sup> es igual a 256, por lo que hay 256 direcciones IP en total en una red /24 (como 192.168.100.0/24).
 
-Sin embargo, debido a que la red y las direcciones de transmisión de cada red no se pueden asignar a los hosts, tenemos que restar 2 del número total de direcciones en la red para encontrar el número máximo de hosts. Por lo tanto, la fórmula para determinar el número máximo de hosts en una red es en realidad 2y − 2. Por ejemplo, el número máximo de hosts de una red /24 es 254 (28 − 2). Los siguientes son el número máximo de hosts en redes con longitudes de prefijo /8, /16 y /24:
+Sin embargo, debido a que la red y las direcciones de transmisión de cada red no se pueden asignar a los hosts, tenemos que restar 2 del número total de direcciones en la red para encontrar el número máximo de hosts. Por lo tanto, la fórmula para determinar el número máximo de hosts en una red es en realidad 2<sup>y</sup> − 2. Por ejemplo, el número máximo de hosts de una red /24 es 254 (2<sup>8</sup> − 2). Los siguientes son el número máximo de hosts en redes con longitudes de prefijo /8, /16 y /24:
 
 + /8: 224 – 2 = 16.777.214 hosts
 + /16: 216 – 2 = 65.534 hosts
@@ -493,33 +504,33 @@ La primera dirección utilizable de una red es la primera dirección IP que se p
 !!!note "Nota"
     La primera dirección utilizable de una red suele asignarse al enrutador de esa red. Por ejemplo, en la sección anterior, asignamos las direcciones IP 192.168.1.1 y 192.168.2.1 a las interfaces del R1, las primeras direcciones utilizables de sus respectivas redes.
 
-La última dirección utilizable de una red es la última dirección IP que se puede asignar a un host; es la última dirección IP antes de la dirección de transmisión. Esta dirección también es fácil de encontrar: reste 1 de la dirección de transmisión (cambie el bit menos significativo a 0). La figura 15 muestra la última dirección utilizable de la red 192.168.100.0/24.
+La última dirección utilizable de una red es la última dirección IP que se puede asignar a un host; es la última dirección IP antes de la dirección de broadcast. Esta dirección también es fácil de encontrar: resta 1 de la dirección de broadcast (cambia el bit menos significativo a 0). La figura 15 muestra la última dirección utilizable de la red 192.168.100.0/24.
 
 ![](img/direccionamientoIP_15.png)
 
 /// figura
-192.168.100.254 es la última dirección utilizable de la red 192.168.100.0/24. Es la última dirección antes de la dirección de transmisión. Si conoce la primera y la última dirección utilizable, sabrá el rango de direcciones utilizables: desde la primera dirección utilizable hasta la última dirección utilizable. Por ejemplo, el rango de direcciones utilizables en la red 192.168.100.0/24 es de 192.168.100.1 a 192.168.100.254: 254 direcciones en total.
+192.168.100.254 es la última dirección utilizable de la red 192.168.100.0/24. Es la última dirección antes de la dirección de broadcast. Si conoce la primera y la última dirección utilizable, sabrá el rango de direcciones utilizables: desde la primera dirección utilizable hasta la última dirección utilizable. Por ejemplo, el rango de direcciones utilizables en la red 192.168.100.0/24 es de 192.168.100.1 a 192.168.100.254: 254 direcciones en total.
 ///
 
 
-Para encontrar el rango de direcciones utilizables de una red, necesita conocer la primera y la última dirección utilizable de la red. Esto es bastante sencillo cuando se utiliza una longitud de prefijo de /8, /16 o /24; la división entre la porción de red y la porción de host se realiza entre octetos (en este caso, entre el segundo y el tercer octeto, porque la longitud del prefijo es /16).
+Para encontrar el rango de direcciones utilizables de una red, necesitamos conocer la primera y la última dirección utilizable de la red. Esto es bastante sencillo cuando se utiliza una longitud de prefijo de /8, /16 o /24; la división entre la porción de red y la porción de host se realiza entre octetos (en este caso, entre el segundo y el tercer octeto, porque la longitud del prefijo es /16).
 
-Para encontrar la primera dirección utilizable, simplemente cambie los octetos de la parte del host a 0 (esta es la dirección de red) y luego agregue 1 al último octeto, por ejemplo: la dirección de la PC1 es 172.20.20.127, la dirección de red es 172.20.0.0 y la primera dirección utilizable es 172.20.0.1.
+Para encontrar la primera dirección utilizable, simplemente cambia los octetos de la parte del host a 0 (esta es la dirección de red) y luego agregua 1 al último octeto, por ejemplo: la dirección de la PC1 es 172.20.20.127, la dirección de red es 172.20.0.0 y la primera dirección utilizable es 172.20.0.1.
 
-Para encontrar la última dirección utilizable, cambie los octetos de la parte del host a 255 (esta es la dirección de transmisión) y luego reste 1 del último octeto: la dirección de la PC1 es 172.20.20.127, la dirección de transmisión es 172.20.255.255 y la última dirección utilizable es 172.20.255.254. Ahora ya conoce el rango de direcciones utilizables: de 172.20.0.1 a 172.20.255.254. Por tanto, la respuesta a esta pregunta es C.
+Para encontrar la última dirección utilizable, cambie los octetos de la parte del host a 255 (esta es la dirección de broadcast) y luego reste 1 del último octeto: la dirección de la PC1 es 172.20.20.127, la dirección de broadcast es 172.20.255.255 y la última dirección utilizable es 172.20.255.254. Ahora ya conoce el rango de direcciones utilizables: de 172.20.0.1 a 172.20.255.254. Por tanto, la respuesta a esta pregunta es C.
 
-Este proceso se volverá más desafiante cuando cubramos la división en subredes en el capítulo 11 de este libro. Al dividir en subredes, utilizamos longitudes de prefijo que no encajan perfectamente entre los octetos de una dirección IP, como /19, /23, /28, etc. En ese caso, es importante ser competente en la conversión entre decimal y binario para poder identificar la red y los bits del host, convertir los bits del host a 0 o 1 según sea necesario, convertirlos nuevamente a decimal, etc.
+Este proceso se volverá más desafiante cuando cubramos la división en subredes Al dividir en subredes, utilizamos longitudes de prefijo que no encajan perfectamente entre los octetos de una dirección IP, como /19, /23, /28, etc. En ese caso, es importante ser competente en la conversión entre decimal y binario para poder identificar la red y los bits del host, convertir los bits del host a 0 o 1 según sea necesario, convertirlos nuevamente a decimal, etc.
 
 ### 3.4. Clases de direcciones IPv4
 
 Originalmente, todas las direcciones IPv4 usaban una longitud de prefijo /8; el primer octeto identificaba la red y los últimos tres octetos identificaban el host específico dentro de esa red. Sin embargo, ese sistema pronto fue abandonado; debido a que solo los primeros 8 bits se podían usar para crear diferentes redes, solo podía haber 256 (2^8) redes (LAN) diferentes: de 0.x.x.x a 255.x.x.x. En el mundo moderno, donde Internet es omnipresente, no hay suficientes redes.
 
 !!!note "Nota"
-    La fórmula para calcular la cantidad de redes disponibles es 2^x, donde x es la cantidad de bits en la parte de la red.
+    La fórmula para calcular la cantidad de redes disponibles es 2<sup>x</sup>, donde x es la cantidad de bits en la parte de la red.
 
 Para mejorar ese sistema y permitir más redes de varios tamaños, las direcciones IPv4 se organizaron en cinco clases: clase A, clase B, clase C, clase D y clase E. La Tabla 2 enumera las cinco clases de direcciones IPv4 y algo de información sobre ellas.
 
-Tabla 2 Clases de direcciones IPv4 (ver figura de tabla)
+
 
 | Clase | Patrón de bits del primer octeto | Rango decimal del primer octeto | Longitud de prefijo | Nota |
 |-------|----------------------------------|--------------------------------|---------------------|------|
@@ -528,6 +539,11 @@ Tabla 2 Clases de direcciones IPv4 (ver figura de tabla)
 | C     | 110xxxxx                         | 192–223                        | /24                 | Rango de direcciones: 192.0.0.0–223.255.255.255 |
 | D     | 1110xxxx                         | 224–239                        | —                   | Reservado para direcciones multicast |
 | E     | 1111xxxx                         | 240–255                        | —                   | Reservado para fines experimentales |
+
+/// tabla
+Clases de direcciones IPv4 (ver figura de tabla)
+///
+
 
 !!!note "Nota"
     Algunas direcciones de cada clase están reservadas para fines especiales y no se pueden asignar a hosts. Por ejemplo, las direcciones de clase A con un primer octeto de 0 o 127 están reservadas.
@@ -548,14 +564,19 @@ Tamaños de la porción de red y de la porción de host de las direcciones IPv4 
 
 Las redes de Clase A estaban destinadas a organizaciones muy grandes, como proveedores de servicios de Internet y el Departamento de Defensa de los Estados Unidos (DoD); la gran mayoría de las organizaciones no necesitan ni cerca de 16.777.216 direcciones IP. Las redes de clase B estaban destinadas a medianas y grandes empresas y las de clase C, a pequeñas y medianas empresas.
 
-La Tabla 3 resume las características de las clases A, B y C. No es necesario memorizar el número de redes y direcciones por red para cada clase de dirección; simplemente comprenda que una porción de red más pequeña significa menos redes con más hosts en cada red, y una porción de red más grande significa más redes con menos hosts en cada red.
-Tabla 3 Características de las clases A, B y C (ver figura de tabla)
+La Tabla 3 resume las características de las clases A, B y C. No es necesario memorizar el número de redes y direcciones por red para cada clase de dirección; simplemente comprended que una porción de red más pequeña significa menos redes con más hosts en cada red, y una porción de red más grande significa más redes con menos hosts en cada red.
+
 
 | Clase | Primer octeto | Tamaño de la porción de red | Tamaño de la porción de host | Número de redes | Direcciones por red |
 |-------|---------------|-----------------------------|------------------------------|-----------------|----------------------|
 | A     | 0xxxxxxx      | 8 bits                      | 24 bits                      | 128 (2⁷)        | 16.777.216 (2²⁴)     |
 | B     | 10xxxxxx      | 16 bits                     | 16 bits                      | 16.384 (2¹⁴)    | 65.536 (2¹⁶)         |
 | C     | 110xxxxx      | 24 bits                     | 8 bits                       | 2.097.152 (2²¹) | 256 (2⁸)             |
+
+/// tabla
+Características de las clases A, B y C (ver figura de tabla)
+///
+
 
 !!!note "Nota"
     La razón por la que sólo hay 27 redes de clase A, aunque la parte de la red tiene una longitud de 8 bits, es que el primer bit está fijo en 0: sólo hay 7 bits disponibles para cambiar y crear redes diferentes. El mismo razonamiento se aplica a por qué hay 214 redes de clase B (no 216) y 221 redes de clase C (no 224).
@@ -597,8 +618,8 @@ Dentro de cada clase de dirección, existen varios rangos de direcciones IP que 
 + Se puede acceder al modo de configuración de la interfaz con el comando interface interface-name desde el modo de configuración global.
 + La dirección IPv4 de una interfaz se puede configurar con el comando ip-address netmask en el modo de configuración de interfaz.
 + La dirección de red de una red es la primera dirección de la red, con una parte del host formada por todos ceros. Se utiliza para identificar la red y no se puede asignar a un host.
-+ La dirección de transmisión de una red es la última dirección de la red, con una porción de host compuesta solo de unos. Se puede utilizar para enviar un mensaje a todos los hosts de la red. Sin embargo, para enviar un mensaje a todos los hosts de la red local, normalmente se utiliza la dirección 255.255.255.255.
-+ La cantidad máxima de hosts de una red es la cantidad de direcciones IP que se pueden asignar a los hosts. La fórmula es 2y − 2, donde y es el número de bits en la parte del host. Se restan dos para las direcciones de red y de transmisión.
++ La dirección de broadcast de una red es la última dirección de la red, con una porción de host compuesta solo de unos. Se puede utilizar para enviar un mensaje a todos los hosts de la red. Sin embargo, para enviar un mensaje a todos los hosts de la red local, normalmente se utiliza la dirección 255.255.255.255.
++ La cantidad máxima de hosts de una red es la cantidad de direcciones IP que se pueden asignar a los hosts. La fórmula es 2<sup>y</sup> − 2, donde y es el número de bits en la parte del host. Se restan dos para las direcciones de red y de transmisión.
 + La primera dirección utilizable de una red es la primera dirección que se puede asignar a un host. La última dirección utilizable es la última dirección que se puede asignar a un host.
 + Las direcciones IPv4 se pueden organizar en cinco clases: A, B, C, D y E. La clase D está reservada para direcciones de multidifusión y la clase E está reservada para fines experimentales. Las direcciones de las clases A, B y C se asignan a los hosts de la red.
 + Las direcciones de clase A tienen un primer octeto de 0 a 127 y utilizan una longitud de prefijo /8. Las direcciones de clase B tienen un primer octeto de 128 a 191 y utilizan una longitud de prefijo /16. Las direcciones de clase C tienen un primer octeto de 192 a 223 y utilizan una longitud de prefijo /24.
