@@ -1,21 +1,5 @@
 # Ejercicios de direccionamiento IP
 
-## Correcciones respecto al PDF original
-
-Este documento está adaptado del PDF original `ejercicios_direccionamiento_ip.pdf`, con las siguientes correcciones sobre el texto de partida:
-
-| Ejercicio | En el PDF original | Corregido |
-|---|---|---|
-| 7 | Sin indicación de que no basta con mirar la clase | Añadida nota: una dirección puede ser inválida por su clase, por ser dirección de red/broadcast, o por contener un octeto no válido (0–255) |
-| 11 | "Se desea subdividir ... en **4 subredes**", pero luego se piden bits para 8 subredes | Corregido a "**8 subredes**", coherente con el paso 3 y con el Ejercicio 12 |
-| 4 y 18 | "para tener 4 **subred**" | Corregido a "4 **subredes**" |
-| 18 | "Dada la dirección de **clase B** 120.32.0.0" | Corregido: 120.32.0.0 es **clase A** (primer octeto 120 ∈ 1–126). La solución numérica no varía |
-| 19 | El broadcast de `190.50.27.1` figuraba como `200.1.17.255` (valor arrastrado del Ejercicio 13) | Corregido a **`190.50.27.255`** |
-
-Las soluciones completas están en `ejercicios_direccionamiento_ip_soluciones.md`.
-
----
-
 ## Ejercicio 1
 
 Convierte las siguientes direcciones a binario e indica si se trata de direcciones de tipo A, B o C.
