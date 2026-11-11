@@ -1,14 +1,5 @@
 # Ejercicios de direccionamiento IP
 
-**Instalación y mantenimiento de servicios de Internet**
-
-- **Módulo:** Explotación de Sistemas Informáticos
-- **Curso:** 2007/2008 — Ciclo Formativo de Grado Medio: Explotación de Sistemas Informáticos
-- **Profesor:** Alejandro Meroño Hernández
-- **E-mail:** alejandro@alejandrox.com
-
----
-
 ## Correcciones respecto al PDF original
 
 Este documento está adaptado del PDF original `ejercicios_direccionamiento_ip.pdf`, con las siguientes correcciones sobre el texto de partida:
