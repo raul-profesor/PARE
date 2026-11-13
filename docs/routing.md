@@ -4,7 +4,7 @@ lang: es
 
 # Enrutamiento
 
-Este capítulo cubre
+Esta sección cubre
 
 + Cómo los hosts finales envían paquetes IP a destinos locales y remotos
 + El proceso de enrutamiento
@@ -12,13 +12,9 @@ Este capítulo cubre
 + Cómo configurar rutas estáticas en un router
 + Cómo usar rutas por defecto para proporcionar conectividad a internet
 
-En este capítulo trataremos el enrutamiento, el proceso mediante el cual los routers reenvían paquetes IP entre redes. En concreto, veremos elementos de los siguientes temas del examen CCNA:
+En esta sección trataremos el enrutamiento, el proceso mediante el cual los routers reenvían paquetes IP entre redes. 
 
-+ 3.1 Interpretar los componentes de una tabla de enrutamiento
-+ 3.2 Determinar cómo toma un router una decisión de reenvío por defecto
-+ 3.3 Configurar y verificar el enrutamiento estático IPv4 e IPv6
-
-El término enrutamiento puede referirse en realidad a dos procesos diferentes: el proceso mediante el cual los routers construyen su tabla de enrutamiento (una base de datos de destinos conocidos y cómo reenviar paquetes hacia ellos) y el proceso de reenviar los paquetes en sí. En este capítulo veremos ambos aspectos del enrutamiento, y partiremos de esta base en futuros capítulos de este volumen y del volumen 2.
+El término enrutamiento puede referirse en realidad a dos procesos diferentes: el proceso mediante el cual los routers construyen su tabla de enrutamiento (una base de datos de destinos conocidos y cómo reenviar paquetes hacia ellos) y el proceso de reenviar los paquetes en sí. En esta sección veremos ambos aspectos del enrutamiento, y partiremos de esta base en futuros temas.
 
 ## 0. Concepto de puerta de enlace predeterminada (gateway)
 
@@ -71,9 +67,9 @@ PC1 (192.168.1.11) envía un paquete a PC3 (192.168.2.11). Como PC1 y PC3 están
 ///
 
 !!!note "Nota"
-    La dirección IP de la puerta de enlace predeterminada suele ser la primera dirección utilizable de la red. Por ejemplo, en la red 192.168.1.0/24 es 192.168.1.1, y en la red 192.168.2.0/24 es 192.168.2.1. No tiene que ser así, pero es una práctica habitual, y yo seguiré esa práctica en este libro. Las direcciones IP de los PCs, en cambio, son arbitrarias. En los ejemplos de este capítulo, las direcciones IP de los PCs terminan en .11 y .12, pero esos valores no tienen ningún significado especial.
+    La dirección IP de la puerta de enlace predeterminada suele ser la primera dirección utilizable de la red. Por ejemplo, en la red 192.168.1.0/24 es 192.168.1.1, y en la red 192.168.2.0/24 es 192.168.2.1. No tiene que ser así, pero es una práctica habitual, y yo seguiré esa práctica en este libro. Las direcciones IP de los PCs, en cambio, son arbitrarias. En los ejemplos de este tema, las direcciones IP de los PCs terminan en .11 y .12, pero esos valores no tienen ningún significado especial.
 
-¿Cómo sabe PC1 cuál es su puerta de enlace predeterminada? Un host final puede averiguar la dirección IP de su puerta de enlace predeterminada de un par de maneras. Una es la configuración manual, en la que un administrador especifica manualmente la puerta de enlace predeterminada en cada dispositivo. Sin embargo, esto es muy raro en dispositivos de usuario como los PCs; normalmente usan el segundo método, el Protocolo de configuración dinámica de host (DHCP), para averiguar automáticamente información como la dirección IP de su puerta de enlace predeterminada, así como su propia dirección IP (DHCP se trata en el capítulo 4 del volumen 2 de este libro). En un dispositivo Windows, podéis usar el comando ipconfig en la aplicación Símbolo del sistema para ver información como la dirección IP del dispositivo, la máscara de red (llamada subnet mask en la salida del comando) y la puerta de enlace predeterminada. El siguiente ejemplo muestra la salida de este comando en PC1:
+¿Cómo sabe PC1 cuál es su puerta de enlace predeterminada? Un host final puede averiguar la dirección IP de su puerta de enlace predeterminada de un par de maneras. Una es la configuración manual, en la que un administrador especifica manualmente la puerta de enlace predeterminada en cada dispositivo. Sin embargo, esto es muy raro en dispositivos de usuario como los PCs; normalmente usan el segundo método, el Protocolo de configuración dinámica de host (DHCP), para averiguar automáticamente información como la dirección IP de su puerta de enlace predeterminada, así como su propia dirección IP. En un dispositivo Windows, podéis usar el comando ipconfig en la aplicación Símbolo del sistema para ver información como la dirección IP del dispositivo, la máscara de red (llamada subnet mask en la salida del comando) y la puerta de enlace predeterminada. El siguiente ejemplo muestra la salida de este comando en PC1:
 
 ```
 C:\Users\jmcdo> ipconfig
@@ -98,7 +94,7 @@ En la sección 1 vimos cómo un host envía paquetes a destinos fuera de su red 
 !!!note "Nota"
     La tabla de enrutamiento de R1 en la figura 3 está simplificada; examinaremos la tabla de enrutamiento completa de R1 en la sección 3.
 
-Cuando un router recibe una trama destinada a su propia dirección MAC, des encapsulará la trama para examinar el paquete que contiene (si el destino no es su propia dirección MAC, descartará la trama). Si la dirección IP de destino del paquete es su propia dirección IP, seguirá des encapsulando el mensaje, ya que es un mensaje destinado al propio router.
+Cuando un router recibe una trama destinada a su propia dirección MAC, desencapsulará la trama para examinar el paquete que contiene (si el destino no es su propia dirección MAC, descartará la trama). Si la dirección IP de destino del paquete es su propia dirección IP, seguirá desencapsulando el mensaje, ya que es un mensaje destinado al propio router.
 
 Sin embargo, si la dirección IP de destino del paquete no es su propia dirección IP, el router intentará enrutar el paquete para reenviarlo hacia el destino del paquete. Para ello, busca la dirección IP de destino del paquete en su tabla de enrutamiento para encontrar una ruta adecuada. Si encuentra una ruta adecuada, reenvía el paquete según esa ruta. Si no, descarta el paquete.
 
@@ -114,7 +110,7 @@ La tabla de enrutamiento de un router es una base de datos de destinos conocidos
 
 + Para enviar un paquete al destino X, reenviar el paquete al siguiente salto Y.
 + O, si el destino está en una red directamente conectada, reenviar el paquete directamente al destino.
-+ O, si el destino es la dirección IP del propio router, seguir des encapsulando el mensaje (no reenviar el paquete).
++ O, si el destino es la dirección IP del propio router, seguir desencapsulando el mensaje (no reenviar el paquete).
 
 El ejemplo que vimos en la figura 3 es un ejemplo del segundo tipo de instrucción; el destino del paquete (PC3, 192.168.2.11) está en una red directamente conectada a R1 (192.168.2.0/24), por lo que R1 reenvía el paquete directamente al destino (encapsulándolo en una trama dirigida a PC3).
 
@@ -135,7 +131,7 @@ Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
 Gateway of last resort is not set
 ```
 
-Sin ninguna configuración, la salida muestra algunos códigos que representan los diferentes tipos de ruta que podrían aparecer en la tabla de enrutamiento. Por último, Gateway of last resort is not set indica que R1 no tiene una ruta por defecto, algo que veremos en la sección 4.
+Sin ninguna configuración, la salida muestra algunos códigos que representan los diferentes tipos de ruta que podrían aparecer en la tabla de enrutamiento. Por último, Gateway of last resort is not set indica que R1 no tiene una ruta por defecto.
 
 Vamos a configurar R1 y a ver cómo cambia la salida de show ip route. Primero, no configuraremos ninguna ruta; en su lugar, vamos a configurar las direcciones IP de R1 y a habilitar sus interfaces, como en el siguiente ejemplo:
 
@@ -167,7 +163,7 @@ L        192.168.2.1/32 is directly connected, GigabitEthernet0/1
 Sólo con configurar las direcciones IP y habilitar las dos interfaces de R1, R1 ha insertado cuatro rutas en su tabla de enrutamiento: dos rutas conectadas (indicadas con el código C) y dos rutas locales (indicadas con el código L).
 
 !!!note "Nota"
-    La línea 192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks no es una ruta. Esta línea significa que en la tabla de enrutamiento hay dos rutas a subredes que encajan dentro de la red de clase C 192.168.1.0/24, con dos máscaras de red distintas (/24 y /32). Lo mismo se aplica a la línea similar sobre 192.168.2.0/24. Trataremos las subredes en el capítulo 11.
+    La línea 192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks no es una ruta. Esta línea significa que en la tabla de enrutamiento hay dos rutas a subredes que encajan dentro de la red de clase C 192.168.1.0/24, con dos máscaras de red distintas (/24 y /32). Lo mismo se aplica a la línea similar sobre 192.168.2.0/24. Trataremos las subredes más adelante.
 
 #### 2.1.1. Rutas conectadas
 
@@ -185,7 +181,7 @@ C        192.168.1.0/24 is directly connected, GigabitEthernet0/0
 C        192.168.2.0/24 is directly connected, GigabitEthernet0/1
 ```
 
-Con estas rutas en su tabla de enrutamiento, R1 sabe que para reenviar un paquete a un host con una dirección IP en las redes 192.168.1.0/24 o 192.168.2.0/24, debe enviar el paquete por la interfaz especificada en la ruta en una trama dirigida directamente al host de destino. Vimos esto en la figura 3; la dirección IP de destino del paquete era 192.168.2.11 (PC3), así que R1 reenvió el paquete por la interfaz G0/1 en una trama dirigida a la dirección MAC de PC3.
+Con estas rutas en su tabla de enrutamiento, R1 sabe que para reenviar un paquete a un host con una dirección IP en las redes 192.168.1.0/24 o 192.168.2.0/24, debe enviar el paquete por la interfaz especificada en la ruta en una trama dirigida directamente al host de destino. Vemos esto en la figura 3; la dirección IP de destino del paquete era 192.168.2.11 (PC3), así que R1 reenvió el paquete por la interfaz G0/1 en una trama dirigida a la dirección MAC de PC3.
 
 La figura 4 muestra cómo la ruta a 192.168.1.0/24 incluye todas las direcciones IP desde 192.168.1.0 hasta 192.168.1.255. La parte de red de la dirección de la ruta es fija, pero la parte de host puede ser cualquier número de 8 bits.
 
@@ -194,9 +190,6 @@ La figura 4 muestra cómo la ruta a 192.168.1.0/24 incluye todas las direcciones
 /// figura
 La dirección IP y la longitud de prefijo (escrita como máscara de red) de la ruta a 192.168.1.0/24. Debido a la longitud de prefijo /24, los tres primeros octetos son fijos (los bits no pueden cambiar). Sin embargo, el último octeto puede ser cualquier número de 8 bits: .1, .11, .100, .179, etc. Esto significa que cualquier paquete con una dirección IP de destino que comience por 192.168.1 puede reenviarse usando esta ruta.
 ///
-
-!!!tip "Consejo de examen"
-    Una ruta a más de una dirección IP de destino se denomina ruta de red; es una ruta a una red, en lugar de una ruta a una única dirección IP de destino. Una ruta conectada es un ejemplo de ruta de red. El término ruta de red se menciona explícitamente en el tema del examen 3.3.b, así que recordad esa definición.
 
 #### 2.1.2. Rutas locales
 
@@ -218,7 +211,7 @@ Para especificar la dirección IP exacta de la interfaz, una ruta local usa una 
 La dirección IP de la interfaz G0/0 de R1 y una longitud de prefijo /32 escrita como máscara de red en decimal con puntos y en binario. Con un prefijo de longitud /32, la ruta sólo incluye una única dirección IP (192.168.1.1, en este caso). Un paquete destinado a 192.168.1.2, por ejemplo, no puede usar esta ruta.
 ///
 
-Una ruta local le indica al router que los paquetes destinados a la dirección IP especificada en la ruta son para el propio router; debe seguir des encapsulando el mensaje y examinar su contenido. En este caso, el router no reenvía el paquete; simplemente recibe el paquete para sí mismo. La ruta local es necesaria para distinguir la dirección IP del propio router de las demás direcciones IP de la red conectada. Si R1 sólo tuviera una ruta conectada a 192.168.1.0/24 pero ninguna ruta local, reenviaría los paquetes destinados a 192.168.1.1 por su interfaz G0/0, en lugar de recibirlos para sí mismo.
+Una ruta local le indica al router que los paquetes destinados a la dirección IP especificada en la ruta son para el propio router; debe seguir desencapsulando el mensaje y examinar su contenido. En este caso, el router no reenvía el paquete; simplemente recibe el paquete para sí mismo. La ruta local es necesaria para distinguir la dirección IP del propio router de las demás direcciones IP de la red conectada. Si R1 sólo tuviera una ruta conectada a 192.168.1.0/24 pero ninguna ruta local, reenviaría los paquetes destinados a 192.168.1.1 por su interfaz G0/0, en lugar de recibirlos para sí mismo.
 
 !!!tip "Consejo de examen"
     Una ruta a una única dirección IP de destino (con una longitud de prefijo /32) se denomina ruta de host; es una ruta a un único host. Una ruta local es un ejemplo de ruta de host. Esto se opone al concepto de ruta de red, que vimos antes; una ruta de red es cualquier ruta con una longitud de prefijo menor que /32. El término ruta de host se menciona explícitamente en el tema del examen 3.3.c, así que recordad esa definición.
@@ -235,7 +228,7 @@ Vamos a usar un ejemplo para aclarar ese concepto. La figura 6 muestra el proces
 ![](img/routing_6.png){text-align: justify}
 
 /// figura
-R1 recibe un paquete y selecciona la mejor ruta para ese paquete. (1) R1 recibe una trama en su interfaz G0/0. La MAC de destino es la suya, así que la des encapsula y examina el paquete que contiene. (2) La dirección IP de destino del paquete es 192.168.1.1. R1 realiza una búsqueda en la tabla de enrutamiento y encuentra que dos rutas coinciden con la dirección IP de destino del paquete: la ruta conectada a 192.168.1.0/24 y la ruta local a 192.168.1.1/32. R1 selecciona la ruta más específica: 192.168.1.1/32. (3) Como R1 selecciona una ruta local, recibe el paquete para sí mismo; no lo reenvía.
+R1 recibe un paquete y selecciona la mejor ruta para ese paquete. (1) R1 recibe una trama en su interfaz G0/0. La MAC de destino es la suya, así que la desencapsula y examina el paquete que contiene. (2) La dirección IP de destino del paquete es 192.168.1.1. R1 realiza una búsqueda en la tabla de enrutamiento y encuentra que dos rutas coinciden con la dirección IP de destino del paquete: la ruta conectada a 192.168.1.0/24 y la ruta local a 192.168.1.1/32. R1 selecciona la ruta más específica: 192.168.1.1/32. (3) Como R1 selecciona una ruta local, recibe el paquete para sí mismo; no lo reenvía.
 ///
 
 Una ruta con una longitud de prefijo /24 incluye 256 direcciones IP distintas. Por ejemplo, 192.168.1.0/24 incluye desde 192.168.1.0 hasta 192.168.1.255. En cambio, una ruta con una longitud de prefijo /32 incluye una sola dirección IP, por lo que una ruta /32 es más específica que una ruta /24. De hecho, una ruta /32 es la ruta más específica posible; si la dirección IP de destino de un paquete coincide con una ruta /32, esa ruta será siempre la seleccionada para ese paquete, sin importar cuántas otras rutas coincidentes haya.
